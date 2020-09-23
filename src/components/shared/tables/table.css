@@ -1,0 +1,21 @@
+td.none {
+  background-color: lightgray;
+}
+td.small {
+  background-color: lightpink;
+}
+td.losing {
+  background-color: lightcoral;
+}
+td.flattening {
+  background-color: lightsalmon;
+}
+td.crushing {
+  background-color: lightskyblue;
+}
+td.winning {
+  background-color: lightgreen;
+}
+td.won {
+  background-color: lightseagreen;
+}
