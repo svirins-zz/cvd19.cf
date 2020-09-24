@@ -4,7 +4,7 @@ import {
 } from 'victory';
 import { Tag } from 'react-tag-autocomplete';
 import { Country } from '../../utilities/types/data';
-import Theme from '../shared/general/chartTheme';
+import Theme from '../shared/layout/chartTheme';
 import {
   cyanA400,
   deepPurpleA200,

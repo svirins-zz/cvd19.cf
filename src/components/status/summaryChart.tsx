@@ -3,7 +3,7 @@ import {
   VictoryChart, VictoryLegend, VictoryLine, VictoryAxis, VictoryLabel,
 } from 'victory';
 import { PeriodSummary } from '../../utilities/types/data';
-import Theme from '../shared/general/chartTheme';
+import Theme from '../shared/layout/chartTheme';
 
 const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
   <VictoryChart

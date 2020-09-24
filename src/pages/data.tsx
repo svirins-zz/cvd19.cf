@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import Layout from '../components/shared/general/layout';
-import SEO from '../components/shared/general/seo';
+import SEO from '../components/shared/layout/seo';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
 import { Countries } from '../utilities/types/data';
 import { calculateData } from '../utilities/calcAllData';

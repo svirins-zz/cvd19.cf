@@ -2,7 +2,7 @@ import React, { useState, CSSProperties } from 'react';
 import { Link } from 'gatsby';
 import Switch from 'react-switch';
 import Layout from '../shared/general/layout';
-import SEO from '../shared/general/seo';
+import SEO from '../shared/layout/seo';
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
 } from '../shared/tables/tables';

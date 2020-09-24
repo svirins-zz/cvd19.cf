@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Dzmitry Sviryn <svirins@gmail.com>",
   "dependencies": {
+    "@ant-design/icons": "^4.2.2",
     "@apollo/client": "^3.2.1",
     "@types/react-table": "^7.0.23",
     "@types/react-tag-autocomplete": "^5.12.0",
