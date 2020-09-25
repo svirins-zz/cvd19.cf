@@ -1,13 +1,13 @@
 import React from 'react';
-import Layout from '../components/shared/general/layout';
+import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 
 const NotFoundPage = () => (
-  <Layout>
+  <PageLayout>
     <SEO title="404: Not found" />
     <h1>NOT FOUND</h1>
     <p>You just hit a link to a page that doesn&#39;t exist... the sadness.</p>
-  </Layout>
+  </PageLayout>
 );
 
 export default NotFoundPage;

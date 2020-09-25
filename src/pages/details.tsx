@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from '../components/shared/general/layout';
+import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import Legend from '../components/details/legend';
 
 const DetailsPage = () => (
-  <Layout>
+  <PageLayout>
     <SEO title="Details" />
     <Legend />
     <h2>Covid-19 Pandemic Information</h2>
@@ -36,7 +36,7 @@ const DetailsPage = () => (
       <li><a href="https://medium.com/@tomaspueyo/coronavirus-out-of-many-one-36b886af37e9">Out of many one - Tomas Pueyo</a></li>
       <li><a href="https://www.nakedcapitalism.com/2020/04/taleb-the-only-man-who-has-a-clue.html">Taleb: The Only Man Who Has A Clue - Yves Smith</a></li>
     </ul>
-  </Layout>
+  </PageLayout>
 );
 
 export default DetailsPage;

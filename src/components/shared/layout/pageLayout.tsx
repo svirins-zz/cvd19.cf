@@ -1,20 +1,16 @@
 import React from 'react';
 import { Layout } from 'antd';
-import topNavigation from './topNavigation';
-import bottomNavigation from './bottomNavigation';
+import TopNavigation from './topNavigation';
+import BottomNavigation from './bottomNavigation';
 
 const {
   Header, Footer, Content,
 } = Layout;
 
-// interface Props {
-//   children: React.ReactNode
-// }
-
-const pageLayout = ({ children }) => (
+const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
   <header>
     <Header>
-      {topNavigation}
+      <TopNavigation />
     </Header>
     <header />
     <main>
@@ -23,7 +19,7 @@ const pageLayout = ({ children }) => (
       </Content>
     </main>
     <Footer>
-      {bottomNavigation}
+      <BottomNavigation />
     </Footer>
     <script src="/__/firebase/7.14.0/firebase-app.js" />
     <script src="/__/firebase/7.14.3/firebase-analytics.js" />
@@ -31,4 +27,4 @@ const pageLayout = ({ children }) => (
   </header>
 );
 
-export default pageLayout;
+export default PageLayout;

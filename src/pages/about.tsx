@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Layout from '../components/shared/general/layout';
+import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 
 const AboutPage = () => (
-  <Layout>
+  <PageLayout>
     <SEO title="About" />
     <p>
       This site aims to provide a simple tool to track global progress in defeating Covid-19,
-      by focusing on the rate of change in death count globally. Daily data update occurs between 04:45 and 05:15 GMT
+      by focusing on the rate of change in death count globally.
+      Daily data update occurs between 04:45 and 05:15 GMT
     </p>
     <p>
       All data is pulled from the
@@ -46,7 +47,7 @@ const AboutPage = () => (
       <Link to="/details">Details</Link>
       .
     </p>
-  </Layout>
+  </PageLayout>
 );
 
 export default AboutPage;

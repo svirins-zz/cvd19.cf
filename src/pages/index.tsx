@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'gatsby';
-import pageLayout from '../components/shared/layout/pageLayout';
+import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
 import { getStatusInfo } from '../components/details/legend';
@@ -31,22 +31,22 @@ const IndexPage = () => {
   );
   if (loading) {
     return (
-      <pageLayout>
+      <PageLayout>
         <SEO title="Status" />
         <p style={{ textAlign: 'center' }}>Loading</p>
-      </pageLayout>
+      </PageLayout>
     );
   }
   if (error) {
     return (
-      <pageLayout>
+      <PageLayout>
         <SEO title="Status" />
         <p>{error.message}</p>
-      </pageLayout>
+      </PageLayout>
     );
   }
   return (
-    <pageLayout>
+    <PageLayout>
       <SEO title="Status" />
       <h1>How is the world doing?</h1>
       <div
@@ -151,7 +151,7 @@ const IndexPage = () => {
           <Link to="/data">More Data</Link>
         </div>
       </div>
-    </pageLayout>
+    </PageLayout>
   );
 };
 

@@ -6,7 +6,7 @@ import {
 } from '@ant-design/icons';
 
 // TODO: Add logo!
-const topNavigation = () => (
+const TopNavigation = () => (
   <Row>
     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
       <Menu.Item key="1">
@@ -37,4 +37,4 @@ const topNavigation = () => (
   </Row>
 );
 
-export default topNavigation;
+export default TopNavigation;

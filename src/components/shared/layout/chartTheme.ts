@@ -1,8 +1,7 @@
 import { VictoryTheme } from 'victory';
 
 const fontFamily = `
-  "Roboto Mono", "Droid Sans Mono",
-  "Liberation Mono", Menlo, Courier, monospace
+  "Roboto Mono", Courier, monospace
 `;
 
 const Theme = {

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import Layout from '../components/shared/general/layout';
+import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
 import { Countries } from '../utilities/types/data';
@@ -19,18 +19,18 @@ const DataPage = () => {
   const allData = [...countries, ...sumPeriodData(countries, periodInfo.length)];
   if (loading) {
     return (
-      <Layout>
+      <PageLayout>
         <SEO title="All Data" />
         <p style={{ textAlign: 'center' }}>Loading</p>
-      </Layout>
+      </PageLayout>
     );
   }
   if (error) {
     return (
-      <Layout>
+      <PageLayout>
         <SEO title="All Data" />
         <p>{error.message}</p>
-      </Layout>
+      </PageLayout>
     );
   }
   return (

@@ -4,7 +4,7 @@ import { GithubOutlined, TwitterOutlined } from '@ant-design/icons';
 
 const { Footer } = Layout;
 
-const bottomNavigation = () => (
+const BottomNavigation = () => (
   <Footer>
     Made with
     {' '}
@@ -32,4 +32,4 @@ const bottomNavigation = () => (
     </Button.Group>
   </Footer>
 );
-export default bottomNavigation;
+export default BottomNavigation;
