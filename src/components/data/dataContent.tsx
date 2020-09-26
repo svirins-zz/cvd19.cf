@@ -1,7 +1,7 @@
 import React, { useState, CSSProperties } from 'react';
 import { Link } from 'gatsby';
 import Switch from 'react-switch';
-import Layout from '../shared/general/layout';
+import PageLayout from '../shared/layout/pageLayout';
 import SEO from '../shared/layout/seo';
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
@@ -110,7 +110,7 @@ const DataContent = ({
   const [showAll, setShowAll] = useState(true);
   const [startAtDeaths, setStartAtDeaths] = useState(false);
   return (
-    <Layout>
+    <PageLayout>
       <SEO title="All Data" />
       <h1 style={{ marginBottom: '0.8rem' }}>All Data</h1>
       <button
@@ -237,7 +237,7 @@ const DataContent = ({
       {selectedTable === 'totalDeaths' && <TotalDeathsTable data={countries} periodLength={periodInfo.length} />}
       {selectedTable === 'newCases' && <NewCasesTable data={countries} periodLength={periodInfo.length} />}
       {selectedTable === 'totalCases' && <TotalCasesTable data={countries} periodLength={periodInfo.length} />}
-    </Layout>
+    </PageLayout>
   );
 };
 
