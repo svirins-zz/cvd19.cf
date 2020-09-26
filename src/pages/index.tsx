@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'gatsby';
+import { Typography, Divider } from 'antd';
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
@@ -14,6 +15,8 @@ import OutbreakStatus from '../utilities/types/OutbreakStatus';
 import CountryQuery from '../utilities/query';
 import PandemicFreeChart from '../components/status/pandemicFreeChart';
 import UnderControlChart from '../components/status/underControlChart';
+
+const { Title, Paragraph } = Typography;
 
 const IndexPage = () => {
   const { loading, error, data } = useQuery<Countries>(CountryQuery);
@@ -33,7 +36,7 @@ const IndexPage = () => {
     return (
       <PageLayout>
         <SEO title="Status" />
-        <p style={{ textAlign: 'center' }}>Loading</p>
+        <Paragraph className="centered">Loading</Paragraph>
       </PageLayout>
     );
   }
@@ -41,47 +44,30 @@ const IndexPage = () => {
     return (
       <PageLayout>
         <SEO title="Status" />
-        <p>{error.message}</p>
+        <Paragraph className="centered">{error.message}</Paragraph>
       </PageLayout>
     );
   }
   return (
     <PageLayout>
       <SEO title="Status" />
-      <h1>How is the world doing?</h1>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            minWidth: '300px',
-          }}
-        >
-          In the last 5 days we&apos;ve
-          {globalData[0].periods[0].status === OutbreakStatus.Won
-            ? ' '
-            : ' been '}
-          {getStatusInfo(globalData[0].periods[0].status)}
-          {' '}
-          <Link to="/details">Status Info</Link>
-        </div>
-        <div style={{ flex: 1 }}>
-          <GrowthSummaryTable data={globalData} periodLength={PERIOD_LENGTH} />
-        </div>
-      </div>
-      <div
-        style={{
-          textAlign: 'center',
-          marginTop: '1.2rem',
-        }}
-      >
+      <Title className="centered" level={1}>How is the world doing?</Title>
+      <Paragraph className="centered">
+        In the last 5 days we&apos;ve
+        {globalData[0].periods[0].status === OutbreakStatus.Won
+          ? ' '
+          : ' been '}
+        {getStatusInfo(globalData[0].periods[0].status)}
+        {' '}
+        <Divider />
+      </Paragraph>
+      <Paragraph className="centered">
+        <GrowthSummaryTable data={globalData} periodLength={PERIOD_LENGTH} />
+      </Paragraph>
+      <Paragraph className="centered">
         <h3 style={{ marginBottom: '0.8rem' }}>In how many places are winning?</h3>
         <SummaryChart data={globalSummarySinceTwoMonths} />
-      </div>
+      </Paragraph>
       <p className="chart-comment">
         The
         {' '}
@@ -151,6 +137,7 @@ const IndexPage = () => {
           <Link to="/data">More Data</Link>
         </div>
       </div>
+
     </PageLayout>
   );
 };

@@ -37,14 +37,30 @@ module.exports = {
     },
     {
       resolve: 'gatsby-plugin-antd',
+      options: {
+        style: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-less',
+      options: {
+        lessOptions: {
+          modifyVars: {
+            'primary-color': '#da3043',
+            'font-family': 'Ubuntu',
+            'layout-body-background': '#66ff79',
+          },
+          javascriptEnabled: true,
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /images/,
+        },
+      },
     },
   ],
 };
-
-// resolve: 'gatsby-plugin-antd',
-// options: {
-//   style: true,
-// },
-// },
-// ],
-// };
