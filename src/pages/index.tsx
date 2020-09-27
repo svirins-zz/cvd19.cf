@@ -1,7 +1,9 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'gatsby';
-import { Typography, Divider, Spin } from 'antd';
+import {
+  Typography, Divider, Spin, Row, Col, Button,
+} from 'antd';
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
@@ -97,44 +99,22 @@ const IndexPage = () => {
       </Paragraph>
       <Divider />
       <Paragraph className="centered">
-        <Title level={3}> How much of the world is pandemic free?</Title> 
+        <Title level={3}> How much of the world is pandemic free?</Title>
         <PandemicFreeChart data={globalSummaryData} />
       </Paragraph>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          margin: '0 -1em',
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            minWidth: '300px',
-            padding: '0 1em',
-            textAlign: 'center',
-          }}
-        >
-          <h3>Where are we succeeding?</h3>
+      <Divider />
+      <Row>
+        <Col span={6} offset={6}>
+          <Title level={3}>Where are we succeeding?</Title>
           <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} desc={false} />
-          <Link to="/data">More Data</Link>
-          <br />
-          <br />
-        </div>
-        <div
-          style={{
-            flex: 1,
-            minWidth: '300px',
-            padding: '0 1em',
-            textAlign: 'center',
-          }}
-        >
-          <h3>Where are we failing?</h3>
+          <Link to="/data"><Button>More data ...</Button></Link>
+        </Col>
+        <Col span={6}>
+          <Title level={3}>Where are we failing?</Title>
           <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} />
-          <Link to="/data">More Data</Link>
-        </div>
-      </div>
-
+          <Link to="/data"><Button>More data ...</Button></Link>
+        </Col>
+      </Row>
     </PageLayout>
   );
 };
