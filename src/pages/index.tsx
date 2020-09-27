@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'gatsby';
-import { Typography, Divider } from 'antd';
+import { Typography, Divider, Spin } from 'antd';
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
@@ -36,7 +36,12 @@ const IndexPage = () => {
     return (
       <PageLayout>
         <SEO title="Status" />
-        <Paragraph className="centered">Loading</Paragraph>
+        <Paragraph className="centered">
+          {' '}
+          <Spin />
+          {' '}
+          Loading
+        </Paragraph>
       </PageLayout>
     );
   }
@@ -64,11 +69,14 @@ const IndexPage = () => {
       <Paragraph className="centered">
         <GrowthSummaryTable data={globalData} periodLength={PERIOD_LENGTH} />
       </Paragraph>
+      <Divider />
       <Paragraph className="centered">
-        <h3 style={{ marginBottom: '0.8rem' }}>In how many places are winning?</h3>
+        <Title level={3}>In how many places are winning?</Title>
         <SummaryChart data={globalSummarySinceTwoMonths} />
       </Paragraph>
-      <p className="chart-comment">
+      <Divider />
+      <Paragraph className="centered">
+        <Title level={3}>How many places have the pandemic under control?</Title>
         The
         {' '}
         <em>Won</em>
@@ -85,24 +93,13 @@ const IndexPage = () => {
         {' '}
         should also decrease in the begging as outbreaks start, and then increase once countries
         successfully eradicate the virus.
-      </p>
-      <div
-        style={{
-          textAlign: 'center',
-          marginTop: '1.2rem',
-        }}
-      >
-        <h3 style={{ marginBottom: 0 }}>How many places have the pandemic under control?</h3>
         <UnderControlChart data={globalSummaryData} />
-      </div>
-      <div
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        <h3 style={{ marginBottom: 0 }}>How much of the world is pandemic free?</h3>
+      </Paragraph>
+      <Divider />
+      <Paragraph className="centered">
+        <Title level={3}> How much of the world is pandemic free?</Title> 
         <PandemicFreeChart data={globalSummaryData} />
-      </div>
+      </Paragraph>
       <div
         style={{
           display: 'flex',

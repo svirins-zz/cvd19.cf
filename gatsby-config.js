@@ -46,9 +46,7 @@ module.exports = {
       options: {
         lessOptions: {
           modifyVars: {
-            'primary-color': '#da3043',
             'font-family': 'Ubuntu',
-            'layout-body-background': '#66ff79',
           },
           javascriptEnabled: true,
         },

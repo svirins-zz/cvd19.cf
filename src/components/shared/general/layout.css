@@ -1,6 +1,5 @@
 html {
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-  "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "Ubuntu", Courier, monospace;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -212,7 +211,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+  font-family: "Ubuntu", "Droid Sans Mono",
     "Liberation Mono", Menlo, Courier, monospace;
   font-weight: normal;
   word-wrap: break-word;
@@ -243,7 +242,7 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+  font-family: "Ubuntu", "Droid Sans Mono",
     "Liberation Mono", Menlo, Courier, monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
@@ -260,8 +259,7 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-  "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "Ubuntu", Courier, monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
@@ -277,8 +275,7 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-  "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "Ubuntu", Courier, monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
@@ -294,8 +291,7 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-  "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "Ubuntu", Courier, monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
@@ -311,8 +307,7 @@ h5 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-  "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "Ubuntu", Courier, monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
@@ -328,8 +323,7 @@ h6 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-  "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "Ubuntu", Courier, monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
@@ -603,7 +597,7 @@ tt,
 code {
   background-color: hsla(0, 0%, 0%, 0.04);
   border-radius: 3px;
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+  font-family: "Ubuntu", "Droid Sans Mono",
     "Liberation Mono", Menlo, Courier, monospace;
   padding: 0;
   padding-top: 0.2em;

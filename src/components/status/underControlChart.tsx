@@ -13,34 +13,42 @@ const UnderControlChart = ({ data }: { data: PeriodSummary[] }) => (
     minDomain={{ y: 0 }}
   >
     <VictoryLegend
-      x={95}
-      y={15}
+      x={200}
+      y={20}
       orientation="horizontal"
-      gutter={25}
+      gutter={20}
+      centerTitle
+      style={{
+        labels: {
+          fontSize: 6,
+          fontFamily: `"Ubuntu", "Droid Sans Mono",
+          "Liberation Mono", Menlo, Courier, monospace`,
+        },
+      }}
       data={[
         { name: '% Flattening/Losing', symbol: { fill: 'lightcoral' } },
         { name: '% None/Small/Crushing/Winning/Won', symbol: { fill: 'lightgreen' } },
       ]}
     />
-    <VictoryAxis fixLabelOverlap />
-    <VictoryAxis dependentAxis />
-    <VictoryLabel
-      text="Pandemic Status (corona.rickkln.com)"
-      x={400}
-      y={64}
+    <VictoryAxis
+      fixLabelOverlap
       style={{
-        fontSize: 6,
-        fontFamily: `"SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-            "Liberation Mono", Menlo, Courier, monospace`,
+        tickLabels: { fontSize: 6 },
+      }}
+    />
+    <VictoryAxis
+      dependentAxis
+      style={{
+        tickLabels: { fontSize: 6 },
       }}
     />
     <VictoryLabel
-      text="Source: JHU CSSE"
-      x={400}
-      y={72}
+      text="Data source: JHU CSSE"
+      x={480}
+      y={64}
       style={{
         fontSize: 6,
-        fontFamily: `"SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+        fontFamily: `"Ubuntu", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
       }}
     />

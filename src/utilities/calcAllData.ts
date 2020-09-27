@@ -83,6 +83,7 @@ export const calculateData = (data: Countries | undefined, periodLength: number)
         };
       }
     });
+    // process exclusion for diamond Princess
     const allPeriods = calulatePeriodData(counts, periodLength);
     if (country.name !== 'Diamond Princess') {
       countries.push({

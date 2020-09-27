@@ -14,10 +14,18 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
     domainPadding={{ y: 30 }}
   >
     <VictoryLegend
-      x={60}
-      y={0}
-      itemsPerRow={2}
+      x={90}
+      y={20}
+      itemsPerRow={1}
       gutter={20}
+      centerTitle
+      style={{
+        labels: {
+          fontSize: 6,
+          fontFamily: `"Ubuntu", "Droid Sans Mono",
+          "Liberation Mono", Menlo, Courier, monospace`,
+        },
+      }}
       data={[
         { name: 'No Outbreak', symbol: { fill: 'lightgray' } },
         { name: 'Small Outbreak', symbol: { fill: 'lightpink' } },
@@ -28,25 +36,25 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
         { name: 'Won', symbol: { fill: 'lightseagreen' } },
       ]}
     />
-    <VictoryAxis fixLabelOverlap />
-    <VictoryAxis dependentAxis />
-    <VictoryLabel
-      text="Pandemic Status (corona.rickkln.com)"
-      x={400}
-      y={64}
+    <VictoryAxis
+      fixLabelOverlap
       style={{
-        fontSize: 6,
-        fontFamily: `"SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-            "Liberation Mono", Menlo, Courier, monospace`,
+        tickLabels: { fontSize: 6 },
+      }}
+    />
+    <VictoryAxis
+      dependentAxis
+      style={{
+        tickLabels: { fontSize: 6 },
       }}
     />
     <VictoryLabel
-      text="Source: JHU CSSE"
-      x={400}
-      y={72}
+      text="Data source: JHU CSSE"
+      x={480}
+      y={64}
       style={{
         fontSize: 6,
-        fontFamily: `"SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+        fontFamily: `"Ubuntu", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
       }}
     />
@@ -103,6 +111,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       }}
       x="endDate"
       y="winning"
+      Cartesian
     />
     <VictoryLine
       data={data}

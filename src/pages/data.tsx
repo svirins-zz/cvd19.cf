@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
+import { Typography, Spin } from 'antd';
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
@@ -8,6 +9,8 @@ import { calculateData } from '../utilities/calcAllData';
 import { sumPeriodData } from '../utilities/calcGlobal';
 import DataContent, { PeriodInfo } from '../components/data/dataContent';
 import CountryQuery from '../utilities/query';
+
+const { Paragraph } = Typography;
 
 const DataPage = () => {
   const [periodInfo, setPeriodInfo] = useState<PeriodInfo>({
@@ -20,16 +23,21 @@ const DataPage = () => {
   if (loading) {
     return (
       <PageLayout>
-        <SEO title="All Data" />
-        <p style={{ textAlign: 'center' }}>Loading</p>
+        <SEO title="Status" />
+        <Paragraph className="centered">
+          {' '}
+          <Spin />
+          {' '}
+          Loading
+        </Paragraph>
       </PageLayout>
     );
   }
   if (error) {
     return (
       <PageLayout>
-        <SEO title="All Data" />
-        <p>{error.message}</p>
+        <SEO title="Status" />
+        <Paragraph className="centered">{error.message}</Paragraph>
       </PageLayout>
     );
   }
