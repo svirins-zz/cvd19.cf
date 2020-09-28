@@ -7,6 +7,7 @@ import Table from './table';
 import { Period, Country } from '../../../utilities/types/data';
 import { getCSSClassFor, getPeriodNames } from '../../../utilities/periodUtils';
 import OutbreakStatus from '../../../utilities/types/OutbreakStatus';
+// import ATable from './tableAntd';
 
 const formatCell = (period: Period) => {
   const className = getCSSClassFor(period?.status);

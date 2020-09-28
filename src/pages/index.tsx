@@ -19,7 +19,7 @@ import PandemicFreeChart from '../components/status/pandemicFreeChart';
 import UnderControlChart from '../components/status/underControlChart';
 
 const { Title, Paragraph } = Typography;
-
+// TODO: Refactor Victory=>antD charts!
 const IndexPage = () => {
   const { loading, error, data } = useQuery<Countries>(CountryQuery);
   const countries = useMemo(() => calculateData(data, PERIOD_LENGTH), [data]);

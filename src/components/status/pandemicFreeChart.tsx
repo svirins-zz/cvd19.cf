@@ -13,7 +13,7 @@ const PandemicFreeChart = ({ data }: { data: PeriodSummary[] }) => (
     minDomain={{ y: 0 }}
   >
     <VictoryLegend
-      x={200}
+      x={220}
       y={20}
       orientation="horizontal"
       gutter={20}
