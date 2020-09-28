@@ -19,7 +19,7 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
         {children}
       </Content>
     </main>
-    <Footer className="centered">
+    <Footer className="centered darkened">
       <BottomNavigation />
     </Footer>
   </Layout>

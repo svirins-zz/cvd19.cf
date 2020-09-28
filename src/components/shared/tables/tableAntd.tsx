@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { Table } from 'antd';
-
+import { Table, Tag } from 'antd';
+import calcTagColor from '../../../utilities/calcTagcolor'
 // TODO: play with multiple sorters - hierarchy
 const ATable = ({ table }) => {
   const columns = [
@@ -19,19 +19,21 @@ const ATable = ({ table }) => {
       title: table.columns[1].Header,
       dataIndex: 'periods[2]',
       // defaultSortOrder: 'descend',
-      sorter: (a, b) => a.results - b.results,
+      sorter: (a, b) => a.newDeaths - b.newDeaths,
+      // TODO: color tagging based on deatRate value
+      // render: num => (<Tag color={calcTagColor(num)}>{num}</Tag>),
     },
     {
       title: table.columns[2].Header,
       dataIndex: 'periods[1]',
       // defaultSortOrder: 'descend',
-      // sorter: (a, b) => a.periods - b.periods,
+      sorter: (a, b) => a.newDeaths - b.newDeaths,
     },
     {
       title: table.columns[3].Header,
       dataIndex: 'periods[0]',
       // defaultSortOrder: 'descend',
-      // sorter: (a, b) => a.periodsWithDeaths - b.periodsWithDeaths,
+      sorter: (a, b) => a.newDeaths - b.newDeaths,
     },
   ];
   const slicedData = table.data.slice(0, 20);

@@ -4,20 +4,13 @@
   min-height: 280px;
 }
 
-/* .logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 24px 16px 0;
-  float: left;
-} */
 .centered {
   text-align: center;
 }
 
 .logo {
-  width: 135px;
-  height: 31px;
+  width: 200;
+  /* height: 31px; */
   font-weight: 800;
   text-transform: uppercase;
   color: orange;
@@ -28,4 +21,16 @@
 
 .bigIcon {
   font-size: '26px'; color: 'WHITE'; vertical-align: 'middle'
+}
+
+ .leftMenu{
+  float: left;
+}
+.rightMenu{
+  float: right;
+}
+
+.darkened {
+  background-color: #120338;
+  color: #f5f5f5;
 }

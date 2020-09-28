@@ -107,12 +107,12 @@ const IndexPage = () => {
       <Divider />
       <Row>
         <Col span={9} offset={2}>
-          <Title level={4}>Positive new death cases dynamics (first 20) ?</Title>
+          <Title level={5}>Positive dynamics. New death cases (first 20) ?</Title>
           <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} />
           <Link to="/data"><Button>More data ...</Button></Link>
         </Col>
         <Col span={9} offset={2}>
-          <Title level={4}>Negative new death cases dynamics (first 20) ?</Title>
+          <Title level={5}>Negative dynamics. New death cases (first 20) ?</Title>
           <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} />
           <Link to="/data"><Button>More data ...</Button></Link>
         </Col>
