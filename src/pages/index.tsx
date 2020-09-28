@@ -68,10 +68,12 @@ const IndexPage = () => {
         {' '}
         <Divider />
       </Paragraph>
-      <Paragraph className="centered">
+      {/* TODO: Implement summary */}
+      {/* removed global summary */}
+      {/* <Paragraph className="centered">
         <GrowthSummaryTable data={globalData} periodLength={PERIOD_LENGTH} />
-      </Paragraph>
-      <Divider />
+      </Paragraph> */}
+      {/* <Divider /> */}
       <Paragraph className="centered">
         <Title level={3}>In how many places are winning?</Title>
         <SummaryChart data={globalSummarySinceTwoMonths} />
@@ -104,13 +106,13 @@ const IndexPage = () => {
       </Paragraph>
       <Divider />
       <Row>
-        <Col span={6} offset={6}>
-          <Title level={3}>Where are we succeeding?</Title>
-          <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} desc={false} />
+        <Col span={9} offset={2}>
+          <Title level={4}>Positive new death cases dynamics (first 20) ?</Title>
+          <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} />
           <Link to="/data"><Button>More data ...</Button></Link>
         </Col>
-        <Col span={6}>
-          <Title level={3}>Where are we failing?</Title>
+        <Col span={9} offset={2}>
+          <Title level={4}>Negative new death cases dynamics (first 20) ?</Title>
           <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} />
           <Link to="/data"><Button>More data ...</Button></Link>
         </Col>

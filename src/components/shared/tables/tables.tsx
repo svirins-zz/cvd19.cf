@@ -7,7 +7,7 @@ import Table from './table';
 import { Period, Country } from '../../../utilities/types/data';
 import { getCSSClassFor, getPeriodNames } from '../../../utilities/periodUtils';
 import OutbreakStatus from '../../../utilities/types/OutbreakStatus';
-// import ATable from './tableAntd';
+import ATable from './tableAntd';
 
 const formatCell = (period: Period) => {
   const className = getCSSClassFor(period?.status);
@@ -607,22 +607,9 @@ export const GrowthSummaryTable = ({
     ];
   }, [data.length, periodNames]) as Array<Column<Country>>;
 
-  const initialState = React.useMemo(
-    () => ({
-      sortBy: [{ id: 'periods[0]', desc }],
-    }),
-    [],
-  ) as Partial<TableState<Country>>;
-
-  const table = useTable({ columns, data, initialState }, useSortBy);
+  const preparedTableObject = useTable({ columns, data });
 
   return (
-    <div
-      className={data.length === 1
-        ? styles.tinyTable
-        : ''}
-    >
-      <Table table={table} />
-    </div>
+    <ATable table={preparedTableObject} />
   );
-};
+};//
