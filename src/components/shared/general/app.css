@@ -2,6 +2,8 @@
   background: #fff;
   padding: 24px;
   min-height: 280px;
+  padding: 0 50px; 
+  margin-top: 64px;
 }
 
 .centered {
@@ -9,28 +11,30 @@
 }
 
 .logo {
-  width: 200;
+  width: 140px;
   /* height: 31px; */
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
-  color: orange;
+  color: #e46ca5;
   /* background: rgba(255, 255, 255, 0.2);
   margin: 16px 24px 16px 0; */
   float: left;
+  vertical-align: middle
 }
+
 
 .bigIcon {
-  font-size: '26px'; color: 'WHITE'; vertical-align: 'middle'
+  font-size: '18px'; color: 'WHITE'; vertical-align: 'middle'
 }
 
- .leftMenu{
-  float: left;
-}
-.rightMenu{
-  float: right;
-}
-
-.darkened {
-  background-color: #120338;
+.whitecolor {
   color: #f5f5f5;
 }
+
+.site-statistic-demo-card {
+  background: #ececec;
+  padding: 30px 30px;
+}
+.greyBgr {
+  background-color: #f0f2f5;
+} 

@@ -1,5 +1,5 @@
 import { getPeriodName, getPeriodCount, validatePeriodLength } from './periodUtils';
-import { Country, PeriodSummary } from './types/data';
+import { Country, PeriodSummary, AllPeriodsResult } from './types/data';
 import { calulatePeriodData } from './calcAllData';
 import OutbreakStatus from './types/OutbreakStatus';
 
@@ -93,4 +93,14 @@ export const calculateGlobalSummary = (
   );
   periodSummaries.reverse();
   return periodSummaries;
+};
+
+export const calculateTotalGlobal = (data): AllPeriodsResult => {
+  console.log(data);
+  return {
+    totalGlobalCases: 42,
+    totalGlobalDeaths: 42,
+    totalGlobalRecovered: 42,
+    totalGlobalCountries: 42,
+  };
 };

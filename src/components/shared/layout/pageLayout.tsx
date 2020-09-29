@@ -3,7 +3,6 @@ import { Layout } from 'antd';
 import TopNavigation from './topNavigation';
 import BottomNavigation from './bottomNavigation';
 import '../general/app.css';
-// import 'antd/dist/antd.less';
 
 const {
   Header, Footer, Content,
@@ -11,15 +10,15 @@ const {
 
 const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
   <Layout>
-    <Header>
+    <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
       <TopNavigation />
     </Header>
-    <main className="site-layout-content">
+    <main>
       <Content>
         {children}
       </Content>
     </main>
-    <Footer className="centered darkened">
+    <Footer className="centered whitecolor">
       <BottomNavigation />
     </Footer>
   </Layout>

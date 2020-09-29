@@ -1,63 +1,65 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import {
-  Menu, Image, Row, Col,
+  Menu, Row, Col,
 } from 'antd';
 import {
   GlobalOutlined,
   BarChartOutlined,
-  MedicineBoxOutlined,
   RobotOutlined,
   EnvironmentOutlined,
   GithubOutlined,
   TwitterOutlined,
 } from '@ant-design/icons';
+import logo from '../../../images/coronavirus.png';
 
-// TODO: svg logo
+// TODO: svg logo and navbar align
+// TODO: add responsive breakpoint
+// TODO: add state to handle current user choice
+
 const TopNavigation = () => (
   <>
     <Row>
-      <div className="logo">
-        <Image
-          height={48}
-          src="./coronavirus.svg"
-        />
-        {' '}
-        Covid-19 stats
-      </div>
-      <Col justify="start">
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1" icon={<GlobalOutlined style={{ fontSize: '24px', color: 'WHITE', verticalAlign: 'middle' }} />}>
+      <Col>
+        <img src={logo} height={48} width={48} alt="Covid-19 stats" />
+      </Col>
+      <Col>
+        <span className="logo">
+          &nbsp;&nbsp;Covid-19 stats
+        </span>
+      </Col>
+      <Col>
+        <Menu
+          mode="horizontal"
+          defaultSelectedKeys={['1']}
+          collapsedWidth="0"
+        >
+          <Menu.Item key="1" icon={<GlobalOutlined style={{ color: 'WHITE' }} />}>
             <Link to="/">
-              STATUS
+              Status
             </Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<BarChartOutlined style={{ fontSize: '24px', color: 'WHITE', verticalAlign: 'middle' }} />}>
+          <Menu.Item key="2" icon={<BarChartOutlined style={{ color: 'WHITE' }} />}>
             <Link to="/data">
-              DATA
+              Data
             </Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<EnvironmentOutlined style={{ fontSize: '24px', color: 'WHITE', verticalAlign: 'middle' }} />}>
+          <Menu.Item key="3" icon={<EnvironmentOutlined style={{ color: 'WHITE' }} />}>
             <Link to="/map">
-              MAP
+              Map
             </Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<MedicineBoxOutlined style={{ fontSize: '24px', color: 'WHITE', verticalAlign: 'middle' }} />}>
-            <Link to="/details">
-              DETAILS
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="5" icon={<RobotOutlined style={{ fontSize: '24px', color: 'WHITE', verticalAlign: 'middle' }} />}>
+          <Menu.Item key="4" icon={<RobotOutlined style={{ color: 'WHITE' }} />}>
             <Link to="/about">
-              ABOUT
+              About
             </Link>
           </Menu.Item>
         </Menu>
       </Col>
-      <Col justify="end">
-        <Menu mode="horizontal" theme="dark">
-          <Menu.Item key="github"><a href="https://github.com/svirins/covid19"><GithubOutlined /></a></Menu.Item>
-          <Menu.Item key="twitter"><a href="https://twitter.com/svirins"><TwitterOutlined /></a></Menu.Item>
+      <Col>
+        <Menu mode="horizontal">
+          <Menu.Item key="github"><a href="https://github.com/svirins/covid19"><GithubOutlined style={{ fontSize: '14px', color: 'Pink', verticalAlign: 'middle' }} /></a></Menu.Item>
+          <Menu.Item key="twitter"><a href="https://twitter.com/svirins"><TwitterOutlined style={{ fontSize: '14px', color: 'Pink', verticalAlign: 'middle' }} /></a></Menu.Item>
         </Menu>
       </Col>
     </Row>

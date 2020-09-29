@@ -49,9 +49,9 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       }}
     />
     <VictoryLabel
-      text="Data source: JHU CSSE"
-      x={480}
-      y={64}
+      text="source: JHU & CSSE"
+      x={495}
+      y={60}
       style={{
         fontSize: 6,
         fontFamily: `"Ubuntu", "Droid Sans Mono",

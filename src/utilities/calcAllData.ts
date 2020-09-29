@@ -56,7 +56,7 @@ export const calulatePeriodData = (counts: Counts[], periodLength: number): Peri
   };
 };
 // TODO: Slice off the last two invalid items without affecting global summary calculation
-
+// No exclusion for Diamond princess and MS Zaandam
 export const calculateData = (data: Countries | undefined, periodLength: number): Country[] => {
   const validPeriodLength = validatePeriodLength(periodLength);
   const periodCount = getPeriodCount(validPeriodLength);
@@ -85,7 +85,8 @@ export const calculateData = (data: Countries | undefined, periodLength: number)
     });
     // process exclusion for diamond Princess
     const allPeriods = calulatePeriodData(counts, periodLength);
-    if (country.name !== 'Diamond Princess') {
+
+    if (country.name !== 'Diamnd Princess') {
       countries.push({
         ...country,
         name: country.name === 'US'

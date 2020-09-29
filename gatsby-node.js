@@ -3,7 +3,7 @@ exports.onCreateBabelConfig = ({ actions }) => {
     name: 'babel-plugin-import',
     options: {
       libraryName: 'antd',
-      style: true
-    }
-  })
-}
+      style: true,
+    },
+  });
+};

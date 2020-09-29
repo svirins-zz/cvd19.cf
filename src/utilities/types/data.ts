@@ -49,3 +49,10 @@ export interface PeriodSummary {
   pandemicFree: number
   underControl: number
 }
+
+export interface AllPeriodsResult {
+  totalGlobalCases: Number
+  totalGlobalDeaths: Number
+  totalGlobalRecovered: Number
+  totalGlobalCountries: Number
+}

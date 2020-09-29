@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Covid-19',
+    title: 'Covid-19 stats and charts',
     description: 'In progress',
     author: '@svirins',
   },
@@ -18,11 +18,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Covid-19',
-        short_name: 'Covid-19',
+        name: 'Covid-19 stats and charts',
+        short_name: 'Covid-19 stats and charts',
         start_url: '/',
-        background_color: '#202124',
-        theme_color: '#202124',
         display: 'browser',
         icon: 'src/images/coronavirus.png', // This path is relative to the root of the site.
       },
@@ -46,7 +44,19 @@ module.exports = {
       options: {
         lessOptions: {
           modifyVars: {
-            'font-family': 'Ubuntu',
+            'font-family': 'Open Sans',
+            'primary-color': '#183C52',
+            'heading-color': '#120338',
+            'link-color': '#d97bff',
+            'link-hover-color': '#ff1383',
+            'link-active-color': '#ff1383',
+            'layout-header-background': '#120338',
+            'layout-footer-background': '#120338',
+            'menu-bg': '#120338',
+            'menu-item-color': '#fff',
+            'menu-highlight-color': '#d97bff',
+            'menu-icon-size': '16px',
+            'menu-item-vertical-margin': 'middle',
           },
           javascriptEnabled: true,
         },
@@ -54,6 +64,11 @@ module.exports = {
     },
     {
       resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      },
     },
   ],
 };

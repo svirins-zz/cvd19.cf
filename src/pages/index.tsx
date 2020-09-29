@@ -9,23 +9,27 @@ import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
 import { getStatusInfo } from '../components/details/legend';
 import SummaryChart from '../components/status/summaryChart';
-import { Countries } from '../utilities/types/data';
+import { Countries, AllPeriodsResult } from '../utilities/types/data';
 import { calculateData } from '../utilities/calcAllData';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
-import { sumPeriodData, calculateGlobalSummary } from '../utilities/calcGlobal';
+import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from '../utilities/calcGlobal';
 import OutbreakStatus from '../utilities/types/OutbreakStatus';
 import CountryQuery from '../utilities/query';
 import PandemicFreeChart from '../components/status/pandemicFreeChart';
 import UnderControlChart from '../components/status/underControlChart';
+import TotalSummary from '../components/status/totalSummary';
 
 const { Title, Paragraph } = Typography;
 // TODO: Refactor Victory=>antD charts!
+// TODO: Refactor pre-render Statistics calculations into separate module
 const IndexPage = () => {
   const { loading, error, data } = useQuery<Countries>(CountryQuery);
   const countries = useMemo(() => calculateData(data, PERIOD_LENGTH), [data]);
   const globalData = sumPeriodData(countries, PERIOD_LENGTH);
   const globalSummaryData = calculateGlobalSummary(countries, PERIOD_LENGTH);
   const globalSummarySinceTwoMonths = globalSummaryData.slice(60 / PERIOD_LENGTH);
+  const globalTotalData: AllPeriodsResult = calculateTotalGlobal(data);
+
   const losingData = countries.filter(
     (country) => country.periods[0].status === OutbreakStatus.Losing
       || country.periods[0].status === OutbreakStatus.Flattening,
@@ -34,6 +38,8 @@ const IndexPage = () => {
     (country) => country.periods[0].status === OutbreakStatus.Winning
       || country.periods[0].status === OutbreakStatus.Won,
   );
+  // TODO: Refactor spinner to larger size
+  // TODO: Refactor initial (no data) display height
   if (loading) {
     return (
       <PageLayout>
@@ -55,25 +61,20 @@ const IndexPage = () => {
       </PageLayout>
     );
   }
+
+  // TODO: construct sting
+
+  const status1 = globalData[0].periods[0].status === OutbreakStatus.Won
+    ? ' '
+    : ' been ';
+  const status2 = getStatusInfo(globalData[0].periods[0].status);
+  const statusString: String = `In the last 5 days we&apos;ve${status1}${status2}`;
+  console.log(statusString, data);
+
   return (
     <PageLayout>
       <SEO title="Status" />
-      <Title className="centered" level={1}>How is the world doing?</Title>
-      <Paragraph className="centered">
-        In the last 5 days we&apos;ve
-        {globalData[0].periods[0].status === OutbreakStatus.Won
-          ? ' '
-          : ' been '}
-        {getStatusInfo(globalData[0].periods[0].status)}
-        {' '}
-        <Divider />
-      </Paragraph>
-      {/* TODO: Implement summary */}
-      {/* removed global summary */}
-      {/* <Paragraph className="centered">
-        <GrowthSummaryTable data={globalData} periodLength={PERIOD_LENGTH} />
-      </Paragraph> */}
-      {/* <Divider /> */}
+      {/* <TotalSummary globalData={globalTotalData} statusString={statusString} /> */}
       <Paragraph className="centered">
         <Title level={3}>In how many places are winning?</Title>
         <SummaryChart data={globalSummarySinceTwoMonths} />
@@ -105,6 +106,7 @@ const IndexPage = () => {
         <PandemicFreeChart data={globalSummaryData} />
       </Paragraph>
       <Divider />
+      {/* TODO: SUPERIMPORTANT - IMPLEMENT SORTING BY CASES! */}
       <Row>
         <Col span={9} offset={2}>
           <Title level={5}>Positive dynamics. New death cases (first 20) ?</Title>
