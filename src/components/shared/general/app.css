@@ -32,9 +32,20 @@
 }
 
 .site-statistic-demo-card {
-  background: #ececec;
-  padding: 30px 30px;
+  padding: 20px 50px;
 }
+
+.site-statistic-demo-card .ant-statistic-title {
+  font-size: 1.3em;
+  font-weight: 500;
+  color: #120338;
+}
+
+
 .greyBgr {
   background-color: #f0f2f5;
 } 
+
+.italic {
+  font-style: italic;
+}

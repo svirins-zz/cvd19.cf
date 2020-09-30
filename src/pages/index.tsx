@@ -9,7 +9,7 @@ import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
 import { getStatusInfo } from '../components/details/legend';
 import SummaryChart from '../components/status/summaryChart';
-import { Countries, AllPeriodsResult } from '../utilities/types/data';
+import { Countries } from '../utilities/types/data';
 import { calculateData } from '../utilities/calcAllData';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
 import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from '../utilities/calcGlobal';
@@ -19,7 +19,7 @@ import PandemicFreeChart from '../components/status/pandemicFreeChart';
 import UnderControlChart from '../components/status/underControlChart';
 import TotalSummary from '../components/status/totalSummary';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 // TODO: Refactor Victory=>antD charts!
 // TODO: Refactor pre-render Statistics calculations into separate module
 const IndexPage = () => {
@@ -28,7 +28,6 @@ const IndexPage = () => {
   const globalData = sumPeriodData(countries, PERIOD_LENGTH);
   const globalSummaryData = calculateGlobalSummary(countries, PERIOD_LENGTH);
   const globalSummarySinceTwoMonths = globalSummaryData.slice(60 / PERIOD_LENGTH);
-  const globalTotalData: AllPeriodsResult = calculateTotalGlobal(data);
 
   const losingData = countries.filter(
     (country) => country.periods[0].status === OutbreakStatus.Losing
@@ -44,11 +43,13 @@ const IndexPage = () => {
     return (
       <PageLayout>
         <SEO title="Status" />
-        <Paragraph className="centered">
-          {' '}
-          <Spin />
-          {' '}
-          Loading
+        <Paragraph className="centered" style={{ height: '100vh', paddingTop: '70px' }}>
+          <div style={{ verticalAlign: 'middle' }}>
+            {' '}
+            <Spin size="large" />
+            {' '}
+            <Title level={4}>Loading</Title>
+          </div>
         </Paragraph>
       </PageLayout>
     );
@@ -61,20 +62,28 @@ const IndexPage = () => {
       </PageLayout>
     );
   }
-
-  // TODO: construct sting
-
-  const status1 = globalData[0].periods[0].status === OutbreakStatus.Won
-    ? ' '
-    : ' been ';
-  const status2 = getStatusInfo(globalData[0].periods[0].status);
-  const statusString: String = `In the last 5 days we&apos;ve${status1}${status2}`;
-  console.log(statusString, data);
+  // TODO: construct global statistics data
+  const globalTotalData = calculateTotalGlobal(data);
 
   return (
     <PageLayout>
       <SEO title="Status" />
-      {/* <TotalSummary globalData={globalTotalData} statusString={statusString} /> */}
+      <Paragraph className="centered">
+        <Title level={3}>Current state of the Covid-19 pandemic</Title>
+        <br />
+        In the last 5 days we&apos;ve
+        {globalData[0].periods[0].status === OutbreakStatus.Won
+          ? ' '
+          : ' been '}
+        <Text mark>
+          {' '}
+          {getStatusInfo(globalData[0].periods[0].status)}
+        </Text>
+        {' '}
+        <TotalSummary globalData={globalTotalData} />
+        <span className="italic">Daily data update occurs between 04:45 and 05:15 GM</span>
+      </Paragraph>
+      <Divider />
       <Paragraph className="centered">
         <Title level={3}>In how many places are winning?</Title>
         <SummaryChart data={globalSummarySinceTwoMonths} />

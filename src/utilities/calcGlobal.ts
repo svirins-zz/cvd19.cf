@@ -1,5 +1,5 @@
 import { getPeriodName, getPeriodCount, validatePeriodLength } from './periodUtils';
-import { Country, PeriodSummary, AllPeriodsResult } from './types/data';
+import { Country, PeriodSummary } from './types/data';
 import { calulatePeriodData } from './calcAllData';
 import OutbreakStatus from './types/OutbreakStatus';
 
@@ -95,12 +95,16 @@ export const calculateGlobalSummary = (
   return periodSummaries;
 };
 
-export const calculateTotalGlobal = (data): AllPeriodsResult => {
-  console.log(data);
-  return {
-    totalGlobalCases: 42,
-    totalGlobalDeaths: 42,
-    totalGlobalRecovered: 42,
-    totalGlobalCountries: 42,
-  };
+export const calculateTotalGlobal = (data) => {
+  const totalGlobalCases = data.countries.reduce((acc, element) => acc + element.results[element.results.length - 1].confirmed, 0);
+  const totalGlobalDeaths = data.countries.reduce((acc, element) => acc + element.results[element.results.length - 1].deaths, 0);
+  const totalGlobalRecovered = data.countries.reduce((acc, element) => acc + element.results[element.results.length - 1].recovered, 0);
+
+  const resultArray = [
+    totalGlobalCases,
+    totalGlobalDeaths,
+    totalGlobalRecovered,
+    data.countries.length,
+  ];
+  return resultArray;
 };

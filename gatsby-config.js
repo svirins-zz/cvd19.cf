@@ -45,6 +45,7 @@ module.exports = {
         lessOptions: {
           modifyVars: {
             'font-family': 'Open Sans',
+            'font-size': '16px',
             'primary-color': '#183C52',
             'heading-color': '#120338',
             'link-color': '#d97bff',

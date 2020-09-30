@@ -14,11 +14,11 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
       <TopNavigation />
     </Header>
     <main>
-      <Content>
+      <Content style={{ paddingTop: '70px' }}>
         {children}
       </Content>
     </main>
-    <Footer className="centered whitecolor">
+    <Footer className="centered whitecolor" style={{ position: 'sticky', bottom: '0' }}>
       <BottomNavigation />
     </Footer>
   </Layout>

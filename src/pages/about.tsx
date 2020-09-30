@@ -1,12 +1,20 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { Typography } from 'antd';
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import Legend from '../components/details/legend';
+
+const { Paragraph } = Typography;
 // TODO: Add typography and styling
 const AboutPage = () => (
   <PageLayout>
     <SEO title="About" />
+    <Paragraph className="centered">
+      This site aims to provide a simple tool to track global progress in defeating Covid-19,
+      by focusing on the rate of change in death count globally.
+      Daily data update occurs between 04:45 and 05:15 GMT
+    </Paragraph>
     <Legend />
     <h2>Covid-19 Pandemic Information</h2>
     <p>
