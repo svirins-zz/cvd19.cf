@@ -54,7 +54,7 @@
 .alignBottom {
   position: fixed;
   bottom: 0;
-  height: 100px;
+  height: 60px;
 }
 
 .bottomSiderIcon a{
@@ -65,6 +65,8 @@
 .credentials {
   color: #f5f5f5;
   font-size: 11px;
+  text-align: center;
+  padding-bottom: 0.5em;
 }
 
 .credentialsLink {
