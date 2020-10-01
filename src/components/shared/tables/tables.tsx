@@ -4,9 +4,8 @@ import {
 } from 'react-table';
 import styles from './tables.module.css';
 import Table from './table';
-import { Period, Country } from '../../../utilities/types/data';
+import { Period, Country, OutbreakStatus, } from '../../../types';
 import { getCSSClassFor, getPeriodNames } from '../../../utilities/periodUtils';
-import OutbreakStatus from '../../../utilities/types/OutbreakStatus';
 import ATable from './tableAntd';
 
 const formatCell = (period: Period) => {

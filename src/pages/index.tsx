@@ -9,22 +9,23 @@ import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
 import { getStatusInfo } from '../components/details/legend';
 import SummaryChart from '../components/status/summaryChart';
-import { Countries } from '../utilities/types/data';
 import { calculateData } from '../utilities/calcAllData';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
 import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from '../utilities/calcGlobal';
-import OutbreakStatus from '../utilities/types/OutbreakStatus';
-import CountryQuery from '../utilities/query';
+import COUNTRY_QUERY from '../queries';
 import PandemicFreeChart from '../components/status/pandemicFreeChart';
 import UnderControlChart from '../components/status/underControlChart';
 import TotalSummary from '../components/status/totalSummary';
+
+// Types import
+import { Countries, OutbreakStatus } from '../types';
 
 const { Title, Paragraph, Text } = Typography;
 // TODO: Refactor Victory=>antD charts!
 // TODO: Refactor pre-render Statistics calculations into separate module
 // TODO: check memoization for re-render
 const IndexPage = () => {
-  const { loading, error, data } = useQuery<Countries>(CountryQuery);
+  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
   const countries = useMemo(() => calculateData(data, PERIOD_LENGTH), [data]);
   const globalData = sumPeriodData(countries, PERIOD_LENGTH);
   const globalSummaryData = calculateGlobalSummary(countries, PERIOD_LENGTH);
@@ -43,12 +44,12 @@ const IndexPage = () => {
     return (
       <PageLayout>
         <SEO title="Status" />
-        <Paragraph className="centered" style={{ height: '100vh', paddingTop: '44%' }}>
+        <Paragraph className="centered" style={{ height: '100vh', paddingTop: '15%' }}>
           <div style={{ verticalAlign: 'middle' }}>
             {' '}
             <Spin size="large" />
             {' '}
-            <Title level={4}>Loading</Title>
+            <Title level={5}>Loading</Title>
           </div>
         </Paragraph>
       </PageLayout>

@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons';
 import logo from '../../../images/coronavirus.png';
 // eslint-disable-next-line import/extensions
-import { myContext } from '../../../../provider.js';
+import { myContext } from '../../../context';
 
 const { Paragraph } = Typography;
 const { Content, Sider, Footer } = Layout;

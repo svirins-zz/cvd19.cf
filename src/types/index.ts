@@ -1,5 +1,3 @@
-import OutbreakStatus from './OutbreakStatus';
-
 export interface Countries {
   countries?: Country[];
 }
@@ -55,4 +53,14 @@ export interface AllPeriodsResult {
   totalGlobalDeaths: Number
   totalGlobalRecovered: Number
   totalGlobalCountries: Number
+}
+
+export enum OutbreakStatus {
+  None = 'No Outbreak',
+  Small = 'Small Outbreak',
+  Losing = 'Losing',
+  Flattening = 'Flattening the Curve',
+  Crushing = 'Crushing the Curve',
+  Winning = 'Winning',
+  Won = 'Won',
 }

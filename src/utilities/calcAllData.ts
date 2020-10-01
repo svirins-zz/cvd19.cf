@@ -1,10 +1,9 @@
 import {
-  Counts, Periods, Period, Countries, Country,
-} from './types/data';
+  Counts, Periods, Period, Countries, Country, OutbreakStatus,
+} from '../types';
 import {
   periodStatus, getPeriodName, getPeriodCount, getDaysAgo, validatePeriodLength,
 } from './periodUtils';
-import OutbreakStatus from './types/OutbreakStatus';
 
 export const calulatePeriodData = (counts: Counts[], periodLength: number): Periods => {
   const validPeriodLength = validatePeriodLength(periodLength);

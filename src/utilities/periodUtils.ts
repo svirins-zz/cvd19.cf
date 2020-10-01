@@ -1,6 +1,5 @@
 import { Tag } from 'react-tag-autocomplete';
-import OutbreakStatus from './types/OutbreakStatus';
-import { Country } from './types/data';
+import { Country, OutbreakStatus } from '../types';
 
 export const PERIOD_LENGTH = 5;
 

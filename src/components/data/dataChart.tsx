@@ -3,7 +3,7 @@ import {
   VictoryChart, VictoryLine, VictoryAxis, VictoryLabel,
 } from 'victory';
 import { Tag } from 'react-tag-autocomplete';
-import { Country } from '../../utilities/types/data';
+import { Country } from '../../types';
 import Theme from '../shared/layout/chartTheme';
 import {
   cyanA400,

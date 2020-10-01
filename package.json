@@ -3,6 +3,7 @@
   "private": false,
   "description": "A simple tool to track global progress in defeating Covid-19",
   "version": "0.1.0",
+  "licenses": ["GNU"],
   "author": "Dzmitry Sviryn <svirins@gmail.com>",
   "dependencies": {
     "@ant-design/icons": "^4.2.2",

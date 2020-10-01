@@ -3,11 +3,11 @@ import React from 'react';
 import { TableInstance } from 'react-table';
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
 import './table.css';
-import { Period } from '../../../utilities/types/data';
+import { Period } from '../../../types';
 
 declare module 'react-table' {
   interface ColumnInstance {
-    getClassName: (period: Period) => string
+    getClassName: (period: Period) => string 
     isSorted: boolean
     isSortedDesc: boolean
   }

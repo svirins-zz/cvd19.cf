@@ -4,11 +4,11 @@ import { Typography, Spin } from 'antd';
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
-import { Countries } from '../utilities/types/data';
+import { Countries } from '../types';
 import { calculateData } from '../utilities/calcAllData';
 import { sumPeriodData } from '../utilities/calcGlobal';
 import DataContent, { PeriodInfo } from '../components/data/dataContent';
-import CountryQuery from '../utilities/query';
+import COUNTRY_QUERY from '../queries';
 
 const { Paragraph } = Typography;
 
@@ -17,7 +17,7 @@ const DataPage = () => {
     length: PERIOD_LENGTH,
     value: String(PERIOD_LENGTH),
   });
-  const { loading, error, data } = useQuery<Countries>(CountryQuery);
+  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
   const countries = useMemo(() => calculateData(data, periodInfo.length), [data, periodInfo]);
   const allData = [...countries, ...sumPeriodData(countries, periodInfo.length)];
   if (loading) {

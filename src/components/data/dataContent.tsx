@@ -9,7 +9,7 @@ import {
 import DataChart from './dataChart';
 import CountryFilter, { Tags } from './countryFilter';
 import styles from './dataContent.module.css';
-import { Country } from '../../utilities/types/data';
+import { Country } from '../../types';
 import { getTags } from '../../utilities/periodUtils';
 
 const buttonStyle: CSSProperties = {

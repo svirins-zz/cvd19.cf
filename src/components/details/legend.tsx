@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from 'antd';
-import OutbreakStatus from '../../utilities/types/OutbreakStatus';
+import { OutbreakStatus } from '../../types';
 
 const { Text } = Typography;
 
