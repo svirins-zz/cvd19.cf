@@ -18,7 +18,7 @@ const TotalSummary = (globalData) => {
                 title="Global Cases"
                 value={globalData.globalData[0]}
                 precision={0}
-                valueStyle={{ color: '#cf1322' }}
+                valueStyle={{ color: '#cf1322', backgroundColor: '#f9f9fd' }}
                 prefix={<ArrowUpOutlined />}
               />
             </Card>
@@ -29,7 +29,7 @@ const TotalSummary = (globalData) => {
                 title="Global Deaths"
                 value={globalData.globalData[1]}
                 precision={0}
-                valueStyle={{ color: '#cf1322' }}
+                valueStyle={{ color: '#cf1322', backgroundColor: '#f9f9fd' }}
                 prefix={<ArrowUpOutlined />}
               />
             </Card>
@@ -40,7 +40,7 @@ const TotalSummary = (globalData) => {
                 title="Countries (incl. vessels)"
                 value={globalData.globalData[3]}
                 precision={0}
-                valueStyle={{ color: '#cf1322' }}
+                valueStyle={{ color: '#cf1322', backgroundColor: '#f9f9fd' }}
                 prefix={<ArrowUpOutlined />}
               />
             </Card>
@@ -51,7 +51,7 @@ const TotalSummary = (globalData) => {
                 title="Recovered"
                 value={globalData.globalData[2]}
                 precision={0}
-                valueStyle={{ color: '#3f8600' }}
+                valueStyle={{ color: '#3f8600', backgroundColor: '#f9f9fd' }}
                 prefix={<ArrowUpOutlined />}
               />
             </Card>

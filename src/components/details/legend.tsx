@@ -1,133 +1,164 @@
 import React from 'react';
-import styles from './legend.module.css';
+import { Typography } from 'antd';
 import OutbreakStatus from '../../utilities/types/OutbreakStatus';
+
+const { Text } = Typography;
 
 export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   if (status === OutbreakStatus.None) {
     return (
-      <span>
-        <strong>
-          {OutbreakStatus.None}
-          :
+      <>
+        <Text className="largeText statNone">
+          <strong>
+            {OutbreakStatus.None}
+          </strong>
+        </Text>
+        <br />
+        <Text className="largeText">
+          there have been
+        </Text>
+        <Text className="largeText">
           {' '}
-        </strong>
-        There have been
-        {' '}
-        <strong>no deaths</strong>
-        .
-        {' '}
-      </span>
+          <strong>no deaths</strong>
+          .
+          {' '}
+        </Text>
+      </>
     );
   } if (status === OutbreakStatus.Small) {
     return (
-      <span>
-        <strong>
+      <>
+        <Text className="largeText statSmall">
           {OutbreakStatus.Small}
           :
           {' '}
-        </strong>
-        There have been
-        {' '}
-        <strong>less than 10 deaths</strong>
-        .
-      </span>
+        </Text>
+        <Text className="largeText">
+          there have been
+        </Text>
+        <Text className="largeText">
+          {' '}
+          <strong>less than 10 deaths</strong>
+          .
+        </Text>
+      </>
     );
   } if (status === OutbreakStatus.Losing) {
     return (
-      <span>
-        <strong>
+      <>
+        <Text className="largeText statLosing">
           {OutbreakStatus.Losing}
           :
           {' '}
-        </strong>
-        Deaths rose by
-        {' '}
-        <strong>100% or more</strong>
-        {' '}
-        OR
-        {' '}
-        <strong>stayed above 1000</strong>
-        .
-      </span>
+        </Text>
+        <Text className="largeText">
+          deaths rose by
+        </Text>
+        <Text className="largeText">
+          {' '}
+          <strong>100% or more</strong>
+          {' '}
+          OR
+          {' '}
+          <strong>stayed above 1000</strong>
+          .
+        </Text>
+      </>
     );
   } if (status === OutbreakStatus.Flattening) {
     return (
-      <span>
-        <strong>
+      <>
+        <Text className="largeText statFlattening">
           {OutbreakStatus.Flattening}
           :
           {' '}
-        </strong>
-        Deaths did not double, but did
-        {' '}
-        <strong>increase</strong>
-        {' '}
-        OR
-        {' '}
-        <strong>stay above 100</strong>
-        .
-      </span>
+        </Text>
+        <Text className="largeText">
+          deaths did not double, but did
+        </Text>
+        <Text className="largeText">
+          {' '}
+          <strong>increase</strong>
+          {' '}
+          OR
+          {' '}
+          <strong>stay above 100</strong>
+          .
+        </Text>
+      </>
     );
   } if (status === OutbreakStatus.Crushing) {
     return (
-      <span>
-        <strong>
+      <>
+        <Text className="largeText statCrushing">
           {OutbreakStatus.Crushing}
           :
           {' '}
-        </strong>
-        Deaths decreased
-        {' '}
-        <strong>by 50% or more</strong>
-        {' '}
-        OR
-        {' '}
-        <strong>to below 100</strong>
-        .
-      </span>
+        </Text>
+        <Text className="largeText">
+          deaths decreased
+        </Text>
+        <Text className="largeText">
+          {' '}
+          <strong>by 50% or more</strong>
+          {' '}
+          OR
+          {' '}
+          <strong>to below 100</strong>
+          .
+        </Text>
+      </>
     );
   } if (status === OutbreakStatus.Winning) {
     return (
-      <span>
-        <strong>
+      <>
+        <Text className="largeText statWinning">
           {OutbreakStatus.Winning}
           :
           {' '}
-        </strong>
-        New deaths decreased to
-        {' '}
-        <strong>below 10</strong>
-        .
-      </span>
+        </Text>
+        <Text className="largeText">
+          new deaths decreased to
+        </Text>
+        <Text className="largeText">
+          {' '}
+          <strong>below 10</strong>
+          .
+        </Text>
+      </>
     );
   } if (status === OutbreakStatus.Won) {
     return (
-      <span>
-        <strong>
+      <>
+        <Text className="largeText statWon">
           {OutbreakStatus.Won}
           :
           {' '}
-        </strong>
-        We have had
-        {' '}
-        <strong>no new deaths</strong>
-        {' '}
-        for
-        {' '}
-        <strong>two periods</strong>
-        {' '}
-        in a row.
-      </span>
+        </Text>
+        <Text className="largeText">
+          we have had
+        </Text>
+        <Text className="largeText">
+          {' '}
+          <strong>no new deaths</strong>
+          {' '}
+          for
+          {' '}
+          <strong>two periods</strong>
+          {' '}
+          in a row.
+        </Text>
+      </>
     );
   }
   return '';
 };
 
 const Legend = () => (
-  <div className={styles.legend}>
+  <div>
     <h2>Legend</h2>
     <p>
-      The items below all cover a single period, unless otherwise stated.
+      The itstrongs below all cover a single period, unless otherwise stated.
       A single period is
       {' '}
       <strong>5-days</strong>
@@ -136,25 +167,25 @@ const Legend = () => (
 
     </p>
     <ul>
-      <li className={styles.none}>
+      <li className="statNone">
         {getStatusInfo(OutbreakStatus.None)}
       </li>
-      <li className={styles.small}>
+      <li className="statSmall">
         {getStatusInfo(OutbreakStatus.Small)}
       </li>
-      <li className={styles.losing}>
+      <li className="statLosing">
         {getStatusInfo(OutbreakStatus.Losing)}
       </li>
-      <li className={styles.flattening}>
+      <li className="statFlattening">
         {getStatusInfo(OutbreakStatus.Flattening)}
       </li>
-      <li className={styles.crushing}>
+      <li className="statCrushing">
         {getStatusInfo(OutbreakStatus.Crushing)}
       </li>
-      <li className={styles.winning}>
+      <li className="statWinning">
         {getStatusInfo(OutbreakStatus.Winning)}
       </li>
-      <li className={styles.won}>
+      <li className="statWon">
         {getStatusInfo(OutbreakStatus.Won)}
       </li>
     </ul>

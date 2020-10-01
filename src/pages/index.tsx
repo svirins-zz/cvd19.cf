@@ -22,6 +22,7 @@ import TotalSummary from '../components/status/totalSummary';
 const { Title, Paragraph, Text } = Typography;
 // TODO: Refactor Victory=>antD charts!
 // TODO: Refactor pre-render Statistics calculations into separate module
+// TODO: check memoization for re-render
 const IndexPage = () => {
   const { loading, error, data } = useQuery<Countries>(CountryQuery);
   const countries = useMemo(() => calculateData(data, PERIOD_LENGTH), [data]);
@@ -42,7 +43,7 @@ const IndexPage = () => {
     return (
       <PageLayout>
         <SEO title="Status" />
-        <Paragraph className="centered" style={{ height: '100vh', paddingTop: '70px' }}>
+        <Paragraph className="centered" style={{ height: '100vh', paddingTop: '44%' }}>
           <div style={{ verticalAlign: 'middle' }}>
             {' '}
             <Spin size="large" />
@@ -68,28 +69,25 @@ const IndexPage = () => {
     <PageLayout>
       <SEO title="Status" />
       <Paragraph className="centered">
-        <Title level={3}>Current state of the Covid-19 pandemic</Title>
-        <br />
-        In the last 5 days we&apos;ve
-        {globalData[0].periods[0].status === OutbreakStatus.Won
-          ? ' '
-          : ' been '}
-        <Text mark>
-          {' '}
-          {getStatusInfo(globalData[0].periods[0].status)}
+        <Title level={1}>Current state of the Covid-19 pandemic</Title>
+        <Text className="largeText">
+          In the last 5 days we&apos;ve
+          {globalData[0].periods[0].status === OutbreakStatus.Won
+            ? ' '
+            : ' been '}
         </Text>
-        {' '}
+        {getStatusInfo(globalData[0].periods[0].status)}
         <TotalSummary globalData={globalTotalData} />
         <span className="italic">Daily data update occurs between 04:45 and 05:15 GM</span>
       </Paragraph>
       <Divider />
       <Paragraph className="centered">
-        <Title level={3}>In how many places are winning?</Title>
+        <Title level={2}>In how many places are winning?</Title>
         <SummaryChart data={globalSummarySinceTwoMonths} />
       </Paragraph>
       <Divider />
       <Paragraph className="centered">
-        <Title level={3}>How many places have the pandemic under control?</Title>
+        <Title level={2}>How many places have the pandemic under control?</Title>
         The
         {' '}
         <em>Won</em>
@@ -110,11 +108,11 @@ const IndexPage = () => {
       </Paragraph>
       <Divider />
       <Paragraph className="centered">
-        <Title level={3}> How much of the world is pandemic free?</Title>
+        <Title level={2}> How much of the world is pandemic free?</Title>
         <PandemicFreeChart data={globalSummaryData} />
       </Paragraph>
       <Divider />
-      {/* TODO: SUPERIMPORTANT - IMPLEMENT SORTING BY CASES! */}
+      {/* TODO: SUPER IMPORTANT - IMPLEMENT SORTING BY CASES! */}
       <Row>
         <Col span={9} offset={2}>
           <Title level={5}>Positive dynamics. New death cases (first 20) ?</Title>

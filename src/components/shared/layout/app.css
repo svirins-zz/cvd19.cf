@@ -33,6 +33,7 @@
 
 .italic {
   font-style: italic;
+  font-size: 1.2em;
 }
 
 .site-layout .site-layout-background {
@@ -75,4 +76,37 @@
 
 .credentialsLink:hover {
   color: #c242e2;
+}
+
+.largeText {
+  font-size: 1.2em;
+}
+
+.statNone {
+  color: lightgray;
+  font-weight: 600;
+}
+.statSmall {
+  color: lightpink;
+  font-weight: 600;
+}
+.statLosing {
+  color: lightcoral;
+  font-weight: 600;
+}
+.statFlattening {
+  color: lightsalmon;
+  font-weight: 600;
+}
+.statCrushing {
+  color: lightskyblue;
+  font-weight: 600;
+}
+.statWinning {
+  color: lightgreen;
+  font-weight: 600;
+}
+.statWon {
+  color: lightseagreen;
+  font-weight: 600;
 }
