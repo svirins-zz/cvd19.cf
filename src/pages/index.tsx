@@ -8,13 +8,13 @@ import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
 import { getStatusInfo } from '../components/details/legend';
-import SummaryChart from '../components/status/summaryChart';
+import SummaryChart from '../components/charts/summaryChart';
 import { calculateData } from '../utilities/calcAllData';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
 import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from '../utilities/calcGlobal';
 import COUNTRY_QUERY from '../queries';
-import PandemicFreeChart from '../components/status/pandemicFreeChart';
-import UnderControlChart from '../components/status/underControlChart';
+import PandemicFreeChart from '../components/charts/pandemicFreeChart';
+import UnderControlChart from '../components/charts/underControlChart';
 import TotalSummary from '../components/status/totalSummary';
 
 // Types import
@@ -65,7 +65,7 @@ const IndexPage = () => {
   }
   // TODO: constructing global statistics data
   const globalTotalData = calculateTotalGlobal(data);
-
+  // TODO: Move Legend data here (2 columns)
   return (
     <PageLayout>
       <SEO title="Status" />

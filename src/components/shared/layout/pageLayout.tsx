@@ -10,7 +10,7 @@ import {
   GithubOutlined,
   TwitterOutlined,
 } from '@ant-design/icons';
-import logo from '../../../images/coronavirus.png';
+import logo from '../../../assets/coronavirus.png';
 // eslint-disable-next-line import/extensions
 import { myContext } from '../../../context';
 

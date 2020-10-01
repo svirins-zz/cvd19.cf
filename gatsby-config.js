@@ -10,7 +10,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/assets`,
       },
     },
     'gatsby-transformer-sharp',
@@ -22,7 +22,7 @@ module.exports = {
         short_name: 'Covid-19 stats and charts',
         start_url: '/',
         display: 'browser',
-        icon: 'src/images/coronavirus.png', // This path is relative to the root of the site.
+        icon: 'src/assets/coronavirus.png', // This path is relative to the root of the site.
       },
     },
     'gatsby-plugin-typescript',
