@@ -10,25 +10,10 @@
   text-align: center;
 }
 
-.logo {
-  width: 140px;
-  /* height: 31px; */
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #e46ca5;
-  /* background: rgba(255, 255, 255, 0.2);
-  margin: 16px 24px 16px 0; */
-  float: left;
-  vertical-align: middle
-}
 
 
 .bigIcon {
   font-size: '18px'; color: 'WHITE'; vertical-align: 'middle'
-}
-
-.whitecolor {
-  color: #f5f5f5;
 }
 
 .site-statistic-demo-card {
@@ -48,4 +33,44 @@
 
 .italic {
   font-style: italic;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.logoImg {
+  padding: 12px 16px;
+}
+
+.logoText {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #e46ca5;
+  font-size: 11px;
+  line-height: 11px;
+}
+
+.alignBottom {
+  position: fixed;
+  bottom: 0;
+  height: 100px;
+}
+
+.bottomSiderIcon a{
+  padding: 28px;
+
+}
+
+.credentials {
+  color: #f5f5f5;
+  font-size: 11px;
+}
+
+.credentialsLink {
+  color: #7eb0d6;
+}
+
+.credentialsLink:hover {
+  color: #c242e2;
 }

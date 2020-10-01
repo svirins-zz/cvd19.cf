@@ -37,8 +37,7 @@ const IndexPage = () => {
     (country) => country.periods[0].status === OutbreakStatus.Winning
       || country.periods[0].status === OutbreakStatus.Won,
   );
-  // TODO: Refactor spinner to larger size
-  // TODO: Refactor initial (no data) display height
+
   if (loading) {
     return (
       <PageLayout>
@@ -62,7 +61,7 @@ const IndexPage = () => {
       </PageLayout>
     );
   }
-  // TODO: construct global statistics data
+  // TODO: constructing global statistics data
   const globalTotalData = calculateTotalGlobal(data);
 
   return (
