@@ -2,7 +2,7 @@
 import React from 'react';
 import { TableInstance } from 'react-table';
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
-import './table.css';
+import '../../../styles/table.css';
 import { Period } from '../../../types';
 
 declare module 'react-table' {

@@ -1,21 +1,16 @@
-const calcTagColor = (rate: Number): String => {
-  let color = 'gray-1';
-  if (rate > 1) {
-    color = 'red-3';
-  } else if (rate < -1) {
-    color = 'green-3';
-  } else {
-    color = 'blue-3';
+/* eslint-disable no-fallthrough */
+/* eslint-disable default-case */
+const calcTagcolor = (rate: String): String => {
+  let color = 'none';
+  switch (rate) {
+    case 'No Outbreak': { color = 'gray'; break; }
+    case 'Small Outbreak': { color = 'pink'; break; }
+    case 'Losing': { color = 'red'; break; }
+    case 'Flattening the Curve': { color = 'orange'; break; }
+    case 'Crushing the Curve': { color = 'yellow'; break; }
+    case 'Winning': { color = 'cyan'; break; }
+    case 'Won': { color = 'green'; break; }
   }
   return color;
 };
-
-export default calcTagColor;
-
-// None = 'No Outbreak',
-// Small = 'Small Outbreak',
-// Losing = 'Losing',
-// Flattening = 'Flattening the Curve',
-// Crushing = 'Crushing the Curve',
-// Winning = 'Winning',
-// Won = 'Won',
+export default calcTagcolor;

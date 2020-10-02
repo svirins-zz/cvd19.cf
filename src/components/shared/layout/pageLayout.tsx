@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Menu, Typography } from 'antd';
 import { Link } from 'gatsby';
-import './app.css';
+import '../../../styles/app.css';
 import {
   GlobalOutlined,
   BarChartOutlined,
