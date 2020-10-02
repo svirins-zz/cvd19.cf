@@ -2,7 +2,7 @@
 import React from 'react';
 import { Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { TableT } from '../../../types';
+import { TableT, TableTColumn } from '../../../types';
 import calcTagstyle from '../../../utilities/calCcolor';
 
 const ATable = ({ table }: TableT, order: Boolean) => {
@@ -17,7 +17,7 @@ const ATable = ({ table }: TableT, order: Boolean) => {
     rate0: e.periods[0].status,
   }));
   // console.log(table, order);
-  const columns: ColumnsType[] = [
+  const columns: TableTColumn[] = [
     {
       title: table.columns[0].Header,
       dataIndex: table.columns[0].id,
@@ -63,8 +63,9 @@ const ATable = ({ table }: TableT, order: Boolean) => {
           {text}
         </Tag>
       ),
-      sortDirections: ['descend', 'ascend'],
-      sorter: (a, b) => a.newDeaths - b.newDeaths,
+      sortOrder: order ? 'descend' : 'ascend',
+      defaultSortOrder	: order ? 'descend' : 'ascend',
+      sorter: (a, b) => a.['periods[0]'] -b.['periods[0]'],
     },
   ];
 

@@ -57,12 +57,13 @@ export interface AllPeriodsResult {
   totalGlobalCountries: Number
 }
 
-export interface ATableColumns {
-  key: String
+export interface TableTColumn {
+  key?: String
   title: String
   dataIndex: String
   sorter?: Function
   defaultSortOrder?: String
+  sortOrder?: String
   render?: Function
 }
 
