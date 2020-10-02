@@ -11,9 +11,10 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
         <Text className="largeText statNone">
           <strong>
             {OutbreakStatus.None}
+            :
+            {' '}
           </strong>
         </Text>
-        <br />
         <Text className="largeText">
           there have been
         </Text>

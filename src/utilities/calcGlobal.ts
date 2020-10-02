@@ -1,5 +1,5 @@
 import { getPeriodName, getPeriodCount, validatePeriodLength } from './periodUtils';
-import { Country, PeriodSummary,OutbreakStatus } from '../types';
+import { Country, PeriodSummary,OutbreakStatus, Countries } from '../types';
 import { calulatePeriodData } from './calcAllData';
 
 export const sumPeriodData = (countries: Country[], periodLength: number): Country[] => {
@@ -94,16 +94,23 @@ export const calculateGlobalSummary = (
   return periodSummaries;
 };
 
-export const calculateTotalGlobal = (data) => {
-  const totalGlobalCases = data.countries.reduce((acc, element) => acc + element.results[element.results.length - 1].confirmed, 0);
-  const totalGlobalDeaths = data.countries.reduce((acc, element) => acc + element.results[element.results.length - 1].deaths, 0);
-  const totalGlobalRecovered = data.countries.reduce((acc, element) => acc + element.results[element.results.length - 1].recovered, 0);
+// TODO: refactor to single reduce
+export const calculateTotalGlobal = (data: Countries): Number[] => {
+  const totalGlobalCases =
+   data.countries.reduce((acc, element) => (
+     acc + element.results[element.results.length -1].confirmed), 0);
+  const totalGlobalDeaths = 
+   data.countries.reduce((acc, element) => (
+     acc + element.results[element.results.length - 1].deaths), 0);
+  const totalGlobalRecovered =
+   data.countries.reduce((acc, element) => (
+     acc + element.results[element.results.length - 1].recovered), 0);
 
   const resultArray = [
     totalGlobalCases,
     totalGlobalDeaths,
     totalGlobalRecovered,
-    data.countries.length,
+    data.countries.length ?? 0,
   ];
   return resultArray;
 };

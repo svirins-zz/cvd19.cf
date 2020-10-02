@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTags, { Tag } from 'react-tag-autocomplete';
-import './countryFilter.css';
+import '../../styles/countryFilter.css';
 
 export interface Tags {
   currentTags: Tag[]

@@ -548,15 +548,15 @@ export const GrowthTable = ({
     </div>
   );
 };
-
+// GrowthSummaryTable used only at main page
 export const GrowthSummaryTable = ({
   data,
   periodLength,
-  desc = true,
+  desc,
 }: {
   data: Country[],
   periodLength: number,
-  desc?: boolean,
+  desc: boolean,
 }) => {
   const periodNames = React.useMemo(() => getPeriodNames(periodLength), [periodLength]);
   const columns = React.useMemo(() => {
@@ -565,7 +565,6 @@ export const GrowthSummaryTable = ({
         {
           Header: 'Country',
           accessor: 'name',
-          sortType: nameSort,
         },
       ]
       : [];
@@ -579,8 +578,6 @@ export const GrowthSummaryTable = ({
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,
           }) ?? '',
-          getClassName: (period: Period) => formatCell(period).className,
-          sortType: newDeathsSort,
         },
         {
           Header: periodNames[1],
@@ -589,8 +586,6 @@ export const GrowthSummaryTable = ({
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,
           }) ?? '',
-          getClassName: (period: Period) => formatCell(period).className,
-          sortType: newDeathsSort,
         },
         {
           Header: periodNames[0],
@@ -599,8 +594,6 @@ export const GrowthSummaryTable = ({
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,
           }) ?? '',
-          getClassName: (period: Period) => formatCell(period).className,
-          sortType: newDeathsSort,
         },
       ],
     ];
@@ -609,6 +602,6 @@ export const GrowthSummaryTable = ({
   const preparedTableObject = useTable({ columns, data });
 
   return (
-    <ATable table={preparedTableObject} />
+    <ATable table={preparedTableObject} order={desc} />
   );
 };//

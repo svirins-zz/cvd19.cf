@@ -7,7 +7,7 @@ import {
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
-import { getStatusInfo } from '../components/details/legend';
+import Legend, { getStatusInfo } from '../components/details/legend';
 import SummaryChart from '../components/charts/summaryChart';
 import { calculateData } from '../utilities/calcAllData';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
@@ -65,7 +65,6 @@ const IndexPage = () => {
   }
   // TODO: constructing global statistics data
   const globalTotalData = calculateTotalGlobal(data);
-  // TODO: Move Legend data here (2 columns)
   return (
     <PageLayout>
       <SEO title="Status" />
@@ -78,6 +77,12 @@ const IndexPage = () => {
             : ' been '}
         </Text>
         {getStatusInfo(globalData[0].periods[0].status)}
+        {' '}
+        <Link to="/about">
+          <Button type="dashed">
+            Status codes explained
+          </Button>
+        </Link>
         <TotalSummary globalData={globalTotalData} />
         <span className="italic">Daily data update occurs between 04:45 and 05:15 GM</span>
       </Paragraph>
@@ -115,15 +120,13 @@ const IndexPage = () => {
       <Divider />
       {/* TODO: SUPER IMPORTANT - IMPLEMENT SORTING BY CASES! */}
       <Row>
-        <Col span={9} offset={2}>
-          <Title level={5}>Positive dynamics. New death cases (first 20) ?</Title>
-          <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} />
-          <Link to="/data"><Button>More data ...</Button></Link>
+        <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
+          <Title level={5}>New death cases ↓ (lessening)</Title>
+          <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} desc={false} />
         </Col>
-        <Col span={9} offset={2}>
-          <Title level={5}>Negative dynamics. New death cases (first 20) ?</Title>
-          <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} />
-          <Link to="/data"><Button>More data ...</Button></Link>
+        <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
+          <Title level={5}>New death cases ↑ (growing)</Title>
+          <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} desc />
         </Col>
       </Row>
     </PageLayout>

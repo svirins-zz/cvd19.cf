@@ -12,7 +12,7 @@ import {
   lightBlueA700,
   purpleA200,
   lightGreen700,
-} from '../shared/general/colors';
+} from '../../styles/colors';
 
 interface DataChartProps {
   countries: Country[]
@@ -69,7 +69,7 @@ const DataChart = ({
           y={6}
           style={{
             fontSize: 12,
-            fontFamily: `"SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+            fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
           }}
         />
@@ -79,7 +79,7 @@ const DataChart = ({
           y={35}
           style={{
             fontSize: 6,
-            fontFamily: `"SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+            fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
           }}
         />
@@ -89,7 +89,7 @@ const DataChart = ({
           y={43}
           style={{
             fontSize: 6,
-            fontFamily: `"SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+            fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
           }}
         />

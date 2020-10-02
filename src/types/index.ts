@@ -1,3 +1,5 @@
+import { TableInstance } from 'react-table';
+
 export interface Countries {
   countries?: Country[];
 }
@@ -53,6 +55,19 @@ export interface AllPeriodsResult {
   totalGlobalDeaths: Number
   totalGlobalRecovered: Number
   totalGlobalCountries: Number
+}
+
+export interface ATableColumns {
+  key: String
+  title: String
+  dataIndex: String
+  sorter?: Function
+  defaultSortOrder?: String
+  render?: Function
+}
+
+export interface TableT {
+  table: TableInstance<Country>
 }
 
 export enum OutbreakStatus {

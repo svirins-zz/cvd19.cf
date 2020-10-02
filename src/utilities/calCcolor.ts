@@ -11,3 +11,11 @@ const calcTagColor = (rate: Number): String => {
 };
 
 export default calcTagColor;
+
+// None = 'No Outbreak',
+// Small = 'Small Outbreak',
+// Losing = 'Losing',
+// Flattening = 'Flattening the Curve',
+// Crushing = 'Crushing the Curve',
+// Winning = 'Winning',
+// Won = 'Won',
