@@ -27,13 +27,13 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
         },
       }}
       data={[
-        { name: 'No Outbreak', symbol: { fill: 'lightgray' } },
-        { name: 'Small Outbreak', symbol: { fill: 'lightpink' } },
-        { name: 'Losing', symbol: { fill: 'lightcoral' } },
-        { name: 'Flattening the Curve', symbol: { fill: 'lightsalmon' } },
-        { name: 'Crushing the Curve', symbol: { fill: 'lightskyblue' } },
-        { name: 'Winning', symbol: { fill: 'lightgreen' } },
-        { name: 'Won', symbol: { fill: 'lightseagreen' } },
+        { name: 'No Outbreak', symbol: { fill: '#cccccc' } },
+        { name: 'Small Outbreak', symbol: { fill: '#eb2f96' } },
+        { name: 'Losing', symbol: { fill: '#f5222d' } },
+        { name: 'Flattening the Curve', symbol: { fill: '#fa8c16' } },
+        { name: 'Crushing the Curve', symbol: { fill: '#fadb14' } },
+        { name: 'Winning', symbol: { fill: '#13c2c2' } },
+        { name: 'Won', symbol: { fill: '#52c41a' } },
       ]}
     />
     <VictoryAxis
@@ -62,7 +62,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: 'lightgray' },
+        data: { stroke: '#cccccc' },
       }}
       x="endDate"
       y="none"
@@ -71,7 +71,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: 'lightpink' },
+        data: { stroke: '#eb2f96' },
       }}
       x="endDate"
       y="small"
@@ -80,7 +80,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: 'lightcoral' },
+        data: { stroke: '#f5222d' },
       }}
       x="endDate"
       y="losing"
@@ -89,7 +89,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: 'lightsalmon' },
+        data: { stroke: '#fa8c16' },
       }}
       x="endDate"
       y="flattening"
@@ -98,7 +98,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: 'lightskyblue' },
+        data: { stroke: '#fadb14' },
       }}
       x="endDate"
       y="crushing"
@@ -107,7 +107,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: 'lightgreen' },
+        data: { stroke: '#13c2c2' },
       }}
       x="endDate"
       y="winning"
@@ -117,7 +117,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: 'lightseagreen' },
+        data: { stroke: '#52c41a' },
       }}
       x="endDate"
       y="won"

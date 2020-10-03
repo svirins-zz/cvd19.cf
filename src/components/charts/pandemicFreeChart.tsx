@@ -26,8 +26,8 @@ const PandemicFreeChart = ({ data }: { data: PeriodSummary[] }) => (
         },
       }}
       data={[
-        { name: '% With Cases or Deaths', symbol: { fill: 'lightcoral' } },
-        { name: '% Pandemic Free', symbol: { fill: 'lightgreen' } },
+        { name: '% With Cases or Deaths', symbol: { fill: '#f5222d' } },
+        { name: '% Pandemic Free', symbol: { fill: '#52c41a' } },
       ]}
     />
     <VictoryAxis
@@ -57,9 +57,9 @@ const PandemicFreeChart = ({ data }: { data: PeriodSummary[] }) => (
       interpolation="monotoneX"
       style={{
         data: {
-          fill: 'lightcoral',
+          fill: '#f5222d',
           fillOpacity: 0.5,
-          stroke: 'lightcoral',
+          stroke: '#f5222d',
           strokeWidth: 0,
         },
       }}
@@ -72,9 +72,9 @@ const PandemicFreeChart = ({ data }: { data: PeriodSummary[] }) => (
       interpolation="monotoneX"
       style={{
         data: {
-          fill: 'lightgreen',
+          fill: '#52c41a',
           fillOpacity: 0.5,
-          stroke: 'lightgreen',
+          stroke: '#52c41a',
           strokeWidth: 2,
         },
       }}

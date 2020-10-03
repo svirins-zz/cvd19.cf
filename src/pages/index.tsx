@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import { Link } from 'gatsby';
 import {
-  Typography, Divider, Spin, Row, Col, Button,
+  Typography, Divider, Spin, Row, Col,
 } from 'antd';
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
 import { GrowthSummaryTable } from '../components/shared/tables/tables';
-import Legend, { getStatusInfo } from '../components/details/legend';
+import { getStatusInfo } from '../components/details/legend';
 import SummaryChart from '../components/charts/summaryChart';
 import { calculateData } from '../utilities/calcAllData';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
@@ -78,53 +77,49 @@ const IndexPage = () => {
         </Text>
         {getStatusInfo(globalData[0].periods[0].status)}
         {' '}
-        <Link to="/about">
-          <Button type="dashed">
-            Status codes explained
-          </Button>
-        </Link>
         <TotalSummary globalData={globalTotalData} />
         <span className="italic">Daily data update occurs between 04:45 and 05:15 GM</span>
       </Paragraph>
       <Divider />
-      <Paragraph className="centered">
-        <Title level={2}>In how many places are winning?</Title>
-        <SummaryChart data={globalSummarySinceTwoMonths} />
-      </Paragraph>
+      <Title className="centered" level={2}>In how many places are winning?</Title>
+      <SummaryChart data={globalSummarySinceTwoMonths} />
       <Divider />
-      <Paragraph className="centered">
-        <Title level={2}>How many places have the pandemic under control?</Title>
-        The
-        {' '}
-        <em>Won</em>
-        {' '}
-        status above only looks at deaths, and should therefore be a slight leading
-        indicator compared to the
-        {' '}
-        <em>Pandemic Free</em>
-        {' '}
-        status
-        in the chart below, which requires both no deaths and no cases.
-        {' '}
-        <em>Pandemic Free</em>
-        {' '}
-        should also decrease in the begging as outbreaks start, and then increase once countries
-        successfully eradicate the virus.
-        <UnderControlChart data={globalSummaryData} />
-      </Paragraph>
+      <Col span={20} offset={2}>
+        <Paragraph className="centered">
+          <Title level={2}>How many places have the pandemic under control?</Title>
+          <Text className="largeText">
+            The
+            {' '}
+            <em>Won</em>
+            {' '}
+            status above only looks at deaths, and should therefore be a slight leading
+            indicator compared to the
+            {' '}
+            <em>Pandemic Free</em>
+            {' '}
+            status
+            in the chart below, which requires both no deaths and no cases.
+            {' '}
+            <em>Pandemic Free</em>
+            {' '}
+            should also decrease in the begging as outbreaks start, and then increase once countries
+            successfully eradicate the virus.
+          </Text>
+        </Paragraph>
+      </Col>
+      <UnderControlChart data={globalSummaryData} />
       <Divider />
-      <Paragraph className="centered">
-        <Title level={2}> How much of the world is pandemic free?</Title>
-        <PandemicFreeChart data={globalSummaryData} />
-      </Paragraph>
+      <Title className="centered" level={2}> How much of the world is pandemic free?</Title>
+      <PandemicFreeChart data={globalSummaryData} />
       <Divider />
+      <Title className="centered" level={2}>New death cases by countries</Title>
       <Row>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
-          <Title level={5}>New death cases (Lessening ↓)</Title>
+          <Title level={5}>Lessening</Title>
           <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} desc={false} />
         </Col>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
-          <Title level={5}>New death cases (Growing ↑)</Title>
+          <Title level={5}>Growing</Title>
           <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} desc />
         </Col>
       </Row>
@@ -133,3 +128,5 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+
+// TODO: add some space below 2 countries charts

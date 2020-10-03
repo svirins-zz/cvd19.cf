@@ -10,7 +10,7 @@ import {
   RobotOutlined,
   EnvironmentOutlined,
   GithubOutlined,
-  TwitterOutlined,
+  QuestionCircleOutlined,
 } from '@ant-design/icons';
 import logo from '../../../assets/coronavirus.png';
 // eslint-disable-next-line import/extensions
@@ -26,8 +26,8 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
       <Layout style={{ minHeight: '100vh' }}>
         <Drawer
           title="Legend"
-          placement="right"
-          closable={true}
+          placement="left"
+          closable
           onClose={context.onClose}
           visible={context.visible}
           width={450}
@@ -47,17 +47,17 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
             style={{ position: 'fixed', border: '0' }}
           >
             <div className="logoImg">
-              <a href="/">
-                <img
-                  src={logo}
-                  alt="Covid-19 stats & facts"
-                  height={48}
-                  width={48}
-                />
-                <span className="logoText">
-                  cvd19.cf
-                </span>
-              </a>
+              {/* <a href="/"> */}
+              <img
+                src={logo}
+                alt="Covid-19 stats & facts"
+                height={48}
+                width={48}
+              />
+              <span className="logoText">
+                cvd19.cf
+              </span>
+              {/* </a> */}
             </div>
             <Menu.Item key="main" icon={<GlobalOutlined style={{ color: 'WHITE' }} />}>
               <Link to="/">
@@ -80,16 +80,7 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
               </Link>
             </Menu.Item>
             <div className="alignBottom">
-              <Paragraph className="bottomSiderIcon">
-                <a href="https://github.com/svirins/covid19">
-                  <GithubOutlined style={{ fontSize: '16px', color: '#7eb0d6', verticalAlign: 'middle' }} />
-                </a>
-              </Paragraph>
-              <Paragraph className="credentials">
-                <a href="https://twitter.com/svirins">
-                  <TwitterOutlined style={{ fontSize: '16px', color: '#7eb0d6', verticalAlign: 'middle' }} />
-                </a>
-              </Paragraph>
+              <Button type="dashed" size="small" onClick={context.showDrawer}>Legend</Button>
             </div>
           </Menu>
         </Sider>
@@ -100,20 +91,33 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
             </div>
           </Content>
           <Footer>
-            <Button type="dashed" onClick={context.showDrawer}>Show drawer</Button>
-            <Paragraph className="credentials">
+            <div className="credentials">
               Made with
               {' '}
               <span role="img" aria-labelledby="love">❤️</span>
               {' '}
+              by
+              {' '}
               <a className="credentialsLink" href="https://twitter.com/svirins">@svirins</a>
-            </Paragraph>
+              .
+            </div>
+            <div className="credentials">
+              {' '}
+              View source
+              {' '}
+              <a href="https://github.com/svirins/covid19">
+                <GithubOutlined style={{ fontSize: '14px' }} />
+              </a>
+            </div>
           </Footer>
         </Layout>
-
       </Layout>
     )}
   </myContext.Consumer>
 
 );
 export default PageLayout;
+
+{/* <div className="alignBottom">
+<Button type="dashed" size="small" icon={<QuestionCircleOutlined />} onClick={context.showDrawer} />
+</div> */}
