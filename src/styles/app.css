@@ -85,28 +85,35 @@
 .statNone {
   color: lightgray;
   font-weight: 600;
+  text-decoration: underline;
 }
 .statSmall {
   color: lightpink;
   font-weight: 600;
+  text-decoration: underline;
 }
 .statLosing {
   color: lightcoral;
   font-weight: 600;
+  text-decoration: underline;
 }
 .statFlattening {
   color: lightsalmon;
   font-weight: 600;
+  text-decoration: underline;
 }
 .statCrushing {
   color: lightskyblue;
   font-weight: 600;
+  text-decoration: underline;
 }
 .statWinning {
   color: lightgreen;
   font-weight: 600;
+  text-decoration: underline;
 }
 .statWon {
   color: lightseagreen;
   font-weight: 600;
+  text-decoration: underline;
 }

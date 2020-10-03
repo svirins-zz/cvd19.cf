@@ -21,6 +21,9 @@ const Provider = ({ children }) => {
     <myContext.Provider value={{
       choice,
       handleClick: (e) => setChoice(e.key),
+      visible,
+      onClose: () => setVisible(false),
+      showDrawer: () => setVisible(true),
     }}
     >
       {children}

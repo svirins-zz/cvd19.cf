@@ -15,7 +15,7 @@ import {
 import logo from '../../../assets/coronavirus.png';
 // eslint-disable-next-line import/extensions
 import { myContext } from '../../../context';
-import Legend from '../../details/legend';
+import { LegendTable } from '../../details/legend';
 
 const { Paragraph } = Typography;
 const { Content, Sider, Footer } = Layout;
@@ -27,11 +27,12 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
         <Drawer
           title="Legend"
           placement="right"
-          closable={false}
+          closable={true}
           onClose={context.onClose}
           visible={context.visible}
+          width={450}
         >
-          <Legend />
+          <LegendTable />
         </Drawer>
         <Sider
           collapsed

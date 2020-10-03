@@ -1,19 +1,20 @@
 import React from 'react';
-import { Typography } from 'antd';
+import { Typography, Table, Tag } from 'antd';
 import { OutbreakStatus } from '../../types';
+import calcTagstyle from '../../utilities/calCcolor';
 
-const { Text } = Typography;
+const { Text, Paragraph } = Typography;
 
 export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   if (status === OutbreakStatus.None) {
     return (
       <>
-        <Text className="largeText statNone">
+        <Text className="statNone largeText">
           <strong>
             {OutbreakStatus.None}
             :
-            {' '}
           </strong>
+          {' '}
         </Text>
         <Text className="largeText">
           there have been
@@ -29,11 +30,11 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   } if (status === OutbreakStatus.Small) {
     return (
       <>
-        <Text className="largeText statSmall">
+        <Text className="statSmall largeText">
           {OutbreakStatus.Small}
           :
-          {' '}
         </Text>
+        {' '}
         <Text className="largeText">
           there have been
         </Text>
@@ -47,11 +48,11 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   } if (status === OutbreakStatus.Losing) {
     return (
       <>
-        <Text className="largeText statLosing">
+        <Text className="statLosing largeText">
           {OutbreakStatus.Losing}
           :
-          {' '}
         </Text>
+        {' '}
         <Text className="largeText">
           deaths rose by
         </Text>
@@ -69,11 +70,11 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   } if (status === OutbreakStatus.Flattening) {
     return (
       <>
-        <Text className="largeText statFlattening">
+        <Text className="statFlattening largetext">
           {OutbreakStatus.Flattening}
           :
-          {' '}
         </Text>
+        {' '}
         <Text className="largeText">
           deaths did not double, but did
         </Text>
@@ -91,11 +92,11 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   } if (status === OutbreakStatus.Crushing) {
     return (
       <>
-        <Text className="largeText statCrushing">
+        <Text className="statCrushing largetext">
           {OutbreakStatus.Crushing}
           :
-          {' '}
         </Text>
+        {' '}
         <Text className="largeText">
           deaths decreased
         </Text>
@@ -105,7 +106,7 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
           {' '}
           OR
           {' '}
-          <strong>to below 100</strong>
+          <strong>stay below 100</strong>
           .
         </Text>
       </>
@@ -113,11 +114,11 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   } if (status === OutbreakStatus.Winning) {
     return (
       <>
-        <Text className="largeText statWinning">
+        <Text className="statWinning largetext">
           {OutbreakStatus.Winning}
           :
-          {' '}
         </Text>
+        {' '}
         <Text className="largeText">
           new deaths decreased to
         </Text>
@@ -131,11 +132,11 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   } if (status === OutbreakStatus.Won) {
     return (
       <>
-        <Text className="largeText statWon">
+        <Text className="statWon largetext">
           {OutbreakStatus.Won}
           :
-          {' '}
         </Text>
+        {' '}
         <Text className="largeText">
           we have had
         </Text>
@@ -155,42 +156,111 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   return '';
 };
 
-const Legend = () => (
-  <div>
-    <h2>Legend</h2>
-    <p>
-      The itstrongs below all cover a single period, unless otherwise stated.
-      A single period is
-      {' '}
-      <strong>5-days</strong>
-      {' '}
-      by default, though you can set your own period length when exploring the data.
+export const LegendTable = () => {
+  const data = [
+    {
+      key: '1',
+      status: 'No Outbreak',
+      descr: 'There have been no deaths',
+    },
+    {
+      key: '2',
+      status: 'Small Outbreak',
+      descr: 'There have been less than 10 deaths',
+    },
+    {
+      key: '3',
+      status: 'Losing',
+      descr: 'Deaths rose by 100% or more or stayed above 1000',
+    },
+    {
+      key: '4',
+      status: 'Flattening the Curve',
+      descr: ' Deaths did not double, but did increase or stay above 100',
+    },
+    {
+      key: '5',
+      status: 'Crushing the Curve',
+      descr: 'Deaths decreased by 50% or more or to below 50',
+    },
+    {
+      key: '6',
+      status: 'Winning',
+      descr: 'New deaths decreased to below 10',
+    },
+    {
+      key: '7',
+      status: 'Won',
+      descr: 'We have had no new deaths for two periods',
+    },
+  ];
+  const columns = [
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (text, row, index) => (
+        <Tag
+          color={calcTagstyle(text)}
+          key={index}
+        >
+          {text}
+        </Tag>
+      ),
+    },
+    {
+      title: 'Description',
+      dataIndex: 'descr',
+      key: 'descr',
+    },
+  ];
 
-    </p>
-    <ul>
-      <li className="statNone">
-        {getStatusInfo(OutbreakStatus.None)}
-      </li>
-      <li className="statSmall">
-        {getStatusInfo(OutbreakStatus.Small)}
-      </li>
-      <li className="statLosing">
-        {getStatusInfo(OutbreakStatus.Losing)}
-      </li>
-      <li className="statFlattening">
-        {getStatusInfo(OutbreakStatus.Flattening)}
-      </li>
-      <li className="statCrushing">
-        {getStatusInfo(OutbreakStatus.Crushing)}
-      </li>
-      <li className="statWinning">
-        {getStatusInfo(OutbreakStatus.Winning)}
-      </li>
-      <li className="statWon">
-        {getStatusInfo(OutbreakStatus.Won)}
-      </li>
-    </ul>
-  </div>
-);
+  return (
+    <>
+      <Paragraph>
+        The items below all cover a single period, unless otherwise stated.
+      </Paragraph>
+      <Paragraph>
+        A single period is
+        {' '}
+        <strong>5-days</strong>
+        {' '}
+        by default, though you can set your own period length when exploring the data.
+      </Paragraph>
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+      />
+    </>
+  );
+};
 
-export default Legend;
+// export const Legend = () => (
+//   <>
+
+//     <ul>
+//       <li className="statNone">
+//         {getStatusInfo(OutbreakStatus.None)}
+//       </li>
+//       <li className="statSmall">
+//         {getStatusInfo(OutbreakStatus.Small)}
+//       </li>
+//       <li className="statLosing">
+//         {getStatusInfo(OutbreakStatus.Losing)}
+//       </li>
+//       <li className="statFlattening">
+//         {getStatusInfo(OutbreakStatus.Flattening)}
+//       </li>
+//       <li className="statCrushing">
+//         {getStatusInfo(OutbreakStatus.Crushing)}
+//       </li>
+//       <li className="statWinning">
+//         {getStatusInfo(OutbreakStatus.Winning)}
+//       </li>
+//       <li className="statWon">
+//         {getStatusInfo(OutbreakStatus.Won)}
+//       </li>
+//     </ul>
+//   </>
+// );

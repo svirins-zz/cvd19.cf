@@ -118,7 +118,6 @@ const IndexPage = () => {
         <PandemicFreeChart data={globalSummaryData} />
       </Paragraph>
       <Divider />
-      {/* TODO: SUPER IMPORTANT - IMPLEMENT SORTING BY CASES! */}
       <Row>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
           <Title level={5}>New death cases (Lessening ↓)</Title>

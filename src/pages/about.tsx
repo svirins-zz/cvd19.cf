@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { Typography } from 'antd';
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
-import Legend from '../components/details/legend';
+import { LegendTable } from '../components/details/legend';
 
 const { Paragraph } = Typography;
 // TODO: Add typography and styling
@@ -15,7 +15,7 @@ const AboutPage = () => (
       by focusing on the rate of change in death count globally.
       Daily data update occurs between 04:45 and 05:15 GMT
     </Paragraph>
-    <Legend />
+    <LegendTable />
     <h2>Covid-19 Pandemic Information</h2>
     <p>
       If you want expert information visit

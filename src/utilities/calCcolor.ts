@@ -1,6 +1,6 @@
 /* eslint-disable no-fallthrough */
 /* eslint-disable default-case */
-const calcTagcolor = (rate: String): String => {
+const calcTagstyle = (rate: String): String => {
   let color = 'none';
   switch (rate) {
     case 'No Outbreak': { color = 'gray'; break; }
@@ -13,4 +13,4 @@ const calcTagcolor = (rate: String): String => {
   }
   return color;
 };
-export default calcTagcolor;
+export default calcTagstyle;
