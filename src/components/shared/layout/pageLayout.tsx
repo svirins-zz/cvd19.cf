@@ -1,5 +1,7 @@
 import React from 'react';
-import { Layout, Menu, Typography } from 'antd';
+import {
+  Layout, Menu, Typography, Drawer, Button,
+} from 'antd';
 import { Link } from 'gatsby';
 import '../../../styles/app.css';
 import {
@@ -13,6 +15,7 @@ import {
 import logo from '../../../assets/coronavirus.png';
 // eslint-disable-next-line import/extensions
 import { myContext } from '../../../context';
+import Legend from '../../details/legend';
 
 const { Paragraph } = Typography;
 const { Content, Sider, Footer } = Layout;
@@ -21,6 +24,15 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
   <myContext.Consumer>
     {(context) => (
       <Layout style={{ minHeight: '100vh' }}>
+        <Drawer
+          title="Legend"
+          placement="right"
+          closable={false}
+          onClose={context.onClose}
+          visible={context.visible}
+        >
+          <Legend />
+        </Drawer>
         <Sider
           collapsed
           style={{ position: 'sticky' }}
@@ -87,6 +99,7 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
             </div>
           </Content>
           <Footer>
+            <Button type="dashed" onClick={context.showDrawer}>Show drawer</Button>
             <Paragraph className="credentials">
               Made with
               {' '}

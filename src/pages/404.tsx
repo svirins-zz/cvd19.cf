@@ -1,17 +1,18 @@
 import React from 'react';
-import { Typography } from 'antd';
+import { Result, Button } from 'antd';
 import PageLayout from '../components/shared/layout/pageLayout';
 import SEO from '../components/shared/layout/seo';
-
-const { Title, Paragraph, Text } = Typography;
 
 const NotFoundPage = () => (
   <PageLayout>
     <SEO title="404: Not found" />
-    <Paragraph className="centered">
-      <Title level={1}>NOT FOUND</Title>
-      <Text>You just hit a link to a page that doesn&#39;t exist... the sadness.</Text>
-    </Paragraph>
+    <Result
+      status="404"
+      title="404"
+      subTitle="Sorry, the page you visited does not exist."
+      extra={<Button type="primary">Back Home</Button>}
+    />
+    ,
   </PageLayout>
 );
 

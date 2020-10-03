@@ -6,8 +6,15 @@ export const myContext = React.createContext();
 // eslint-disable-next-line react/prop-types
 const Provider = ({ children }) => {
   const [choice, setChoice] = useState('main');
+  const [visible, setVisible] = useState(false);
   const handleClick = (e) => {
     setChoice(e.key);
+  };
+  const onClose = () => {
+    setVisible(false);
+  };
+  const showDrawer = () => {
+    setVisible(true);
   };
   return (
     // eslint-disable-next-line react/jsx-filename-extension

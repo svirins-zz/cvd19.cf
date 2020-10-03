@@ -21,7 +21,7 @@ const ATable = ({ table }: TableT, order: Boolean) => {
     {
       title: table.columns[0].Header,
       dataIndex: table.columns[0].id,
-      defaultSortOrder: 'ascend',
+      // defaultSortOrder: 'ascend',
       sorter: (a, b) => {
         if (a.name.toLowerCase() < b.name.toLowerCase()) { return -1; }
         if (a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
@@ -63,8 +63,9 @@ const ATable = ({ table }: TableT, order: Boolean) => {
           {text}
         </Tag>
       ),
-      sortOrder: order ? 'descend' : 'ascend',
-      defaultSortOrder	: order ? 'descend' : 'ascend',
+      // TODO: Set 1-st table default sortin to ascend
+      defaultSortOrder	: order ? 'acsend' : 'descend',
+      sortDirections : ['ascend', 'descend'],
       sorter: (a, b) => a.['periods[0]'] -b.['periods[0]'],
     },
   ];

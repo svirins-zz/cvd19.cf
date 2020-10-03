@@ -121,11 +121,11 @@ const IndexPage = () => {
       {/* TODO: SUPER IMPORTANT - IMPLEMENT SORTING BY CASES! */}
       <Row>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
-          <Title level={5}>New death cases ↓ (lessening)</Title>
+          <Title level={5}>New death cases (Lessening ↓)</Title>
           <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} desc={false} />
         </Col>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
-          <Title level={5}>New death cases ↑ (growing)</Title>
+          <Title level={5}>New death cases (Growing ↑)</Title>
           <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} desc />
         </Col>
       </Row>
