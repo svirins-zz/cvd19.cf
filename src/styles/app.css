@@ -55,9 +55,15 @@
 .alignBottom {
   position: fixed;
   text-align: center;
-  padding-left:26px;
+  padding-left:12px;
   bottom: 0;
   height: 42px;
+}
+
+.tinyButton {
+  font-size: 12px;
+  background: none;
+  color: white
 }
 
 .bottomSiderIcon a{

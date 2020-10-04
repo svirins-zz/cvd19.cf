@@ -22,7 +22,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       style={{
         labels: {
           fontSize: 6,
-          fontFamily: `"Ubuntu", "Droid Sans Mono",
+          fontFamily: `"Open Sans", "Droid Sans Mono",
           "Liberation Mono", Menlo, Courier, monospace`,
         },
       }}
@@ -54,7 +54,7 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       y={60}
       style={{
         fontSize: 6,
-        fontFamily: `"Ubuntu", "Droid Sans Mono",
+        fontFamily: `"Open Sans", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
       }}
     />

@@ -10,8 +10,7 @@ import { sumPeriodData } from '../utilities/calcGlobal';
 import DataContent, { PeriodInfo } from '../components/data/dataContent';
 import COUNTRY_QUERY from '../queries';
 
-const { Paragraph } = Typography;
-
+const { Paragraph, Title } = Typography;
 const DataPage = () => {
   const [periodInfo, setPeriodInfo] = useState<PeriodInfo>({
     length: PERIOD_LENGTH,
@@ -24,11 +23,13 @@ const DataPage = () => {
     return (
       <PageLayout>
         <SEO title="Status" />
-        <Paragraph className="centered">
-          {' '}
-          <Spin />
-          {' '}
-          Loading
+        <Paragraph className="centered" style={{ height: '100vh', paddingTop: '15%' }}>
+          <div style={{ verticalAlign: 'middle' }}>
+            {' '}
+            <Spin size="large" />
+            {' '}
+            <Title level={5}>Loading</Title>
+          </div>
         </Paragraph>
       </PageLayout>
     );
@@ -45,17 +46,17 @@ const DataPage = () => {
     <DataContent
       countries={allData}
       periodInfo={periodInfo}
-      onPeriodChange={(event) => {
-        const length = Number(event.target.value);
+      onPeriodChange={(val: Number) => {
+        const length = val;
         if (length > 0) {
           setPeriodInfo({
-            length,
-            value: event.target.value,
+            length: val,
+            value: val.toString(),
           });
         } else {
           setPeriodInfo({
             length: 5,
-            value: event.target.value,
+            value: val.toString(),
           });
         }
       }}

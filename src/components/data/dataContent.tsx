@@ -1,31 +1,20 @@
-import React, { useState, CSSProperties } from 'react';
-import { Link } from 'gatsby';
-import Switch from 'react-switch';
+import React, { useState } from 'react';
+// import Switch from 'react-switch';
+import {
+  Typography, Divider, Col, Radio, Switch, InputNumber,
+} from 'antd';
 import PageLayout from '../shared/layout/pageLayout';
 import SEO from '../shared/layout/seo';
+
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
 } from '../shared/tables/tables';
 import DataChart from './dataChart';
 import CountryFilter, { Tags } from './countryFilter';
-import styles from './dataContent.module.css';
 import { Country } from '../../types';
 import { getTags } from '../../utilities/periodUtils';
 
-const buttonStyle: CSSProperties = {
-  fontSize: '0.85em',
-  background: 'none',
-  borderColor: 'black',
-  borderRadius: '0.4em',
-  margin: '0.4rem 0.6rem 1rem 0rem',
-  outline: 'none',
-};
-
-const activeStyles: CSSProperties = {
-  fontWeight: 900,
-  padding: '1px 5px 1px',
-  borderWidth: '2px',
-};
+const { Title, Paragraph, Text } = Typography;
 
 export interface PeriodInfo {
   length: number
@@ -83,7 +72,7 @@ const getChartInfo = (selectedTable: string, period: number): ChartInfo => {
     title: '',
   };
 };
-
+// Data page goes here
 const DataContent = ({
   countries,
   periodInfo,
@@ -91,7 +80,7 @@ const DataContent = ({
 }: {
   countries: Country[],
   periodInfo: PeriodInfo,
-  onPeriodChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onPeriodChange: ((value: string | number | undefined) => void)
 }) => {
   const possibleTags = React.useMemo(() => getTags(countries), [countries]);
   const [selectedTable, setSelectedTable] = useState<Table>('newDeaths');
@@ -112,126 +101,51 @@ const DataContent = ({
   return (
     <PageLayout>
       <SEO title="All Data" />
-      <h1 style={{ marginBottom: '0.8rem' }}>All Data</h1>
-      <button
-        type="button"
-        style={{
-          ...buttonStyle,
-          ...(selectedTable === 'newDeaths'
-            ? activeStyles
-            : {}),
-        }}
-        onClick={() => setSelectedTable('newDeaths')}
-      >
-        New Deaths
-      </button>
-      <button
-        type="button"
-        style={{
-          ...buttonStyle,
-          ...(selectedTable === 'totalDeaths'
-            ? activeStyles
-            : {}),
-        }}
-        onClick={() => setSelectedTable('totalDeaths')}
-      >
-        Total Deaths
-      </button>
-      <button
-        type="button"
-        style={{
-          ...buttonStyle,
-          ...(selectedTable === 'growth'
-            ? activeStyles
-            : {}),
-        }}
-        onClick={() => setSelectedTable('growth')}
-      >
-        Change in Deaths
-      </button>
-      <button
-        type="button"
-        style={{
-          ...buttonStyle,
-          ...(selectedTable === 'newCases'
-            ? activeStyles
-            : {}),
-        }}
-        onClick={() => setSelectedTable('newCases')}
-      >
-        New Cases
-      </button>
-      <button
-        type="button"
-        style={{
-          ...buttonStyle,
-          ...(selectedTable === 'totalCases'
-            ? activeStyles
-            : {}),
-        }}
-        onClick={() => setSelectedTable('totalCases')}
-      >
-        Total Cases
-      </button>
-      <div className={styles.chartSettings}>
-        <label className={styles.label}>
-          Period length:
-          <input
-            type="number"
-            name="period-length"
-            value={periodInfo.value}
-            onChange={onPeriodChange}
-            style={{
-              fontWeight: 'bold',
-              textDecoration: 'underline',
-              width: '1.8rem',
-              margin: '0 0 0 0.5rem',
-              border: 'none',
-            }}
-          />
-          days
-        </label>
+      <Paragraph className="centered">
+        <Title level={1}>All Data</Title>
+        <Radio.Group value={selectedTable} onChange={(e) => setSelectedTable(e.target.value)}>
+          <Radio.Button value="newDeaths">New Deaths</Radio.Button>
+          <Radio.Button value="totalDeaths">Total Deaths</Radio.Button>
+          <Radio.Button value="growth">Change in Deaths</Radio.Button>
+          <Radio.Button value="newCases">New Cases</Radio.Button>
+          <Radio.Button value="totalCases">Total Cases</Radio.Button>
+        </Radio.Group>
+      </Paragraph>
+      <Paragraph className="centered">
+        <Text> Period length, days:</Text>
         {' '}
         {' '}
-        <label className={styles.label}>
-          <span>Include all countries</span>
-          <Switch
-            onChange={setShowAll}
-            checked={showAll}
-            onColor="#28c53c"
-            offColor="#ddd"
-            className={styles.switch}
-          />
-        </label>
-        <label className={styles.label}>
-          <span>Start at first death</span>
-          {' '}
-          {' '}
-          <Switch
-            onChange={setStartAtDeaths}
-            checked={startAtDeaths}
-            onColor="#28c53c"
-            offColor="#ddd"
-            className={styles.switch}
-          />
-        </label>
-        <label className={styles.label} />
-      </div>
+        <InputNumber
+          min={1}
+          max={20}
+          defaultValue={Number(periodInfo.value)}
+          onChange={(val) => onPeriodChange(val)}
+        />
+        {' '}
+        {' '}
+        <Text>All countries</Text>
+        {' '}
+        {' '}
+        <Switch onChange={setShowAll} checked={showAll} />
+        {' '}
+        {' '}
+        <Text>Start at 1-st death</Text>
+        {' '}
+        {' '}
+        <Switch onChange={setStartAtDeaths} checked={startAtDeaths} />
+        <Divider />
+      </Paragraph>
       <CountryFilter tags={tags} setTags={setTags} />
+      <Divider />
+      <Title className="centered" level={2}>{chartInfo.title}</Title>
       <DataChart
         countries={countries}
         x={chartInfo.x}
         y={chartInfo.y}
-        title={chartInfo.title}
         tags={tags.currentTags}
         showAll={showAll}
         startAtDeaths={startAtDeaths}
       />
-      <small>
-        The table below is color coded by
-        {' '}
-        <Link to="/details">Outbreak Status</Link>
-      </small>
       {selectedTable === 'growth' && <GrowthTable data={countries} periodLength={periodInfo.length} />}
       {selectedTable === 'newDeaths' && <NewDeathsTable data={countries} periodLength={periodInfo.length} />}
       {selectedTable === 'totalDeaths' && <TotalDeathsTable data={countries} periodLength={periodInfo.length} />}

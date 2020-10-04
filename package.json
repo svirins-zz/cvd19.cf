@@ -2,7 +2,7 @@
   "name": "covid19",
   "private": false,
   "description": "A simple tool to track global progress in defeating Covid-19",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Dzmitry Sviryn <svirins@gmail.com>",
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
@@ -25,14 +25,13 @@
     "gatsby-transformer-sharp": "^2.5.16",
     "less": "^3.12.2",
     "less-loader": "^7.0.1",
-    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-chart": "^0.0.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^3.11.0",
     "react-switch": "^5.0.1",
-    "react-table": "^7.5.1",
+    "react-table": "^7.5.2",
     "react-tag-autocomplete": "^6.1.0",
     "victory": "^35.1.1"
   },
@@ -51,6 +50,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "prop-types": "^15.7.2",
     "typescript": "^4.0.3"
   },
   "keywords": [

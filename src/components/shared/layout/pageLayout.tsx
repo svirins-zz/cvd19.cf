@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Layout, Menu, Typography, Drawer, Button,
+  Layout, Menu, Drawer, Button, BackTop,
 } from 'antd';
 import { Link } from 'gatsby';
 import '../../../styles/app.css';
@@ -10,16 +10,13 @@ import {
   RobotOutlined,
   EnvironmentOutlined,
   GithubOutlined,
-  QuestionCircleOutlined,
 } from '@ant-design/icons';
 import logo from '../../../assets/coronavirus.png';
-// eslint-disable-next-line import/extensions
 import { myContext } from '../../../context';
 import { LegendTable } from '../../details/legend';
 
-const { Paragraph } = Typography;
 const { Content, Sider, Footer } = Layout;
-// TODO: apply styling to menu
+// TODO: set menu state based on url string
 const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
   <myContext.Consumer>
     {(context) => (
@@ -80,10 +77,11 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
               </Link>
             </Menu.Item>
             <div className="alignBottom">
-              <Button type="dashed" size="small" onClick={context.showDrawer}>Legend</Button>
+              <Button className="tinyButton" type="dashed" size="small" onClick={context.showDrawer}>Legend</Button>
             </div>
           </Menu>
         </Sider>
+        <BackTop />
         <Layout className="site-layout">
           <Content>
             <div className="site-layout-background" style={{ padding: 24 }}>
@@ -117,7 +115,3 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => (
 
 );
 export default PageLayout;
-
-{/* <div className="alignBottom">
-<Button type="dashed" size="small" icon={<QuestionCircleOutlined />} onClick={context.showDrawer} />
-</div> */}

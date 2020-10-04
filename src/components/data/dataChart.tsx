@@ -18,7 +18,6 @@ interface DataChartProps {
   countries: Country[]
   x: string
   y: string
-  title: string,
   tags: Tag[]
   showAll: boolean
   startAtDeaths: boolean
@@ -38,7 +37,7 @@ const selectedColors = [
 ];
 
 const DataChart = ({
-  countries, x, y, title, tags, showAll, startAtDeaths,
+  countries, x, y, tags, showAll, startAtDeaths,
 }: DataChartProps) => {
   const selected: Selected = {};
   tags.forEach(
@@ -50,41 +49,15 @@ const DataChart = ({
     <>
       <VictoryChart
         theme={Theme}
-        height={220}
+        height={240}
         width={600}
-        padding={{
-          top: 16,
-          bottom: 30,
-          left: 70,
-          right: 3,
-        }}
         domainPadding={{ x: [0, -4], y: [0, 1] }}
         minDomain={{ y: 0 }}
       >
         <VictoryAxis fixLabelOverlap />
         <VictoryAxis dependentAxis />
         <VictoryLabel
-          text={title}
-          x={230}
-          y={6}
-          style={{
-            fontSize: 12,
-            fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
-            "Liberation Mono", Menlo, Courier, monospace`,
-          }}
-        />
-        <VictoryLabel
-          text="Pandemic Status (corona.rickkln.com)"
-          x={80}
-          y={35}
-          style={{
-            fontSize: 6,
-            fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
-            "Liberation Mono", Menlo, Courier, monospace`,
-          }}
-        />
-        <VictoryLabel
-          text="Source: JHU CSSE"
+          text="source: JHU & CSSE"
           x={80}
           y={43}
           style={{
