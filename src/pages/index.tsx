@@ -3,10 +3,10 @@ import { useQuery } from '@apollo/client';
 import {
   Typography, Divider, Spin, Row, Col,
 } from 'antd';
-import PageLayout from '../components/shared/layout/pageLayout';
-import SEO from '../components/shared/layout/seo';
-import { GrowthSummaryTable } from '../components/shared/tables/tables';
-import { getStatusInfo } from '../components/details/legend';
+import PageLayout from '../components/layout/pageLayout';
+import SEO from '../components/layout/seo';
+import { GrowthSummaryTable } from '../components/tables/prepareTables';
+import { getStatusInfo } from '../components/data/legend';
 import SummaryChart from '../components/charts/summaryChart';
 import { calculateData } from '../utilities/calcAllData';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
@@ -14,8 +14,7 @@ import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from '../
 import COUNTRY_QUERY from '../queries';
 import PandemicFreeChart from '../components/charts/pandemicFreeChart';
 import UnderControlChart from '../components/charts/underControlChart';
-import TotalSummary from '../components/status/totalSummary';
-
+import TotalSummary from '../components/data/totalSummary';
 import { Countries, OutbreakStatus } from '../types';
 
 const { Title, Paragraph, Text } = Typography;

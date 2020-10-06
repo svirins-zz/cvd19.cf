@@ -2,19 +2,9 @@ import React from 'react';
 import { Select, Tag } from 'antd';
 import FlagIconFactory from 'react-flag-icon-css';
 import iso3311a2 from 'iso-3166-1-alpha-2';
+import { Tags } from '../../types';
 
-export interface TagT {
-  id: string | number;
-  name: string;
-  disabled?: boolean;
-}
-
-export interface Tags {
-  currentTags: TagT[]
-  suggestedTags: TagT[]
-}
-
-const FlagIcon = FlagIconFactory(React);
+const FlagIcon = FlagIconFactory(React, { useCssModules: false });
 const CountryFilter = ({
   tags,
   setTags,

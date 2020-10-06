@@ -1,4 +1,4 @@
-import { Tag } from 'react-tag-autocomplete';
+import { TagT } from '../components/data/countryFilter';
 import { Country, OutbreakStatus } from '../types';
 
 export const PERIOD_LENGTH = 5;
@@ -43,25 +43,6 @@ export const periodStatus = (
   return undefined;
 };
 
-export const getCSSClassFor = (status: OutbreakStatus | undefined) => {
-  if (status === OutbreakStatus.None) {
-    return 'none';
-  } if (status === OutbreakStatus.Small) {
-    return 'small';
-  } if (status === OutbreakStatus.Losing) {
-    return 'losing';
-  } if (status === OutbreakStatus.Flattening) {
-    return 'flattening';
-  } if (status === OutbreakStatus.Crushing) {
-    return 'crushing';
-  } if (status === OutbreakStatus.Winning) {
-    return 'winning';
-  } if (status === OutbreakStatus.Won) {
-    return 'won';
-  }
-  return '';
-};
-
 export const getPeriodName = (endingDaysAgo: number) => {
   const endDate = new Date(new Date().setDate(new Date().getDate() - endingDaysAgo));
   return `${endDate.getDate()}/${endDate.getMonth() + 1}`;
@@ -77,7 +58,7 @@ export const getPeriodNames = (periodLength: number) => {
   });
 };
 
-export const getTags = (countries: Country[]): Tag[] => countries.map((country) => ({
+export const getTags = (countries: Country[]): TagT[] => countries.map((country) => ({
   id: country.name ?? '',
   name: country.name ?? '',
 }));

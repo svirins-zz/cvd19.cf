@@ -2,36 +2,20 @@ import React, { useState } from 'react';
 import {
   Typography, Divider, Col, Radio, Switch, InputNumber,
 } from 'antd';
-import PageLayout from '../shared/layout/pageLayout';
-import SEO from '../shared/layout/seo';
+import PageLayout from '../layout/pageLayout';
+import SEO from '../layout/seo';
 
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
-} from '../shared/tables/tables';
-import DataChart from './dataChart';
-import CountryFilter, { Tags } from './countryFilter';
-import { Country } from '../../types';
+} from '../tables/prepareTables';
+import DataChart from '../charts/dataChart';
+import CountryFilter from './countryFilter';
 import { getTags } from '../../utilities/periodUtils';
+import {
+  PeriodInfo, Table, ChartInfo, Country,
+} from '../../types';
 
 const { Title, Paragraph, Text } = Typography;
-
-export interface PeriodInfo {
-  length: number
-  value: string
-}
-
-type Table =
-  | 'growth'
-  | 'totalDeaths'
-  | 'newDeaths'
-  | 'totalCases'
-  | 'newCases';
-
-interface ChartInfo {
-  x: string
-  y: string
-  title: string
-}
 
 const getChartInfo = (selectedTable: string, period: number): ChartInfo => {
   if (selectedTable === 'growth') {

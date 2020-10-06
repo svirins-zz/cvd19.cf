@@ -1,7 +1,7 @@
 import React from 'react';
 import { Result, Button } from 'antd';
-import PageLayout from '../components/shared/layout/pageLayout';
-import SEO from '../components/shared/layout/seo';
+import PageLayout from '../components/layout/pageLayout';
+import SEO from '../components/layout/seo';
 
 const NotFoundPage = () => (
   <PageLayout>

@@ -1,102 +1,17 @@
 import React from 'react';
 import {
-  useTable, useSortBy, Row, IdType, Column, TableState,
+  useTable, Column,
 } from 'react-table';
-import styles from './tables.module.css';
-import Table from './table';
-import { Period, Country, OutbreakStatus } from '../../../types';
-import { getCSSClassFor, getPeriodNames } from '../../../utilities/periodUtils';
-import { ATable3ColData, ATable5ColChange, ATable5ColNewCases } from './antDTables';
-
-const formatCell = (period: Period) => {
-  const className = getCSSClassFor(period?.status);
-  if (
-    period
-    && (period.status === OutbreakStatus.None
-      || period.status === OutbreakStatus.Small
-      || !Number.isFinite(period.growthRate)
-      || Number.isNaN(period.growthRate))
-  ) {
-    return { value: period.status, className };
-  }
-  return { value: `${period?.growthRate.toString()}%`, className };
-};
-
-const stickyGlobal = (row: Row, desc: boolean, value: number) => {
-  const global = desc
-    ? 1
-    : -1;
-  return row.values.name === 'Global'
-    ? global
-    : value;
-};
-
-const nameSort = (
-  rowA: Row,
-  rowB: Row,
-  columnId: IdType<String>,
-  desc: boolean,
-) => stickyGlobal(
-  rowA,
-  desc,
-  rowA.values[columnId].name - rowB.values[columnId].name,
-);
-
-const totalCasesSort = (
-  rowA: Row,
-  rowB: Row,
-  columnId: IdType<String>,
-  desc: boolean,
-) => stickyGlobal(
-  rowA,
-  desc,
-  rowA.values[columnId].totalCases - rowB.values[columnId].totalCases,
-);
-
-const newCasesSort = (
-  rowA: Row,
-  rowB: Row,
-  columnId: IdType<String>,
-  desc: boolean,
-) => stickyGlobal(
-  rowA,
-  desc,
-  rowA.values[columnId].newCases - rowB.values[columnId].newCases,
-);
-
-const totalDeathsSort = (
-  rowA: Row,
-  rowB: Row,
-  columnId: IdType<String>,
-  desc: boolean,
-) => stickyGlobal(
-  rowA,
-  desc,
-  rowA.values[columnId].totalDeaths - rowB.values[columnId].totalDeaths,
-);
-
-const newDeathsSort = (
-  rowA: Row,
-  rowB: Row,
-  columnId: IdType<String>,
-  desc: boolean,
-) => stickyGlobal(
-  rowA,
-  desc,
-  rowA.values[columnId].newDeaths - rowB.values[columnId].newDeaths,
-);
-
-const growthSort = (
-  rowA: Row,
-  rowB: Row,
-  columnId: IdType<String>,
-  desc: boolean,
-) => stickyGlobal(/* <ATable5Col table={preparedTableObject} order={desc} /> */
-
-  rowA,
-  desc,
-  rowA.values[columnId].growthRate - rowB.values[columnId].growthRate,
-);
+import { Period, Country } from '../../types';
+import { getPeriodNames } from '../../utilities/periodUtils';
+import {
+  ATable3Col,
+  ATable5ColGrowth,
+  ATable5ColNewCases,
+  ATable5ColTotalCases,
+  ATable5ColTotalDeaths,
+  ATable5ColNewDeaths,
+} from './renderTables';
 
 export const TotalCasesTable = ({
   data, periodLength,
@@ -110,7 +25,6 @@ export const TotalCasesTable = ({
       {
         Header: 'Country',
         accessor: 'name',
-        sortType: nameSort,
       },
       {
         Header: periodNames[5],
@@ -119,8 +33,6 @@ export const TotalCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalCasesSort,
       },
       {
         Header: periodNames[4],
@@ -129,8 +41,6 @@ export const TotalCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalCasesSort,
       },
       {
         Header: periodNames[3],
@@ -139,8 +49,6 @@ export const TotalCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalCasesSort,
       },
       {
         Header: periodNames[2],
@@ -149,8 +57,6 @@ export const TotalCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalCasesSort,
       },
       {
         Header: periodNames[1],
@@ -159,8 +65,6 @@ export const TotalCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalCasesSort,
       },
       {
         Header: periodNames[0],
@@ -169,26 +73,14 @@ export const TotalCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalCasesSort,
       },
     ],
     [periodNames],
   ) as Array<Column<Country>>;
 
-  const initialState = React.useMemo(
-    () => ({
-      sortBy: [{ id: 'periods[0]', desc: true }],
-    }),
-    [],
-  ) as Partial<TableState<Country>>;
-
-  const table = useTable({ columns, data, initialState }, useSortBy);
-
+  const preparedTableObject = useTable({ columns, data });
   return (
-    <div className={styles.fullTable}>
-      <Table table={table} />
-    </div>
+    <ATable5ColTotalCases table={preparedTableObject} order={false} />
   );
 };
 
@@ -204,7 +96,6 @@ export const NewCasesTable = ({
       {
         Header: 'Country',
         accessor: 'name',
-        sortType: nameSort,
       },
       {
         Header: periodNames[5],
@@ -259,9 +150,8 @@ export const NewCasesTable = ({
   ) as Array<Column<Country>>;
 
   const preparedTableObject = useTable({ columns, data });
-
   return (
-    <ATable5ColNewCases table={preparedTableObject} order={true} />
+    <ATable5ColNewCases table={preparedTableObject} order={false} />
   );
 };
 
@@ -277,7 +167,6 @@ export const TotalDeathsTable = ({
       {
         Header: 'Country',
         accessor: 'name',
-        sortType: nameSort,
       },
       {
         Header: periodNames[5],
@@ -286,8 +175,6 @@ export const TotalDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalDeathsSort,
       },
       {
         Header: periodNames[4],
@@ -296,8 +183,6 @@ export const TotalDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalDeathsSort,
       },
       {
         Header: periodNames[3],
@@ -306,8 +191,6 @@ export const TotalDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalDeathsSort,
       },
       {
         Header: periodNames[2],
@@ -316,8 +199,6 @@ export const TotalDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalDeathsSort,
       },
       {
         Header: periodNames[1],
@@ -326,8 +207,6 @@ export const TotalDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalDeathsSort,
       },
       {
         Header: periodNames[0],
@@ -336,26 +215,14 @@ export const TotalDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: totalDeathsSort,
       },
     ],
     [periodNames],
   ) as Array<Column<Country>>;
 
-  const initialState = React.useMemo(
-    () => ({
-      sortBy: [{ id: 'periods[0]', desc: true }],
-    }),
-    [],
-  ) as Partial<TableState<Country>>;
-
-  const table = useTable({ columns, data, initialState }, useSortBy);
-
+  const preparedTableObject = useTable({ columns, data });
   return (
-    <div className={styles.fullTable}>
-      <Table table={table} />
-    </div>
+    <ATable5ColTotalDeaths table={preparedTableObject} order={false} />
   );
 };
 
@@ -371,7 +238,6 @@ export const NewDeathsTable = ({
       {
         Header: 'Country',
         accessor: 'name',
-        sortType: nameSort,
       },
       {
         Header: periodNames[5],
@@ -380,8 +246,6 @@ export const NewDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newDeathsSort,
       },
       {
         Header: periodNames[4],
@@ -390,8 +254,6 @@ export const NewDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newDeathsSort,
       },
       {
         Header: periodNames[3],
@@ -400,8 +262,6 @@ export const NewDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newDeathsSort,
       },
       {
         Header: periodNames[2],
@@ -410,8 +270,6 @@ export const NewDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newDeathsSort,
       },
       {
         Header: periodNames[1],
@@ -420,8 +278,6 @@ export const NewDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newDeathsSort,
       },
       {
         Header: periodNames[0],
@@ -430,26 +286,14 @@ export const NewDeathsTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }) ?? '',
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newDeathsSort,
       },
     ],
     [periodNames],
   ) as Array<Column<Country>>;
 
-  const initialState = React.useMemo(
-    () => ({
-      sortBy: [{ id: 'periods[0]', desc: true }],
-    }),
-    [],
-  ) as Partial<TableState<Country>>;
-
-  const table = useTable({ columns, data, initialState }, useSortBy);
-
+  const preparedTableObject = useTable({ columns, data });
   return (
-    <div className={styles.fullTable}>
-      <Table table={table} />
-    </div>
+    <ATable5ColNewDeaths table={preparedTableObject} order />
   );
 };
 
@@ -469,39 +313,39 @@ export const GrowthTable = ({
       {
         Header: periodNames[5],
         accessor: 'periods[5]',
-        Cell: ({ value }: { value: Period }) => formatCell(value).value,
+        Cell: ({ value }: { value: Period }) => value,
       },
       {
         Header: periodNames[4],
         accessor: 'periods[4]',
-        Cell: ({ value }: { value: Period }) => formatCell(value).value,
+        Cell: ({ value }: { value: Period }) => value,
       },
       {
         Header: periodNames[3],
         accessor: 'periods[3]',
-        Cell: ({ value }: { value: Period }) => formatCell(value).value,
+        Cell: ({ value }: { value: Period }) => value,
       },
       {
         Header: periodNames[2],
         accessor: 'periods[2]',
-        Cell: ({ value }: { value: Period }) => formatCell(value).value,
+        Cell: ({ value }: { value: Period }) => value,
       },
       {
         Header: periodNames[1],
         accessor: 'periods[1]',
-        Cell: ({ value }: { value: Period }) => formatCell(value).value,
+        Cell: ({ value }: { value: Period }) => value,
       },
       {
         Header: periodNames[0],
         accessor: 'periods[0]',
-        Cell: ({ value }: { value: Period }) => formatCell(value).value,
+        Cell: ({ value }: { value: Period }) => value,
       },
     ],
     [periodNames],
   ) as Array<Column<Country>>;
   const preparedTableObject = useTable({ columns, data });
   return (
-    <ATable5ColChange table={preparedTableObject} order="true" />
+    <ATable5ColGrowth table={preparedTableObject} order="false" />
   );
 };
 
@@ -558,6 +402,6 @@ export const GrowthSummaryTable = ({
   const preparedTableObject = useTable({ columns, data });
 
   return (
-    <ATable3ColData table={preparedTableObject} order={desc} />
+    <ATable3Col table={preparedTableObject} order={desc} />
   );
 };//

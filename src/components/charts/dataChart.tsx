@@ -2,9 +2,8 @@ import React from 'react';
 import {
   VictoryChart, VictoryLine, VictoryAxis, VictoryLabel,
 } from 'victory';
-import { Tag } from 'react-tag-autocomplete';
-import { Country } from '../../types';
-import Theme from '../shared/layout/chartTheme';
+import { Country, TagT } from '../../types';
+import Theme from '../../styles/chartTheme';
 import {
   cyanA400,
   deepPurpleA200,
@@ -18,7 +17,7 @@ interface DataChartProps {
   countries: Country[]
   x: string
   y: string
-  tags: Tag[]
+  tags: TagT[]
   showAll: boolean
   startAtDeaths: boolean
 }

@@ -3,7 +3,7 @@ import {
   Layout, Menu, Drawer, Button, BackTop,
 } from 'antd';
 import { Link } from 'gatsby';
-import '../../../styles/app.css';
+import '../../styles/app.css';
 import {
   GlobalOutlined,
   BarChartOutlined,
@@ -11,9 +11,9 @@ import {
   EnvironmentOutlined,
   GithubOutlined,
 } from '@ant-design/icons';
-import logo from '../../../assets/coronavirus.png';
-import { myContext } from '../../../context';
-import { LegendTable } from '../../details/legend';
+import logo from '../../assets/coronavirus.png';
+import { myContext } from '../../context';
+import { LegendTable } from '../data/legend';
 
 const { Content, Sider, Footer } = Layout;
 // TODO: set menu state based on url string

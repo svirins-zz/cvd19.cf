@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { Typography } from 'antd';
-import PageLayout from '../components/shared/layout/pageLayout';
-import SEO from '../components/shared/layout/seo';
-import { LegendTable } from '../components/details/legend';
+import PageLayout from '../components/layout/pageLayout';
+import SEO from '../components/layout/seo';
+import { LegendTable } from '../components/data/legend';
 
 const { Paragraph } = Typography;
 // TODO: Add typography and styling

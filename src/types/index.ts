@@ -78,5 +78,39 @@ export enum OutbreakStatus {
   Flattening = 'Flattening the Curve',
   Crushing = 'Crushing the Curve',
   Winning = 'Winning',
-  Won = 'Won',
+  Won = 'Won'
+}
+
+export interface TagT {
+  id: string | number;
+  name: string;
+  disabled?: boolean;
+}
+
+export interface Tags {
+  currentTags: TagT[]
+  suggestedTags: TagT[]
+}
+
+export interface PeriodInfo {
+  length: number
+  value: string
+}
+
+export type Table =
+  | 'growth'
+  | 'totalDeaths'
+  | 'newDeaths'
+  | 'totalCases'
+  | 'newCases';
+
+export interface ChartInfo {
+  x: string
+  y: string
+  title: string
+}
+
+export interface RenderedTable {
+  table: TableT
+  order: Boolean
 }

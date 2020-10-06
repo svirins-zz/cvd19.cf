@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Typography, Spin } from 'antd';
-import PageLayout from '../components/shared/layout/pageLayout';
-import SEO from '../components/shared/layout/seo';
+import PageLayout from '../components/layout/pageLayout';
+import SEO from '../components/layout/seo';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
 import { Countries } from '../types';
 import { calculateData } from '../utilities/calcAllData';
