@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import Switch from 'react-switch';
 import {
   Typography, Divider, Col, Radio, Switch, InputNumber,
 } from 'antd';
@@ -80,7 +79,7 @@ const DataContent = ({
 }: {
   countries: Country[],
   periodInfo: PeriodInfo,
-  onPeriodChange: ((value: string | number | undefined) => void)
+  onPeriodChange: ((value: number) => void)
 }) => {
   const possibleTags = React.useMemo(() => getTags(countries), [countries]);
   const [selectedTable, setSelectedTable] = useState<Table>('newDeaths');
@@ -92,7 +91,7 @@ const DataContent = ({
     currentTags: [
       { id: 'United States', name: 'United States' },
       { id: 'Brazil', name: 'Brazil' },
-      { id: 'United Kingdom', name: 'United Kingdom' },
+      { id: 'India', name: 'India' },
     ],
     suggestedTags: possibleTags,
   });
@@ -133,9 +132,9 @@ const DataContent = ({
         {' '}
         {' '}
         <Switch onChange={setStartAtDeaths} checked={startAtDeaths} />
-        <Divider />
+        {/* CountryFilter is broken */}
+        <CountryFilter tags={tags} setTags={setTags} />
       </Paragraph>
-      <CountryFilter tags={tags} setTags={setTags} />
       <Divider />
       <Title className="centered" level={2}>{chartInfo.title}</Title>
       <DataChart

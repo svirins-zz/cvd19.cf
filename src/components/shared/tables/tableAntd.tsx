@@ -66,7 +66,7 @@ const ATable = ({ table }: TableT, order: Boolean) => {
       // TODO: Set 1-st table default sortin to ascend
       defaultSortOrder	: order ? 'acsend' : 'descend',
       sortDirections : ['ascend', 'descend'],
-      sorter: (a, b) => a.['periods[0]'] -b.['periods[0]'],
+      sorter: (a, b) => a.['periods[0]'] - b.['periods[0]'],
     },
   ];
 
