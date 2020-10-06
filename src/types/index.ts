@@ -51,19 +51,19 @@ export interface PeriodSummary {
 }
 
 export interface AllPeriodsResult {
-  totalGlobalCases: Number
-  totalGlobalDeaths: Number
-  totalGlobalRecovered: Number
-  totalGlobalCountries: Number
+  totalGlobalCases: number
+  totalGlobalDeaths: number
+  totalGlobalRecovered: number
+  totalGlobalCountries: number
 }
 
 export interface TableTColumn {
-  key?: String
-  title: String
-  dataIndex: String
+  key?: string
+  title: string
+  dataIndex: string
   sorter?: Function
-  defaultSortOrder?: String
-  sortOrder?: String
+  defaultSortOrder?: string
+  sortOrder?: string
   render?: Function
 }
 
@@ -112,5 +112,18 @@ export interface ChartInfo {
 
 export interface RenderedTable {
   table: TableT
-  order: Boolean
+  order: boolean
+}
+
+export interface DataChartProps {
+  countries: Country[]
+  x: string
+  y: string
+  tags: TagT[]
+  showAll: boolean
+  startAtDeaths: boolean
+}
+
+export interface Selected {
+  [key: string]: string
 }

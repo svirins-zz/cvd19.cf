@@ -2,43 +2,23 @@ import React from 'react';
 import {
   VictoryChart, VictoryLine, VictoryAxis, VictoryLabel,
 } from 'victory';
-import { Country, TagT } from '../../types';
+import { DataChartProps, Selected } from '../../types';
 import Theme from '../../styles/chartTheme';
-import {
-  cyanA400,
-  deepPurpleA200,
-  teal400,
-  lightBlueA700,
-  purpleA200,
-  lightGreen700,
-} from '../../styles/colors';
-
-interface DataChartProps {
-  countries: Country[]
-  x: string
-  y: string
-  tags: TagT[]
-  showAll: boolean
-  startAtDeaths: boolean
-}
-
-interface Selected {
-  [key: string]: string
-}
 
 const selectedColors = [
-  cyanA400,
-  deepPurpleA200,
-  teal400,
-  lightBlueA700,
-  purpleA200,
-  lightGreen700,
+  '#cccccc',
+  '#eb2f96',
+  '#fa8c16',
+  '#fadb14',
+  '#13c2c2',
+  '#52c41a',
 ];
 
-const DataChart = ({
+const AllDataChart = ({
   countries, x, y, tags, showAll, startAtDeaths,
 }: DataChartProps) => {
   const selected: Selected = {};
+  // TODO: consider colors below
   tags.forEach(
     (tag, index) => {
       selected[tag.name] = selectedColors[index];
@@ -58,7 +38,7 @@ const DataChart = ({
         <VictoryLabel
           text="source: JHU & CSSE"
           x={80}
-          y={43}
+          y={60}
           style={{
             fontSize: 6,
             fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
@@ -102,4 +82,4 @@ const DataChart = ({
   );
 };
 
-export default DataChart;
+export default AllDataChart;

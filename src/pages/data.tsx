@@ -4,10 +4,10 @@ import { Typography, Spin } from 'antd';
 import PageLayout from '../components/layout/pageLayout';
 import SEO from '../components/layout/seo';
 import { PERIOD_LENGTH } from '../utilities/periodUtils';
-import { Countries } from '../types';
+import { Countries, PeriodInfo } from '../types';
 import { calculateData } from '../utilities/calcAllData';
 import { sumPeriodData } from '../utilities/calcGlobal';
-import DataContent, { PeriodInfo } from '../components/data/dataContent';
+import DataContent from '../components/data/dataContent';
 import COUNTRY_QUERY from '../queries';
 
 const { Paragraph, Title } = Typography;
@@ -46,7 +46,7 @@ const DataPage = () => {
     <DataContent
       countries={allData}
       periodInfo={periodInfo}
-      onPeriodChange={(val: Number) => {
+      onPeriodChange={(val: number) => {
         const length = val;
         if (length > 0) {
           setPeriodInfo({

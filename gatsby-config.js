@@ -22,7 +22,7 @@ module.exports = {
         short_name: 'Covid-19 stats and charts',
         start_url: '/',
         display: 'browser',
-        icon: 'src/assets/coronavirus.png', // This path is relative to the root of the site.
+        icon: 'src/assets/coronavirus.png',
       },
     },
     'gatsby-plugin-typescript',

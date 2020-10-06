@@ -1,7 +1,7 @@
 import { VictoryTheme } from 'victory';
 
 const fontFamily = `
-  "Roboto Mono", Courier, monospace
+  "Open Sans", Courier, monospace
 `;
 
 const Theme = {
@@ -13,7 +13,7 @@ const Theme = {
       tickLabels: {
         ...VictoryTheme.material.axis?.style?.tickLabels,
         fontFamily,
-        fontSize: 10,
+        fontSize: 6,
         fill: 'hsla(0, 0%, 0%, 0.8)',
       },
       axis: {
@@ -33,7 +33,7 @@ const Theme = {
       labels: {
         ...VictoryTheme.material.legend?.style?.labels,
         fontFamily,
-        fontSize: 11,
+        fontSize: 6,
       },
     },
   },

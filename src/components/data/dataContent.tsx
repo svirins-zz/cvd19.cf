@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import {
-  Typography, Divider, Col, Radio, Switch, InputNumber,
+  Typography, Divider, Col, Radio, Checkbox, InputNumber,
 } from 'antd';
 import PageLayout from '../layout/pageLayout';
 import SEO from '../layout/seo';
-
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
 } from '../tables/prepareTables';
-import DataChart from '../charts/dataChart';
+import AllDataChart from '../charts/allDataChart';
 import CountryFilter from './countryFilter';
 import { getTags } from '../../utilities/periodUtils';
 import {
-  PeriodInfo, Table, ChartInfo, Country,
+  PeriodInfo, Table, ChartInfo, Country, Tags,
 } from '../../types';
 
 const { Title, Paragraph, Text } = Typography;
@@ -55,7 +54,7 @@ const getChartInfo = (selectedTable: string, period: number): ChartInfo => {
     title: '',
   };
 };
-// Data page goes here
+
 const DataContent = ({
   countries,
   periodInfo,
@@ -65,12 +64,12 @@ const DataContent = ({
   periodInfo: PeriodInfo,
   onPeriodChange: ((value: number) => void)
 }) => {
-  const possibleTags = React.useMemo(() => getTags(countries), [countries]);
   const [selectedTable, setSelectedTable] = useState<Table>('newDeaths');
   const chartInfo = React.useMemo(
     () => getChartInfo(selectedTable, periodInfo.length),
     [selectedTable, periodInfo],
   );
+  const possibleTags = React.useMemo(() => getTags(countries), [countries]);
   const [tags, setTags] = useState<Tags>({
     currentTags: [
       { id: 'United States', name: 'United States' },
@@ -95,33 +94,40 @@ const DataContent = ({
         </Radio.Group>
       </Paragraph>
       <Paragraph className="centered">
-        <Text> Period length, days:</Text>
-        {' '}
-        {' '}
+        <Text>
+          Period length, days:
+          {' '}
+        </Text>
         <InputNumber
           min={1}
           max={20}
+          placeholder="Period length, days"
           defaultValue={Number(periodInfo.value)}
           onChange={(val) => onPeriodChange(val)}
         />
+      </Paragraph>
+      <Paragraph className="centered">
+        <Checkbox
+          onChange={(e) => setShowAll(e.target.checked)}
+          checked={showAll}
+        >
+          All countries
+        </Checkbox>
         {' '}
-        {' '}
-        <Text>All countries</Text>
-        {' '}
-        {' '}
-        <Switch onChange={setShowAll} checked={showAll} />
-        {' '}
-        {' '}
-        <Text>Start at 1-st death</Text>
-        {' '}
-        {' '}
-        <Switch onChange={setStartAtDeaths} checked={startAtDeaths} />
+        <Checkbox
+          onChange={(e) => setStartAtDeaths(e.target.checked)}
+          checked={startAtDeaths}
+        >
+          Start at 1-st death
+        </Checkbox>
+      </Paragraph>
+      <Col span={20} offset={2}>
         {/* CountryFilter is broken */}
         <CountryFilter tags={tags} setTags={setTags} />
-      </Paragraph>
+      </Col>
       <Divider />
       <Title className="centered" level={2}>{chartInfo.title}</Title>
-      <DataChart
+      <AllDataChart
         countries={countries}
         x={chartInfo.x}
         y={chartInfo.y}

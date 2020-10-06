@@ -30,8 +30,7 @@ const CountryFilter = ({
   };
   const defaultValuesArr = tags.currentTags.map((e, i) => ({ key: i, value: e, label: e }));
   const optionsValuesArr = tags.suggestedTags.map((e, i) => ({ key: i, value: e, label: e }));
-  console.log(defaultValuesArr);
-  console.log(optionsValuesArr);
+
   //
   return (
     <p>df</p>
