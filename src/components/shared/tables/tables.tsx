@@ -4,9 +4,9 @@ import {
 } from 'react-table';
 import styles from './tables.module.css';
 import Table from './table';
-import { Period, Country, OutbreakStatus, } from '../../../types';
+import { Period, Country, OutbreakStatus } from '../../../types';
 import { getCSSClassFor, getPeriodNames } from '../../../utilities/periodUtils';
-import ATable from './tableAntd';
+import { ATable3ColData, ATable5ColChange, ATable5ColNewCases } from './antDTables';
 
 const formatCell = (period: Period) => {
   const className = getCSSClassFor(period?.status);
@@ -91,7 +91,8 @@ const growthSort = (
   rowB: Row,
   columnId: IdType<String>,
   desc: boolean,
-) => stickyGlobal(
+) => stickyGlobal(/* <ATable5Col table={preparedTableObject} order={desc} /> */
+
   rowA,
   desc,
   rowA.values[columnId].growthRate - rowB.values[columnId].growthRate,
@@ -212,8 +213,6 @@ export const NewCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newCasesSort,
       },
       {
         Header: periodNames[4],
@@ -222,8 +221,6 @@ export const NewCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newCasesSort,
       },
       {
         Header: periodNames[3],
@@ -232,8 +229,6 @@ export const NewCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newCasesSort,
       },
       {
         Header: periodNames[2],
@@ -242,8 +237,6 @@ export const NewCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newCasesSort,
       },
       {
         Header: periodNames[1],
@@ -252,8 +245,6 @@ export const NewCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newCasesSort,
       },
       {
         Header: periodNames[0],
@@ -262,26 +253,15 @@ export const NewCasesTable = ({
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }),
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: newCasesSort,
       },
     ],
     [periodNames],
   ) as Array<Column<Country>>;
 
-  const initialState = React.useMemo(
-    () => ({
-      sortBy: [{ id: 'periods[0]', desc: true }],
-    }),
-    [],
-  ) as Partial<TableState<Country>>;
-
-  const table = useTable({ columns, data, initialState }, useSortBy);
+  const preparedTableObject = useTable({ columns, data });
 
   return (
-    <div className={styles.fullTable}>
-      <Table table={table} />
-    </div>
+    <ATable5ColNewCases table={preparedTableObject} order={true} />
   );
 };
 
@@ -485,70 +465,46 @@ export const GrowthTable = ({
       {
         Header: 'Country',
         accessor: 'name',
-        sortType: nameSort,
       },
       {
         Header: periodNames[5],
         accessor: 'periods[5]',
         Cell: ({ value }: { value: Period }) => formatCell(value).value,
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: growthSort,
       },
       {
         Header: periodNames[4],
         accessor: 'periods[4]',
         Cell: ({ value }: { value: Period }) => formatCell(value).value,
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: growthSort,
       },
       {
         Header: periodNames[3],
         accessor: 'periods[3]',
         Cell: ({ value }: { value: Period }) => formatCell(value).value,
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: growthSort,
       },
       {
         Header: periodNames[2],
         accessor: 'periods[2]',
         Cell: ({ value }: { value: Period }) => formatCell(value).value,
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: growthSort,
       },
       {
         Header: periodNames[1],
         accessor: 'periods[1]',
         Cell: ({ value }: { value: Period }) => formatCell(value).value,
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: growthSort,
       },
       {
         Header: periodNames[0],
         accessor: 'periods[0]',
         Cell: ({ value }: { value: Period }) => formatCell(value).value,
-        getClassName: (period: Period) => formatCell(period).className,
-        sortType: growthSort,
       },
     ],
     [periodNames],
   ) as Array<Column<Country>>;
-
-  const initialState = React.useMemo(
-    () => ({
-      sortBy: [{ id: 'periods[0]', desc: true }],
-    }),
-    [],
-  ) as Partial<TableState<Country>>;
-
-  const table = useTable({ columns, data, initialState }, useSortBy);
-
+  const preparedTableObject = useTable({ columns, data });
   return (
-    <div className={styles.fullTable}>
-      <Table table={table} />
-    </div>
+    <ATable5ColChange table={preparedTableObject} order="true" />
   );
 };
-// GrowthSummaryTable used only at main page
+
 export const GrowthSummaryTable = ({
   data,
   periodLength,
@@ -602,6 +558,6 @@ export const GrowthSummaryTable = ({
   const preparedTableObject = useTable({ columns, data });
 
   return (
-    <ATable table={preparedTableObject} order={desc} />
+    <ATable3ColData table={preparedTableObject} order={desc} />
   );
 };//

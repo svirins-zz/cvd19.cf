@@ -16,7 +16,6 @@ import PandemicFreeChart from '../components/charts/pandemicFreeChart';
 import UnderControlChart from '../components/charts/underControlChart';
 import TotalSummary from '../components/status/totalSummary';
 
-// Types import
 import { Countries, OutbreakStatus } from '../types';
 
 const { Title, Paragraph, Text } = Typography;
@@ -128,5 +127,3 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
-
-// TODO: add some space below 2 countries charts

@@ -145,11 +145,13 @@ const DataContent = ({
         showAll={showAll}
         startAtDeaths={startAtDeaths}
       />
-      {selectedTable === 'growth' && <GrowthTable data={countries} periodLength={periodInfo.length} />}
-      {selectedTable === 'newDeaths' && <NewDeathsTable data={countries} periodLength={periodInfo.length} />}
-      {selectedTable === 'totalDeaths' && <TotalDeathsTable data={countries} periodLength={periodInfo.length} />}
-      {selectedTable === 'newCases' && <NewCasesTable data={countries} periodLength={periodInfo.length} />}
-      {selectedTable === 'totalCases' && <TotalCasesTable data={countries} periodLength={periodInfo.length} />}
+      <Col span={20} offset={2}>
+        {selectedTable === 'growth' && <GrowthTable data={countries} periodLength={periodInfo.length} />}
+        {selectedTable === 'newDeaths' && <NewDeathsTable data={countries} periodLength={periodInfo.length} />}
+        {selectedTable === 'totalDeaths' && <TotalDeathsTable data={countries} periodLength={periodInfo.length} />}
+        {selectedTable === 'newCases' && <NewCasesTable data={countries} periodLength={periodInfo.length} />}
+        {selectedTable === 'totalCases' && <TotalCasesTable data={countries} periodLength={periodInfo.length} />}
+      </Col>
     </PageLayout>
   );
 };
