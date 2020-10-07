@@ -1,9 +1,14 @@
 import React from 'react';
 import { Table, Tag } from 'antd';
+import iso3311a2 from 'iso-3166-1-alpha-2';
+import getUnicodeFlagIcon from 'country-flag-icons/unicode';
+
 import { TableT, TableTColumn } from '../../types';
 import calcTagstyle from '../../utilities/calCcolor';
 
 // TODO: Add summary row to every table
+ // getUnicodeFlagIcon(iso3311a2.getCode(countryName))
+
 export const ATable3Col = ({ table }: TableT, order: Boolean) => {
   const preparedData = table.data.map((e, i) => ({
     key: i,
