@@ -6,16 +6,16 @@ import { DataChartProps, Selected } from '../../types';
 import Theme from '../../styles/chartTheme';
 
 const selectedColors = [
-  '#cccccc',
   '#eb2f96',
   '#fa8c16',
   '#fadb14',
   '#13c2c2',
   '#52c41a',
+  '#cccccc',
 ];
 
 const AllDataChart = ({
-  countries, x, y, tags, showAll, startAtDeaths,
+  countries, x, y, tags, startAtDeaths,
 }: DataChartProps) => {
   const selected: Selected = {};
   // TODO: consider colors below
@@ -48,7 +48,7 @@ const AllDataChart = ({
         {countries.map((country) => {
           if (
             country.name === undefined
-            || (!showAll && !Object.keys(selected).includes(country.name))
+            || (!Object.keys(selected).includes(country.name))
             || (country.name === 'Global' && !Object.keys(selected).includes(country.name))
           ) {
             return undefined;

@@ -1,18 +1,19 @@
 import React from 'react';
-import { Table, Tag } from 'antd';
+import { Table, Tag, Typography } from 'antd';
 import iso3311a2 from 'iso-3166-1-alpha-2';
-import getUnicodeFlagIcon from 'country-flag-icons/unicode';
-
+import ReactCountryFlag from "react-country-flag"
 import { TableT, TableTColumn } from '../../types';
 import calcTagstyle from '../../utilities/calCcolor';
 
+const {Text} = Typography;
+
 // TODO: Add summary row to every table
- // getUnicodeFlagIcon(iso3311a2.getCode(countryName))
 
 export const ATable3Col = ({ table }: TableT, order: Boolean) => {
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,
+    countryCode: iso3311a2.getCode(e.name),
     'periods[2]': e.periods[2].newDeaths,
     rate2: e.periods[2].status,
     'periods[1]': e.periods[1].newDeaths,
@@ -20,6 +21,7 @@ export const ATable3Col = ({ table }: TableT, order: Boolean) => {
     'periods[0]': e.periods[0].newDeaths,
     rate0: e.periods[0].status,
   }));
+  // TODO: implement missing country codes. call utility f-n
   const columns: TableTColumn[] = [
     {
       title: table.columns[0].Header,
@@ -29,6 +31,23 @@ export const ATable3Col = ({ table }: TableT, order: Boolean) => {
         if (a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
         return 0;
       },
+      render: (text, row, index) => (
+        <>
+        <ReactCountryFlag
+          countryCode={preparedData[index].countryCode}
+          aria-label={text}
+          svg
+          style={{
+            width: '1.2em',
+            height: '1.2em',
+          }}
+        />
+        <Text>
+          {' '}
+          {text}
+        </Text>
+        </>
+      ),
     },
     {
       title: table.columns[1].Header,
@@ -209,7 +228,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
       dataSource={preparedData}
       size="small"
       pagination={{ pageSize: 50 }}
-      scroll={{ y: 600 }}
+      scroll={{ y: 600 }}SWZ
     />
   );
 };
@@ -230,7 +249,6 @@ export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
     'periods[0]': e.periods[0].newCases,
     rate0: e.periods[0].status,
   }));
-  // console.log(table, order);
   const columns: TableTColumn[] = [
     {
       title: table.columns[0].Header,

@@ -10,50 +10,12 @@ import {
 import AllDataChart from '../charts/allDataChart';
 import CountryFilter from './countryFilter';
 import { getTags } from '../../utilities/periodUtils';
+import getChartInfo from '../../utilities/getChartInfo';
 import {
-  PeriodInfo, Table, ChartInfo, Country, Tags,
+  PeriodInfo, Table, Country, Tags, ValT
 } from '../../types';
 
 const { Title, Paragraph, Text } = Typography;
-
-const getChartInfo = (selectedTable: string, period: number): ChartInfo => {
-  if (selectedTable === 'growth') {
-    return {
-      x: 'endDate',
-      y: 'growthRate',
-      title: 'Change in deaths between periods',
-    };
-  } if (selectedTable === 'newDeaths') {
-    return {
-      x: 'endDate',
-      y: 'newDeaths',
-      title: `New deaths by ${period}-day period`,
-    };
-  } if (selectedTable === 'totalDeaths') {
-    return {
-      x: 'endDate',
-      y: 'totalDeaths',
-      title: 'Total deaths by date',
-    };
-  } if (selectedTable === 'newCases') {
-    return {
-      x: 'endDate',
-      y: 'newCases',
-      title: `New cases by ${period}-day period`,
-    };
-  } if (selectedTable === 'totalCases') {
-    return {
-      x: 'endDate',
-      y: 'totalCases',
-      title: 'Total cases by date',
-    };
-  }
-  return {
-    x: '',
-    y: '',
-    title: '',
-  };
-};
 
 const DataContent = ({
   countries,
@@ -62,7 +24,7 @@ const DataContent = ({
 }: {
   countries: Country[],
   periodInfo: PeriodInfo,
-  onPeriodChange: ((value: number) => void)
+  onPeriodChange: ((value: ValT) => void)
 }) => {
   const [selectedTable, setSelectedTable] = useState<Table>('newDeaths');
   const chartInfo = React.useMemo(
@@ -78,7 +40,6 @@ const DataContent = ({
     ],
     suggestedTags: possibleTags,
   });
-  const [showAll, setShowAll] = useState(true);
   const [startAtDeaths, setStartAtDeaths] = useState(false);
   return (
     <PageLayout>
@@ -103,17 +64,10 @@ const DataContent = ({
           max={20}
           placeholder="Period length, days"
           defaultValue={Number(periodInfo.value)}
-          onChange={(val) => onPeriodChange(val)}
+          onChange={(val: ValT) => onPeriodChange(val)}
         />
       </Paragraph>
       <Paragraph className="centered">
-        <Checkbox
-          onChange={(e) => setShowAll(e.target.checked)}
-          checked={showAll}
-        >
-          All countries
-        </Checkbox>
-        {' '}
         <Checkbox
           onChange={(e) => setStartAtDeaths(e.target.checked)}
           checked={startAtDeaths}
@@ -122,7 +76,6 @@ const DataContent = ({
         </Checkbox>
       </Paragraph>
       <Col span={20} offset={2}>
-        {/* CountryFilter is broken */}
         <CountryFilter tags={tags} setTags={setTags} />
       </Col>
       <Divider />
@@ -132,7 +85,6 @@ const DataContent = ({
         x={chartInfo.x}
         y={chartInfo.y}
         tags={tags.currentTags}
-        showAll={showAll}
         startAtDeaths={startAtDeaths}
       />
       <Col span={20} offset={2}>

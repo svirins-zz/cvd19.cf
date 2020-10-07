@@ -10,13 +10,13 @@ const CountryFilter = ({
   tags: Tags,
   setTags: (tags: Tags) => void,
 }) => {
-  // TODO: process excusoins for 2 vessels
-  // const handleChange = (currentArr => setTags(currentArr));
-    // const currentCountries = [];
-    // currentArr.map(el => (
-    //   currentCountries.push({id: el, name: el})
-    // ));
-  const handleChange = (currentArr) => console.log(currentArr);
+  const handleChange = (currentArr: any[]) => {
+    const currentTags = currentArr.map((el) => ({
+      id: el,
+      name: el,
+    }));
+    setTags({ ...tags, currentTags });
+  };
 
   const defaultValuesArr = tags.currentTags.map((e) => e.id);
   const optionsValuesArr = tags.suggestedTags.map((e) => (

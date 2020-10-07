@@ -120,10 +120,12 @@ export interface DataChartProps {
   x: string
   y: string
   tags: TagT[]
-  showAll: boolean
   startAtDeaths: boolean
 }
 
 export interface Selected {
   [key: string]: string
 }
+
+export type ValT =
+| number | string | undefined;
