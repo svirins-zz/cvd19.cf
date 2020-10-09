@@ -2,6 +2,8 @@ import React from 'react';
 import {
   useTable, Column,
 } from 'react-table';
+import iso3311a2 from 'iso-3166-1-alpha-2';
+import ReactCountryFlag from "react-country-flag"
 import { Period, Country } from '../../types';
 import { getPeriodNames } from '../../utilities/periodUtils';
 import {
@@ -404,4 +406,4 @@ export const GrowthSummaryTable = ({
   return (
     <ATable3Col table={preparedTableObject} order={desc} />
   );
-};//
+};

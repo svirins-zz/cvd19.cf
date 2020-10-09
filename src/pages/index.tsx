@@ -60,31 +60,36 @@ const IndexPage = () => {
       </PageLayout>
     );
   }
-  // TODO: constructing global statistics data
+  // TODO: Refactor statistics to new obj
   const globalTotalData = calculateTotalGlobal(data);
   return (
     <PageLayout>
       <SEO title="Status" />
-      <Paragraph className="centered">
-        <Title level={1}>Current state of the Covid-19 pandemic</Title>
-        <Text className="largeText">
-          In the last 5 days we&apos;ve
-          {globalData[0].periods[0].status === OutbreakStatus.Won
-            ? ' '
-            : ' been '}
-        </Text>
-        {getStatusInfo(globalData[0].periods[0].status)}
-        {' '}
-        <TotalSummary globalData={globalTotalData} />
-        <span className="italic">Daily data update occurs between 04:45 and 05:15 GM</span>
-      </Paragraph>
-      <Divider />
-      <Title className="centered" level={2}>In how many places are winning?</Title>
+      <Row gutter={[8, 16]}>
+        <Col offset={1} span={22}>
+          <Title level={2}>Current state of the Covid-19 pandemic</Title>
+          <Text className="largeText">
+            In the last 5 days we&apos;ve
+            {globalData[0].periods[0].status === OutbreakStatus.Won
+              ? ' '
+              : ' been '}
+          </Text>
+          {getStatusInfo(globalData[0].periods[0].status)}
+          {' '}
+          <Paragraph className="italic">Daily data update occurs between 04:45 and 05:15 GM</Paragraph>
+        </Col>
+      </Row>
+      <Row gutter={[8, 16]}>
+        <Col offset={1} span={22}>
+          <TotalSummary globalData={globalTotalData} />
+          <Divider />
+          <Title level={3}>In how many places are winning?</Title>
+        </Col>
+      </Row>
       <SummaryChart data={globalSummarySinceTwoMonths} />
-      <Divider />
-      <Col span={20} offset={2}>
-        <Paragraph className="centered">
-          <Title level={2}>How many places have the pandemic under control?</Title>
+      <Row gutter={[8, 16]}>
+        <Col span={22} offset={1}>
+          <Title level={3}>How many places have the pandemic under control?</Title>
           <Text className="largeText">
             The
             {' '}
@@ -100,23 +105,32 @@ const IndexPage = () => {
             {' '}
             <em>Pandemic Free</em>
             {' '}
-            should also decrease in the begging as outbreaks start, and then increase once countries
+            should also decrease in the begging as outbreaks start, and then increase
+            once countries
             successfully eradicate the virus.
           </Text>
-        </Paragraph>
-      </Col>
+        </Col>
+      </Row>
       <UnderControlChart data={globalSummaryData} />
-      <Divider />
-      <Title className="centered" level={2}> How much of the world is pandemic free?</Title>
+      <Row gutter={[8, 16]}>
+        <Col span={22} offset={1}>
+          <Divider />
+          <Title level={3}> How much of the world is pandemic free?</Title>
+        </Col>
+      </Row>
       <PandemicFreeChart data={globalSummaryData} />
-      <Divider />
-      <Title className="centered" level={2}>New death cases by countries</Title>
+      <Row gutter={[8, 16]}>
+        <Col span={22} offset={1}>
+          <Divider />
+          <Title level={3}>New death cases by countries</Title>
+        </Col>
+      </Row>
       <Row>
-        <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
+        <Col xs={22} sm={22} md={22} lg={10} xl={10} offset={1}>
           <Title level={5}>Lessening</Title>
           <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} desc={false} />
         </Col>
-        <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
+        <Col xs={22} sm={22} md={22} lg={10} xl={10} offset={1}>
           <Title level={5}>Growing</Title>
           <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} desc />
         </Col>

@@ -13,7 +13,7 @@ const Theme = {
       tickLabels: {
         ...VictoryTheme.material.axis?.style?.tickLabels,
         fontFamily,
-        fontSize: 6,
+        fontSize: 5,
         fill: 'hsla(0, 0%, 0%, 0.8)',
       },
       axis: {
@@ -33,7 +33,7 @@ const Theme = {
       labels: {
         ...VictoryTheme.material.legend?.style?.labels,
         fontFamily,
-        fontSize: 6,
+        fontSize: 5,
       },
     },
   },

@@ -5,7 +5,7 @@ export interface Countries {
 }
 
 export interface Country {
-  name?: string
+  name: string
   results?: Result[]
   periods: Period[]
   periodsWithDeaths: Period[]
@@ -58,7 +58,7 @@ export interface AllPeriodsResult {
 }
 
 export interface TableTColumn {
-  key?: string
+  key: string
   title: string
   dataIndex: string
   sorter?: Function
@@ -129,3 +129,15 @@ export interface Selected {
 
 export type ValT =
 | number | string | undefined;
+
+export interface GlobalData {
+  totalGlobalCases: number
+  totalGlobalDeaths: number
+  totalGlobalRecovered: number
+  countriesTotal: number
+}
+
+export interface MissingCountries {
+  longName: string
+  shortName: string
+}

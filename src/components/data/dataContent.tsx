@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Typography, Divider, Col, Radio, Checkbox, InputNumber,
+  Typography, Divider, Col, Row, Radio, Checkbox, InputNumber,
 } from 'antd';
 import PageLayout from '../layout/pageLayout';
 import SEO from '../layout/seo';
@@ -12,10 +12,10 @@ import CountryFilter from './countryFilter';
 import { getTags } from '../../utilities/periodUtils';
 import getChartInfo from '../../utilities/getChartInfo';
 import {
-  PeriodInfo, Table, Country, Tags, ValT
+  PeriodInfo, Table, Country, Tags, ValT,
 } from '../../types';
 
-const { Title, Paragraph, Text } = Typography;
+const { Title, Text } = Typography;
 
 const DataContent = ({
   countries,
@@ -44,42 +44,53 @@ const DataContent = ({
   return (
     <PageLayout>
       <SEO title="All Data" />
-      <Paragraph className="centered">
-        <Title level={1}>All Data</Title>
-        <Radio.Group value={selectedTable} onChange={(e) => setSelectedTable(e.target.value)}>
-          <Radio.Button value="newDeaths">New Deaths</Radio.Button>
-          <Radio.Button value="totalDeaths">Total Deaths</Radio.Button>
-          <Radio.Button value="growth">Change in Deaths</Radio.Button>
-          <Radio.Button value="newCases">New Cases</Radio.Button>
-          <Radio.Button value="totalCases">Total Cases</Radio.Button>
-        </Radio.Group>
-      </Paragraph>
-      <Paragraph className="centered">
-        <Text>
-          Period length, days:
-          {' '}
-        </Text>
-        <InputNumber
-          min={1}
-          max={20}
-          placeholder="Period length, days"
-          defaultValue={Number(periodInfo.value)}
-          onChange={(val: ValT) => onPeriodChange(val)}
-        />
-      </Paragraph>
-      <Paragraph className="centered">
-        <Checkbox
-          onChange={(e) => setStartAtDeaths(e.target.checked)}
-          checked={startAtDeaths}
-        >
-          Start at 1-st death
-        </Checkbox>
-      </Paragraph>
-      <Col span={20} offset={2}>
-        <CountryFilter tags={tags} setTags={setTags} />
+      <Row gutter={[8, 16]}>
+        <Col offset={1}>
+          <Title level={2}>All Data</Title>
+        </Col>
+      </Row>
+      <Row gutter={[8, 16]}>
+        <Col offset={1}>
+          <Radio.Group value={selectedTable} onChange={(e) => setSelectedTable(e.target.value)}>
+            <Radio.Button value="newDeaths">New Deaths</Radio.Button>
+            <Radio.Button value="totalDeaths">Total Deaths</Radio.Button>
+            <Radio.Button value="growth">Change in Deaths</Radio.Button>
+            <Radio.Button value="newCases">New Cases</Radio.Button>
+            <Radio.Button value="totalCases">Total Cases</Radio.Button>
+          </Radio.Group>
+        </Col>
+      </Row>
+      <Row gutter={[8, 16]}>
+        <Col span={22} offset={1}>
+          <Text>
+            Period, days:
+            {' '}
+          </Text>
+          <InputNumber
+            min={1}
+            max={20}
+            placeholder="Period length, days"
+            defaultValue={Number(periodInfo.value)}
+            onChange={(val: ValT) => onPeriodChange(val)}
+          />
+          {'    '}
+          <Checkbox
+            onChange={(e) => setStartAtDeaths(e.target.checked)}
+            checked={startAtDeaths}
+          >
+            Start at 1-st death
+          </Checkbox>
+        </Col>
+      </Row>
+      <Row gutter={[8, 16]}>
+        <Col span={22} offset={1}>
+          <CountryFilter tags={tags} setTags={setTags} />
+          <Divider />
+        </Col>
+      </Row>
+      <Col span={22} offset={1}>
+        <Title level={3}>{chartInfo.title}</Title>
       </Col>
-      <Divider />
-      <Title className="centered" level={2}>{chartInfo.title}</Title>
       <AllDataChart
         countries={countries}
         x={chartInfo.x}
@@ -87,7 +98,9 @@ const DataContent = ({
         tags={tags.currentTags}
         startAtDeaths={startAtDeaths}
       />
-      <Col span={20} offset={2}>
+      <Col span={22} offset={1}>
+        <Divider />
+        <Title level={3}>Some header</Title>
         {selectedTable === 'growth' && <GrowthTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'newDeaths' && <NewDeathsTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'totalDeaths' && <TotalDeathsTable data={countries} periodLength={periodInfo.length} />}

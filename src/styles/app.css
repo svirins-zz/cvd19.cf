@@ -16,9 +16,6 @@
   font-size: '18px'; color: 'WHITE'; vertical-align: 'middle'
 }
 
-.site-statistic-demo-card {
-  padding: 20px 50px;
-}
 
 .site-statistic-demo-card .ant-statistic-title {
   font-size: 1.3em;
@@ -33,7 +30,7 @@
 
 .italic {
   font-style: italic;
-  font-size: 1.2em;
+  font-size: 0.9em;
 }
 
 .site-layout .site-layout-background {
@@ -123,4 +120,8 @@
   color: lightseagreen;
   font-weight: 600;
   text-decoration: underline;
+}
+
+.vesselSize {
+  width: 1em;
 }

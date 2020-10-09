@@ -1,19 +1,23 @@
 import React from 'react';
 import { Table, Tag, Typography } from 'antd';
-import iso3311a2 from 'iso-3166-1-alpha-2';
-import ReactCountryFlag from "react-country-flag"
 import { TableT, TableTColumn } from '../../types';
 import calcTagstyle from '../../utilities/calCcolor';
+import getCountry from '../../utilities/countryUtils';
+import ReactCountryFlag from 'react-country-flag';
+import vsvg from '../assets/vessel.svg';
+
+{/* <Vessel className="vesselSize" />; */}
 
 const {Text} = Typography;
 
 // TODO: Add summary row to every table
 
-export const ATable3Col = ({ table }: TableT, order: Boolean) => {
+export const ATable3Col = ({ table }: TableT, order?: boolean) => {
+
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,
-    countryCode: iso3311a2.getCode(e.name),
+    countryCode: getCountry(e.name),
     'periods[2]': e.periods[2].newDeaths,
     rate2: e.periods[2].status,
     'periods[1]': e.periods[1].newDeaths,
@@ -21,7 +25,6 @@ export const ATable3Col = ({ table }: TableT, order: Boolean) => {
     'periods[0]': e.periods[0].newDeaths,
     rate0: e.periods[0].status,
   }));
-  // TODO: implement missing country codes. call utility f-n
   const columns: TableTColumn[] = [
     {
       title: table.columns[0].Header,
@@ -33,20 +36,10 @@ export const ATable3Col = ({ table }: TableT, order: Boolean) => {
       },
       render: (text, row, index) => (
         <>
-        <ReactCountryFlag
-          countryCode={preparedData[index].countryCode}
-          aria-label={text}
-          svg
-          style={{
-            width: '1.2em',
-            height: '1.2em',
-          }}
-        />
-        <Text>
-          {' '}
-          {text}
-        </Text>
-        </>
+        {text}
+        {' '}
+        <ReactCountryFlag svg countryCode={preparedData[index].countryCode} />
+        </>       
       ),
     },
     {
@@ -101,7 +94,7 @@ export const ATable3Col = ({ table }: TableT, order: Boolean) => {
     />
   );
 };
-export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
+export const ATable5ColGrowth = ({ table }: TableT, order?: Boolean ) => {
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,
@@ -118,6 +111,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
     'periods[0]': e.periods[0].growthRate,
     rate0: e.periods[0].status,
   }));
+  console.log(preparedData);
   const columns: TableTColumn[] = [
     {
       title: table.columns[0].Header,
@@ -232,7 +226,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
     />
   );
 };
-export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
+export const ATable5ColNewCases = ({ table }: TableT, order?: Boolean) => {
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,
@@ -364,7 +358,7 @@ export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
     />
   );
 };
-export const ATable5ColTotalCases = ({ table }: TableT, order: Boolean) => {
+export const ATable5ColTotalCases = ({ table }: TableT, order?: Boolean) => {
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,
@@ -497,7 +491,7 @@ export const ATable5ColTotalCases = ({ table }: TableT, order: Boolean) => {
     />
   );
 };
-export const ATable5ColTotalDeaths = ({ table }: TableT, order: Boolean) => {
+export const ATable5ColTotalDeaths = ({ table }: TableT, order?: Boolean) => {
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,
@@ -630,7 +624,7 @@ export const ATable5ColTotalDeaths = ({ table }: TableT, order: Boolean) => {
     />
   );
 };
-export const ATable5ColNewDeaths = ({ table }: TableT, order: Boolean) => {
+export const ATable5ColNewDeaths = ({ table }: TableT, order?: Boolean) => {
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,
@@ -764,7 +758,7 @@ export const ATable5ColNewDeaths = ({ table }: TableT, order: Boolean) => {
   );
 };
 
-export const ATable5Col = ({ table }: TableT, order: Boolean, dataType: String) => {
+export const ATable5Col = ({ table }: TableT, order?: Boolean, dataType: String) => {
   let percentSymbol: String = '';
   let preparedData;
   switch (dataType) {

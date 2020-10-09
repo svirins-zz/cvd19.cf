@@ -1,6 +1,9 @@
 /* eslint-disable no-fallthrough */
+
+import { OutbreakStatus } from "../types";
+
 /* eslint-disable default-case */
-const calcTagstyle = (rate: String): String => {
+const calcTagstyle = (rate: OutbreakStatus): String => {
   let color = 'none';
   switch (rate) {
     case 'No Outbreak': { color = 'gray'; break; }
