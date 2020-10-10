@@ -97,18 +97,18 @@ export const calculateGlobalSummary = (
 };
 
 // TODO: refactor to single reduce
-export const calculateTotalGlobal = (data: Countries | undefined) => {
+export const calculateTotalGlobal = (data: Countries): GlobalData => {
   const totalGlobalCases = data.countries.reduce((acc, element) => (
-    acc + element.results[element.results.length - 1].confirmed
+    acc + element.results[element.results.length - 1]?.confirmed
   ), 0);
   const totalGlobalDeaths = data.countries.reduce((acc, element) => (
-    acc + element.results[element.results.length - 1].deaths
+    acc + element.results[element.results.length - 1]?.deaths
   ), 0);
   const totalGlobalRecovered = data.countries.reduce((acc, element) => (
-    acc + element.results[element.results.length - 1].recovered
+    acc + element.results[element.results.length - 1]?.recovered
   ), 0);
   const countriesTotal = data.countries.length ? data.countries.length : 0;
-  const result: GlobalData = {
+  const result = {
     totalGlobalCases,
     totalGlobalDeaths,
     totalGlobalRecovered,

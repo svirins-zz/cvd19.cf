@@ -1,5 +1,4 @@
-import { TagT } from '../components/data/countryFilter';
-import { Country, OutbreakStatus } from '../types';
+import { Country, OutbreakStatus, TagT } from '../types';
 
 export const PERIOD_LENGTH = 5;
 

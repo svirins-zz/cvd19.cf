@@ -2,8 +2,6 @@ import React from 'react';
 import {
   useTable, Column,
 } from 'react-table';
-import iso3311a2 from 'iso-3166-1-alpha-2';
-import ReactCountryFlag from "react-country-flag"
 import { Period, Country } from '../../types';
 import { getPeriodNames } from '../../utilities/periodUtils';
 import {
@@ -347,7 +345,7 @@ export const GrowthTable = ({
   ) as Array<Column<Country>>;
   const preparedTableObject = useTable({ columns, data });
   return (
-    <ATable5ColGrowth table={preparedTableObject} order="false" />
+    <ATable5ColGrowth table={preparedTableObject} order={false} />
   );
 };
 
@@ -375,7 +373,7 @@ export const GrowthSummaryTable = ({
       ...[
         {
           Header: periodNames[2],
-          accessor: 'periods[2]',
+          accessor: 'periofalseds[2]',
           Cell: ({ value }: { value: Period }) => value?.newDeaths.toLocaleString(undefined, {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Table, Tag, Typography } from 'antd';
+import { Table, Tag, Typography, Tooltip } from 'antd';
 import { TableT, TableTColumn } from '../../types';
 import calcTagstyle from '../../utilities/calCcolor';
 import getCountry from '../../utilities/countryUtils';
 import ReactCountryFlag from 'react-country-flag';
 import vsvg from '../assets/vessel.svg';
+import { isNonEmptyArray } from '@apollo/client/utilities';
 
 {/* <Vessel className="vesselSize" />; */}
 
@@ -12,7 +13,7 @@ const {Text} = Typography;
 
 // TODO: Add summary row to every table
 
-export const ATable3Col = ({ table }: TableT, order?: boolean) => {
+export const ATable3Col = ({ table }: TableT, order: boolean) => {
 
   const preparedData = table.data.map((e, i) => ({
     key: i,
@@ -34,13 +35,12 @@ export const ATable3Col = ({ table }: TableT, order?: boolean) => {
         if (a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
         return 0;
       },
-      render: (text, row, index) => (
-        <>
-        {text}
-        {' '}
-        <ReactCountryFlag svg countryCode={preparedData[index].countryCode} />
-        </>       
-      ),
+      // render: (text, row, index) => (
+      //   <>
+      //   <ReactCountryFlag svg countryCode={preparedData[index].countryCode} />
+      //   {text} 
+      //   </>
+      // ), 
     },
     {
       title: table.columns[1].Header,
@@ -94,7 +94,7 @@ export const ATable3Col = ({ table }: TableT, order?: boolean) => {
     />
   );
 };
-export const ATable5ColGrowth = ({ table }: TableT, order?: Boolean ) => {
+export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,
@@ -226,7 +226,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order?: Boolean ) => {
     />
   );
 };
-export const ATable5ColNewCases = ({ table }: TableT, order?: Boolean) => {
+export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,

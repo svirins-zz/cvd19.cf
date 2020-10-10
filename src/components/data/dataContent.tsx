@@ -24,7 +24,7 @@ const DataContent = ({
 }: {
   countries: Country[],
   periodInfo: PeriodInfo,
-  onPeriodChange: ((value: ValT) => void)
+  onPeriodChange: ((value: number) => void)
 }) => {
   const [selectedTable, setSelectedTable] = useState<Table>('newDeaths');
   const chartInfo = React.useMemo(

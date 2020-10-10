@@ -1,9 +1,6 @@
-/* eslint-disable no-fallthrough */
+import { OutbreakStatus } from '../types';
 
-import { OutbreakStatus } from "../types";
-
-/* eslint-disable default-case */
-const calcTagstyle = (rate: OutbreakStatus): String => {
+const calcTagstyle = (rate: OutbreakStatus): string => {
   let color = 'none';
   switch (rate) {
     case 'No Outbreak': { color = 'gray'; break; }
@@ -13,6 +10,7 @@ const calcTagstyle = (rate: OutbreakStatus): String => {
     case 'Crushing the Curve': { color = 'yellow'; break; }
     case 'Winning': { color = 'cyan'; break; }
     case 'Won': { color = 'green'; break; }
+    default: { color = 'gray'; }
   }
   return color;
 };

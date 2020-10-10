@@ -54,8 +54,7 @@ export const calulatePeriodData = (counts: Counts[], periodLength: number): Peri
     periods,
   };
 };
-// TODO: Slice off the last two invalid items without affecting global summary calculation
-// No exclusion for Diamond princess and MS Zaandam
+
 export const calculateData = (data: Countries | undefined, periodLength: number): Country[] => {
   const validPeriodLength = validatePeriodLength(periodLength);
   const periodCount = getPeriodCount(validPeriodLength);

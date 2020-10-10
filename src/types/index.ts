@@ -1,7 +1,7 @@
 import { TableInstance } from 'react-table';
 
 export interface Countries {
-  countries?: Country[];
+  countries: Country[];
 }
 
 export interface Country {
@@ -112,7 +112,7 @@ export interface ChartInfo {
 
 export interface RenderedTable {
   table: TableT
-  order: boolean
+  order?: boolean
 }
 
 export interface DataChartProps {
@@ -135,6 +135,12 @@ export interface GlobalData {
   totalGlobalDeaths: number
   totalGlobalRecovered: number
   countriesTotal: number
+}
+
+export interface ReducerD {
+  totalGlobalCases: number
+  totalGlobalDeaths: number
+  totalGlobalRecovered: number
 }
 
 export interface MissingCountries {
