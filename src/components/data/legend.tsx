@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Table, Tag } from 'antd';
 import { OutbreakStatus } from '../../types';
-import calcTagstyle from '../../utilities/calCcolor';
+import { calcTagstyle } from '../../utilities/colorUtils';
 
 const { Text, Paragraph } = Typography;
 
@@ -226,6 +226,13 @@ export const LegendTable = () => {
         <strong>5-days</strong>
         {' '}
         by default, though you can set your own period length when exploring the data.
+      </Paragraph>
+      <Paragraph>
+        The Won status above only looks at deaths, and should therefore be a slight
+        leading indicator compared to the Pandemic Free status in the chart below,
+        which requires both no deaths and no cases.
+        Pandemic Free should also decrease in the begging as outbreaks start,
+        and then increase once countries successfully eradicate the virus.
       </Paragraph>
       <Table
         columns={columns}

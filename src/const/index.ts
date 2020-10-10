@@ -1,6 +1,10 @@
 import { MissingCountries } from '../types';
 
-const MISSING_COUNTRIES: MissingCountries[] = [
+export const EPIDEMIC_START: string = '2020/01/07';
+
+export const PERIOD_LENGTH: number = 5;
+
+export const MISSING_COUNTRIES: MissingCountries[] = [
   { longName: 'Bolivia', shortName: 'BO' },
   { longName: 'Brunei', shortName: 'BN' },
   { longName: 'Burma', shortName: 'MM' },
@@ -30,4 +34,12 @@ const MISSING_COUNTRIES: MissingCountries[] = [
   { longName: 'West Bank and Gaza', shortName: 'PS' },
 ];
 
-export default MISSING_COUNTRIES;
+export const COLORS: string[] = [
+  '#eb2f96',
+  '#f5222d',
+  '#fa8c16',
+  '#fadb14',
+  '#13c2c2',
+  '#52c41a',
+  '#cccccc',
+];

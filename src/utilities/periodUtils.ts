@@ -1,6 +1,5 @@
-import { Country, OutbreakStatus, TagT } from '../types';
-
-export const PERIOD_LENGTH = 5;
+import { OutbreakStatus } from '../types';
+import { EPIDEMIC_START } from '../const';
 
 export const validatePeriodLength = (periodLength: number) => {
   if (periodLength === 0) {
@@ -16,7 +15,7 @@ export const getDaysAgo = (date: Date): number => {
 
 export const getPeriodCount = (
   periodLength: number,
-) => Math.floor(getDaysAgo(new Date('2020/01/07')) / periodLength);
+) => Math.floor(getDaysAgo(new Date(EPIDEMIC_START)) / periodLength);
 
 export const periodStatus = (
   totalDeaths: number,
@@ -56,8 +55,3 @@ export const getPeriodNames = (periodLength: number) => {
     return getPeriodName(endingDaysAgo);
   });
 };
-
-export const getTags = (countries: Country[]): TagT[] => countries.map((country) => ({
-  id: country.name ?? '',
-  name: country.name ?? '',
-}));

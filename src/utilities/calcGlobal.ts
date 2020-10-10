@@ -97,7 +97,7 @@ export const calculateGlobalSummary = (
 };
 
 // TODO: refactor to single reduce
-export const calculateTotalGlobal = (data: Countries): GlobalData => {
+export const calculateTotalGlobal = (data: Countries | undefined): GlobalData => {
   const totalGlobalCases = data.countries.reduce((acc, element) => (
     acc + element.results[element.results.length - 1]?.confirmed
   ), 0);

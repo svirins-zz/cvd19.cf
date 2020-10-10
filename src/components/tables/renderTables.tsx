@@ -1,24 +1,16 @@
 import React from 'react';
 import { Table, Tag, Typography, Tooltip } from 'antd';
 import { TableT, TableTColumn } from '../../types';
-import calcTagstyle from '../../utilities/calCcolor';
+import { calcTagstyle } from '../../utilities/colorUtils';
 import getCountry from '../../utilities/countryUtils';
-import ReactCountryFlag from 'react-country-flag';
-import vsvg from '../assets/vessel.svg';
-import { isNonEmptyArray } from '@apollo/client/utilities';
-
-{/* <Vessel className="vesselSize" />; */}
-
 const {Text} = Typography;
 
 // TODO: Add summary row to every table
 
 export const ATable3Col = ({ table }: TableT, order: boolean) => {
-
   const preparedData = table.data.map((e, i) => ({
     key: i,
     name: e.name,
-    countryCode: getCountry(e.name),
     'periods[2]': e.periods[2].newDeaths,
     rate2: e.periods[2].status,
     'periods[1]': e.periods[1].newDeaths,
@@ -35,12 +27,6 @@ export const ATable3Col = ({ table }: TableT, order: boolean) => {
         if (a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
         return 0;
       },
-      // render: (text, row, index) => (
-      //   <>
-      //   <ReactCountryFlag svg countryCode={preparedData[index].countryCode} />
-      //   {text} 
-      //   </>
-      // ), 
     },
     {
       title: table.columns[1].Header,
@@ -90,7 +76,7 @@ export const ATable3Col = ({ table }: TableT, order: boolean) => {
       dataSource={preparedData}
       size="small"
       pagination={{ pageSize: 30 }}
-      scroll={{ y: 480 }}
+      scroll={{ y: 550 }}
     />
   );
 };

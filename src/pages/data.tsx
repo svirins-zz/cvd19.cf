@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { Typography, Spin } from 'antd';
 import PageLayout from '../components/layout/pageLayout';
 import SEO from '../components/layout/seo';
-import { PERIOD_LENGTH } from '../utilities/periodUtils';
+import { PERIOD_LENGTH } from '../const';
 import { Countries, PeriodInfo } from '../types';
 import { calculateData } from '../utilities/calcAllData';
 import { sumPeriodData } from '../utilities/calcGlobal';
@@ -46,7 +46,7 @@ const DataPage = () => {
     <DataContent
       countries={allData}
       periodInfo={periodInfo}
-      onPeriodChange={(val: number) => {
+      onPeriodChange={(val) => {
         const length = val;
         if (length > 0) {
           setPeriodInfo({

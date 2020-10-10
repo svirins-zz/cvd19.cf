@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import {
-  Typography, Divider, Spin, Row, Col,
+  Typography, Spin, Row, Col,
 } from 'antd';
 import PageLayout from '../components/layout/pageLayout';
 import SEO from '../components/layout/seo';
@@ -9,7 +9,7 @@ import { GrowthSummaryTable } from '../components/tables/prepareTables';
 import { getStatusInfo } from '../components/data/legend';
 import SummaryChart from '../components/charts/summaryChart';
 import { calculateData } from '../utilities/calcAllData';
-import { PERIOD_LENGTH } from '../utilities/periodUtils';
+import { PERIOD_LENGTH } from '../const';
 import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from '../utilities/calcGlobal';
 import COUNTRY_QUERY from '../queries';
 import PandemicFreeChart from '../components/charts/pandemicFreeChart';
@@ -60,78 +60,42 @@ const IndexPage = () => {
       </PageLayout>
     );
   }
-  // TODO: Refactor statistics to new obj
   const globalTotalData = calculateTotalGlobal(data);
   return (
     <PageLayout>
       <SEO title="Status" />
       <Row gutter={[8, 16]}>
-        <Col offset={1} span={22}>
-          <Title level={2}>Current state of the Covid-19 pandemic</Title>
-          <Text className="largeText">
-            In the last 5 days we&apos;ve
+        <Col offset={2} span={20}>
+          <Title level={3} style={{ marginBottom: '0px' }}>Covid-19 pandemic data</Title>
+          <Text className="largeText">Daily data update occurs between 04:45 and 05:15 GM</Text>
+          <Paragraph className="largeText">
+            Current status: In the last 5 days we&apos;ve
             {globalData[0].periods[0].status === OutbreakStatus.Won
               ? ' '
               : ' been '}
-          </Text>
-          {getStatusInfo(globalData[0].periods[0].status)}
-          {' '}
-          <Paragraph className="italic">Daily data update occurs between 04:45 and 05:15 GM</Paragraph>
+            {getStatusInfo(globalData[0].periods[0].status)}
+          </Paragraph>
         </Col>
       </Row>
       <Row gutter={[8, 16]}>
-        <Col offset={1} span={22}>
+        <Col offset={2} span={20}>
           <TotalSummary globalData={globalTotalData} />
-          <Divider />
-          <Title level={3}>In how many places are winning?</Title>
         </Col>
       </Row>
-      <SummaryChart data={globalSummarySinceTwoMonths} />
-      <Row gutter={[8, 16]}>
-        <Col span={22} offset={1}>
-          <Title level={3}>How many places have the pandemic under control?</Title>
-          <Text className="largeText">
-            The
-            {' '}
-            <em>Won</em>
-            {' '}
-            status above only looks at deaths, and should therefore be a slight leading
-            indicator compared to the
-            {' '}
-            <em>Pandemic Free</em>
-            {' '}
-            status
-            in the chart below, which requires both no deaths and no cases.
-            {' '}
-            <em>Pandemic Free</em>
-            {' '}
-            should also decrease in the begging as outbreaks start, and then increase
-            once countries
-            successfully eradicate the virus.
-          </Text>
-        </Col>
-      </Row>
-      <UnderControlChart data={globalSummaryData} />
-      <Row gutter={[8, 16]}>
-        <Col span={22} offset={1}>
-          <Divider />
-          <Title level={3}> How much of the world is pandemic free?</Title>
-        </Col>
-      </Row>
-      <PandemicFreeChart data={globalSummaryData} />
-      <Row gutter={[8, 16]}>
-        <Col span={22} offset={1}>
-          <Divider />
-          <Title level={3}>New death cases by countries</Title>
+      <SummaryChart data={globalSummarySinceTwoMonths} title="In how many places are winning?" />
+      <UnderControlChart data={globalSummaryData} title="How many places have the pandemic under control?" />
+      <PandemicFreeChart data={globalSummaryData} title="How much of the world is pandemic free?" />
+      <Row gutter={[8, 16]} style={{ paddingBottom: '1.5em' }}>
+        <Col span={20} offset={2}>
+          <Title level={3} style={{ marginBottom: '0px' }}>New death cases by countries</Title>
+          <Text className="largeText">Lessening / Growing</Text>
         </Col>
       </Row>
       <Row>
-        <Col xs={22} sm={22} md={22} lg={10} xl={10} offset={1}>
-          <Title level={5}>Lessening</Title>
+        <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
           <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} desc={false} />
         </Col>
-        <Col xs={22} sm={22} md={22} lg={10} xl={10} offset={1}>
-          <Title level={5}>Growing</Title>
+        <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
           <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} desc />
         </Col>
       </Row>

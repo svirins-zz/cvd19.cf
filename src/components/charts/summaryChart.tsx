@@ -5,7 +5,7 @@ import {
 import { PeriodSummary } from '../../types';
 import Theme from '../../styles/chartTheme';
 
-const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
+const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string }) => (
   <VictoryChart
     theme={Theme}
     height={240}
@@ -14,14 +14,14 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
     domainPadding={{ y: 30 }}
   >
     <VictoryLegend
-      x={90}
+      x={325}
       y={20}
-      itemsPerRow={1}
+      itemsPerRow={2}
       gutter={20}
       centerTitle
       style={{
         labels: {
-          fontSize: 6,
+          fontSize: 5,
           fontFamily: `"Open Sans", "Droid Sans Mono",
           "Liberation Mono", Menlo, Courier, monospace`,
         },
@@ -49,9 +49,20 @@ const SummaryChart = ({ data }: { data: PeriodSummary[] }) => (
       }}
     />
     <VictoryLabel
+      text={title}
+      x={50}
+      y={25}
+      style={{
+        fontSize: 10,
+        fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
+        "Liberation Mono", Menlo, Courier, monospace`,
+        fontWeight: 600,
+      }}
+    />
+    <VictoryLabel
       text="source: JHU & CSSE"
-      x={495}
-      y={60}
+      x={50}
+      y={35}
       style={{
         fontSize: 6,
         fontFamily: `"Open Sans", "Droid Sans Mono",

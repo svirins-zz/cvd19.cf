@@ -59,7 +59,7 @@ export interface AllPeriodsResult {
 
 export interface TableTColumn {
   key: string
-  title: string
+  title?: string
   dataIndex: string
   sorter?: Function
   defaultSortOrder?: string
@@ -83,8 +83,8 @@ export enum OutbreakStatus {
 
 export interface TagT {
   id: string | number;
-  name: string;
-  disabled?: boolean;
+  label: string;
+  value: string;
 }
 
 export interface Tags {
@@ -121,6 +121,7 @@ export interface DataChartProps {
   y: string
   tags: TagT[]
   startAtDeaths: boolean
+  title: string
 }
 
 export interface Selected {

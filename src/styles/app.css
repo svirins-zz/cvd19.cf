@@ -10,8 +10,6 @@
   text-align: center;
 }
 
-
-
 .bigIcon {
   font-size: '18px'; color: 'WHITE'; vertical-align: 'middle'
 }
@@ -27,11 +25,6 @@
 .greyBgr {
   background-color: #f0f2f5;
 } 
-
-.italic {
-  font-style: italic;
-  font-size: 0.9em;
-}
 
 .site-layout .site-layout-background {
   background: #fff;
@@ -83,7 +76,8 @@
 }
 
 .largeText {
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-weight: 500;
 }
 
 .statNone {
@@ -124,4 +118,8 @@
 
 .vesselSize {
   width: 1em;
+}
+
+.redB {
+  background-color: 'red';
 }

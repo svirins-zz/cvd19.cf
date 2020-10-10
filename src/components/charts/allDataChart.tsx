@@ -5,23 +5,14 @@ import {
 import { DataChartProps, Selected } from '../../types';
 import Theme from '../../styles/chartTheme';
 
-const selectedColors = [
-  '#eb2f96',
-  '#fa8c16',
-  '#fadb14',
-  '#13c2c2',
-  '#52c41a',
-  '#cccccc',
-];
-
 const AllDataChart = ({
-  countries, x, y, tags, startAtDeaths,
+  countries, x, y, tags, startAtDeaths, title,
 }: DataChartProps) => {
   const selected: Selected = {};
   // TODO: consider colors below
   tags.forEach(
-    (tag, index) => {
-      selected[tag.name] = selectedColors[index];
+    (tag) => {
+      selected[tag.value] = tag.value;
     },
   );
   return (
@@ -36,13 +27,25 @@ const AllDataChart = ({
         <VictoryAxis fixLabelOverlap />
         <VictoryAxis dependentAxis />
         <VictoryLabel
+          text={title}
+          x={50}
+          y={25}
+          style={{
+            fontSize: 10,
+            fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
+            "Liberation Mono", Menlo, Courier, monospace`,
+            fontWeight: 600,
+          }}
+        />
+        <VictoryLabel
           text="source: JHU & CSSE"
-          x={80}
-          y={60}
+          x={50}
+          y={35}
           style={{
             fontSize: 6,
             fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
+            color: 'Gray',
           }}
         />
         {countries.map((country) => {

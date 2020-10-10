@@ -1,7 +1,9 @@
 import React from 'react';
 import { Select, Tag } from 'antd';
+import { Tags, TagT } from '../../types';
+import { getColorByCountryName } from '../../utilities/colorUtils';
 
-import { Tags } from '../../types';
+const { Option } = Select;
 
 const CountryFilter = ({
   tags,
@@ -10,18 +12,31 @@ const CountryFilter = ({
   tags: Tags,
   setTags: (tags: Tags) => void,
 }) => {
-  const handleChange = (currentArr: any[]) => {
-    const currentTags = currentArr.map((el) => ({
-      id: el,
-      name: el,
-    }));
-    setTags({ ...tags, currentTags });
+  const handleChange = (currentArr: string[]) => {
+    // const currentTags: TagT[] = currentArr.map((el) => {
+    //   id: el,
+    //   label: el,
+    //   value: el,
+    // });
+    setTags({ ...tags, currentArr });
+    console.log(currentTags);
   };
-
-  const defaultValuesArr = tags.currentTags.map((e) => e.id);
-  const optionsValuesArr = tags.suggestedTags.map((e) => (
-    { value: e.id }
-  ));
+  function tagRender(props) {
+    const {
+      label, closable, onClose
+    } = props;
+    return (
+      <Tag
+        key={label}
+        color={getColorByCountryName(label, tags.suggestedTags)}
+        closable={closable}
+        onClose={onClose}
+        style={{ marginRight: 3 }}
+      >
+        {label}
+      </Tag>
+    );
+  }
 
   return (
     <Select
@@ -29,10 +44,13 @@ const CountryFilter = ({
       style={{ width: '100%' }}
       showArrow
       placeholder="Add Country"
-      defaultValue={defaultValuesArr}
-      options={optionsValuesArr}
       onChange={handleChange}
-    />
+      tagRender={tagRender}
+    >
+      {tags.suggestedTags.map((item) => (
+        <Option value={item.label} key={item.id}>{item.label}</Option>
+      ))}
+    </Select>
   );
 };
 
