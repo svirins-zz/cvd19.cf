@@ -55,7 +55,7 @@ const DataPage = () => {
           });
         } else {
           setPeriodInfo({
-            length: 5,
+            length: PERIOD_LENGTH,
             value: val.toString(),
           });
         }

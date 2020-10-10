@@ -1,34 +1,30 @@
 import React from 'react';
 import { Select, Tag } from 'antd';
-import { Tags, TagT } from '../../types';
+import { Tags } from '../../types';
 import { getColorByCountryName } from '../../utilities/colorUtils';
 
 const { Option } = Select;
 
 const CountryFilter = ({
-  tags,
-  setTags,
+  selected,
+  setSelected,
+  countries,
 }: {
-  tags: Tags,
-  setTags: (tags: Tags) => void,
+  selected: string[],
+  setSelected: (tags: string[]) => void,
+  countries: Tags[]
 }) => {
   const handleChange = (currentArr: string[]) => {
-    // const currentTags: TagT[] = currentArr.map((el) => {
-    //   id: el,
-    //   label: el,
-    //   value: el,
-    // });
-    setTags({ ...tags, currentArr });
-    console.log(currentTags);
+    setSelected(currentArr);
   };
-  function tagRender(props) {
+  function tagRender(props: {label: string, closable: boolean, onClose: Function}) {
     const {
-      label, closable, onClose
+      label, closable, onClose,
     } = props;
     return (
       <Tag
         key={label}
-        color={getColorByCountryName(label, tags.suggestedTags)}
+        color={getColorByCountryName(label, countries)}
         closable={closable}
         onClose={onClose}
         style={{ marginRight: 3 }}
@@ -43,11 +39,12 @@ const CountryFilter = ({
       mode="multiple"
       style={{ width: '100%' }}
       showArrow
+      defaultValue={selected}
       placeholder="Add Country"
       onChange={handleChange}
       tagRender={tagRender}
     >
-      {tags.suggestedTags.map((item) => (
+      {countries.map((item) => (
         <Option value={item.label} key={item.id}>{item.label}</Option>
       ))}
     </Select>

@@ -81,15 +81,10 @@ export enum OutbreakStatus {
   Won = 'Won'
 }
 
-export interface TagT {
+export interface Tags {
   id: string | number;
   label: string;
   value: string;
-}
-
-export interface Tags {
-  currentTags: TagT[]
-  suggestedTags: TagT[]
 }
 
 export interface PeriodInfo {
@@ -117,9 +112,10 @@ export interface RenderedTable {
 
 export interface DataChartProps {
   countries: Country[]
+  countriesT: Tags[]
+  selectedCountries: string[]
   x: string
   y: string
-  tags: TagT[]
   startAtDeaths: boolean
   title: string
 }

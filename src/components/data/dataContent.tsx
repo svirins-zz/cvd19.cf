@@ -31,16 +31,9 @@ const DataContent = ({
     () => getChartInfo(selectedTable, periodInfo.length),
     [selectedTable, periodInfo],
   );
-  const possibleTags = React.useMemo(() => getTags(countries), [countries]);
-  const [tags, setTags] = useState<Tags>({
-    currentTags: [
-      // set default to 0
-      // { id: 'United States', label: 'United States', value: '#eb2f96' },
-      // { id: 'Brazil', label: 'Brazil', value: '#f5222d' },
-      // { id: 'India', label: 'India', value: '#fa8c16' },
-    ],
-    suggestedTags: possibleTags,
-  });
+  // refactor allcountries to aploo client state
+  const allCountries: Tags[] = React.useMemo(() => getTags(countries), [countries]);
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
   const [startAtDeaths, setStartAtDeaths] = useState(false);
   return (
     <PageLayout>
@@ -86,14 +79,19 @@ const DataContent = ({
       </Row>
       <Row gutter={[8, 16]}>
         <Col span={20} offset={2}>
-          <CountryFilter tags={tags} setTags={setTags} />
+          <CountryFilter
+            selected={selectedCountries}
+            setSelected={setSelectedCountries}
+            countries={allCountries}
+          />
         </Col>
       </Row>
       <AllDataChart
         countries={countries}
+        countriesT={allCountries}
+        selectedCountries={selectedCountries}
         x={chartInfo.x}
         y={chartInfo.y}
-        tags={tags.currentTags}
         startAtDeaths={startAtDeaths}
         title={chartInfo.title}
       />

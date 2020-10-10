@@ -4,15 +4,15 @@ import {
 } from 'victory';
 import { DataChartProps, Selected } from '../../types';
 import Theme from '../../styles/chartTheme';
+import { getColorByCountryName } from '../../utilities/colorUtils';
 
 const AllDataChart = ({
-  countries, x, y, tags, startAtDeaths, title,
+  countries, countriesT, selectedCountries, x, y, startAtDeaths, title,
 }: DataChartProps) => {
   const selected: Selected = {};
-  // TODO: consider colors below
-  tags.forEach(
+  selectedCountries.forEach(
     (tag) => {
-      selected[tag.value] = tag.value;
+      selected[tag] = getColorByCountryName(tag, countriesT);
     },
   );
   return (
