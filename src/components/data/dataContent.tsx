@@ -31,7 +31,7 @@ const DataContent = ({
     () => getChartInfo(selectedTable, periodInfo.length),
     [selectedTable, periodInfo],
   );
-  // TODO:refactor allCountries to aploo client state
+  // TODO:refactor allCountries useReducer
   const allCountries: Tags[] = React.useMemo(() => getTags(countries), [countries]);
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
   const [startAtDeaths, setStartAtDeaths] = useState(false);

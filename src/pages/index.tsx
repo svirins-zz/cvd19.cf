@@ -20,7 +20,8 @@ import { Countries, OutbreakStatus } from '../types';
 const { Title, Paragraph, Text } = Typography;
 // TODO: Refactor Victory=>antD charts!
 // TODO: Refactor pre-render Statistics calculations into separate module
-// TODO: check memoization for re-render
+// TODO: check memoization for re-render. Memoize everything!!
+// TODO refactor load countries data to custom react hook !
 const IndexPage = () => {
   const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
   const countries = useMemo(() => calculateData(data, PERIOD_LENGTH), [data]);

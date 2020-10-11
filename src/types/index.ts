@@ -152,8 +152,34 @@ export type ContextProps = {
   visible: boolean
   onClose: Function
   showDrawer: Function
-}
+};
 
 export interface AuxProps {
   children: ReactChild | ReactChildren;
 }
+
+export interface MapOptions {
+  width?: string
+  height?: string
+  zoom?: number
+  center?: [number, number]
+  classes?: string[]
+  padding?: number
+  sources?: {}
+  styles?: string[]
+  layers?: Layer[]
+  minZoom?: number
+  maxZoom?: number
+}
+
+export type PaintT = {
+  'fill-color': string
+  'fill-opacity': number
+};
+
+export type Layer = {
+  id?: string
+  source?: string
+  type?: string
+  paint?: PaintT
+};

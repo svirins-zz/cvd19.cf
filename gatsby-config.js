@@ -1,9 +1,15 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV || 'development'}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: 'Covid-19 stats and charts',
     description: 'In progress',
     author: '@svirins',
-    siteURL: 'http://localhost:8000/',
+    siteURL: 'https://cvd19.cf',
+    googleAnalyticsId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
+    mapboxToken: process.env.GATSBY_MAPBOX_API_TOKEN,
     menuLinks: [
       {
         name: 'main',
@@ -34,6 +40,7 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -91,11 +98,12 @@ module.exports = {
           include: /\.inline\.svg$/,
         },
       },
-    }, 
+    },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: 'UA-XXXXXXXXX-X',
+        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
+        anonymize: true,
       },
     },
   ],
