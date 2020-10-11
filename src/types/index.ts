@@ -1,4 +1,5 @@
 import { TableInstance } from 'react-table';
+import { ReactChildren, ReactChild } from 'react';
 
 export interface Countries {
   countries: Country[];
@@ -143,4 +144,16 @@ export interface ReducerD {
 export interface MissingCountries {
   longName: string
   shortName: string
+}
+
+export type ContextProps = {
+  choice: string
+  handleSelect: Function
+  visible: boolean
+  onClose: Function
+  showDrawer: Function
+}
+
+export interface AuxProps {
+  children: ReactChild | ReactChildren;
 }

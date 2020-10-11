@@ -3,6 +3,25 @@ module.exports = {
     title: 'Covid-19 stats and charts',
     description: 'In progress',
     author: '@svirins',
+    siteURL: 'http://localhost:8000/',
+    menuLinks: [
+      {
+        name: 'main',
+        link: '/',
+      },
+      {
+        name: 'data',
+        link: '/data',
+      },
+      {
+        name: 'map',
+        link: '/map',
+      },
+      {
+        name: 'about',
+        link: '/about',
+      },
+    ],
   },
   plugins: [
     'gatsby-plugin-react-helmet',
