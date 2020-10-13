@@ -1,5 +1,5 @@
 import { getCode } from 'country-list';
-import MISSING_COUNTRIES from '../const';
+import { MISSING_COUNTRIES } from '../const';
 
 const getMissingCode = (countryName: String) => {
   const element = MISSING_COUNTRIES.find((el) => el.longName === countryName);

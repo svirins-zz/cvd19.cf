@@ -15,7 +15,7 @@ import {
   PeriodInfo, Table, Country, Tags, ValT,
 } from '../../types';
 
-const { Title, Text } = Typography;
+const { Title, Text, Paragraph } = Typography;
 
 const DataContent = ({
   countries,
@@ -41,7 +41,8 @@ const DataContent = ({
       <Row gutter={[8, 16]}>
         <Col span={20} offset={2}>
           <Title level={3} style={{ marginBottom: '0px' }}>All Data</Title>
-          <Text className="largeText">Choose data type, period, countries:</Text>
+          <Paragraph>Choose data type, period, countries:</Paragraph>
+          <Divider className="divider" />
         </Col>
       </Row>
       <Row gutter={[8, 16]}>
@@ -96,8 +97,8 @@ const DataContent = ({
         title={chartInfo.title}
       />
       <Col span={20} offset={2}>
-        <Title level={3}>Some header</Title>
-        <Divider />
+        <Title level={3} style={{ marginBottom: '0px' }}>Some header</Title>
+        <Paragraph>Some descriptive sub-header</Paragraph>
         {selectedTable === 'growth' && <GrowthTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'newDeaths' && <NewDeathsTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'totalDeaths' && <TotalDeathsTable data={countries} periodLength={periodInfo.length} />}

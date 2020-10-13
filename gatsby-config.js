@@ -9,7 +9,6 @@ module.exports = {
     author: '@svirins',
     siteURL: 'https://cvd19.cf',
     googleAnalyticsId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
-    mapboxToken: process.env.GATSBY_MAPBOX_API_TOKEN,
     menuLinks: [
       {
         name: 'main',
@@ -40,7 +39,6 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -56,7 +54,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
-        uri: 'https://covid19-graphql.now.sh',
+        uri: process.env.GATSBY_APPLLO_GRAPHQL_ENDPOINT,
       },
     },
     {

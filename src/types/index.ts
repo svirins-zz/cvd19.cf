@@ -1,5 +1,6 @@
 import { TableInstance } from 'react-table';
 import { ReactChildren, ReactChild } from 'react';
+import { ApolloError } from '@apollo/client';
 
 export interface Countries {
   countries: Country[];
@@ -77,7 +78,7 @@ export enum OutbreakStatus {
   Small = 'Small Outbreak',
   Losing = 'Losing',
   Flattening = 'Flattening the Curve',
-  Crushing = 'Crushing the Curve',
+  Crushing = 'Crushing the Curvterme',
   Winning = 'Winning',
   Won = 'Won'
 }
@@ -182,4 +183,8 @@ export type Layer = {
   source?: string
   type?: string
   paint?: PaintT
+};
+
+export type ErrorProps = {
+  error?: ApolloError
 };

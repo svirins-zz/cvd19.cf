@@ -1,63 +1,61 @@
 import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { MapOptions } from '../../types';
 
-const MapBoxWrapper = ({
-  width = 'auto',
-  height = '100%',
-  zoom = 0,
-  center = [0, 0],
-  padding = 0.1,
-  sources = {},
-  styles = ['light-v9', 'dark-v9', 'streets-v11'],
-  layers = [],
-  minZoom = 0,
-  maxZoom = 24,
-}: MapOptions) => {
-  const mapboxToken: string = process.env.GATSBY_MAPBOX_API_TOKEN || '';
-
-  if (!mapboxToken) {
-    console.error(
-      'ERROR: Mapbox token is required in gatsby-config.js siteMetadata',
-    );
-  }
-  // this ref holds the map DOM node so that we can pass it into Mapbox GL
-  const mapNode = useRef();
-
-  // this ref holds the map object once we have instantiated it, so that we
-  // can use it in other hooks
-  const mapRef = useRef();
-
-  // construct the map within an effect that has no dependencies
-  // this allows us to construct it only once at the time the
-  // component is constructed.
+const MapBoxWrapper = (countries) => {
+  const mapboxToken = process.env.GATSBY_MAPBOX_API_TOKEN || '';
+  const mapNode = useRef(null);
+  const mapRef = useRef(null);
+  const sources = {
+    oregon: {
+      type: 'geojson',
+      data: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [-124.03564453125, 46.195042108660154],
+            [-124.5849609375, 42.89206418807337],
+            [-124.365234375, 42.049292638686836],
+            [-117.00439453125, 42.049292638686836],
+            [-116.96044921875, 45.99696161820381],
+            [-118.98193359375, 46.027481852486645],
+            [-121.201171875, 45.66012730272194],
+            [-122.32177734375, 45.61403741135093],
+            [-122.76123046875, 45.644768217751924],
+            [-122.98095703125, 46.195042108660154],
+            [-123.6181640625, 46.240651955001695],
+            [-124.03564453125, 46.195042108660154],
+          ],
+        ],
+      },
+    },
+  };
+  const layers = [
+    {
+      id: '1',
+      source: 'oregon',
+      type: 'fill',
+      paint: {
+        'fill-color': 'red',
+        'fill-opacity': 0.5,
+      },
+    },
+  ];
   useEffect(() => {
-    const mapCenter: [number, number] = center;
-    const mapZoom: number = zoom;
-
-    // Token must be set before constructing map
     mapboxgl.accessToken = mapboxToken;
-
     const map = new mapboxgl.Map({
-      width,
-      height,
-      layers,
-      styles,
-      container: mapNode.current,
-      style: `mapbox://styles/mapbox/${styles[0]}`,
-      center: mapCenter,
-      zoom: mapZoom,
-      minZoom,
-      maxZoom,
+      container: mapNode.current || '',
+      style: process.env.GATSBY_MAPBOX_STYLE,
+      center: [-77.04, 38.907],
+      zoom: 1,
+      minZoom: 1,
+      maxZoom: 15,
     });
     mapRef.current = map;
-    window.map = map; // for easier debugging and querying via console
 
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
     map.on('load', () => {
-      // add loading indicator
+      console.log('map onload');
       // add sources
       Object.entries(sources).forEach(([id, source]) => {
         map.addSource(id, source);
@@ -72,7 +70,6 @@ const MapBoxWrapper = ({
     // hook up map events here, such as click, mouseenter, mouseleave
     // e.g., map.on('click', (e) => {})
 
-    // when this component is destroyed, remove the map
     return () => {
       map.remove();
     };
@@ -83,7 +80,7 @@ const MapBoxWrapper = ({
   // refs to share objects or state between hooks.
 
   return (
-    <div ref={mapNode} style={{ width: '100%', height: '100%' }} />
+    <div ref={mapNode} className="mapStyle" />
   );
 };
 

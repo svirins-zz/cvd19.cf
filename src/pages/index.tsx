@@ -1,23 +1,25 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import {
-  Typography, Spin, Row, Col,
+  Typography, Row, Col, Divider,
 } from 'antd';
 import PageLayout from '../components/layout/pageLayout';
+import Loading from '../components/layout/loading';
+import Error from '../components/layout/error';
 import SEO from '../components/layout/seo';
 import { GrowthSummaryTable } from '../components/tables/prepareTables';
 import { getStatusInfo } from '../components/data/legend';
-import SummaryChart from '../components/charts/summaryChart';
-import { calculateData } from '../utilities/calcAllData';
 import { PERIOD_LENGTH } from '../const';
 import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from '../utilities/calcGlobal';
+import { calculateData } from '../utilities/calcAllData';
 import COUNTRY_QUERY from '../queries';
 import PandemicFreeChart from '../components/charts/pandemicFreeChart';
 import UnderControlChart from '../components/charts/underControlChart';
+import SummaryChart from '../components/charts/summaryChart';
 import TotalSummary from '../components/data/totalSummary';
 import { Countries, OutbreakStatus } from '../types';
 
-const { Title, Paragraph, Text } = Typography;
+const { Title, Paragraph } = Typography;
 // TODO: Refactor Victory=>antD charts!
 // TODO: Refactor pre-render Statistics calculations into separate module
 // TODO: check memoization for re-render. Memoize everything!!
@@ -38,29 +40,9 @@ const IndexPage = () => {
       || country.periods[0].status === OutbreakStatus.Won,
   );
 
-  if (loading) {
-    return (
-      <PageLayout>
-        <SEO title="Status" />
-        <Paragraph className="centered" style={{ height: '100vh', paddingTop: '15%' }}>
-          <div style={{ verticalAlign: 'middle' }}>
-            {' '}
-            <Spin size="large" />
-            {' '}
-            <Title level={5}>Loading</Title>
-          </div>
-        </Paragraph>
-      </PageLayout>
-    );
-  }
-  if (error) {
-    return (
-      <PageLayout>
-        <SEO title="Status" />
-        <Paragraph className="centered">{error.message}</Paragraph>
-      </PageLayout>
-    );
-  }
+  if (loading) { return <Loading />; }
+  if (error) { return <Error error={error} />; }
+
   const globalTotalData = calculateTotalGlobal(data);
   return (
     <PageLayout>
@@ -68,8 +50,9 @@ const IndexPage = () => {
       <Row gutter={[8, 16]}>
         <Col offset={2} span={20}>
           <Title level={3} style={{ marginBottom: '0px' }}>Covid-19 pandemic data</Title>
-          <Text className="largeText">Daily data update occurs between 04:45 and 05:15 GM</Text>
-          <Paragraph className="largeText">
+          <Paragraph>Daily data update occurs between 04:45 and 05:15 GM</Paragraph>
+          <Divider className="divider" />
+          <Paragraph>
             Current status: In the last 5 days we&apos;ve
             {globalData[0].periods[0].status === OutbreakStatus.Won
               ? ' '
@@ -86,10 +69,10 @@ const IndexPage = () => {
       <SummaryChart data={globalSummarySinceTwoMonths} title="In how many places are winning?" />
       <UnderControlChart data={globalSummaryData} title="How many places have the pandemic under control?" />
       <PandemicFreeChart data={globalSummaryData} title="How much of the world is pandemic free?" />
-      <Row gutter={[8, 16]} style={{ paddingBottom: '1.5em' }}>
+      <Row gutter={[8, 16]}>
         <Col span={20} offset={2}>
           <Title level={3} style={{ marginBottom: '0px' }}>New death cases by countries</Title>
-          <Text className="largeText">Lessening / Growing</Text>
+          <Paragraph>Lessening / Growing</Paragraph>
         </Col>
       </Row>
       <Row>

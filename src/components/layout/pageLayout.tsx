@@ -21,6 +21,7 @@ const { Content, Sider, Footer } = Layout;
 
 const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
   const { pathname } = useLocation();
+  const marginClassName: string = pathname === '/map' ? 'conentWithoutMargin' : 'conentWithMargin';
   const defaultItem = menuInit(pathname);
   return (
     <myContext.Consumer>
@@ -85,9 +86,9 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
             </Menu>
           </Sider>
           <BackTop />
-          <Layout className="site-layout">
+          <Layout className={marginClassName}>
             <Content>
-              <div className="site-layout-background" style={{ padding: 24 }}>
+              <div className={marginClassName}>
                 {children}
               </div>
             </Content>

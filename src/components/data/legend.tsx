@@ -228,7 +228,8 @@ export const LegendTable = () => {
         by default, though you can set your own period length when exploring the data.
       </Paragraph>
       <Paragraph>
-        The Won status above only looks at deaths, and should therefore be a slight
+        The Won status above only looimport { calculateData } from '../utilities/calcAllData';
+ks at deaths, and should therefore be a slight
         leading indicator compared to the Pandemic Free status in the chart below,
         which requires both no deaths and no cases.
         Pandemic Free should also decrease in the begging as outbreaks start,
