@@ -13,10 +13,20 @@ export interface Country {
   periodsWithDeaths: Period[]
 }
 
+export interface CountryExt {
+  name: string
+  code: string
+  flag: string
+  confirmed: number
+  deaths: number
+  recovered: number
+}
+
 export interface Result {
   date?: string
   deaths?: number
   confirmed?: number
+  recovered?: number
 }
 
 export interface Counts {
@@ -130,10 +140,10 @@ export type ValT =
 | number | string | undefined;
 
 export interface GlobalData {
-  totalGlobalCases: number
-  totalGlobalDeaths: number
-  totalGlobalRecovered: number
-  countriesTotal: number
+  totalGlobalCases?: number
+  totalGlobalDeaths?: number
+  totalGlobalRecovered?: number
+  countriesTotal?: number
 }
 
 export interface ReducerD {
@@ -158,33 +168,27 @@ export type ContextProps = {
 export interface AuxProps {
   children: ReactChild | ReactChildren;
 }
-
-export interface MapOptions {
-  width?: string
-  height?: string
-  zoom?: number
-  center?: [number, number]
-  classes?: string[]
-  padding?: number
-  sources?: {}
-  styles?: string[]
-  layers?: Layer[]
-  minZoom?: number
-  maxZoom?: number
-}
-
-export type PaintT = {
-  'fill-color': string
-  'fill-opacity': number
-};
-
-export type Layer = {
-  id?: string
-  source?: string
-  type?: string
-  paint?: PaintT
-};
-
 export type ErrorProps = {
   error?: ApolloError
 };
+
+export interface Geometry {
+  type: 'Point'
+  coordinates: [number, number]
+}
+
+export type Feature ={
+  properties: CountryExt
+  geometry: Geometry
+};
+
+export interface FeatureCollection {
+  type: 'FeatureCollection'
+  features: Feature[]
+}
+
+export interface CodeFlagGeo {
+  code: string
+  flag: string
+  geometry: Geometry
+}

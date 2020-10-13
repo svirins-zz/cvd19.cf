@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { FeatureCollection } from '../../types';
 
-const MapBoxWrapper = (countries) => {
+const MapBoxWrapper = (mapdata: FeatureCollection) => {
   const mapboxToken = process.env.GATSBY_MAPBOX_API_TOKEN || '';
   const mapNode = useRef(null);
   const mapRef = useRef(null);
