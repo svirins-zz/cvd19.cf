@@ -8,7 +8,7 @@ import { calculateData } from '../utilities/calcAllData';
 import { sumPeriodData } from '../utilities/calcGlobal';
 import DataContent from '../components/data/dataContent';
 import COUNTRY_QUERY from '../queries';
-
+// TODO: Change API - missing countries appear !!!
 const DataPage = () => {
   const [periodInfo, setPeriodInfo] = useState<PeriodInfo>({
     length: PERIOD_LENGTH,

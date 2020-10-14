@@ -11,7 +11,9 @@ const getMissingCode = (countryName: String): string => {
 const getCoords = (code: string): [number, number] => {
   if (code === 'VESSEL') { return [25, 25] }
   const element = ALL_COUNTRIES_DATA.find((e) => e.["country_code"] === code);
-  return [ Number(element.latlng[0]), Number(element.latlng[1]) ]
+  console.log(element.latlng)
+  // return [ Number(element.latlng[0]), Number(element.latlng[1]) ]
+  return [1,1]
 };
 
 const getCountryExtData = (countryName: string): CodeFlagGeo => {
