@@ -178,6 +178,7 @@ export interface Geometry {
 }
 
 export type Feature ={
+  type: 'Feature'
   properties: CountryExt
   geometry: Geometry
 };
@@ -191,4 +192,9 @@ export interface CodeFlagGeo {
   code: string
   flag: string
   geometry: Geometry
+}
+
+export interface GeoJSON {
+  type: 'geojson',
+  data: FeatureCollection
 }

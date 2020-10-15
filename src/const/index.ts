@@ -29,7 +29,7 @@ export const MISSING_COUNTRIES: MissingCountries[] = [
   { longName: 'Tanzania', shortName: 'TZ' },
   { longName: 'Venezuela', shortName: 'VE' },
   { longName: 'Vietnam', shortName: 'VN' },
-  { longName: 'United Kingdom', shortName: 'UK' },
+  { longName: 'United Kingdom', shortName: 'GB' },
   { longName: 'US', shortName: 'US' },
   { longName: 'United States', shortName: 'US' },
   { longName: 'West Bank and Gaza', shortName: 'PS' },

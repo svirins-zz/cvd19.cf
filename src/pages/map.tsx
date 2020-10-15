@@ -12,7 +12,7 @@ import getMapData from '../utilities/getMapData';
 const Map = () => {
   const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
   const mapData: FeatureCollection = useMemo(() => getMapData(data), [data]);
-
+  console.log(mapData)
   if (loading) { return <Loading />; }
   if (error) { return <Error error={error} />; }
 

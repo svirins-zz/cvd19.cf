@@ -1,5 +1,5 @@
 import {
-  Countries, CountryExt, FeatureCollection, Feature,
+  Countries, CountryExt, Feature, FeatureCollection,
 } from '../types';
 import getCountryExtData from './countryUtils';
 
@@ -18,7 +18,11 @@ const getMapData = (data: Countries | undefined): FeatureCollection => {
       deaths,
       recovered,
     };
-    features.push({ properties, geometry });
+    features.push({
+      type: 'Feature',
+      properties,
+      geometry,
+    });
   });
   return {
     type: 'FeatureCollection',
