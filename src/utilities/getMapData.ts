@@ -27,6 +27,7 @@ const getMapData = (data: Countries | undefined): FeatureCollection => {
   return {
     type: 'FeatureCollection',
     features,
+
   };
 };
 

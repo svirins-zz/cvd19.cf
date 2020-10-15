@@ -194,7 +194,7 @@ export interface CodeFlagGeo {
   geometry: Geometry
 }
 
-export interface GeoJSON {
-  type: 'geojson',
-  data: FeatureCollection
-}
+// export interface GeoJSON {
+//   type: 'geojson',
+//   data: FeatureCollection
+// }
