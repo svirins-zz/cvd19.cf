@@ -88,7 +88,7 @@ export enum OutbreakStatus {
   Small = 'Small Outbreak',
   Losing = 'Losing',
   Flattening = 'Flattening the Curve',
-  Crushing = 'Crushing the Curvterme',
+  Crushing = 'Crushing the Curve',
   Winning = 'Winning',
   Won = 'Won'
 }
@@ -194,7 +194,3 @@ export interface CodeFlagGeo {
   geometry: Geometry
 }
 
-// export interface GeoJSON {
-//   type: 'geojson',
-//   data: FeatureCollection
-// }

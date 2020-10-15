@@ -1,4 +1,4 @@
-import { OutbreakStatus, TagT } from '../types';
+import { OutbreakStatus, Tags } from '../types';
 import { COLORS } from '../const';
 
 export const calcTagstyle = (rate: OutbreakStatus): string => {
@@ -22,4 +22,6 @@ export const getColor = (index: number): string => {
 };
 
 // TODO:move to apollo client cache!
-export const getColorByCountryName = (countryName: string, countriesArray: TagT[]): string => countriesArray.find((e) => e.label === countryName).value;
+export const getColorByCountryName = (countryName: string, countriesArray: Tags[]): string => (
+  countriesArray.find((e) => e.label === countryName).value
+);

@@ -20,6 +20,7 @@ const AboutPage = () => (
           This site aims to provide a simple tool to track global progress in defeating Covid-19,
           by focusing on the rate of change in death count globally.
           Daily data update occurs between 04:45 and 05:15 GMT.
+          Stay home and be safe!
         </Paragraph>
         <Paragraph>
           Summary: the pandemic is serious; we won&apos;t have an economy

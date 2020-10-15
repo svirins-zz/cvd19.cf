@@ -35,6 +35,19 @@ export const MISSING_COUNTRIES: MissingCountries[] = [
   { longName: 'West Bank and Gaza', shortName: 'PS' },
 ];
 
+export const MAP_SERVICES_DEFAULT = {
+  name: 'OpenStreetMap',
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+};
+
+export const MAP_SERVICES = {
+  name: 'MapboxTilesMap',
+  url: process.env.GATSBY_MAPBOX_STATIC_TILES_ENDPOINT,
+  attribution: `Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a>,
+                Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>`,
+};
+
 export const COLORS: string[] = [
   '#eb2f96',
   '#f5222d',

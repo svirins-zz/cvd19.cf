@@ -38,6 +38,7 @@ module.exports = {
       },
     },
     'gatsby-transformer-sharp',
+    'gatsby-plugin-react-leaflet',
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-manifest',
