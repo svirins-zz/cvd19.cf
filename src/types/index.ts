@@ -194,3 +194,23 @@ export interface CodeFlagGeo {
   geometry: Geometry
 }
 
+export interface Props {
+  description?: string
+  lang?: string
+  meta?: {
+    name?: string | undefined
+    content: string
+    property?: string | undefined
+  }[]
+  title: string
+}
+
+export interface SiteQuery {
+  site: {
+    siteMetadata: {
+      title: string
+      description: string
+      author: string
+    }
+  }
+}

@@ -12,6 +12,13 @@
       "dom",
       "esnext",
     ],
+    "baseUrl": "./src",
+    "paths": {
+      "*": [
+        "types/*",
+        "*"
+      ]
+    },
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,

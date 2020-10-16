@@ -1,6 +1,6 @@
 import {
   Counts, Periods, Period, Countries, Country, OutbreakStatus,
-} from '../types';
+} from 'types';
 import {
   periodStatus, getPeriodName, getPeriodCount, getDaysAgo, validatePeriodLength,
 } from './periodUtils';

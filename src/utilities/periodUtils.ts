@@ -1,5 +1,5 @@
-import { OutbreakStatus } from '../types';
-import { EPIDEMIC_START } from '../const';
+import { OutbreakStatus } from 'types';
+import { EPIDEMIC_START } from 'const';
 
 export const validatePeriodLength = (periodLength: number) => {
   if (periodLength === 0) {

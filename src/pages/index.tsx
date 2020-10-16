@@ -3,21 +3,21 @@ import { useQuery } from '@apollo/client';
 import {
   Typography, Row, Col, Divider,
 } from 'antd';
-import PageLayout from '../components/layout/pageLayout';
-import Loading from '../components/layout/loading';
-import Error from '../components/layout/error';
-import SEO from '../components/layout/seo';
-import { GrowthSummaryTable } from '../components/tables/prepareTables';
-import { getStatusInfo } from '../components/data/legend';
-import { PERIOD_LENGTH } from '../const';
-import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from '../utilities/calcGlobal';
-import { calculateData } from '../utilities/calcAllData';
-import COUNTRY_QUERY from '../queries';
-import PandemicFreeChart from '../components/charts/pandemicFreeChart';
-import UnderControlChart from '../components/charts/underControlChart';
-import SummaryChart from '../components/charts/summaryChart';
-import TotalSummary from '../components/data/totalSummary';
-import { Countries, OutbreakStatus } from '../types';
+import PageLayout from 'components/layout/pageLayout';
+import Loading from 'components/layout/loading';
+import Error from 'components/layout/error';
+import SEO from 'components/layout/seo';
+import { GrowthSummaryTable } from 'components/tables/prepareTables';
+import { getStatusInfo } from 'components/data/legend';
+import { PERIOD_LENGTH } from 'const';
+import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from 'utilities/calcGlobal';
+import { calculateData } from 'utilities/calcAllData';
+import COUNTRY_QUERY from 'queries';
+import PandemicFreeChart from 'components/charts/pandemicFreeChart';
+import UnderControlChart from 'components/charts/underControlChart';
+import SummaryChart from 'components/charts/summaryChart';
+import TotalSummary from 'components/data/totalSummary';
+import { Countries, OutbreakStatus } from 'types';
 
 const { Title, Paragraph } = Typography;
 // TODO: Refactor Victory=>antD charts!

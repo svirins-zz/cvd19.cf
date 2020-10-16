@@ -1,5 +1,5 @@
-import { OutbreakStatus, Tags } from '../types';
-import { COLORS } from '../const';
+import { OutbreakStatus, Tags } from 'types';
+import { COLORS } from 'const';
 
 export const calcTagstyle = (rate: OutbreakStatus): string => {
   let color = 'none';

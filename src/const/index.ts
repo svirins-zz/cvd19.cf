@@ -4,6 +4,11 @@ export const EPIDEMIC_START: string = '2020/01/07';
 
 export const PERIOD_LENGTH: number = 5;
 
+export const ATTRIBUTION_STRING = `Map data &copy; <a href=&quot;
+  https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors,
+  <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>,
+  Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>`;
+
 export const MISSING_COUNTRIES: MissingCountries[] = [
   { longName: 'Bolivia', shortName: 'BO' },
   { longName: 'Brunei', shortName: 'BN' },

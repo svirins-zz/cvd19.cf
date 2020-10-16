@@ -1,6 +1,6 @@
 import {
   Countries, CountryExt, Feature, FeatureCollection,
-} from '../types';
+} from 'types';
 import getCountryExtData from './countryUtils';
 
 const getMapData = (data: Countries | undefined): FeatureCollection => {

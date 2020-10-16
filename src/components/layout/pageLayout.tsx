@@ -4,7 +4,7 @@ import {
 } from 'antd';
 import { Link } from 'gatsby';
 import { useLocation } from '@reach/router';
-import '../../styles/app.css';
+import 'styles/app.css';
 import {
   GlobalOutlined,
   BarChartOutlined,
@@ -12,9 +12,9 @@ import {
   EnvironmentOutlined,
   GithubOutlined,
 } from '@ant-design/icons';
-import menuInit from '../../utilities/menuInitUtils';
-import logo from '../../assets/coronavirus.png';
-import { myContext } from '../../context';
+import menuInit from 'utilities/menuInitUtils';
+import logo from 'assets/coronavirus.png';
+import { myContext } from 'context';
 import { LegendTable } from '../data/legend';
 
 const { Content, Sider, Footer } = Layout;

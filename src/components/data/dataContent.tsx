@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import {
   Typography, Divider, Col, Row, Radio, Checkbox, InputNumber,
 } from 'antd';
+import {
+  PeriodInfo, Table, Country, Tags, ValT,
+} from 'types';
+import getTags from 'utilities/tagUtils';
+import getChartInfo from 'utilities/getChartInfo';
+import AllDataChart from '../charts/allDataChart';
+
 import PageLayout from '../layout/pageLayout';
 import SEO from '../layout/seo';
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
 } from '../tables/prepareTables';
-import AllDataChart from '../charts/allDataChart';
 import CountryFilter from './countryFilter';
-import getTags from '../../utilities/tagUtils';
-import getChartInfo from '../../utilities/getChartInfo';
-import {
-  PeriodInfo, Table, Country, Tags, ValT,
-} from '../../types';
 
 const { Title, Text, Paragraph } = Typography;
 

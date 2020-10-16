@@ -1,27 +1,7 @@
 import React, { MetaHTMLAttributes } from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-
-interface Props {
-  description?: string
-  lang?: string
-  meta?: {
-    name?: string | undefined
-    content: string
-    property?: string | undefined
-  }[]
-  title: string
-}
-
-interface SiteQuery {
-  site: {
-    siteMetadata: {
-      title: string
-      description: string
-      author: string
-    }
-  }
-}
+import { Props, SiteQuery } from 'types';
 
 const SEO = ({
   description = '', lang = 'en', meta = [], title,
