@@ -17,6 +17,7 @@ export interface CountryExt {
   name: string
   code: string
   flag: string
+  bounds?: Bounds
   confirmed: number
   deaths: number
   recovered: number
@@ -174,7 +175,7 @@ export type ErrorProps = {
 
 export interface Geometry {
   type: 'Point'
-  coordinates: [number, number]
+  coordinates: CoordTuple
 }
 
 export type Feature ={
@@ -214,3 +215,7 @@ export interface SiteQuery {
     }
   }
 }
+
+export type CoordTuple = [number, number];
+
+export type Bounds = [CoordTuple, CoordTuple];

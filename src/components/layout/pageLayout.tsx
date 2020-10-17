@@ -12,7 +12,7 @@ import {
   EnvironmentOutlined,
   GithubOutlined,
 } from '@ant-design/icons';
-import menuInit from 'utilities/menuInitUtils';
+import menuInit from 'lib/menuInitUtils';
 import logo from 'assets/coronavirus.png';
 import { myContext } from 'context';
 import { LegendTable } from '../data/legend';

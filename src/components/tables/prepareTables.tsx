@@ -3,7 +3,7 @@ import {
   useTable, Column,
 } from 'react-table';
 import { Period, Country } from 'types';
-import { getPeriodNames } from 'utilities/periodUtils';
+import { getPeriodNames } from 'lib/periodUtils';
 import {
   ATable3Col,
   ATable5ColGrowth,

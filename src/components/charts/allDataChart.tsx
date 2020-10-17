@@ -4,7 +4,7 @@ import {
 } from 'victory';
 import { DataChartProps, Selected } from '../../types';
 import Theme from '../../styles/chartTheme';
-import { getColorByCountryName } from '../../utilities/colorUtils';
+import { getColorByCountryName } from '../../lib/colorUtils';
 
 const AllDataChart = ({
   countries, countriesT, selectedCountries, x, y, startAtDeaths, title,

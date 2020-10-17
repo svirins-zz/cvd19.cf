@@ -5,8 +5,8 @@ import {
 import {
   PeriodInfo, Table, Country, Tags, ValT,
 } from 'types';
-import getTags from 'utilities/tagUtils';
-import getChartInfo from 'utilities/getChartInfo';
+import getTags from 'lib/tagUtils';
+import getChartInfo from 'lib/getChartInfo';
 import AllDataChart from '../charts/allDataChart';
 
 import PageLayout from '../layout/pageLayout';

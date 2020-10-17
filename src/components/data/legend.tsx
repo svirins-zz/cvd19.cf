@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Table, Tag } from 'antd';
 import { OutbreakStatus } from '../../types';
-import { calcTagstyle } from '../../utilities/colorUtils';
+import { calcTagstyle } from '../../lib/colorUtils';
 
 const { Text, Paragraph } = Typography;
 

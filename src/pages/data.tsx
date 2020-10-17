@@ -4,8 +4,8 @@ import Loading from 'components/layout/loading';
 import Error from 'components/layout/error';
 import { PERIOD_LENGTH } from 'const';
 import { Countries, PeriodInfo } from 'types';
-import { calculateData } from 'utilities/calcAllData';
-import { sumPeriodData } from 'utilities/calcGlobal';
+import { calculateData } from 'lib/calcAllData';
+import { sumPeriodData } from 'lib/calcGlobal';
 import DataContent from 'components/data/dataContent';
 import COUNTRY_QUERY from 'queries';
 // TODO: Change API - missing countries appear !!!
