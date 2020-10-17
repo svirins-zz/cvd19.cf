@@ -1,31 +1,23 @@
 .centered {
   text-align: center;
 }
-
 .bigIcon {
   font-size: '18px'; color: 'WHITE'; vertical-align: 'middle'
 }
-
-
 .site-statistic-demo-card .ant-statistic-title {
   font-size: 1.3em;
   font-weight: 500;
   color: #120338;
 }
-
-
 .greyBgr {
   background-color: #f0f2f5;
 } 
-
 .site-layout .site-layout-background {
   background: #fff;
 }
-
 .logoImg {
   padding: 12px 16px;
 }
-
 .logoText {
   font-weight: 600;
   text-transform: uppercase;
@@ -33,7 +25,6 @@
   font-size: 11px;
   line-height: 22px;
 }
-
 .alignBottom {
   position: fixed;
   text-align: center;
@@ -41,37 +32,29 @@
   bottom: 0;
   height: 42px;
 }
-
 .tinyButton {
   font-size: 12px;
   background: none;
   color: white
 }
-
 .bottomSiderIcon a{
   padding: 28px;
-
 }
-
 .credentials {
   color: #000000;
   font-size: 12px;
   text-align: center;
 }
-
 .credentialsLink {
   color: #c242e2;
 }
-
 .credentialsLink:hover {
   color: #7eb0d6;
 }
-
 .largeText {
   font-size: 1.1em;
   font-weight: 500;
 }
-
 .statNone {
   color: lightgray;
   font-weight: 600;
@@ -89,12 +72,12 @@
 }
 .statFlattening {
   color: lightsalmon;
-  font-weight: 600;.site-layout-content {
-    background: #fff;
-    min-height: 480px;
-  }
-  
+  font-weight: 600; 
   text-decoration: underline;
+}
+.site-layout-content {
+  background: #fff;
+  min-height: 480px;
 }
 .statCrushing {
   color: lightskyblue;
@@ -111,15 +94,12 @@
   font-weight: 600;
   text-decoration: underline;
 }
-
 .vesselSize {
   width: 1em;
 }
-
 .redB {
   background-color: 'red';
 }
-
 .leaflet-container {
   width:100%;
   height: 92vh;
@@ -138,4 +118,74 @@
 
 .divider {
   border-top: 2px;
+}
+
+.icon-marker {
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	width: 3.6em;
+	height: 3.6em;
+	font-size: .7em;
+	font-weight: bold;
+	background-color: red;
+	border-radius: 100%;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+}
+
+.icon-marker:hover .icon-marker-tooltip {
+	display: block;
+}
+
+.icon-marker-tooltip {
+	display: none;
+	position: absolute;
+	bottom: 100%;
+	width: 16em;
+	font-size: 1.4em;
+	padding: 1em;
+	background-color: grey;
+	border-radius: .4em;
+	margin-bottom: 1em;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.9);
+}
+
+.icon-marker-tooltip:before {
+	display: block;
+	position: absolute;
+	bottom: -.6em;
+	left: 50%;
+	content: '';
+	width: 1.4em;
+	height: 1.4em;
+	background-color: #fcfcfc;
+	transform: rotate(45deg);
+	margin-left: -.7em;
+}
+
+.icon-marker-tooltip h2 {
+	font-size: 1.5em;
+	line-height: 1.2;
+	margin-bottom: .1em;
+	margin-top: 0;
+}
+
+.icon-marker-tooltip h3 {
+	font-size: 1.2em;
+	margin: .1em 0;
+	font-weight: normal;
+	color: #f1f1f0;
+}
+
+.icon-marker-tooltip ul,
+  .icon-marker-tooltip p {
+	font-weight: normal;
+}
+
+.icon-marker-tooltip ul {
+	list-style: none;
+	padding: 0;
+	margin: .6em 0 0;
 }

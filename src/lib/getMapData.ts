@@ -26,6 +26,7 @@ const getMapData = (data: Countries | undefined) => {
       geometry,
     });
   });
+  console.log(features);
   return {
     type: 'FeatureCollection',
     features,

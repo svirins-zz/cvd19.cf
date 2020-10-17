@@ -127,7 +127,6 @@ export function trackerFeatureToHtmlMarker({ properties = {} } = {}) {
 }
 
 export function geoJsonToMarkers(geoJson, options) {
-  console.log(options)
   return new L.GeoJSON(geoJson, {
     pointToLayer: pointToLayerMarkerCreator(options),
   });

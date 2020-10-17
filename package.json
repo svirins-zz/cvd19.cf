@@ -30,6 +30,7 @@
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
     "pretty-quick": "^3.1.0",
+    "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-ga": "^3.2.0",

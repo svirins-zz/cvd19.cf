@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import L from 'leaflet';
@@ -41,7 +42,7 @@ const Map = () => {
     }
   }
   // mapeffect
-  async function mapEffect({ leafletElement: map } = {}) {
+  const mapEffect = ({ leafletElement: map } = {}) => {
     if (!map) return;
     const locationsGeoJson = getMapData(data);
     const locationsGeoJsonLayers = geoJsonToMarkers(locationsGeoJson, {
@@ -52,10 +53,12 @@ const Map = () => {
     locationsGeoJsonLayers.addTo(map);
     map.fitBounds(bounds);
   };
+  const mapProps = { mapEffect };
+ 
   return (
     <PageLayout>
       <SEO title="World Map" />
-      <MapWrapper dataF={mapEffect} />
+      <MapWrapper {...mapProps} />
     </PageLayout>
   );
 };
