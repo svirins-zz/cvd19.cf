@@ -4,6 +4,7 @@ import {
 import getCountryExtData from './countryUtils';
 
 const getMapData = (data: Countries | undefined) => {
+  // TODO: consider add fetching population data
   const features: Feature[] = [];
   data?.countries.forEach((e) => {
     // prepare data
@@ -26,7 +27,6 @@ const getMapData = (data: Countries | undefined) => {
       geometry,
     });
   });
-  console.log(features);
   return {
     type: 'FeatureCollection',
     features,

@@ -122,15 +122,12 @@
 
 .icon-marker {
 	display: flex;
-	position: relative;
+  position: relative;
 	justify-content: center;
 	align-items: center;
 	color: white;
-	width: 3.6em;
-	height: 3.6em;
-	font-size: .7em;
+	font-size: 1em;
 	font-weight: bold;
-	background-color: red;
 	border-radius: 100%;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
 }
@@ -188,4 +185,30 @@
 	list-style: none;
 	padding: 0;
 	margin: .6em 0 0;
+}
+
+.icon-marker-small {
+  width: 2.2em;
+  height: 2.2em;
+  background-color: #ff4d4f;
+}
+.icon-marker-normal {
+  width: 3.0em;
+  height: 3.0em;
+  background-color: #f5222d ;
+}
+.icon-marker-large {
+  width: 3.8em;
+  height: 3.8em;
+  background-color: #cf1322;
+}
+.icon-marker-extra-large {
+  width: 4.6em;
+  height: 4.6em;
+  background-color:#a8071a;
+}
+.icon-marker-super-large {
+  width: 5.4em;
+  height: 5.4em;
+  background-color: #820014;
 }

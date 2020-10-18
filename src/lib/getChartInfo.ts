@@ -40,3 +40,4 @@ const getChartInfo = (selectedTable: string, period: number): ChartInfo => {
 };
 
 export default getChartInfo;
+

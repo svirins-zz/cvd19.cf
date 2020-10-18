@@ -18,7 +18,7 @@ const getCoords = (code: string): CoordTuple => {
 
 const getCountryExtData = (countryName: string): CodeFlagGeo => {
   const code = !getCode(countryName) ? getMissingCode(countryName) : getCode(countryName);
-  const flag = code === 'VESSEL' ? vessel : `https://www.countryflags.io/${code?.toLowerCase()}/flat/32.png`;
+  const flag = code === 'VESSEL' ? vessel : `https://www.countryflags.io/${code?.toLowerCase()}/flat/64.png`;
   const geometry: Geometry = {
     type: 'Point',
     coordinates: getCoords(code),

@@ -1,8 +1,18 @@
 import L from 'leaflet';
+import commafy from './conversionUtils';
+
+const getClassByCases = (totalCases: number) => {
+  if (totalCases < 99) { return 'icon-marker-small'; }
+  if (totalCases < 9999 && totalCases > 99) { return 'icon-marker-normal'; }
+  if (totalCases < 99999 && totalCases > 9999) { return 'icon-marker-large'; }
+  if (totalCases < 999999 && totalCases > 99999) { return 'icon-marker-extra-large'; }
+  if (totalCases > 999999) { return 'icon-marker-super-large'; }
+};
 
 export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
   return function (feature = {}, latlng) {
     let html = '<span class="icon-marker"></span>';
+    console.log(html);
 
     if (typeof featureToHtml === 'function') {
       html = featureToHtml(feature);
@@ -29,7 +39,6 @@ export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
     }).on('click', onMarkerClick);
   };
 }
-
 export function promiseToFlyTo(map, { zoom, center }) {
   return new Promise((resolve, reject) => {
     const baseError = 'Failed to fly to area';
@@ -56,11 +65,8 @@ export function trackerFeatureToHtmlMarker({ properties = {} } = {}) {
     name, flag, confirmed, deaths, recovered,
   } = properties;
   let header = name;
-
-  if (flag) {
-    header = `<img src="${flag}" name="flag"> ${header}`;
-  }
-
+  header = `<img src="${flag}" name="flag"><div>${header}</div>`;
+  
   const stats = [
     {
       label: 'Confirmed',
@@ -79,31 +85,6 @@ export function trackerFeatureToHtmlMarker({ properties = {} } = {}) {
     },
   ];
 
-  // TODO: consider adding commafy to values or adjusting circle radius
-  // stats = stats.map((stat) => {
-  //   const value = stat?.value;
-
-  //   if (!value) return stat;
-
-  //   let newValue = value;
-
-  //   if (stat?.type === 'number') {
-  //     newValue = commafy(value);
-  //     if (value > 999999) {
-  //       newValue = `${newValue.slice(0, -8)}m+`;
-  //     } else if (value > 999) {
-  //       newValue = `${newValue.slice(0, -4)}k+`;
-  //     }
-  //   } else if (stat?.type === 'date') {
-  //     newValue = friendlyDate(newValue);
-  //   }
-
-  //   return {
-  //     ...stat,
-  //     value: newValue,
-  //   };
-  // });
-
   let statsString = '';
 
   stats.forEach(({ label, value }) => {
@@ -114,9 +95,9 @@ export function trackerFeatureToHtmlMarker({ properties = {} } = {}) {
   });
 
   const casesString = stats.find(({ label }) => label === 'Confirmed')?.value;
-
+  const iconClass = getClassByCases(confirmed);
   return `
-    <span class="icon-marker">
+    <span class="icon-marker ${iconClass}">
       <span class="icon-marker-tooltip">
         <h2>${header}</h2>
         <ul>${statsString}</ul>
