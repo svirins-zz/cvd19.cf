@@ -91,7 +91,7 @@ export enum OutbreakStatus {
   Flattening = 'Flattening the Curve',
   Crushing = 'Crushing the Curve',
   Winning = 'Winning',
-  Won = 'Won'
+  Won = 'Won',
 }
 
 export interface Tags {

@@ -2,9 +2,9 @@ import React from 'react';
 import {
   VictoryChart, VictoryLine, VictoryAxis, VictoryLabel,
 } from 'victory';
-import { DataChartProps, Selected } from '../../types';
-import Theme from '../../styles/chartTheme';
-import { getColorByCountryName } from '../../lib/colorUtils';
+import { DataChartProps, Selected } from '@types';
+import Theme from 'styles/chartTheme';
+import { getColorByCountryName } from 'lib';
 
 const AllDataChart = ({
   countries, countriesT, selectedCountries, x, y, startAtDeaths, title,

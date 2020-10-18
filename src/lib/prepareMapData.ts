@@ -1,10 +1,9 @@
 import {
   Countries, CountryExt, Feature, Bounds,
-} from 'types';
-import getCountryExtData from './countryUtils';
+} from '../@types';
+import getCountryExtData from './calcCountry';
 
 const getMapData = (data: Countries | undefined) => {
-  // TODO: consider add fetching population data
   const features: Feature[] = [];
   data?.countries.forEach((e) => {
     // prepare data

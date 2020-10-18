@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select, Tag } from 'antd';
-import { Tags } from 'types';
-import { getColorByCountryName } from 'lib/colorUtils';
+import { Tags } from '@types';
+import { getColorByCountryName } from 'lib';
 
 const { Option } = Select;
 

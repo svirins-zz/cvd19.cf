@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import { ContextProps, AuxProps } from 'types';
+import { ContextProps, AuxProps } from '../@types';
 
 export const myContext = React.createContext<Partial<ContextProps>>({});
 

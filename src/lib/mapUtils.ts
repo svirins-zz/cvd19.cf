@@ -1,5 +1,4 @@
 import L from 'leaflet';
-import commafy from './conversionUtils';
 
 const getClassByCases = (totalCases: number) => {
   if (totalCases < 99) { return 'icon-marker-small'; }

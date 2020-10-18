@@ -1,11 +1,11 @@
 import React from 'react';
 import { Typography, Table, Tag } from 'antd';
-import { OutbreakStatus } from '../../types';
-import { calcTagstyle } from '../../lib/colorUtils';
+import { OutbreakStatus } from '@types';
+import { calcTagstyle } from 'lib';
 
 const { Text, Paragraph } = Typography;
 
-export const getStatusInfo = (status: OutbreakStatus | undefined) => {
+export const Status = (status: OutbreakStatus) => {
   if (status === OutbreakStatus.None) {
     return (
       <>
@@ -114,6 +114,7 @@ export const getStatusInfo = (status: OutbreakStatus | undefined) => {
   } if (status === OutbreakStatus.Winning) {
     return (
       <>
+        getStatusInfo
         <Text className="statWinning largetext">
           {OutbreakStatus.Winning}
           :
@@ -228,8 +229,8 @@ export const LegendTable = () => {
         by default, though you can set your own period length when exploring the data.
       </Paragraph>
       <Paragraph>
-        The Won status above only looimport { calculateData } from '../utilities/calcAllData';
-ks at deaths, and should therefore be a slight
+        The Won status above only loo
+        ks at deaths, and should therefore be a slight
         leading indicator compared to the Pandemic Free status in the chart below,
         which requires both no deaths and no cases.
         Pandemic Free should also decrease in the begging as outbreaks start,
@@ -243,32 +244,3 @@ ks at deaths, and should therefore be a slight
     </>
   );
 };
-
-// export const Legend = () => (
-//   <>
-
-//     <ul>
-//       <li className="statNone">
-//         {getStatusInfo(OutbreakStatus.None)}
-//       </li>
-//       <li className="statSmall">
-//         {getStatusInfo(OutbreakStatus.Small)}
-//       </li>
-//       <li className="statLosing">
-//         {getStatusInfo(OutbreakStatus.Losing)}
-//       </li>
-//       <li className="statFlattening">
-//         {getStatusInfo(OutbreakStatus.Flattening)}
-//       </li>
-//       <li className="statCrushing">
-//         {getStatusInfo(OutbreakStatus.Crushing)}
-//       </li>
-//       <li className="statWinning">
-//         {getStatusInfo(OutbreakStatus.Winning)}
-//       </li>
-//       <li className="statWon">
-//         {getStatusInfo(OutbreakStatus.Won)}
-//       </li>
-//     </ul>
-//   </>
-// );

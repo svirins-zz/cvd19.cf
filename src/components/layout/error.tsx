@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from 'antd';
-import { ErrorProps } from 'types';
+import { ErrorProps } from '@types';
 import PageLayout from './pageLayout';
 
 const { Paragraph } = Typography;

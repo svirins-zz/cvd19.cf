@@ -1,4 +1,4 @@
-import { MissingCountries } from '../types';
+import { MissingCountries } from '../@types';
 
 export const EPIDEMIC_START: string = '2020/01/07';
 

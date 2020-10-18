@@ -4,13 +4,10 @@ import {
 } from 'antd';
 import {
   PeriodInfo, Table, Country, Tags, ValT,
-} from 'types';
-import getTags from 'lib/tagUtils';
-import getChartInfo from 'lib/getChartInfo';
-import AllDataChart from '../charts/allDataChart';
-
-import PageLayout from '../layout/pageLayout';
-import SEO from '../layout/seo';
+} from '@types';
+import { getTags, getChartInfo } from 'lib';
+import { AllDataChart } from '../charts';
+import { PageLayout, SEO } from '../layout';
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
 } from '../tables/prepareTables';
@@ -32,7 +29,7 @@ const DataContent = ({
     () => getChartInfo(selectedTable, periodInfo.length),
     [selectedTable, periodInfo],
   );
-  // TODO:refactor allCountries useReducer
+  // TODO:refactor allCountrie../../ useReducer
   const allCountries: Tags[] = React.useMemo(() => getTags(countries), [countries]);
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
   const [startAtDeaths, setStartAtDeaths] = useState(false);
@@ -79,6 +76,7 @@ const DataContent = ({
           </Checkbox>
         </Col>
       </Row>
+      {' '}
       <Row gutter={[8, 16]}>
         <Col span={20} offset={2}>
           <CountryFilter

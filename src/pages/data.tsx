@@ -1,20 +1,18 @@
 import React, { useMemo, useState } from 'react';
-import { useQuery } from '@apollo/client';
-import Loading from 'components/layout/loading';
-import Error from 'components/layout/error';
+import { Loading, Error } from 'components/layout';
 import { PERIOD_LENGTH } from 'const';
-import { Countries, PeriodInfo } from 'types';
-import { calculateData } from 'lib/calcAllData';
-import { sumPeriodData } from 'lib/calcGlobal';
-import DataContent from 'components/data/dataContent';
-import COUNTRY_QUERY from 'queries';
-// TODO: Change API - missing countries appear !!!
+import { calculateData, sumPeriodData } from 'lib';
+import DataContent from '../components/data/dataContent';
+import { PeriodInfo } from '../@types';
+import { useFetchCountries } from '../hooks';
+// TODO: Change API - missing countries appear !!!Fix
+// TODO: Chart do not update, when add/remove countries
 const DataPage = () => {
   const [periodInfo, setPeriodInfo] = useState<PeriodInfo>({
     length: PERIOD_LENGTH,
     value: String(PERIOD_LENGTH),
   });
-  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
+  const { loading, error, data } = useFetchCountries();
   const countries = useMemo(() => calculateData(data, periodInfo.length), [data, periodInfo]);
   const allData = [...countries, ...sumPeriodData(countries, periodInfo.length)];
   if (loading) { return <Loading />; }

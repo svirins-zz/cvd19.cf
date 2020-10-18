@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Tag, Typography, Tooltip } from 'antd';
-import { TableT, TableTColumn } from 'types';
-import { calcTagstyle } from 'lib/colorUtils';
+import { TableT, TableTColumn } from '@types';
+import { calcTagstyle } from 'lib';
 
 // TODO: Add summary row to every table
 export const ATable3Col = ({ table }: TableT, order: boolean) => {

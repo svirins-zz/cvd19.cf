@@ -1,4 +1,4 @@
-import { ChartInfo } from 'types';
+import { ChartInfo } from '../@types';
 
 const getChartInfo = (selectedTable: string, period: number): ChartInfo => {
   if (selectedTable === 'growth') {
@@ -40,4 +40,3 @@ const getChartInfo = (selectedTable: string, period: number): ChartInfo => {
 };
 
 export default getChartInfo;
-

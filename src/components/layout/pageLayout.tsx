@@ -8,11 +8,11 @@ import 'styles/app.css';
 import {
   GlobalOutlined,
   BarChartOutlined,
-  RobotOutlined,
+  SmileOutlined,
   EnvironmentOutlined,
   GithubOutlined,
 } from '@ant-design/icons';
-import menuInit from 'lib/menuInitUtils';
+import { menuInit } from 'lib';
 import logo from 'assets/coronavirus.png';
 import { myContext } from 'context';
 import { LegendTable } from '../data/legend';
@@ -75,7 +75,7 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
                   Map
                 </Link>
               </Menu.Item>
-              <Menu.Item key="about" icon={<RobotOutlined style={{ color: 'WHITE' }} />}>
+              <Menu.Item key="about" icon={<SmileOutlined style={{ color: 'WHITE' }} />}>
                 <Link to="/about">
                   About
                 </Link>

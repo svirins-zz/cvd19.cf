@@ -2,8 +2,8 @@ import React from 'react';
 import {
   useTable, Column,
 } from 'react-table';
-import { Period, Country } from 'types';
-import { getPeriodNames } from 'lib/periodUtils';
+import { Period, Country } from '@types';
+import { getPeriodNames } from 'lib';
 import {
   ATable3Col,
   ATable5ColGrowth,

@@ -2,8 +2,9 @@ import React from 'react';
 import {
   Typography, Col, Row, Divider,
 } from 'antd';
-import PageLayout from 'components/layout/pageLayout';
-import SEO from 'components/layout/seo';
+import {
+  PageLayout, SEO,
+} from 'components/layout';
 
 const { Title, Paragraph } = Typography;
 

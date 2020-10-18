@@ -2,8 +2,8 @@ import React from 'react';
 import {
   VictoryChart, VictoryLegend, VictoryAxis, VictoryLabel, VictoryArea,
 } from 'victory';
-import { PeriodSummary } from '../../types';
-import Theme from '../../styles/chartTheme';
+import { PeriodSummary } from '@types';
+import Theme from 'styles/chartTheme';
 
 const UnderControlChart = ({ data, title }: { data: PeriodSummary[], title: string }) => (
   <VictoryChart

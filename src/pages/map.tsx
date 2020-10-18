@@ -1,21 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { useQuery } from '@apollo/client';
 import L from 'leaflet';
-import { promiseToFlyTo, trackerFeatureToHtmlMarker, geoJsonToMarkers } from 'lib/mapUtils';
-import getMapData from 'lib/getMapData';
-
-import PageLayout from 'components/layout/pageLayout';
-import Loading from 'components/layout/loading';
-import Error from 'components/layout/error';
-import SEO from 'components/layout/seo';
-import MapWrapper from 'components/map/MapWrapper';
-import { Countries } from 'types';
-import COUNTRY_QUERY from 'queries';
+import {
+  promiseToFlyTo, trackerFeatureToHtmlMarker, geoJsonToMarkers, getMapData,
+} from 'lib';
+import {
+  PageLayout, Loading, Error, SEO,
+} from 'components/layout';
+import MapWrapper from '../components/map/MapWrapper';
+import { useFetchCountries } from '../hooks';
 
 // TODO map with timescale (weekly)
 const Map = () => {
-  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
+  const { loading, error, data } = useFetchCountries();
   if (loading) { return <Loading />; }
   if (error) { return <Error error={error} />; }
   // marker click handler
@@ -54,7 +51,7 @@ const Map = () => {
     map.fitBounds(bounds);
   };
   const mapProps = { mapEffect };
- 
+
   return (
     <PageLayout>
       <SEO title="World Map" />

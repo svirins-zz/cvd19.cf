@@ -1,7 +1,7 @@
 import { getCode } from 'country-list';
 import { MISSING_COUNTRIES, ALL_COUNTRIES_DATA } from '../const';
 import vessel from '../assets/vessel.svg'
-import { Geometry, CodeFlagGeo, CoordTuple } from '../types';
+import { Geometry, CodeFlagGeo, CoordTuple } from '../@types';
 
 const getMissingCode = (countryName: String): string => {
   const element = MISSING_COUNTRIES.find((el) => el.longName === countryName);

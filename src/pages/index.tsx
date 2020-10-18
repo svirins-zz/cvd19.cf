@@ -1,36 +1,33 @@
 import React, { useMemo } from 'react';
-import { useQuery } from '@apollo/client';
 import {
   Typography, Row, Col, Divider,
 } from 'antd';
-import PageLayout from 'components/layout/pageLayout';
-import Loading from 'components/layout/loading';
-import Error from 'components/layout/error';
-import SEO from 'components/layout/seo';
+import {
+  PageLayout, Loading, Error, SEO,
+} from 'components/layout';
 import { GrowthSummaryTable } from 'components/tables/prepareTables';
-import { getStatusInfo } from 'components/data/legend';
+import { Status } from 'components/data/legend';
 import { PERIOD_LENGTH } from 'const';
-import { sumPeriodData, calculateGlobalSummary, calculateTotalGlobal } from 'lib/calcGlobal';
-import { calculateData } from 'lib/calcAllData';
-import COUNTRY_QUERY from 'queries';
-import PandemicFreeChart from 'components/charts/pandemicFreeChart';
-import UnderControlChart from 'components/charts/underControlChart';
-import SummaryChart from 'components/charts/summaryChart';
+import {
+  sumPeriodData, calculateGlobalSummary, calculateTotalGlobal, calculateData,
+} from 'lib';
+import { PandemicFreeChart, UnderControlChart, SummaryChart } from 'components/charts';
 import TotalSummary from 'components/data/totalSummary';
-import { Countries, OutbreakStatus } from 'types';
+import { useFetchCountries } from '../hooks';
+import { OutbreakStatus } from '../@types';
 
 const { Title, Paragraph } = Typography;
 // TODO: Refactor Victory=>antD charts!
 // TODO: Refactor pre-render Statistics calculations into separate module
-// TODO: check memoization for re-render. Memoize everything!!
-// TODO refactor load countries data to custom react hook !
 const IndexPage = () => {
-  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
+  // query countries data
+  const { loading, error, data } = useFetchCountries();
+  // prepare data to display
   const countries = useMemo(() => calculateData(data, PERIOD_LENGTH), [data]);
-  const globalData = sumPeriodData(countries, PERIOD_LENGTH);
-  const globalSummaryData = calculateGlobalSummary(countries, PERIOD_LENGTH);
+  const globalData = useMemo(() => sumPeriodData(countries, PERIOD_LENGTH), [countries]);
+  const globalSummaryData = useMemo(() => calculateGlobalSummary(countries, PERIOD_LENGTH),
+    [countries]);
   const globalSummarySinceTwoMonths = globalSummaryData.slice(60 / PERIOD_LENGTH);
-
   const losingData = countries.filter(
     (country) => country.periods[0].status === OutbreakStatus.Losing
       || country.periods[0].status === OutbreakStatus.Flattening,
@@ -39,10 +36,8 @@ const IndexPage = () => {
     (country) => country.periods[0].status === OutbreakStatus.Winning
       || country.periods[0].status === OutbreakStatus.Won,
   );
-
   if (loading) { return <Loading />; }
   if (error) { return <Error error={error} />; }
-
   const globalTotalData = calculateTotalGlobal(data);
   return (
     <PageLayout>
@@ -57,7 +52,7 @@ const IndexPage = () => {
             {globalData[0].periods[0].status === OutbreakStatus.Won
               ? ' '
               : ' been '}
-            {getStatusInfo(globalData[0].periods[0].status)}
+            <Status status={globalData[0].periods[0].status} />
           </Paragraph>
         </Col>
       </Row>

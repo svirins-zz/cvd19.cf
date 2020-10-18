@@ -1,7 +1,7 @@
 import React, { MetaHTMLAttributes } from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Props, SiteQuery } from 'types';
+import { Props, SiteQuery } from '@types';
 
 const SEO = ({
   description = '', lang = 'en', meta = [], title,
