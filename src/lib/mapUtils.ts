@@ -11,8 +11,6 @@ const getClassByCases = (totalCases: number) => {
 export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
   return function (feature = {}, latlng) {
     let html = '<span class="icon-marker"></span>';
-    console.log(html);
-
     if (typeof featureToHtml === 'function') {
       html = featureToHtml(feature);
     }
@@ -65,7 +63,6 @@ export function trackerFeatureToHtmlMarker({ properties = {} } = {}) {
   } = properties;
   let header = name;
   header = `<img src="${flag}" name="flag"><div>${header}</div>`;
-  
   const stats = [
     {
       label: 'Confirmed',

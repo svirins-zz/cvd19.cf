@@ -7,7 +7,7 @@ import {
 import {
   PageLayout, Loading, Error, SEO,
 } from 'components/layout';
-import MapWrapper from '../components/map/MapWrapper';
+import LeafletMap from '../components/map/LeafletMap';
 import { useFetchCountries } from '../hooks';
 
 // TODO map with timescale (weekly)
@@ -31,7 +31,6 @@ const Map = () => {
       },
       zoom: 3,
     });
-    // do we really need this?
     if (bounds && code !== 'US') {
       const boundsGeoJsonLayer = new L.GeoJSON(bounds);
       const boundsGeoJsonLayerBounds = boundsGeoJsonLayer.getBounds();
@@ -55,7 +54,7 @@ const Map = () => {
   return (
     <PageLayout>
       <SEO title="World Map" />
-      <MapWrapper {...mapProps} />
+      <LeafletMap {...mapProps} />
     </PageLayout>
   );
 };

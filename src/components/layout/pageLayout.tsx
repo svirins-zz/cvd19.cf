@@ -92,26 +92,29 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
                 {children}
               </div>
             </Content>
-            <Footer>
-              <div className="credentials">
-                Made with
-                {' '}
-                <span role="img" aria-labelledby="love">❤️</span>
-                {' '}
-                by
-                {' '}
-                <a className="credentialsLink" href="https://twitter.com/svirins">@svirins</a>
-                .
-              </div>
-              <div className="credentials">
-                {' '}
-                View source
-                {' '}
-                <a href="https://github.com/svirins/covid19">
-                  <GithubOutlined style={{ fontSize: '14px' }} />
-                </a>
-              </div>
-            </Footer>
+            {(pathname === '/map') ? undefined
+              : (
+                <Footer>
+                  <div className="credentials">
+                    Made with
+                    {' '}
+                    <span role="img" aria-labelledby="love">❤️</span>
+                    {' '}
+                    by
+                    {' '}
+                    <a className="credentialsLink" href="https://twitter.com/svirins">@svirins</a>
+                    .
+                  </div>
+                  <div className="credentials">
+                    {' '}
+                    View source
+                    {' '}
+                    <a href="https://github.com/svirins/covid19">
+                      <GithubOutlined style={{ fontSize: '14px' }} />
+                    </a>
+                  </div>
+                </Footer>
+              ) }
           </Layout>
         </Layout>
       )}

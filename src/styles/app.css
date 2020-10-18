@@ -94,15 +94,12 @@
   font-weight: 600;
   text-decoration: underline;
 }
-.vesselSize {
-  width: 1em;
-}
 .redB {
   background-color: 'red';
 }
 .leaflet-container {
   width:100%;
-  height: 92vh;
+  height: 100vh;
   z-index: 999;
 }
 .conentWithMargin {
@@ -126,7 +123,7 @@
 	justify-content: center;
 	align-items: center;
 	color: white;
-	font-size: 1em;
+	font-size: 1.1em;
 	font-weight: bold;
 	border-radius: 100%;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
@@ -140,10 +137,10 @@
 	display: none;
 	position: absolute;
 	bottom: 100%;
-	width: 16em;
+	width: 11em;
 	font-size: 1.1em;
-	padding: 1em;
-	background-color: grey;
+	padding: .5em;
+	background-color: #2b3f49 ;
 	border-radius: .2em;
 	margin-bottom: 1em;
 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.9);
@@ -159,10 +156,12 @@
 	height: 1.4em;
 	background-color: #fcfcfc;
 	transform: rotate(45deg);
-	margin-left: -.7em;
+	margin-left: -.7em;          
+
 }
 
 .icon-marker-tooltip h2 {
+  color:#F3A207;
 	font-size: 1.5em;
 	line-height: 1.2;
 	margin-bottom: .1em;
@@ -190,17 +189,17 @@
 .icon-marker-small {
   width: 2.2em;
   height: 2.2em;
-  background-color: #ff4d4f;
+  background-color: #ffccc7;
 }
 .icon-marker-normal {
   width: 3.0em;
   height: 3.0em;
-  background-color: #f5222d ;
+  background-color: #ff7875;
 }
 .icon-marker-large {
   width: 3.8em;
   height: 3.8em;
-  background-color: #cf1322;
+  background-color:#f5222d;
 }
 .icon-marker-extra-large {
   width: 4.6em;
@@ -210,5 +209,5 @@
 .icon-marker-super-large {
   width: 5.4em;
   height: 5.4em;
-  background-color: #820014;
+  background-color:#5c0011;
 }
