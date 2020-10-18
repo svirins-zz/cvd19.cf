@@ -6,19 +6,17 @@ import {
   PageLayout, Loading, Error, SEO,
 } from 'components/layout';
 import { GrowthSummaryTable } from 'components/tables/prepareTables';
-import { Status } from 'components/data/legend';
 import { PERIOD_LENGTH } from 'const';
 import {
   sumPeriodData, calculateGlobalSummary, calculateTotalGlobal, calculateData,
 } from 'lib';
 import { PandemicFreeChart, UnderControlChart, SummaryChart } from 'components/charts';
-import TotalSummary from 'components/data/totalSummary';
+import { TotalSummary } from '../components/data';
 import { useFetchCountries } from '../hooks';
 import { OutbreakStatus } from '../@types';
 
 const { Title, Paragraph } = Typography;
 // TODO: Refactor Victory=>antD charts!
-// TODO: Refactor pre-render Statistics calculations into separate module
 const IndexPage = () => {
   // query countries data
   const { loading, error, data } = useFetchCountries();
@@ -39,6 +37,7 @@ const IndexPage = () => {
   if (loading) { return <Loading />; }
   if (error) { return <Error error={error} />; }
   const globalTotalData = calculateTotalGlobal(data);
+  //TODO: add color tag for status page
   return (
     <PageLayout>
       <SEO title="Status" />
@@ -52,7 +51,7 @@ const IndexPage = () => {
             {globalData[0].periods[0].status === OutbreakStatus.Won
               ? ' '
               : ' been '}
-            <Status status={globalData[0].periods[0].status} />
+            {globalData[0].periods[0].status}
           </Paragraph>
         </Col>
       </Row>

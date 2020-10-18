@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  useTable, Column,
-} from 'react-table';
+import { useTable, Column } from 'react-table';
 import { Period, Country } from '@types';
 import { getPeriodNames } from 'lib';
 import {
@@ -14,12 +12,15 @@ import {
 } from './renderTables';
 
 export const TotalCasesTable = ({
-  data, periodLength,
+  data,
+  periodLength,
 }: {
-  data: Country[],
-  periodLength: number
+  data: Country[];
+  periodLength: number;
 }) => {
-  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [periodLength]);
+  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [
+    periodLength,
+  ]);
   const columns = React.useMemo(
     () => [
       {
@@ -79,18 +80,19 @@ export const TotalCasesTable = ({
   ) as Array<Column<Country>>;
 
   const preparedTableObject = useTable({ columns, data });
-  return (
-    <ATable5ColTotalCases table={preparedTableObject} order={false} />
-  );
+  return <ATable5ColTotalCases table={preparedTableObject} order={false} />;
 };
 
 export const NewCasesTable = ({
-  data, periodLength,
+  data,
+  periodLength,
 }: {
-  data: Country[],
-  periodLength: number
+  data: Country[];
+  periodLength: number;
 }) => {
-  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [periodLength]);
+  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [
+    periodLength,
+  ]);
   const columns = React.useMemo(
     () => [
       {
@@ -150,18 +152,19 @@ export const NewCasesTable = ({
   ) as Array<Column<Country>>;
 
   const preparedTableObject = useTable({ columns, data });
-  return (
-    <ATable5ColNewCases table={preparedTableObject} order={false} />
-  );
+  return <ATable5ColNewCases table={preparedTableObject} order={false} />;
 };
 
 export const TotalDeathsTable = ({
-  data, periodLength,
+  data,
+  periodLength,
 }: {
-  data: Country[],
-  periodLength: number
+  data: Country[];
+  periodLength: number;
 }) => {
-  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [periodLength]);
+  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [
+    periodLength,
+  ]);
   const columns = React.useMemo(
     () => [
       {
@@ -221,18 +224,19 @@ export const TotalDeathsTable = ({
   ) as Array<Column<Country>>;
 
   const preparedTableObject = useTable({ columns, data });
-  return (
-    <ATable5ColTotalDeaths table={preparedTableObject} order={false} />
-  );
+  return <ATable5ColTotalDeaths table={preparedTableObject} order={false} />;
 };
 
 export const NewDeathsTable = ({
-  data, periodLength,
+  data,
+  periodLength,
 }: {
-  data: Country[],
-  periodLength: number
+  data: Country[];
+  periodLength: number;
 }) => {
-  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [periodLength]);
+  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [
+    periodLength,
+  ]);
   const columns = React.useMemo(
     () => [
       {
@@ -292,18 +296,19 @@ export const NewDeathsTable = ({
   ) as Array<Column<Country>>;
 
   const preparedTableObject = useTable({ columns, data });
-  return (
-    <ATable5ColNewDeaths table={preparedTableObject} order />
-  );
+  return <ATable5ColNewDeaths table={preparedTableObject} order />;
 };
 
 export const GrowthTable = ({
-  data, periodLength,
+  data,
+  periodLength,
 }: {
-  data: Country[],
-  periodLength: number
+  data: Country[];
+  periodLength: number;
 }) => {
-  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [periodLength]);
+  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [
+    periodLength,
+  ]);
   const columns = React.useMemo(
     () => [
       {
@@ -344,9 +349,7 @@ export const GrowthTable = ({
     [periodNames],
   ) as Array<Column<Country>>;
   const preparedTableObject = useTable({ columns, data });
-  return (
-    <ATable5ColGrowth table={preparedTableObject} order={false} />
-  );
+  return <ATable5ColGrowth table={preparedTableObject} order={false} />;
 };
 
 export const GrowthSummaryTable = ({
@@ -354,11 +357,13 @@ export const GrowthSummaryTable = ({
   periodLength,
   desc,
 }: {
-  data: Country[],
-  periodLength: number,
-  desc: boolean,
+  data: Country[];
+  periodLength: number;
+  desc: boolean;
 }) => {
-  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [periodLength]);
+  const periodNames = React.useMemo(() => getPeriodNames(periodLength), [
+    periodLength,
+  ]);
   const columns = React.useMemo(() => {
     const country = data.length > 1
       ? [
@@ -401,7 +406,5 @@ export const GrowthSummaryTable = ({
 
   const preparedTableObject = useTable({ columns, data });
 
-  return (
-    <ATable3Col table={preparedTableObject} order={desc} />
-  );
+  return <ATable3Col table={preparedTableObject} order={desc} />;
 };

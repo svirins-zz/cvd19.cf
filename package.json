@@ -1,7 +1,7 @@
 {
   "name": "covid19",
   "private": false,
-  "description": "A simple tool to track global progress in defeating Covid-19",
+  "description": "A tool to track global progress in defeating Covid-19",
   "version": "0.3.0",
   "author": "Dzmitry Sviryn <svirins@gmail.com>",
   "license": "MIT",
@@ -21,7 +21,6 @@
     "gatsby-plugin-offline": "^3.2.33",
     "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-plugin-react-leaflet": "^2.0.13",
-    "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-resolve-src": "^2.1.0",
     "gatsby-plugin-sharp": "^2.6.42",
     "gatsby-plugin-typescript": "^2.4.22",

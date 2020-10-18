@@ -5,7 +5,7 @@ import {
 import { PeriodSummary } from '@types';
 import Theme from 'styles/chartTheme';
 
-const UnderControlChart = ({ data, title }: { data: PeriodSummary[], title: string }) => (
+const PandemicFreeChart = ({ data, title }: { data: PeriodSummary[], title: string }) => (
   <VictoryChart
     theme={Theme}
     height={240}
@@ -27,8 +27,8 @@ const UnderControlChart = ({ data, title }: { data: PeriodSummary[], title: stri
         },
       }}
       data={[
-        { name: '% Flattening / Losing', symbol: { fill: '#f5222d' } },
-        { name: '% None / Small / Crushing / Winning / Won', symbol: { fill: '#52c41a' } },
+        { name: '% With Cases or Deaths', symbol: { fill: '#f5222d' } },
+        { name: '% Pandemic Free', symbol: { fill: '#52c41a' } },
       ]}
     />
     <VictoryAxis
@@ -59,7 +59,7 @@ const UnderControlChart = ({ data, title }: { data: PeriodSummary[], title: stri
       x={50}
       y={35}
       style={{
-        fontSize: 6,
+        fontSize: 5.5,
         fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
         color: 'Gray',
@@ -78,7 +78,7 @@ const UnderControlChart = ({ data, title }: { data: PeriodSummary[], title: stri
       }}
       x="endDate"
       y={() => 100}
-      y0="underControl"
+      y0="pandemicFree"
     />
     <VictoryArea
       data={data}
@@ -92,9 +92,9 @@ const UnderControlChart = ({ data, title }: { data: PeriodSummary[], title: stri
         },
       }}
       x="endDate"
-      y="underControl"
+      y="pandemicFree"
     />
   </VictoryChart>
 );
 
-export default UnderControlChart;
+export default PandemicFreeChart;

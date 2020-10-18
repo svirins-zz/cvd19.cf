@@ -64,7 +64,7 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
       x={50}
       y={35}
       style={{
-        fontSize: 6,
+        fontSize: 5.5,
         fontFamily: `"Open Sans", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
       }}

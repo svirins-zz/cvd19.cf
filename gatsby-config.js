@@ -77,9 +77,9 @@ module.exports = {
             'link-color': '#c242e2',
             'link-hover-color': '#7eb0d6',
             'link-active-color': '#7eb0d6',
-            'layout-header-background': '#120338',
-            'layout-footer-background': '#f2f2f2',
-            'menu-bg': '#120338',
+            'layout-header-background': '#231C4B',
+            'layout-footer-background': '#ffffff',
+            'menu-bg': '#231C4B',
             'menu-item-color': '#fff',
             'menu-highlight-color': '#e46ca5',
             'menu-item-active-bg': '#e46ca5',
@@ -91,14 +91,7 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        rule: {
-          include: /\.inline\.svg$/,
-        },
-      },
-    },
+
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {

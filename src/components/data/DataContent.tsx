@@ -6,12 +6,12 @@ import {
   PeriodInfo, Table, Country, Tags, ValT,
 } from '@types';
 import { getTags, getChartInfo } from 'lib';
-import { AllDataChart } from '../charts';
+import { GlobalDataChart } from '../charts';
 import { PageLayout, SEO } from '../layout';
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
 } from '../tables/prepareTables';
-import CountryFilter from './countryFilter';
+import CountryFilter from './CountryFilter';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -86,7 +86,7 @@ const DataContent = ({
           />
         </Col>
       </Row>
-      <AllDataChart
+      <GlobalDataChart
         countries={countries}
         countriesT={allCountries}
         selectedCountries={selectedCountries}

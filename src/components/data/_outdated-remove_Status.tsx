@@ -1,13 +1,14 @@
 import React from 'react';
-import { Typography, Table, Tag } from 'antd';
+import { Typography } from 'antd';
 import { OutbreakStatus } from '@types';
-import { calcTagstyle } from 'lib';
 
-const { Text, Paragraph } = Typography;
+const { Text } = Typography;
 
-export const Status = (status: OutbreakStatus) => {
+const Status = (status: OutbreakStatus) => {
+  if (!status) return '';
+  let statusString;
   if (status === OutbreakStatus.None) {
-    return (
+    statusString = (
       <>
         <Text className="statNone largeText">
           <strong>
@@ -28,7 +29,7 @@ export const Status = (status: OutbreakStatus) => {
       </>
     );
   } if (status === OutbreakStatus.Small) {
-    return (
+    statusString = (
       <>
         <Text className="statSmall largeText">
           {OutbreakStatus.Small}
@@ -46,7 +47,7 @@ export const Status = (status: OutbreakStatus) => {
       </>
     );
   } if (status === OutbreakStatus.Losing) {
-    return (
+    statusString = (
       <>
         <Text className="statLosing largeText">
           {OutbreakStatus.Losing}
@@ -68,7 +69,7 @@ export const Status = (status: OutbreakStatus) => {
       </>
     );
   } if (status === OutbreakStatus.Flattening) {
-    return (
+    statusString = (
       <>
         <Text className="statFlattening largetext">
           {OutbreakStatus.Flattening}
@@ -90,7 +91,7 @@ export const Status = (status: OutbreakStatus) => {
       </>
     );
   } if (status === OutbreakStatus.Crushing) {
-    return (
+    statusString = (
       <>
         <Text className="statCrushing largetext">
           {OutbreakStatus.Crushing}
@@ -112,7 +113,7 @@ export const Status = (status: OutbreakStatus) => {
       </>
     );
   } if (status === OutbreakStatus.Winning) {
-    return (
+    statusString = (
       <>
         getStatusInfo
         <Text className="statWinning largetext">
@@ -131,7 +132,7 @@ export const Status = (status: OutbreakStatus) => {
       </>
     );
   } if (status === OutbreakStatus.Won) {
-    return (
+    statusString = (
       <>
         <Text className="statWon largetext">
           {OutbreakStatus.Won}
@@ -154,93 +155,8 @@ export const Status = (status: OutbreakStatus) => {
       </>
     );
   }
-  return '';
+  console.log(statusString);
+  return statusString;
 };
 
-export const LegendTable = () => {
-  const data = [
-    {
-      key: '1',
-      status: 'No Outbreak',
-      descr: 'There have been no deaths',
-    },
-    {
-      key: '2',
-      status: 'Small Outbreak',
-      descr: 'There have been less than 10 deaths',
-    },
-    {
-      key: '3',
-      status: 'Losing',
-      descr: 'Deaths rose by 100% or more or stayed above 1000',
-    },
-    {
-      key: '4',
-      status: 'Flattening the Curve',
-      descr: ' Deaths did not double, but did increase or stay above 100',
-    },
-    {
-      key: '5',
-      status: 'Crushing the Curve',
-      descr: 'Deaths decreased by 50% or more or to below 50',
-    },
-    {
-      key: '6',
-      status: 'Winning',
-      descr: 'New deaths decreased to below 10',
-    },
-    {
-      key: '7',
-      status: 'Won',
-      descr: 'We have had no new deaths for two periods',
-    },
-  ];
-  const columns = [
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      render: (text, row, index) => (
-        <Tag
-          color={calcTagstyle(text)}
-          key={index}
-        >
-          {text}
-        </Tag>
-      ),
-    },
-    {
-      title: 'Description',
-      dataIndex: 'descr',
-      key: 'descr',
-    },
-  ];
-
-  return (
-    <>
-      <Paragraph>
-        The items below all cover a single period, unless otherwise stated.
-      </Paragraph>
-      <Paragraph>
-        A single period is
-        {' '}
-        <strong>5-days</strong>
-        {' '}
-        by default, though you can set your own period length when exploring the data.
-      </Paragraph>
-      <Paragraph>
-        The Won status above only loo
-        ks at deaths, and should therefore be a slight
-        leading indicator compared to the Pandemic Free status in the chart below,
-        which requires both no deaths and no cases.
-        Pandemic Free should also decrease in the begging as outbreaks start,
-        and then increase once countries successfully eradicate the virus.
-      </Paragraph>
-      <Table
-        columns={columns}
-        dataSource={data}
-        pagination={false}
-      />
-    </>
-  );
-};
+export default Status;

@@ -30,6 +30,13 @@ const AboutPage = () => (
           travel bans, and mass testing are.
           {' '}
         </Paragraph>
+        <Paragraph>
+          The Won status above only looks at deaths, and should therefore be a slight
+          leading indicator compared to the Pandemic Free status,
+          which requires both no deaths and no cases.
+          Pandemic Free should also decrease in the begging as outbreaks start,
+          and then increase once countries successfully eradicate the virus.
+        </Paragraph>
       </Col>
     </Row>
     <Row gutter={[8, 16]}>

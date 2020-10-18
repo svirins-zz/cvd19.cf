@@ -6,7 +6,7 @@ import { DataChartProps, Selected } from '@types';
 import Theme from 'styles/chartTheme';
 import { getColorByCountryName } from 'lib';
 
-const AllDataChart = ({
+const GlobalDataChart = ({
   countries, countriesT, selectedCountries, x, y, startAtDeaths, title,
 }: DataChartProps) => {
   const selected: Selected = {};
@@ -42,7 +42,7 @@ const AllDataChart = ({
           x={50}
           y={35}
           style={{
-            fontSize: 6,
+            fontSize: 5.5,
             fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
             color: 'Gray',
@@ -85,4 +85,4 @@ const AllDataChart = ({
   );
 };
 
-export default AllDataChart;
+export default GlobalDataChart;

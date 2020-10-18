@@ -1,4 +1,4 @@
-export { default as Loading } from './loading';
-export { default as Error } from './error';
-export { default as PageLayout } from './pageLayout';
-export { default as SEO } from './seo';
+export { default as Loading } from './Loading';
+export { default as Error } from './Error';
+export { default as PageLayout } from './PageLayout';
+export { default as SEO } from './Seo';

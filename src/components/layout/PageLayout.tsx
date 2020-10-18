@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Layout, Menu, Drawer, Button, BackTop,
+  Layout, Menu, Drawer, Button, Divider,
 } from 'antd';
 import { Link } from 'gatsby';
 import { useLocation } from '@reach/router';
@@ -8,14 +8,14 @@ import 'styles/app.css';
 import {
   GlobalOutlined,
   BarChartOutlined,
-  SmileOutlined,
+  QuestionCircleOutlined,
   EnvironmentOutlined,
   GithubOutlined,
 } from '@ant-design/icons';
 import { menuInit } from 'lib';
 import logo from 'assets/coronavirus.png';
 import { myContext } from 'context';
-import { LegendTable } from '../data/legend';
+import SideDrawer from './SideDrawer';
 
 const { Content, Sider, Footer } = Layout;
 
@@ -28,14 +28,14 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
       {(context) => (
         <Layout style={{ minHeight: '100vh' }}>
           <Drawer
-            title="Legend"
+            title="Colors explained"
             placement="left"
             closable
             onClose={context.onClose}
             visible={context.visible}
             width={480}
           >
-            <LegendTable />
+            <SideDrawer />
           </Drawer>
           <Sider
             collapsed
@@ -75,17 +75,16 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
                   Map
                 </Link>
               </Menu.Item>
-              <Menu.Item key="about" icon={<SmileOutlined style={{ color: 'WHITE' }} />}>
+              <Menu.Item key="about" icon={<QuestionCircleOutlined style={{ color: 'WHITE' }} />}>
                 <Link to="/about">
                   About
                 </Link>
               </Menu.Item>
               <div className="alignBottom">
-                <Button className="tinyButton" type="dashed" size="small" onClick={context.showDrawer}>Legend</Button>
+                <Button className="tinyButton" size="small" onClick={context.showDrawer}>Help →</Button>
               </div>
             </Menu>
           </Sider>
-          <BackTop />
           <Layout className={marginClassName}>
             <Content>
               <div className={marginClassName}>
@@ -95,6 +94,7 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
             {(pathname === '/map') ? undefined
               : (
                 <Footer>
+                  <Divider />
                   <div className="credentials">
                     Made with
                     {' '}
@@ -109,7 +109,7 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
                     {' '}
                     View source
                     {' '}
-                    <a href="https://github.com/svirins/covid19">
+                    <a href="https://github.com/svirins/cvd19.cf">
                       <GithubOutlined style={{ fontSize: '14px' }} />
                     </a>
                   </div>

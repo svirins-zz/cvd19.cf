@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Loading, Error } from 'components/layout';
 import { PERIOD_LENGTH } from 'const';
 import { calculateData, sumPeriodData } from 'lib';
-import DataContent from '../components/data/dataContent';
+import { DataContent } from '../components/data';
 import { PeriodInfo } from '../@types';
 import { useFetchCountries } from '../hooks';
 // TODO: Change API - missing countries appear !!!Fix
