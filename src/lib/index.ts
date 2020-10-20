@@ -1,5 +1,5 @@
 export {
-  calulatePeriodData, calculateData, sumPeriodData, calculateGlobalSummary, calculateTotalGlobal,
+  calulatePeriodData, calculateData, sumPeriodData, calculateSummaryData, calculateGlobalSummary,
 } from './calcData';
 export { calcTagstyle, getColor, getColorByCountryName } from './calcColor';
 export {

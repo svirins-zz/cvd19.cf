@@ -1,10 +1,10 @@
 import React from 'react';
 import { Select, Tag } from 'antd';
-import { Tags } from '@types';
+import { Tags, TagRenderProps } from '@types';
 import { getColorByCountryName } from 'lib';
 
 const { Option } = Select;
-
+// TODO: country remove doesn't works
 const CountryFilter = ({
   selected,
   setSelected,
@@ -17,16 +17,16 @@ const CountryFilter = ({
   const handleChange = (currentArr: string[]) => {
     setSelected(currentArr);
   };
-  function tagRender(props: {label: string, closable: boolean, onClose: Function}) {
+  function tagRender(p: TagRenderProps) {
     const {
       label, closable, onClose,
-    } = props;
+    } = p;
     return (
       <Tag
         key={label}
         color={getColorByCountryName(label, countries)}
         closable={closable}
-        onClose={onClose}
+        onClose={(e) => onClose(e)}
         style={{ marginRight: 3 }}
       >
         {label}
@@ -42,7 +42,8 @@ const CountryFilter = ({
       defaultValue={selected}
       placeholder="Add Country"
       onChange={handleChange}
-      tagRender={tagRender}
+      tagRender={(p) => tagRender(p)}
+      autoClearSearchValue
     >
       {countries.map((item) => (
         <Option value={item.label} key={item.id}>{item.label}</Option>
@@ -52,3 +53,4 @@ const CountryFilter = ({
 };
 
 export default CountryFilter;
+

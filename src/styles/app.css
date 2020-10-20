@@ -9,7 +9,10 @@
   font-weight: 500;
   color: #120338;
 }
-
+.site-layout-content {
+  background: #fff;
+  min-height: 480px;
+}
 .site-layout .site-layout-background {
   background: #fff;
 }
@@ -54,41 +57,38 @@
   font-weight: 500;
 }
 .statNone {
-  color: lightgray;
+  color: #808080;
   font-weight: 600;
   text-decoration: underline;
 }
 .statSmall {
-  color: lightpink;
+  color: #eb2f96;
   font-weight: 600;
   text-decoration: underline;
 }
 .statLosing {
-  color: lightcoral;
+  color: #f5222d;
   font-weight: 600;
   text-decoration: underline;
 }
 .statFlattening {
-  color: lightsalmon;
+  color: #fa541c;
   font-weight: 600; 
   text-decoration: underline;
 }
-.site-layout-content {
-  background: #fff;
-  min-height: 480px;
-}
+
 .statCrushing {
-  color: lightskyblue;
+  color: #fa8c16;
   font-weight: 600;
   text-decoration: underline;
 }
 .statWinning {
-  color: lightgreen;
+  color:#13c2c2;
   font-weight: 600;
   text-decoration: underline;
 }
 .statWon {
-  color: lightseagreen;
+  color: #52c41a;
   font-weight: 600;
   text-decoration: underline;
 }
@@ -101,7 +101,7 @@
   z-index: 999;
 }
 .conentWithMargin {
-  padding: 24px;
+  padding: 24px 24px 0px 24px;
   background: #fff;
   min-height: 480px;
 }
@@ -112,7 +112,9 @@
 }
 
 .divider {
-  border-top: 2px;
+  margin: 14px 0;
+  border-top: 1px solid rgba(0,0,0,0.15);
+
 }
 
 .icon-marker {
@@ -208,4 +210,8 @@
   width: 5.4em;
   height: 5.4em;
   background-color:#5c0011;
+}
+
+.sider-box-shadow {
+  box-shadow: 2px 0px 3px 0px #636363;
 }

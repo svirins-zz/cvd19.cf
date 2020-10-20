@@ -1,5 +1,5 @@
 import {
-  Counts, Periods, Period, Countries, Country, OutbreakStatus, PeriodSummary, GlobalData,
+  Counts, Periods, Period, Countries, Country, OutbreakStatus, PeriodSummary, GlobalStats,
 } from '../@types';
 import {
   periodStatus, getPeriodName, getPeriodCount, getDaysAgo, validatePeriodLength,
@@ -190,22 +190,46 @@ export const calculateGlobalSummary = (
   return periodSummaries;
 };
 
-export const calculateTotalGlobal = (data: Countries | undefined): GlobalData => {
-  const totalGlobalCases = data?.countries.reduce((acc, element) => (
+export const calculateSummaryData = (data: Countries): GlobalStats => {
+  console.log(data);
+  const totalCases = data?.countries.reduce((acc, element) => (
     acc + element.results[element.results.length - 1].confirmed
   ), 0);
-  const totalGlobalDeaths = data.countries.reduce((acc, element) => (
+  const totalDeaths = data?.countries.reduce((acc, element) => (
     acc + element.results[element.results.length - 1].deaths
   ), 0);
-  const totalGlobalRecovered = data.countries.reduce((acc, element) => (
+  const totalRecovered = data?.countries.reduce((acc, element) => (
     acc + element.results[element.results.length - 1].recovered
   ), 0);
-  const countriesTotal = data?.countries.length ? data.countries.length : 0;
-  const result = {
-    totalGlobalCases,
-    totalGlobalDeaths,
-    totalGlobalRecovered,
-    countriesTotal,
+  const daysPassed = data?.countries[0].results.length;
+  const totalCountries = data?.countries.length ? data.countries.length : 0;
+
+
+  // TODO: chain reduce !!a
+  const rez = data.countries.map((e) => e.results.slice(-1)[0]);
+
+  const stats = {
+    totalCases,
+    totalDeaths,
+    totalRecovered,
+    daysPassed,
+    totalCountries,
   };
-  return result;
+  return stats;
 };
+
+// const length = data.countries.results.length - 1;
+// const reducer = (acc, element) => ({
+//   confirmed: acc.confirmed + element[length].confirmed,
+//   deaths: acc.deaths + element[length].deaths,
+//   recovered: acc.recovered + element[length].recovered,
+// });
+
+// const accumulator = {
+//   confirmed: 0,
+//   deaths: 0,
+//   recovered: 0,
+// };
+
+// const res = data.countries.reduce(accumulator, reducer);
+// console.log(res);

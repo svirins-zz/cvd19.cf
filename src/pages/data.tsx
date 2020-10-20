@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Loading, Error } from 'components/layout';
 import { PERIOD_LENGTH } from 'const';
 import { calculateData, sumPeriodData } from 'lib';
-import { DataContent } from '../components/data';
+import { DataPageContent } from '../components/data';
 import { PeriodInfo } from '../@types';
 import { useFetchCountries } from '../hooks';
 // TODO: Change API - missing countries appear !!!Fix
@@ -18,7 +18,7 @@ const DataPage = () => {
   if (loading) { return <Loading />; }
   if (error) { return <Error error={error} />; }
   return (
-    <DataContent
+    <DataPageContent
       countries={allData}
       periodInfo={periodInfo}
       onPeriodChange={(val) => {

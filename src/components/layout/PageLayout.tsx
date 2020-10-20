@@ -28,7 +28,7 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
       {(context) => (
         <Layout style={{ minHeight: '100vh' }}>
           <Drawer
-            title="Colors explained"
+            title="Data trends in colors"
             placement="left"
             closable
             onClose={context.onClose}
@@ -40,6 +40,7 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
           <Sider
             collapsed
             style={{ position: 'sticky' }}
+            className="sider-box-shadow"
           >
             <Menu
               onSelect={context.handleSelect}
@@ -94,7 +95,7 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
             {(pathname === '/map') ? undefined
               : (
                 <Footer>
-                  <Divider />
+                  <Divider className="divider" />
                   <div className="credentials">
                     Made with
                     {' '}

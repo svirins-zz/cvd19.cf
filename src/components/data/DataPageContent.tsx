@@ -15,7 +15,7 @@ import CountryFilter from './CountryFilter';
 
 const { Title, Text, Paragraph } = Typography;
 
-const DataContent = ({
+const DataPageContent = ({
   countries,
   periodInfo,
   onPeriodChange,
@@ -98,6 +98,7 @@ const DataContent = ({
       <Col span={20} offset={2}>
         <Title level={3} style={{ marginBottom: '0px' }}>Some header</Title>
         <Paragraph>Some descriptive sub-header</Paragraph>
+        <Divider className="divider" />
         {selectedTable === 'growth' && <GrowthTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'newDeaths' && <NewDeathsTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'totalDeaths' && <TotalDeathsTable data={countries} periodLength={periodInfo.length} />}
@@ -108,4 +109,4 @@ const DataContent = ({
   );
 };
 
-export default DataContent;
+export default DataPageContent;

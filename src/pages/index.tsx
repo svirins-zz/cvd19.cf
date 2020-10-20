@@ -8,10 +8,10 @@ import {
 import { GrowthSummaryTable } from 'components/tables/prepareTables';
 import { PERIOD_LENGTH } from 'const';
 import {
-  sumPeriodData, calculateGlobalSummary, calculateTotalGlobal, calculateData,
+  sumPeriodData, calculateSummaryData, calculateData, calculateGlobalSummary,
 } from 'lib';
 import { PandemicFreeChart, UnderControlChart, SummaryChart } from 'components/charts';
-import { TotalSummary } from '../components/data';
+import { Summary } from '../components/data';
 import { useFetchCountries } from '../hooks';
 import { OutbreakStatus } from '../@types';
 
@@ -36,37 +36,30 @@ const IndexPage = () => {
   );
   if (loading) { return <Loading />; }
   if (error) { return <Error error={error} />; }
-  const globalTotalData = calculateTotalGlobal(data);
-  //TODO: add color tag for status page
+  const summaryStats = calculateSummaryData(data);
   return (
     <PageLayout>
       <SEO title="Status" />
-      <Row gutter={[8, 16]}>
+      <Row gutter={[8, 8]}>
         <Col offset={2} span={20}>
-          <Title level={3} style={{ marginBottom: '0px' }}>Covid-19 pandemic data</Title>
+          <Title level={3} style={{ marginBottom: '0px' }}>Covid-19 Global epidemic situation</Title>
           <Paragraph>Daily data update occurs between 04:45 and 05:15 GM</Paragraph>
           <Divider className="divider" />
-          <Paragraph>
-            Current status: In the last 5 days we&apos;ve
-            {globalData[0].periods[0].status === OutbreakStatus.Won
-              ? ' '
-              : ' been '}
-            {globalData[0].periods[0].status}
-          </Paragraph>
         </Col>
       </Row>
       <Row gutter={[8, 16]}>
         <Col offset={2} span={20}>
-          <TotalSummary globalData={globalTotalData} />
+          <Summary stats={summaryStats} trend={globalData[0].periods[0].status} />
         </Col>
       </Row>
-      <SummaryChart data={globalSummarySinceTwoMonths} title="In how many places are winning?" />
-      <UnderControlChart data={globalSummaryData} title="How many places have the pandemic under control?" />
-      <PandemicFreeChart data={globalSummaryData} title="How much of the world is pandemic free?" />
+      <SummaryChart data={globalSummarySinceTwoMonths} title="Major data trends" />
+      <UnderControlChart data={globalSummaryData} title="Trend 'Under control'" />
+      <PandemicFreeChart data={globalSummaryData} title="Trend 'Pandemic free'" />
       <Row gutter={[8, 16]}>
         <Col span={20} offset={2}>
           <Title level={3} style={{ marginBottom: '0px' }}>New death cases by countries</Title>
-          <Paragraph>Lessening / Growing</Paragraph>
+          <Paragraph>Lessening / Rising</Paragraph>
+          <Divider className="divider" />
         </Col>
       </Row>
       <Row>

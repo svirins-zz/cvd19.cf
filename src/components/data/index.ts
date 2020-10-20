@@ -1,3 +1,3 @@
 export { default as CountryFilter } from './CountryFilter';
-export { default as DataContent } from './DataContent';
-export { default as TotalSummary } from './TotalSummary';
+export { default as DataPageContent } from './DataPageContent';
+export { default as Summary } from './Summary';

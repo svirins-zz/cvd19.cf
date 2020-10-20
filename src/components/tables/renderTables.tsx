@@ -28,6 +28,7 @@ export const ATable3Col = ({ table }: TableT, order: boolean) => {
     {
       title: table.columns[1].Header,
       dataIndex: 'periods[2]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate2)}
@@ -40,6 +41,7 @@ export const ATable3Col = ({ table }: TableT, order: boolean) => {
     {
       title: table.columns[2].Header,
       dataIndex: 'periods[1]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate1)}
@@ -52,6 +54,7 @@ export const ATable3Col = ({ table }: TableT, order: boolean) => {
     {
       title: table.columns[3].Header,
       dataIndex: 'periods[0]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate0)}
@@ -94,7 +97,6 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
     'periods[0]': e.periods[0].growthRate,
     rate0: e.periods[0].status,
   }));
-  console.log(preparedData);
   const columns: TableTColumn[] = [
     {
       title: table.columns[0].Header,
@@ -109,6 +111,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
     {
       title: table.columns[1].Header,
       dataIndex: 'periods[5]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate5)}
@@ -124,6 +127,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
     {
       title: table.columns[2].Header,
       dataIndex: 'periods[4]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate4)}
@@ -139,6 +143,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
     {
       title: table.columns[3].Header,
       dataIndex: 'periods[3]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate3)}
@@ -155,6 +160,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
     {
       title: table.columns[4].Header,
       dataIndex: 'periods[2]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate2)}
@@ -170,6 +176,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
     {
       title: table.columns[5].Header,
       dataIndex: 'periods[1]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate1)}
@@ -185,6 +192,7 @@ export const ATable5ColGrowth = ({ table }: TableT, order: Boolean ) => {
     {
       title: table.columns[6].Header,
       dataIndex: 'periods[0]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate0)}
@@ -240,6 +248,7 @@ export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
     {
       title: table.columns[1].Header,
       dataIndex: 'periods[5]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate5)}
@@ -255,6 +264,7 @@ export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
     {
       title: table.columns[2].Header,
       dataIndex: 'periods[4]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate4)}
@@ -270,6 +280,7 @@ export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
     {
       title: table.columns[3].Header,
       dataIndex: 'periods[3]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate3)}
@@ -286,6 +297,7 @@ export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
     {
       title: table.columns[4].Header,
       dataIndex: 'periods[2]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate2)}
@@ -301,6 +313,7 @@ export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
     {
       title: table.columns[5].Header,
       dataIndex: 'periods[1]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate1)}
@@ -316,6 +329,7 @@ export const ATable5ColNewCases = ({ table }: TableT, order: Boolean) => {
     {
       title: table.columns[6].Header,
       dataIndex: 'periods[0]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate0)}
@@ -373,6 +387,7 @@ export const ATable5ColTotalCases = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[1].Header,
       dataIndex: 'periods[5]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate5)}
@@ -388,6 +403,7 @@ export const ATable5ColTotalCases = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[2].Header,
       dataIndex: 'periods[4]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate4)}
@@ -403,6 +419,7 @@ export const ATable5ColTotalCases = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[3].Header,
       dataIndex: 'periods[3]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate3)}
@@ -419,6 +436,7 @@ export const ATable5ColTotalCases = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[4].Header,
       dataIndex: 'periods[2]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate2)}
@@ -434,6 +452,7 @@ export const ATable5ColTotalCases = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[5].Header,
       dataIndex: 'periods[1]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate1)}
@@ -449,6 +468,7 @@ export const ATable5ColTotalCases = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[6].Header,
       dataIndex: 'periods[0]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate0)}
@@ -506,6 +526,7 @@ export const ATable5ColTotalDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[1].Header,
       dataIndex: 'periods[5]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate5)}
@@ -521,6 +542,7 @@ export const ATable5ColTotalDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[2].Header,
       dataIndex: 'periods[4]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate4)}
@@ -536,6 +558,7 @@ export const ATable5ColTotalDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[3].Header,
       dataIndex: 'periods[3]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate3)}
@@ -552,6 +575,7 @@ export const ATable5ColTotalDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[4].Header,
       dataIndex: 'periods[2]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate2)}
@@ -567,6 +591,7 @@ export const ATable5ColTotalDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[5].Header,
       dataIndex: 'periods[1]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate1)}
@@ -582,6 +607,7 @@ export const ATable5ColTotalDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[6].Header,
       dataIndex: 'periods[0]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate0)}
@@ -639,6 +665,7 @@ export const ATable5ColNewDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[1].Header,
       dataIndex: 'periods[5]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate5)}
@@ -654,6 +681,7 @@ export const ATable5ColNewDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[2].Header,
       dataIndex: 'periods[4]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate4)}
@@ -669,6 +697,7 @@ export const ATable5ColNewDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[3].Header,
       dataIndex: 'periods[3]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate3)}
@@ -685,6 +714,7 @@ export const ATable5ColNewDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[4].Header,
       dataIndex: 'periods[2]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate2)}
@@ -700,6 +730,7 @@ export const ATable5ColNewDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[5].Header,
       dataIndex: 'periods[1]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate1)}
@@ -715,6 +746,7 @@ export const ATable5ColNewDeaths = ({ table }: TableT, order?: Boolean) => {
     {
       title: table.columns[6].Header,
       dataIndex: 'periods[0]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate0)}
@@ -865,6 +897,7 @@ export const ATable5Col = ({ table }: TableT, order?: Boolean, dataType: String)
     {
       title: table.columns[1].Header,
       dataIndex: 'periods[5]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate5)}
@@ -880,6 +913,7 @@ export const ATable5Col = ({ table }: TableT, order?: Boolean, dataType: String)
     {
       title: table.columns[2].Header,
       dataIndex: 'periods[4]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate4)}
@@ -895,6 +929,7 @@ export const ATable5Col = ({ table }: TableT, order?: Boolean, dataType: String)
     {
       title: table.columns[3].Header,
       dataIndex: 'periods[3]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate3)}
@@ -911,6 +946,7 @@ export const ATable5Col = ({ table }: TableT, order?: Boolean, dataType: String)
     {
       title: table.columns[4].Header,
       dataIndex: 'periods[2]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate2)}
@@ -926,6 +962,7 @@ export const ATable5Col = ({ table }: TableT, order?: Boolean, dataType: String)
     {
       title: table.columns[5].Header,
       dataIndex: 'periods[1]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate1)}
@@ -941,6 +978,7 @@ export const ATable5Col = ({ table }: TableT, order?: Boolean, dataType: String)
     {
       title: table.columns[6].Header,
       dataIndex: 'periods[0]',
+      align: "center",
       render: (text, row, index) => (
         <Tag
           color={calcTagstyle(preparedData[index].rate0)}

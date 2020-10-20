@@ -94,11 +94,11 @@ export enum OutbreakStatus {
   Won = 'Won',
 }
 
-export interface Tags {
+export type Tags = {
   id: string | number;
   label: string;
   value: string;
-}
+};
 
 export interface PeriodInfo {
   length: number
@@ -140,17 +140,17 @@ export interface Selected {
 export type ValT =
 | number | string | undefined;
 
-export interface GlobalData {
-  totalGlobalCases?: number
-  totalGlobalDeaths?: number
-  totalGlobalRecovered?: number
-  countriesTotal?: number
-}
+export type GlobalStats = {
+  totalCases: number
+  totalDeaths: number
+  totalRecovered: number
+  totalCountries: number
+  daysPassed: number
+};
 
-export interface ReducerD {
-  totalGlobalCases: number
-  totalGlobalDeaths: number
-  totalGlobalRecovered: number
+export interface CalculatedSummary {
+  stats: GlobalStats
+  trend?: OutbreakStatus
 }
 
 export interface MissingCountries {
@@ -219,3 +219,11 @@ export interface SiteQuery {
 export type CoordTuple = [number, number];
 
 export type Bounds = [CoordTuple, CoordTuple];
+
+export interface TagRenderProps {
+  closable: boolean
+  disabled?: undefined
+  label: string
+  onClose: Function
+  value: string
+}

@@ -27,11 +27,11 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
         },
       }}
       data={[
-        { name: 'No Outbreak', symbol: { fill: '#cccccc' } },
+        { name: 'No Outbreak', symbol: { fill: '#808080' } },
         { name: 'Small Outbreak', symbol: { fill: '#eb2f96' } },
         { name: 'Losing', symbol: { fill: '#f5222d' } },
-        { name: 'Flattening the Curve', symbol: { fill: '#fa8c16' } },
-        { name: 'Crushing the Curve', symbol: { fill: '#fadb14' } },
+        { name: 'Flattening the Curve', symbol: { fill: '#fa541c' } },
+        { name: 'Crushing the Curve', symbol: { fill: '#fa8c16' } },
         { name: 'Winning', symbol: { fill: '#13c2c2' } },
         { name: 'Won', symbol: { fill: '#52c41a' } },
       ]}
@@ -122,7 +122,6 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
       }}
       x="endDate"
       y="winning"
-      Cartesian
     />
     <VictoryLine
       data={data}

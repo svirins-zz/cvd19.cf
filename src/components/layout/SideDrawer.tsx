@@ -66,17 +66,18 @@ const SideDrawer = () => {
 
   return (
     <>
+      <Table
+        showHeader={false}
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+      />
       <Paragraph>
         The items below all cover a single period, unless otherwise stated.
       </Paragraph>
       <Paragraph>
         A single period is 5-days by default, though you can set your own period.
       </Paragraph>
-      <Table
-        columns={columns}
-        dataSource={data}
-        pagination={false}
-      />
     </>
   );
 };
