@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import L from 'leaflet';
+
 import {
   promiseToFlyTo, trackerFeatureToHtmlMarker, geoJsonToMarkers, getMapData,
 } from 'lib';
@@ -38,16 +39,16 @@ const Map = () => {
     }
   }
   // mapeffect
-  const mapEffect = ({ leafletElement: map } = {}) => {
-    if (!map) return;
+  const mapEffect = ({ leafletElement } = {}) => {
+    if (!leafletElement) return;
     const locationsGeoJson = getMapData(data);
     const locationsGeoJsonLayers = geoJsonToMarkers(locationsGeoJson, {
       onClick: handleOnMarkerClick,
       featureToHtml: trackerFeatureToHtmlMarker,
     });
     const bounds = locationsGeoJsonLayers.getBounds();
-    locationsGeoJsonLayers.addTo(map);
-    map.fitBounds(bounds);
+    locationsGeoJsonLayers.addTo(leafletElement);
+    leafletElement.fitBounds(bounds);
   };
   const mapProps = { mapEffect };
 

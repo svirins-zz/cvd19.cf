@@ -37,8 +37,6 @@ export const calulatePeriodData = (counts: Counts[], periodLength: number): Peri
       }
       return period;
     }
-    // In this case this is one of the 2 periods periods which we just needed
-    // to calculate the last relevant period
     return {
       endDate: '',
       totalDeaths: 0,
@@ -71,9 +69,6 @@ export const calculateData = (data: Countries | undefined, periodLength: number)
     country?.results?.forEach((result) => {
       if (!result?.date) { return; }
       const daysAgo = getDaysAgo(new Date(result?.date));
-      // We're looking at an amount of periods defined by PERIOD_COUNT
-      // each with an amount of days defined by validPeriodLength
-      // We ignore today as it has incomplete data
       if (daysAgo <= (periodCount * validPeriodLength) && daysAgo >= 1) {
         counts[Math.round(daysAgo / validPeriodLength) - 1] = {
           deaths: result?.deaths ?? 0,
@@ -190,46 +185,23 @@ export const calculateGlobalSummary = (
   return periodSummaries;
 };
 
-export const calculateSummaryData = (data: Countries): GlobalStats => {
-  console.log(data);
-  const totalCases = data?.countries.reduce((acc, element) => (
-    acc + element.results[element.results.length - 1].confirmed
-  ), 0);
-  const totalDeaths = data?.countries.reduce((acc, element) => (
-    acc + element.results[element.results.length - 1].deaths
-  ), 0);
-  const totalRecovered = data?.countries.reduce((acc, element) => (
-    acc + element.results[element.results.length - 1].recovered
-  ), 0);
-  const daysPassed = data?.countries[0].results.length;
-  const totalCountries = data?.countries.length ? data.countries.length : 0;
-
-
-  // TODO: chain reduce !!a
-  const rez = data.countries.map((e) => e.results.slice(-1)[0]);
-
+export const calculateSummaryData = (data: Countries | undefined): GlobalStats => {
+  const days = data!.countries[0].results.length;
+  const countries = data!.countries.length ? data!.countries.length : 0;
+  const reducedResult = data!.countries.map((e) => e.results.slice(-1)[0])
+    .reduce((a, e) => ({
+      confirmed: a.confirmed + e.confirmed,
+      deaths: a.deaths + e.deaths,
+      recovered: a.recovered + e.recovered,
+    }), {
+      confirmed: 0,
+      deaths: 0,
+      recovered: 0,
+    });
   const stats = {
-    totalCases,
-    totalDeaths,
-    totalRecovered,
-    daysPassed,
-    totalCountries,
+    ...reducedResult,
+    countries,
+    days,
   };
   return stats;
 };
-
-// const length = data.countries.results.length - 1;
-// const reducer = (acc, element) => ({
-//   confirmed: acc.confirmed + element[length].confirmed,
-//   deaths: acc.deaths + element[length].deaths,
-//   recovered: acc.recovered + element[length].recovered,
-// });
-
-// const accumulator = {
-//   confirmed: 0,
-//   deaths: 0,
-//   recovered: 0,
-// };
-
-// const res = data.countries.reduce(accumulator, reducer);
-// console.log(res);

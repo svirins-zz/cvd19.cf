@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { Map, TileLayer } from 'react-leaflet';
+import PropTypes from 'prop-types';
+
 import { useRefEffect } from '../../hooks';
 import 'leaflet/dist/leaflet.css';
 import { ATTRIBUTION_STRING } from '../../const';
@@ -31,3 +33,7 @@ const LeafletMap = (props) => {
 };
 
 export default LeafletMap;
+
+LeafletMap.propTypes = {
+  mapEffect: PropTypes.func,
+};

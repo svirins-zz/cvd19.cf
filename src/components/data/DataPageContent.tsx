@@ -29,21 +29,20 @@ const DataPageContent = ({
     () => getChartInfo(selectedTable, periodInfo.length),
     [selectedTable, periodInfo],
   );
-  // TODO:refactor allCountrie../../ useReducer
   const allCountries: Tags[] = React.useMemo(() => getTags(countries), [countries]);
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
   const [startAtDeaths, setStartAtDeaths] = useState(false);
   return (
     <PageLayout>
       <SEO title="All Data" />
-      <Row gutter={[8, 16]}>
+      <Row gutter={[8, 8]}>
         <Col span={20} offset={2}>
-          <Title level={3} style={{ marginBottom: '0px' }}>All Data</Title>
-          <Paragraph>Choose data type, period, countries:</Paragraph>
+          <Title level={3} style={{ marginBottom: '0px' }}>Data reports constructor</Title>
+          <Paragraph>choose data type, period, countries</Paragraph>
           <Divider className="divider" />
         </Col>
       </Row>
-      <Row gutter={[8, 16]}>
+      <Row gutter={[8, 8]}>
         <Col span={20} offset={2}>
           <Radio.Group value={selectedTable} onChange={(e) => setSelectedTable(e.target.value)}>
             <Radio.Button value="newDeaths">New Deaths</Radio.Button>
@@ -54,7 +53,7 @@ const DataPageContent = ({
           </Radio.Group>
         </Col>
       </Row>
-      <Row gutter={[8, 16]}>
+      <Row gutter={[8, 8]}>
         <Col span={20} offset={2}>
           <Text>
             Period, days:
@@ -77,7 +76,7 @@ const DataPageContent = ({
         </Col>
       </Row>
       {' '}
-      <Row gutter={[8, 16]}>
+      <Row gutter={[8, 8]}>
         <Col span={20} offset={2}>
           <CountryFilter
             selected={selectedCountries}
@@ -96,8 +95,8 @@ const DataPageContent = ({
         title={chartInfo.title}
       />
       <Col span={20} offset={2}>
-        <Title level={3} style={{ marginBottom: '0px' }}>Some header</Title>
-        <Paragraph>Some descriptive sub-header</Paragraph>
+        <Title level={3} style={{ marginBottom: '0px' }}>{chartInfo.title}</Title>
+        <Paragraph>all countries included, last 6 periods</Paragraph>
         <Divider className="divider" />
         {selectedTable === 'growth' && <GrowthTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'newDeaths' && <NewDeathsTable data={countries} periodLength={periodInfo.length} />}

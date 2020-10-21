@@ -24,7 +24,8 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "noUnusedLocals": false,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "strictNullChecks": true,
   },
   "exclude": [
     "node_modules",

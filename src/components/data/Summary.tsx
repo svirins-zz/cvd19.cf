@@ -7,11 +7,11 @@ import { CalculatedSummary } from '@types';
 
 const Summary = ({ stats, trend }: CalculatedSummary) => {
   const {
-    totalCases,
-    totalDeaths,
-    totalRecovered,
-    daysPassed,
-    totalCountries,
+    confirmed,
+    deaths,
+    recovered,
+    days,
+    countries,
   } = stats;
   const trendColor = calcTagstyle(trend);
   return (
@@ -21,7 +21,7 @@ const Summary = ({ stats, trend }: CalculatedSummary) => {
           <Card>
             <Statistic
               title="Total Cases"
-              value={totalCases}
+              value={confirmed}
               precision={0}
               valueStyle={{ color: 'red', backgroundColor: '#f9f9fd' }}
             />
@@ -31,7 +31,7 @@ const Summary = ({ stats, trend }: CalculatedSummary) => {
           <Card>
             <Statistic
               title="Total Deaths"
-              value={totalDeaths}
+              value={deaths}
               precision={0}
               valueStyle={{ color: 'red', backgroundColor: '#f9f9fd' }}
             />
@@ -41,7 +41,7 @@ const Summary = ({ stats, trend }: CalculatedSummary) => {
           <Card>
             <Statistic
               title="Total Recovered"
-              value={totalRecovered}
+              value={recovered}
               precision={0}
               valueStyle={{ color: '#3f8600', backgroundColor: '#f9f9fd' }}
             />
@@ -53,7 +53,7 @@ const Summary = ({ stats, trend }: CalculatedSummary) => {
           <Card>
             <Statistic
               title="Days passed"
-              value={daysPassed}
+              value={days}
               precision={0}
               valueStyle={{ color: '#120338', backgroundColor: '#f9f9fd' }}
             />
@@ -63,7 +63,7 @@ const Summary = ({ stats, trend }: CalculatedSummary) => {
           <Card>
             <Statistic
               title="Countries (incl. vessels)"
-              value={totalCountries}
+              value={countries}
               precision={0}
               valueStyle={{ color: '#120338', backgroundColor: '#f9f9fd' }}
             />

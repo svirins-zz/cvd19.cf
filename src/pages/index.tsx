@@ -37,28 +37,29 @@ const IndexPage = () => {
   if (loading) { return <Loading />; }
   if (error) { return <Error error={error} />; }
   const summaryStats = calculateSummaryData(data);
+  const trend = globalData[0].periods[0].status ?? OutbreakStatus.None;
   return (
     <PageLayout>
       <SEO title="Status" />
       <Row gutter={[8, 8]}>
         <Col offset={2} span={20}>
           <Title level={3} style={{ marginBottom: '0px' }}>Covid-19 Global epidemic situation</Title>
-          <Paragraph>Daily data update occurs between 04:45 and 05:15 GM</Paragraph>
+          <Paragraph>daily data update occurs between 04:45 and 05:15 GM</Paragraph>
           <Divider className="divider" />
         </Col>
       </Row>
       <Row gutter={[8, 16]}>
         <Col offset={2} span={20}>
-          <Summary stats={summaryStats} trend={globalData[0].periods[0].status} />
+          <Summary stats={summaryStats} trend={trend} />
         </Col>
       </Row>
-      <SummaryChart data={globalSummarySinceTwoMonths} title="Major data trends" />
+      <SummaryChart data={globalSummarySinceTwoMonths} title="Global data trends" />
       <UnderControlChart data={globalSummaryData} title="Trend 'Under control'" />
       <PandemicFreeChart data={globalSummaryData} title="Trend 'Pandemic free'" />
-      <Row gutter={[8, 16]}>
+      <Row gutter={0}>
         <Col span={20} offset={2}>
           <Title level={3} style={{ marginBottom: '0px' }}>New death cases by countries</Title>
-          <Paragraph>Lessening / Rising</Paragraph>
+          <Paragraph>lessening / rising by last two 5-days periods</Paragraph>
           <Divider className="divider" />
         </Col>
       </Row>

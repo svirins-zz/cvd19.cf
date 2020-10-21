@@ -12,23 +12,19 @@ const { Title, Paragraph } = Typography;
 const AboutPage = () => (
   <PageLayout>
     <SEO title="About" />
-    <Row gutter={[8, 16]}>
+    <Row gutter={[8, 8]}>
       <Col span={20} offset={2}>
         <Title level={3} style={{ marginBottom: '0px' }}>Covid-19 Pandemic Information</Title>
-        <Paragraph>Some descriptive sub-header</Paragraph>
+        <Paragraph>Stay home and be safe!</Paragraph>
         <Divider className="divider" />
+      </Col>
+    </Row>
+    <Row gutter={[8, 8]}>
+      <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
         <Paragraph>
           This site aims to provide a simple tool to track global progress in defeating Covid-19,
           by focusing on the rate of change in death count globally.
           Daily data update occurs between 04:45 and 05:15 GMT.
-          Stay home and be safe!
-        </Paragraph>
-        <Paragraph>
-          Summary: the pandemic is serious; we won&apos;t have an economy
-          if we don&apos;t defeat it;
-          herd immunity and waiting on a vaccine are not real strategies; masks, lockdowns,
-          travel bans, and mass testing are.
-          {' '}
         </Paragraph>
         <Paragraph>
           The Won status above only looks at deaths, and should therefore be a slight
@@ -38,13 +34,23 @@ const AboutPage = () => (
           and then increase once countries successfully eradicate the virus.
         </Paragraph>
       </Col>
+      <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
+        <Paragraph>
+          Summary: the pandemic is serious; we won&apos;t have an economy
+          if we don&apos;t defeat it;
+          herd immunity and waiting on a vaccine are not real strategies; masks, lockdowns,
+          travel bans, and mass testing are.
+        </Paragraph>
+
+      </Col>
     </Row>
     <Row gutter={[8, 16]}>
       <Col span={20} offset={2}>
         <Title level={3}>Extra info and useful resources</Title>
         <Paragraph>
           If you want expert information visit
-          <ul>
+          <ul style={{ marginTop: '10px' }}>
+            {' '}
             <li><a href="https://necsi.edu/corona-virus-pandemic">NECSI Coronavirus resources</a></li>
             <li><a href="https://www.endcoronavirus.org/">EndCoronavirus.org</a></li>
           </ul>

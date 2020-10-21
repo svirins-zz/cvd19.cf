@@ -8,7 +8,7 @@ export interface Countries {
 
 export interface Country {
   name: string
-  results?: Result[]
+  results: Result[]
   periods: Period[]
   periodsWithDeaths: Period[]
 }
@@ -24,10 +24,10 @@ export interface CountryExt {
 }
 
 export interface Result {
-  date?: string
-  deaths?: number
-  confirmed?: number
-  recovered?: number
+  date: string
+  deaths: number
+  confirmed: number
+  recovered: number
 }
 
 export interface Counts {
@@ -141,16 +141,16 @@ export type ValT =
 | number | string | undefined;
 
 export type GlobalStats = {
-  totalCases: number
-  totalDeaths: number
-  totalRecovered: number
-  totalCountries: number
-  daysPassed: number
+  confirmed: number
+  deaths: number
+  recovered: number
+  countries: number
+  days: number
 };
 
 export interface CalculatedSummary {
   stats: GlobalStats
-  trend?: OutbreakStatus
+  trend: OutbreakStatus
 }
 
 export interface MissingCountries {
