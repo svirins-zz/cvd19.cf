@@ -1,45 +1,43 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import L from 'leaflet';
+import L, { LeafletMouseEvent, Map } from 'leaflet';
+import { Feature } from '@types';
 
 import {
   promiseToFlyTo, trackerFeatureToHtmlMarker, geoJsonToMarkers, getMapData,
 } from 'lib';
 import {
   PageLayout, Loading, Error, SEO,
-} from 'components/layout';
+}
+  from 'components/layout';
 import LeafletMap from '../components/map/LeafletMap';
 import { useFetchCountries } from '../hooks';
 
 // TODO map with timescale (weekly)
-const Map = () => {
+const MapPage = () => {
   const { loading, error, data } = useFetchCountries();
   if (loading) { return <Loading />; }
   if (error) { return <Error error={error} />; }
-  // marker click handler
-  function handleOnMarkerClick({ feature = {} } = {}, event = {}) {
-    const { target = {} } = event;
-    const { _map: map = {} } = target;
+  const handleOnMarkerClick = (
+    { feature }: { feature: Feature }, event: LeafletMouseEvent,
+  ) => {
+    const { target } = event;
+    const { _map: map } = target;
 
-    const { geometry = {}, properties = {} } = feature;
+    const { geometry, properties } = feature;
     const { coordinates } = geometry;
     const { bounds, code } = properties;
 
     promiseToFlyTo(map, {
-      center: {
-        lat: coordinates[1],
-        lng: coordinates[0],
-      },
-      zoom: 3,
+      center: [coordinates[1], coordinates[0]], zoom: 3,
     });
     if (bounds && code !== 'US') {
       const boundsGeoJsonLayer = new L.GeoJSON(bounds);
       const boundsGeoJsonLayerBounds = boundsGeoJsonLayer.getBounds();
       map.fitBounds(boundsGeoJsonLayerBounds);
     }
-  }
+  };
   // mapeffect
-  const mapEffect = ({ leafletElement } = {}) => {
+  const mapEffect = ({ leafletElement }: {leafletElement: Map | undefined }) => {
     if (!leafletElement) return;
     const locationsGeoJson = getMapData(data);
     const locationsGeoJsonLayers = geoJsonToMarkers(locationsGeoJson, {
@@ -50,14 +48,14 @@ const Map = () => {
     locationsGeoJsonLayers.addTo(leafletElement);
     leafletElement.fitBounds(bounds);
   };
-  const mapProps = { mapEffect };
+  // const mapProps = { mapEffect };
 
   return (
     <PageLayout>
       <SEO title="World Map" />
-      <LeafletMap {...mapProps} />
+      <LeafletMap mapEffect={mapEffect} />
     </PageLayout>
   );
 };
 
-export default Map;
+export default MapPage;

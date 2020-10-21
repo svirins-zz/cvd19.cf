@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import { Map, TileLayer } from 'react-leaflet';
-import PropTypes from 'prop-types';
+import { Map as MapType } from 'leaflet';
 
 import { useRefEffect } from '../../hooks';
 import 'leaflet/dist/leaflet.css';
 import { ATTRIBUTION_STRING } from '../../const';
-
-const LeafletMap = (props) => {
-  const { mapEffect } = props;
+// Migrate from mapbox tiles
+// remove props in favor of function
+const LeafletMap = ({mapEffect}:{mapEffect: (l: MapType | undefined) => void}) => {
   const mapRef = useRef();
   useRefEffect({
     ref: mapRef,
@@ -33,7 +33,3 @@ const LeafletMap = (props) => {
 };
 
 export default LeafletMap;
-
-LeafletMap.propTypes = {
-  mapEffect: PropTypes.func,
-};

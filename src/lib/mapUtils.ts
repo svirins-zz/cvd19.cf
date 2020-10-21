@@ -1,4 +1,5 @@
-import L from 'leaflet';
+import L, { LatLngTuple } from 'leaflet';
+import { Properties } from '@types';
 
 const getClassByCases = (totalCases: number) => {
   if (totalCases < 99) { return 'icon-marker-small'; }
@@ -6,6 +7,7 @@ const getClassByCases = (totalCases: number) => {
   if (totalCases < 99999 && totalCases > 9999) { return 'icon-marker-large'; }
   if (totalCases < 999999 && totalCases > 99999) { return 'icon-marker-extra-large'; }
   if (totalCases > 999999) { return 'icon-marker-super-large'; }
+  return '';
 };
 
 export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
@@ -36,7 +38,7 @@ export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
     }).on('click', onMarkerClick);
   };
 }
-export function promiseToFlyTo(map, { zoom, center }) {
+export function promiseToFlyTo(map, { zoom, center }: {zoom: number, center: LatLngTuple}) {
   return new Promise((resolve, reject) => {
     const baseError = 'Failed to fly to area';
 
@@ -57,7 +59,7 @@ export function promiseToFlyTo(map, { zoom, center }) {
   });
 }
 
-export function trackerFeatureToHtmlMarker({ properties = {} } = {}) {
+export function trackerFeatureToHtmlMarker({ properties }: {properties: Properties}) {
   const {
     name, flag, confirmed, deaths, recovered,
   } = properties;

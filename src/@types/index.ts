@@ -1,6 +1,7 @@
 import { TableInstance } from 'react-table';
 import { ReactChildren, ReactChild } from 'react';
 import { ApolloError } from '@apollo/client';
+import { LatLngTuple, LatLngBoundsExpression } from 'leaflet';
 
 export interface Countries {
   countries: Country[];
@@ -13,11 +14,11 @@ export interface Country {
   periodsWithDeaths: Period[]
 }
 
-export interface CountryExt {
+export interface Properties {
   name: string
   code: string
   flag: string
-  bounds?: Bounds
+  bounds: LatLngBoundsExpression
   confirmed: number
   deaths: number
   recovered: number
@@ -120,7 +121,7 @@ export interface ChartInfo {
 
 export interface RenderedTable {
   table: TableT
-  order?: boolean
+  order: boolean
 }
 
 export interface DataChartProps {
@@ -175,12 +176,12 @@ export type ErrorProps = {
 
 export interface Geometry {
   type: 'Point'
-  coordinates: CoordTuple
+  coordinates: LatLngTuple
 }
 
 export type Feature ={
   type: 'Feature'
-  properties: CountryExt
+  properties: Properties
   geometry: Geometry
 };
 
@@ -215,10 +216,6 @@ export interface SiteQuery {
     }
   }
 }
-
-export type CoordTuple = [number, number];
-
-export type Bounds = [CoordTuple, CoordTuple];
 
 export interface TagRenderProps {
   closable: boolean
