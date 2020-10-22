@@ -1,7 +1,10 @@
-import { TableInstance } from 'react-table';
 import { ReactChildren, ReactChild } from 'react';
 import { ApolloError } from '@apollo/client';
-import { LatLngTuple, LatLngBoundsExpression } from 'leaflet';
+import { LatLngTuple, LatLngBoundsLiteral, Map } from 'leaflet';
+
+export interface MapEffectSignature {
+  leafletElement: Map | undefined
+}
 
 export interface Countries {
   countries: Country[];
@@ -18,7 +21,7 @@ export interface Properties {
   name: string
   code: string
   flag: string
-  bounds: LatLngBoundsExpression
+  bounds?: LatLngBoundsLiteral
   confirmed: number
   deaths: number
   recovered: number
@@ -48,7 +51,7 @@ export interface Period {
   growthRate: number
   totalCases: number
   newCases: number
-  status: OutbreakStatus | undefined
+  status: OutbreakStatus
 }
 
 export interface PeriodSummary {
@@ -62,27 +65,6 @@ export interface PeriodSummary {
   won: number
   pandemicFree: number
   underControl: number
-}
-
-export interface AllPeriodsResult {
-  totalGlobalCases: number
-  totalGlobalDeaths: number
-  totalGlobalRecovered: number
-  totalGlobalCountries: number
-}
-
-export interface TableTColumn {
-  key: string
-  title?: string
-  dataIndex: string
-  sorter?: Function
-  defaultSortOrder?: string
-  sortOrder?: string
-  render?: Function
-}
-
-export interface TableT {
-  table: TableInstance<Country>
 }
 
 export enum OutbreakStatus {
@@ -119,9 +101,13 @@ export interface ChartInfo {
   title: string
 }
 
-export interface RenderedTable {
-  table: TableT
-  order: boolean
+export interface SummaryTable5Columns {
+  data: Country[];
+  periodLength: number;
+}
+
+export interface SummaryTable3Columns extends SummaryTable5Columns{
+  order?: boolean
 }
 
 export interface DataChartProps {
@@ -223,4 +209,10 @@ export interface TagRenderProps {
   label: string
   onClose: Function
   value: string
+}
+
+export interface RenderType {
+  text: number | string
+  row?: number
+  index: number
 }

@@ -7,7 +7,7 @@ import {
 } from '@types';
 import { getTags, getChartInfo } from 'lib';
 import { GlobalDataChart } from '../charts';
-import { PageLayout, SEO } from '../layout';
+import { Page, SEO } from '../layout';
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
 } from '../tables/prepareTables';
@@ -33,7 +33,7 @@ const DataPageContent = ({
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
   const [startAtDeaths, setStartAtDeaths] = useState(false);
   return (
-    <PageLayout>
+    <Page>
       <SEO title="All Data" />
       <Row gutter={[8, 8]}>
         <Col span={20} offset={2}>
@@ -104,7 +104,7 @@ const DataPageContent = ({
         {selectedTable === 'newCases' && <NewCasesTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'totalCases' && <TotalCasesTable data={countries} periodLength={periodInfo.length} />}
       </Col>
-    </PageLayout>
+    </Page>
   );
 };
 

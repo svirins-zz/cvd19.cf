@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Typography, Spin } from 'antd';
-import PageLayout from './PageLayout';
+import PageLayout from './Page';
 
 const { Title, Paragraph } = Typography;
 

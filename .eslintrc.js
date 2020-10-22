@@ -33,6 +33,7 @@ module.exports = {
     "jsx-a11y/label-has-associated-control": [2, {
       "controlComponents": ["Switch"],
       "depth": 3,
+      "react/prop-types": 0
     }],
   },
 };

@@ -1,5 +1,5 @@
 import L, { LatLngTuple } from 'leaflet';
-import { Properties } from '@types';
+import { Properties, Feature } from '@types';
 
 const getClassByCases = (totalCases: number) => {
   if (totalCases < 99) { return 'icon-marker-small'; }
@@ -11,7 +11,7 @@ const getClassByCases = (totalCases: number) => {
 };
 
 export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
-  return function (feature = {}, latlng) {
+  return function (feature: Feature, latlng: LatLngTuple) {
     let html = '<span class="icon-marker"></span>';
     if (typeof featureToHtml === 'function') {
       html = featureToHtml(feature);
@@ -38,17 +38,14 @@ export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
     }).on('click', onMarkerClick);
   };
 }
-export function promiseToFlyTo(map, { zoom, center }: {zoom: number, center: LatLngTuple}) {
+export function promiseToFlyTo(map: L.Map, { zoom, center }: {zoom: number, center: LatLngTuple}) {
   return new Promise((resolve, reject) => {
     const baseError = 'Failed to fly to area';
-
     if (!map.flyTo) {
       reject(`${baseError}: no flyTo method on map`);
     }
-
     const mapCenter = center || map.getCenter();
     const mapZoom = zoom || map.getZoom();
-
     map.flyTo(mapCenter, mapZoom, {
       duration: 1,
     });
@@ -105,7 +102,7 @@ export function trackerFeatureToHtmlMarker({ properties }: {properties: Properti
   `;
 }
 
-export function geoJsonToMarkers(geoJson, options) {
+export function geoJsonToMarkers(geoJson: L.GeoJSON, options:L.GeoJSONOptions) {
   return new L.GeoJSON(geoJson, {
     pointToLayer: pointToLayerMarkerCreator(options),
   });

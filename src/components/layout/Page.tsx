@@ -18,10 +18,10 @@ import { myContext } from 'context';
 import SideDrawer from './SideDrawer';
 
 const { Content, Sider, Footer } = Layout;
-
-const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
+// TODO: explore function signatures and write types for handlers
+const Page = ({ children } : React.PropsWithChildren<{}>) => {
   const { pathname } = useLocation();
-  const marginClassName: string = pathname === '/map' ? 'conentWithoutMargin' : 'conentWithMargin';
+  const marginClassName: string = pathname.includes('map') ? 'conentWithoutMargin' : 'conentWithMargin';
   const defaultItem = menuInit(pathname);
   return (
     <myContext.Consumer>
@@ -123,4 +123,4 @@ const PageLayout = ({ children } : React.PropsWithChildren<{}>) => {
   );
 };
 
-export default PageLayout;
+export default Page;

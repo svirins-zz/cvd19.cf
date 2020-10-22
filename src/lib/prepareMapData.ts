@@ -1,5 +1,6 @@
+import { LatLngBoundsLiteral } from 'leaflet';
 import {
-  Countries, CountryExt, Feature, Bounds,
+  Countries, Properties, Feature,
 } from '../@types';
 import getCountryExtData from './calcCountry';
 
@@ -10,8 +11,8 @@ const getMapData = (data: Countries | undefined) => {
     const { code, flag, geometry } = getCountryExtData(e.name);
     const { confirmed, deaths, recovered } = e.results[data.countries.length - 1];
     // construct feature object
-    let bounds: Bounds;
-    const properties: CountryExt = {
+    const bounds: LatLngBoundsLiteral | undefined = undefined;
+    const properties: Properties = {
       name: e.name,
       code,
       flag,

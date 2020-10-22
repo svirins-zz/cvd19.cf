@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import { ContextProps, AuxProps } from '../@types';
 
 export const myContext = React.createContext<Partial<ContextProps>>({});
@@ -9,8 +9,8 @@ const Provider = ({ children }: AuxProps) => {
   return (
     <myContext.Provider value={{
       choice,
-      handleSelect: (e: ChangeEvent) => {
-        setChoice(e.key);
+      handleSelect: ({ key }: {key: string}) => {
+        setChoice(key);
       },
       visible,
       onClose: () => setVisible(false),
@@ -22,7 +22,7 @@ const Provider = ({ children }: AuxProps) => {
   );
 };
 
-export default ({ element }) => (
+export default ({ element }: {element: React.ReactChildren}) => (
   <Provider>
     {element}
   </Provider>

@@ -8,6 +8,7 @@ export {
 export {
   getDaysAgo, getPeriodCount, getPeriodName, getPeriodNames, validatePeriodLength, periodStatus,
 } from './calcPeriod';
+export { sortOptions, textSorter } from './sortUtils';
 export { default as commafy } from './conversion';
 export { default as getMissingCode } from './calcCountry';
 export { default as getChartInfo } from './chartInfo';

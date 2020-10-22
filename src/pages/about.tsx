@@ -3,14 +3,14 @@ import {
   Typography, Col, Row, Divider,
 } from 'antd';
 import {
-  PageLayout, SEO,
+  Page, SEO,
 } from 'components/layout';
 
 const { Title, Paragraph } = Typography;
 
 // TODO: Add typography and styling
 const AboutPage = () => (
-  <PageLayout>
+  <Page>
     <SEO title="About" />
     <Row gutter={[8, 8]}>
       <Col span={20} offset={2}>
@@ -92,7 +92,7 @@ const AboutPage = () => (
         </Paragraph>
       </Col>
     </Row>
-  </PageLayout>
+  </Page>
 
 );
 

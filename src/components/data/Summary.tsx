@@ -3,9 +3,9 @@ import {
   Statistic, Card, Row, Col,
 } from 'antd';
 import { calcTagstyle } from 'lib';
-import { CalculatedSummary } from '@types';
+import { GlobalStats, OutbreakStatus } from '@types';
 
-const Summary = ({ stats, trend }: CalculatedSummary) => {
+const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }) => {
   const {
     confirmed,
     deaths,

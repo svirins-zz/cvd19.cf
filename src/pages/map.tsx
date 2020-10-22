@@ -1,12 +1,12 @@
 import React from 'react';
-import L, { LeafletMouseEvent, Map } from 'leaflet';
-import { Feature } from '@types';
+import L, { LeafletMouseEvent } from 'leaflet';
+import { Feature, MapEffectSignature } from '@types';
 
 import {
   promiseToFlyTo, trackerFeatureToHtmlMarker, geoJsonToMarkers, getMapData,
 } from 'lib';
 import {
-  PageLayout, Loading, Error, SEO,
+  Page, Loading, Error, SEO,
 }
   from 'components/layout';
 import LeafletMap from '../components/map/LeafletMap';
@@ -37,7 +37,7 @@ const MapPage = () => {
     }
   };
   // mapeffect
-  const mapEffect = ({ leafletElement }: {leafletElement: Map | undefined }) => {
+  const mapEffect = ({ leafletElement }: MapEffectSignature) => {
     if (!leafletElement) return;
     const locationsGeoJson = getMapData(data);
     const locationsGeoJsonLayers = geoJsonToMarkers(locationsGeoJson, {
@@ -48,13 +48,12 @@ const MapPage = () => {
     locationsGeoJsonLayers.addTo(leafletElement);
     leafletElement.fitBounds(bounds);
   };
-  // const mapProps = { mapEffect };
 
   return (
-    <PageLayout>
+    <Page>
       <SEO title="World Map" />
       <LeafletMap mapEffect={mapEffect} />
-    </PageLayout>
+    </Page>
   );
 };
 

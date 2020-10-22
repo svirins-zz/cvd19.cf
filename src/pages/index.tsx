@@ -3,7 +3,7 @@ import {
   Typography, Row, Col, Divider,
 } from 'antd';
 import {
-  PageLayout, Loading, Error, SEO,
+  Page, Loading, Error, SEO,
 } from 'components/layout';
 import { GrowthSummaryTable } from 'components/tables/prepareTables';
 import { PERIOD_LENGTH } from 'const';
@@ -17,6 +17,7 @@ import { OutbreakStatus } from '../@types';
 
 const { Title, Paragraph } = Typography;
 // TODO: Refactor Victory=>antD charts!
+// TODO: Why 3-columns tabel has no global ???
 const IndexPage = () => {
   // query countries data
   const { loading, error, data } = useFetchCountries();
@@ -39,7 +40,7 @@ const IndexPage = () => {
   const summaryStats = calculateSummaryData(data);
   const trend = globalData[0].periods[0].status ?? OutbreakStatus.None;
   return (
-    <PageLayout>
+    <Page>
       <SEO title="Status" />
       <Row gutter={[8, 8]}>
         <Col offset={2} span={20}>
@@ -65,13 +66,13 @@ const IndexPage = () => {
       </Row>
       <Row>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
-          <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} desc={false} />
+          <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} order={false} />
         </Col>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
-          <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} desc />
+          <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} />
         </Col>
       </Row>
-    </PageLayout>
+    </Page>
   );
 };
 
