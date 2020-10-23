@@ -1,3 +1,4 @@
+import { LatLngTuple } from 'leaflet';
 import { MissingCountries } from '../@types';
 
 export const EPIDEMIC_START: string = '2020/01/07';
@@ -5,8 +6,8 @@ export const EPIDEMIC_START: string = '2020/01/07';
 export const PERIOD_LENGTH: number = 5;
 
 export const VESSELS_CURRENT_COORDS = {
-  'MS Zaandam': [-3.51, 50.44],
-  'Diamond Princess': [104.53, 1.7],
+  'MS Zaandam': [-3.51, 50.44] as LatLngTuple,
+  'Diamond Princess': [104.53, 1.7] as LatLngTuple,
 };
 
 export const ATTRIBUTION_STRING = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
@@ -64,7 +65,7 @@ export const COLORS: string[] = [
   '#52c41a',
   '#cccccc',
 ];
-
+// TODO: consider use API to get countries cener point coordinates
 export const ALL_COUNTRIES_DATA = [
   {
     timezones: [

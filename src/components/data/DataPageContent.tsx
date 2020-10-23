@@ -3,7 +3,7 @@ import {
   Typography, Divider, Col, Row, Radio, Checkbox, InputNumber,
 } from 'antd';
 import {
-  PeriodInfo, Table, Country, Tags, ValT,
+  PeriodInfo, TableType, Country, Tags, ValT,
 } from '@types';
 import { getTags, getChartInfo } from 'lib';
 import { GlobalDataChart } from '../charts';
@@ -24,7 +24,7 @@ const DataPageContent = ({
   periodInfo: PeriodInfo,
   onPeriodChange: ((value: number) => void)
 }) => {
-  const [selectedTable, setSelectedTable] = useState<Table>('newDeaths');
+  const [selectedTable, setSelectedTable] = useState<TableType>('newDeaths');
   const chartInfo = React.useMemo(
     () => getChartInfo(selectedTable, periodInfo.length),
     [selectedTable, periodInfo],
@@ -47,7 +47,7 @@ const DataPageContent = ({
           <Radio.Group value={selectedTable} onChange={(e) => setSelectedTable(e.target.value)}>
             <Radio.Button value="newDeaths">New Deaths</Radio.Button>
             <Radio.Button value="totalDeaths">Total Deaths</Radio.Button>
-            <Radio.Button value="growth">Change in Deaths</Radio.Button>
+            <Radio.Button value="growthRate">Change in Deaths</Radio.Button>
             <Radio.Button value="newCases">New Cases</Radio.Button>
             <Radio.Button value="totalCases">Total Cases</Radio.Button>
           </Radio.Group>
@@ -98,7 +98,7 @@ const DataPageContent = ({
         <Title level={3} style={{ marginBottom: '0px' }}>{chartInfo.title}</Title>
         <Paragraph>all countries included, last 6 periods</Paragraph>
         <Divider className="divider" />
-        {selectedTable === 'growth' && <GrowthTable data={countries} periodLength={periodInfo.length} />}
+        {selectedTable === 'growthRate' && <GrowthTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'newDeaths' && <NewDeathsTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'totalDeaths' && <TotalDeathsTable data={countries} periodLength={periodInfo.length} />}
         {selectedTable === 'newCases' && <NewCasesTable data={countries} periodLength={periodInfo.length} />}

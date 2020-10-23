@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Table, Tag } from 'antd';
-import { calcTagstyle } from 'lib';
+import { getTagColor } from 'lib';
 import { OutbreakStatus } from '@types';
 
 const { Paragraph } = Typography;
@@ -50,7 +50,7 @@ const SideDrawer = () => {
       key: 'status',
       render: (text: OutbreakStatus, row: number, index: number) => (
         <Tag
-          color={calcTagstyle(text)}
+          color={getTagColor(text)}
           key={index}
         >
           {text}

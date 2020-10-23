@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Statistic, Card, Row, Col,
 } from 'antd';
-import { calcTagstyle } from 'lib';
+import { getTagColor } from 'lib';
 import { GlobalStats, OutbreakStatus } from '@types';
 
 const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }) => {
@@ -13,7 +13,7 @@ const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }
     days,
     countries,
   } = stats;
-  const trendColor = calcTagstyle(trend);
+  const trendColor = getTagColor(trend);
   return (
     <>
       <Row gutter={0}>

@@ -1,7 +1,7 @@
 import { COLORS } from 'const';
 import { OutbreakStatus, Tags } from '../@types';
 
-export const calcTagstyle = (rate: OutbreakStatus): string => {
+export const getTagColor = (rate: OutbreakStatus): string => {
   let color = 'none';
   switch (rate) {
     case 'No Outbreak': { color = 'grey'; break; }

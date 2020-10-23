@@ -88,8 +88,8 @@ export interface PeriodInfo {
   value: string
 }
 
-export type Table =
-  | 'growth'
+export type TableType =
+  | 'growthRate'
   | 'totalDeaths'
   | 'newDeaths'
   | 'totalCases'
@@ -101,13 +101,9 @@ export interface ChartInfo {
   title: string
 }
 
-export interface SummaryTable5Columns {
+export interface SummaryTable {
   data: Country[];
   periodLength: number;
-}
-
-export interface SummaryTable3Columns extends SummaryTable5Columns{
-  order?: boolean
 }
 
 export interface DataChartProps {
@@ -177,7 +173,7 @@ export interface FeatureCollection {
 }
 
 export interface CodeFlagGeo {
-  code: string
+  code?: string
   flag: string
   geometry: Geometry
 }

@@ -1,14 +1,17 @@
 export {
   calulatePeriodData, calculateData, sumPeriodData, calculateSummaryData, calculateGlobalSummary,
 } from './calcData';
-export { calcTagstyle, getColor, getColorByCountryName } from './calcColor';
+export { getTagColor, getColor, getColorByCountryName } from './calcColor';
 export {
   pointToLayerMarkerCreator, promiseToFlyTo, trackerFeatureToHtmlMarker, geoJsonToMarkers,
 } from './mapUtils';
 export {
   getDaysAgo, getPeriodCount, getPeriodName, getPeriodNames, validatePeriodLength, periodStatus,
 } from './calcPeriod';
-export { sortOptions, textSorter } from './sortUtils';
+export {
+  sortOptions, textSorter, constructData6C,
+  constructData4C, constructColumns, constructColumnsSm,
+} from './tableUtils';
 export { default as commafy } from './conversion';
 export { default as getMissingCode } from './calcCountry';
 export { default as getChartInfo } from './chartInfo';

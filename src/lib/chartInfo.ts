@@ -1,7 +1,7 @@
 import { ChartInfo } from '../@types';
 
 const getChartInfo = (selectedTable: string, period: number): ChartInfo => {
-  if (selectedTable === 'growth') {
+  if (selectedTable === 'growthRate') {
     return {
       x: 'endDate',
       y: 'growthRate',

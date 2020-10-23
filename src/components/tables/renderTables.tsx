@@ -1,22 +1,12 @@
 import React from 'react';
 import { Table, Tag } from 'antd';
 import { Country } from '@types';
-import { TableInstance, Column } from 'react-table';
-import { calcTagstyle, commafy, sortOptions, textSorter } from 'lib';
+import { TableInstance } from 'react-table';
+import { getTagColor, commafy, sortOptions, textSorter, constructData6C, constructData4C } from 'lib';
 
-// TODO: Refactor everythin to ForEach ?? is it possbible
-
-export const ATable3Col = ({ table }: { table: TableInstance<Country> }, order: boolean )  => {
-  const preparedData = table.data.map((e, i) => ({
-    key: i,
-    name: e.name,
-    'periods[2]': e.periods[2].newDeaths,
-    rate2: e.periods[2].status,
-    'periods[1]': e.periods[1].newDeaths,
-    rate1: e.periods[1].status,
-    'periods[0]': e.periods[0].newDeaths,
-    rate0: e.periods[0].status,
-  }));
+export const ATable3Col = ({ table }: { table: TableInstance<Country> })  => {
+  const order = true;
+  const preparedData = constructData4C(table, 'newDeaths')
   const columns = [
     {
       title: table.columns[0].Header,
@@ -29,7 +19,7 @@ export const ATable3Col = ({ table }: { table: TableInstance<Country> }, order: 
       align: "center",
       render: ( text, row, index ) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate2)}
+          color={getTagColor(preparedData[index].rate2)}
           key={index}
         >
           {commafy(text)}
@@ -42,7 +32,7 @@ export const ATable3Col = ({ table }: { table: TableInstance<Country> }, order: 
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate1)}
+          color={getTagColor(preparedData[index].rate1)}
           key={index}
         >
           {commafy(text)}
@@ -55,13 +45,12 @@ export const ATable3Col = ({ table }: { table: TableInstance<Country> }, order: 
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate0)}
+          color={getTagColor(preparedData[index].rate0)}
           key={index}
         >
           {commafy(text)}
         </Tag>
       ),
-      // TODO: Set 1-st table default sortin to ascend
       sorter: (a, b) => a['periods[0]'] - b['periods[0]'],
       ...sortOptions(order)
     },
@@ -77,47 +66,10 @@ export const ATable3Col = ({ table }: { table: TableInstance<Country> }, order: 
     />
   );
 };
-// TODO: implement constructData
 
-// const constructDara = (table: TableInstance<Country>, field: string, tableType: '3col' | '5col' ) => {
-//   const gr='growthRate'
-//   return table.data.map((e, i) => ({
-//     key: i,
-//     name: e.name,
-//     'periods[5]': e.periods[5][gr],
-//     rate5: e.periods[5].status,
-//     'periods[4]': e.periods[4][gr],
-//     rate4: e.periods[4].status,
-//     'periods[3]': e.periods[3][gr],
-//     rate3: e.periods[3].status,
-//     'periods[2]': e.periods[2][gr],
-//     rate2: e.periods[2].status,
-//     'periods[1]': e.periods[1][gr],
-//     rate1: e.periods[1].status,
-//     'periods[0]': e.periods[0][gr],
-//     rate0: e.periods[0].status,
-//   }))
-// }
-
-
-export const ATable5ColGrowth = ({ table }: {table: TableInstance<Country>}, order: boolean ) => {
-  // const preparedData = constructTable(table)
-  const preparedData = table.data.map((e, i) => ({
-    key: i,
-    name: e.name,
-    'periods[5]': e.periods[5].growthRate,
-    rate5: e.periods[5].status,
-    'periods[4]': e.periods[4].growthRate,
-    rate4: e.periods[4].status,
-    'periods[3]': e.periods[3].growthRate,
-    rate3: e.periods[3].status,
-    'periods[2]': e.periods[2].growthRate,
-    rate2: e.periods[2].status,
-    'periods[1]': e.periods[1].growthRate,
-    rate1: e.periods[1].status,
-    'periods[0]': e.periods[0].growthRate,
-    rate0: e.periods[0].status,
-  }));
+export const ATable5ColGrowth = ({ table }: {table: TableInstance<Country>}) => {
+  const order = true;
+  const preparedData = constructData6C(table, 'growthRate')
   const columns = [
     {
       title: table.columns[0].Header,
@@ -131,7 +83,7 @@ export const ATable5ColGrowth = ({ table }: {table: TableInstance<Country>}, ord
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate5)}
+          color={getTagColor(preparedData[index].rate5)}
           key={index}
         >
           {text}{'%'}
@@ -146,7 +98,7 @@ export const ATable5ColGrowth = ({ table }: {table: TableInstance<Country>}, ord
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate4)}
+          color={getTagColor(preparedData[index].rate4)}
           key={index}
         >
           {text}{'%'}
@@ -161,7 +113,7 @@ export const ATable5ColGrowth = ({ table }: {table: TableInstance<Country>}, ord
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate3)}
+          color={getTagColor(preparedData[index].rate3)}
           key={index}
         >
           {commafy(text)}{'%'}
@@ -177,7 +129,7 @@ export const ATable5ColGrowth = ({ table }: {table: TableInstance<Country>}, ord
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate2)}
+          color={getTagColor(preparedData[index].rate2)}
           key={index}
         >
           {text}{'%'}
@@ -192,7 +144,7 @@ export const ATable5ColGrowth = ({ table }: {table: TableInstance<Country>}, ord
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate1)}
+          color={getTagColor(preparedData[index].rate1)}
           key={index}
         >
           {text}{'%'}
@@ -207,7 +159,7 @@ export const ATable5ColGrowth = ({ table }: {table: TableInstance<Country>}, ord
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate0)}
+          color={getTagColor(preparedData[index].rate0)}
           key={index}
         >
           {text}{'%'}
@@ -228,23 +180,9 @@ export const ATable5ColGrowth = ({ table }: {table: TableInstance<Country>}, ord
     />
   );
 };
-export const ATable5ColNewCases = ({ table }: {table: TableInstance<Country>}, order: boolean ) => {
-  const preparedData = table.data.map((e, i) => ({
-    key: i,
-    name: e.name,
-    'periods[5]': e.periods[5].newCases,
-    rate5: e.periods[5].status,
-    'periods[4]': e.periods[4].newCases,
-    rate4: e.periods[4].status,
-    'periods[3]': e.periods[3].newCases,
-    rate3: e.periods[3].status,
-    'periods[2]': e.periods[2].newCases,
-    rate2: e.periods[2].status,
-    'periods[1]': e.periods[1].newCases,
-    rate1: e.periods[1].status,
-    'periods[0]': e.periods[0].newCases,
-    rate0: e.periods[0].status,
-  }));
+export const ATable5ColNewCases = ({ table }: {table: TableInstance<Country>}) => {
+  const order = true;
+  const preparedData = constructData6C(table, 'newCases')
   const columns = [
     {
       title: table.columns[0].Header,
@@ -258,7 +196,7 @@ export const ATable5ColNewCases = ({ table }: {table: TableInstance<Country>}, o
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate5)}
+          color={getTagColor(preparedData[index].rate5)}
           key={index}
         >
           {commafy(text)}
@@ -273,7 +211,7 @@ export const ATable5ColNewCases = ({ table }: {table: TableInstance<Country>}, o
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate4)}
+          color={getTagColor(preparedData[index].rate4)}
           key={index}
         >
           {commafy(text)}
@@ -288,7 +226,7 @@ export const ATable5ColNewCases = ({ table }: {table: TableInstance<Country>}, o
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate3)}
+          color={getTagColor(preparedData[index].rate3)}
           key={index}
         >
           {commafy(text)}
@@ -304,7 +242,7 @@ export const ATable5ColNewCases = ({ table }: {table: TableInstance<Country>}, o
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate2)}
+          color={getTagColor(preparedData[index].rate2)}
           key={index}
         >
           {commafy(text)}
@@ -319,7 +257,7 @@ export const ATable5ColNewCases = ({ table }: {table: TableInstance<Country>}, o
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate1)}
+          color={getTagColor(preparedData[index].rate1)}
           key={index}
         >
           {commafy(text)}
@@ -334,7 +272,7 @@ export const ATable5ColNewCases = ({ table }: {table: TableInstance<Country>}, o
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate0)}
+          color={getTagColor(preparedData[index].rate0)}
           key={index}
         >
           {commafy(text)}
@@ -356,23 +294,9 @@ export const ATable5ColNewCases = ({ table }: {table: TableInstance<Country>}, o
     />
   );
 };
-export const ATable5ColTotalCases = ({ table }: {table: TableInstance<Country>}, order: boolean ) => {
-  const preparedData = table.data.map((e, i) => ({
-    key: i,
-    name: e.name,
-    'periods[5]': e.periods[5].totalCases,
-    rate5: e.periods[5].status,
-    'periods[4]': e.periods[4].totalCases,
-    rate4: e.periods[4].status,
-    'periods[3]': e.periods[3].totalCases,
-    rate3: e.periods[3].status,
-    'periods[2]': e.periods[2].totalCases,
-    rate2: e.periods[2].status,
-    'periods[1]': e.periods[1].totalCases,
-    rate1: e.periods[1].status,
-    'periods[0]': e.periods[0].totalCases,
-    rate0: e.periods[0].status,
-  }));
+export const ATable5ColTotalCases = ({ table }: {table: TableInstance<Country>}) => {
+  const order = true;
+  const preparedData = constructData6C(table, 'totalCases')
   const columns = [
     {
       title: table.columns[0].Header,
@@ -386,7 +310,7 @@ export const ATable5ColTotalCases = ({ table }: {table: TableInstance<Country>},
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate5)}
+          color={getTagColor(preparedData[index].rate5)}
           key={index}
         >
           {commafy(text)}
@@ -401,7 +325,7 @@ export const ATable5ColTotalCases = ({ table }: {table: TableInstance<Country>},
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate4)}
+          color={getTagColor(preparedData[index].rate4)}
           key={index}
         >
           {commafy(text)}
@@ -416,7 +340,7 @@ export const ATable5ColTotalCases = ({ table }: {table: TableInstance<Country>},
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate3)}
+          color={getTagColor(preparedData[index].rate3)}
           key={index}
         >
           {commafy(text)}
@@ -432,7 +356,7 @@ export const ATable5ColTotalCases = ({ table }: {table: TableInstance<Country>},
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate2)}
+          color={getTagColor(preparedData[index].rate2)}
           key={index}
         >
           {commafy(text)}
@@ -447,7 +371,7 @@ export const ATable5ColTotalCases = ({ table }: {table: TableInstance<Country>},
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate1)}
+          color={getTagColor(preparedData[index].rate1)}
           key={index}
         >
           {commafy(text)}
@@ -462,7 +386,7 @@ export const ATable5ColTotalCases = ({ table }: {table: TableInstance<Country>},
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate0)}
+          color={getTagColor(preparedData[index].rate0)}
           key={index}
         >
           {commafy(text)}
@@ -484,23 +408,9 @@ export const ATable5ColTotalCases = ({ table }: {table: TableInstance<Country>},
     />
   );
 };
-export const ATable5ColTotalDeaths = ({ table }: {table: TableInstance<Country>}, order: boolean ) => {
-  const preparedData = table.data.map((e, i) => ({
-    key: i,
-    name: e.name,
-    'periods[5]': e.periods[5].totalDeaths,
-    rate5: e.periods[5].status,
-    'periods[4]': e.periods[4].totalDeaths,
-    rate4: e.periods[4].status,
-    'periods[3]': e.periods[3].totalDeaths,
-    rate3: e.periods[3].status,
-    'periods[2]': e.periods[2].totalDeaths,
-    rate2: e.periods[2].status,
-    'periods[1]': e.periods[1].totalDeaths,
-    rate1: e.periods[1].status,
-    'periods[0]': e.periods[0].totalDeaths,
-    rate0: e.periods[0].status,
-  }));
+export const ATable5ColTotalDeaths = ({ table }: {table: TableInstance<Country>}) => {
+  const order = true;
+  const preparedData = constructData6C(table, 'totalDeaths')
   const columns = [
     {
       title: table.columns[0].Header,
@@ -514,7 +424,7 @@ export const ATable5ColTotalDeaths = ({ table }: {table: TableInstance<Country>}
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate5)}
+          color={getTagColor(preparedData[index].rate5)}
           key={index}
         >
           {commafy(text)}
@@ -529,7 +439,7 @@ export const ATable5ColTotalDeaths = ({ table }: {table: TableInstance<Country>}
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate4)}
+          color={getTagColor(preparedData[index].rate4)}
           key={index}
         >
           {commafy(text)}
@@ -544,7 +454,7 @@ export const ATable5ColTotalDeaths = ({ table }: {table: TableInstance<Country>}
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate3)}
+          color={getTagColor(preparedData[index].rate3)}
           key={index}
         >
           {commafy(text)}
@@ -560,7 +470,7 @@ export const ATable5ColTotalDeaths = ({ table }: {table: TableInstance<Country>}
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate2)}
+          color={getTagColor(preparedData[index].rate2)}
           key={index}
         >
           {commafy(text)}
@@ -575,7 +485,7 @@ export const ATable5ColTotalDeaths = ({ table }: {table: TableInstance<Country>}
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate1)}
+          color={getTagColor(preparedData[index].rate1)}
           key={index}
         >
           {commafy(text)}
@@ -590,7 +500,7 @@ export const ATable5ColTotalDeaths = ({ table }: {table: TableInstance<Country>}
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate0)}
+          color={getTagColor(preparedData[index].rate0)}
           key={index}
         >
           {commafy(text)}
@@ -612,23 +522,9 @@ export const ATable5ColTotalDeaths = ({ table }: {table: TableInstance<Country>}
     />
   );
 };
-export const ATable5ColNewDeaths = ({ table }: {table: TableInstance<Country>}, order: boolean ) => {
-  const preparedData = table.data.map((e, i) => ({
-    key: i,
-    name: e.name,
-    'periods[5]': e.periods[5].newDeaths,
-    rate5: e.periods[5].status,
-    'periods[4]': e.periods[4].newDeaths,
-    rate4: e.periods[4].status,
-    'periods[3]': e.periods[3].newDeaths,
-    rate3: e.periods[3].status,
-    'periods[2]': e.periods[2].newDeaths,
-    rate2: e.periods[2].status,
-    'periods[1]': e.periods[1].newDeaths,
-    rate1: e.periods[1].status,
-    'periods[0]': e.periods[0].newDeaths,
-    rate0: e.periods[0].status,
-  }));
+export const ATable5ColNewDeaths = ({ table }: {table: TableInstance<Country>}) => {
+  const order = true;
+  const preparedData = constructData6C(table, 'newDeaths')
   const columns = [
     {
       title: table.columns[0].Header,
@@ -642,7 +538,7 @@ export const ATable5ColNewDeaths = ({ table }: {table: TableInstance<Country>}, 
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate5)}
+          color={getTagColor(preparedData[index].rate5)}
           key={index}
         >
           {commafy(text)}
@@ -657,7 +553,7 @@ export const ATable5ColNewDeaths = ({ table }: {table: TableInstance<Country>}, 
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate4)}
+          color={getTagColor(preparedData[index].rate4)}
           key={index}
         >
           {commafy(text)}
@@ -672,7 +568,7 @@ export const ATable5ColNewDeaths = ({ table }: {table: TableInstance<Country>}, 
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate3)}
+          color={getTagColor(preparedData[index].rate3)}
           key={index}
         >
           {commafy(text)}
@@ -688,7 +584,7 @@ export const ATable5ColNewDeaths = ({ table }: {table: TableInstance<Country>}, 
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate2)}
+          color={getTagColor(preparedData[index].rate2)}
           key={index}
         >
           {commafy(text)}
@@ -703,7 +599,7 @@ export const ATable5ColNewDeaths = ({ table }: {table: TableInstance<Country>}, 
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate1)}
+          color={getTagColor(preparedData[index].rate1)}
           key={index}
         >
           {commafy(text)}
@@ -718,7 +614,7 @@ export const ATable5ColNewDeaths = ({ table }: {table: TableInstance<Country>}, 
       align: "center",
       render: (text, row, index) => (
         <Tag
-          color={calcTagstyle(preparedData[index].rate0)}
+          color={getTagColor(preparedData[index].rate0)}
           key={index}
         >
           {commafy(text)}
