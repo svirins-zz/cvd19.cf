@@ -10,7 +10,7 @@ import {
   ATable5ColTotalDeaths,
   ATable5ColNewDeaths,
 } from './renderTables';
-
+// refactor everything table-related to 1 file
 export const TotalCasesTable = ({
   data,
   periodLength,

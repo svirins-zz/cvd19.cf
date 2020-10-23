@@ -1,16 +1,17 @@
 import { TableInstance } from 'react-table';
-import { TableType, Country, Period } from '@types';
+import { TableType, Country, Period, RenderColumns } from '@types';
+import TableTag from '../components/data/TableTag'
 
 export const sortOptions = (order?: boolean) => ({
   defaultSortOrder: order ? 'acsend' : 'descend',
   sortDirections: ['ascend', 'descend'],
 });
-export const textSorter = (a, b) => {
+export const textSorter = (a: { name: { toLowerCase: () => number; }; }, b: { name: { toLowerCase: () => number; }; }) => {
   if (a.name.toLowerCase() < b.name.toLowerCase()) { return -1; }
   if (a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
   return 0;
 };
-
+// TODO: Refactor to forEach iterator
 export const constructData6C = (
   table: TableInstance<Country>,
   field: TableType,
@@ -109,3 +110,59 @@ export const constructColumnsSm = (
     Cell: ({ value }: { value: Period & ''}) => value[field],
   },
 ]);
+
+export const constructRenderColumns = (
+  table: TableInstance<Country>,
+  preparedData: RenderColumns[],
+  order: boolean
+  ) => ([
+    {
+      title: table.columns[0].Header,
+      dataIndex: table.columns[0].id,
+      sorter: textSorter,
+    },
+    {
+      title: table.columns[1].Header,
+      dataIndex: 'periods[5]',
+      align: "center",
+      render: (text: number, row: any, index: number) => (TableTag(preparedData[index].rate5, text, index)),
+      ...sortOptions(order)
+    },
+    {
+      title: table.columns[2].Header,
+      dataIndex: 'periods[4]',
+      align: "center",
+      render: (text: number, row: any, index: number) => (TableTag(preparedData[index].rate4, text, index)),
+      ...sortOptions(order)
+    },
+    {
+      title: table.columns[3].Header,
+      dataIndex: 'periods[3]',
+      align: "center",
+      render: (text: number, row: any, index: number) => (TableTag(preparedData[index].rate3, text, index)),
+      ...sortOptions(order)
+    },
+    ,
+    {
+      title: table.columns[4].Header,
+      dataIndex: 'periods[2]',
+      align: "center",
+      render: (text: number, row: any, index: number) => (TableTag(preparedData[index].rate2, text, index)),
+      ...sortOptions(order)
+    },
+    {
+      title: table.columns[5].Header,
+      dataIndex: 'periods[1]',
+      align: "center",
+      render: (text: number, row: any, index: number) => (TableTag(preparedData[index].rate1, text, index)),
+      ...sortOptions(order)
+    },,
+    {
+      title: table.columns[6].Header,
+      dataIndex: 'periods[0]',
+      align: "center",
+      render: (text: number, row: any, index: number) => (TableTag(preparedData[index].rate0, text, index)),
+      sorter: (a, b) => a.['periods[0]'] - b.['periods[0]'],
+      ...sortOptions(order)
+    },
+  ]);

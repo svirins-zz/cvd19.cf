@@ -212,3 +212,20 @@ export interface RenderType {
   row?: number
   index: number
 }
+
+export interface RenderColumns {
+  key: number
+  name: string
+  'periods[5]': number
+  rate5: OutbreakStatus
+  'periods[4]': number
+  rate4: OutbreakStatus
+  'periods[3]': number
+  rate3: OutbreakStatus
+  'periods[2]': number
+  rate2: OutbreakStatus
+  'periods[1]': number
+  rate1: OutbreakStatus
+  'periods[0]': number
+  rate0: OutbreakStatus
+}

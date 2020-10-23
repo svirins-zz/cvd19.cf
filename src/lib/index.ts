@@ -10,7 +10,7 @@ export {
 } from './calcPeriod';
 export {
   sortOptions, textSorter, constructData6C,
-  constructData4C, constructColumns, constructColumnsSm,
+  constructData4C, constructColumns, constructColumnsSm, constructRenderColumns,
 } from './tableUtils';
 export { default as commafy } from './conversion';
 export { default as getMissingCode } from './calcCountry';
