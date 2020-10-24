@@ -102,8 +102,9 @@ export interface ChartInfo {
 }
 
 export interface SummaryTable {
-  data: Country[];
-  periodLength: number;
+  data: Country[]
+  periodLength: number
+  order?: boolean
 }
 
 export interface DataChartProps {
@@ -209,11 +210,20 @@ export interface TagRenderProps {
 
 export interface RenderType {
   text: number | string
-  row?: number
-  index: number
+  record: Prepared
+  index?: number
 }
 
-export interface RenderColumns {
+export interface Column {
+  title: string
+  dataIndex: string
+  align?: string
+  render?: (a) => JSX.Element
+  sorter?: (a, b)=> boolean
+  defaultSortOrder?: 'descend' | 'ascend' | 'null' | 'undefined'
+  sortDirections?: [string, string]
+}
+export interface Prepared6Col {
   key: number
   name: string
   'periods[5]': number
@@ -222,6 +232,17 @@ export interface RenderColumns {
   rate4: OutbreakStatus
   'periods[3]': number
   rate3: OutbreakStatus
+  'periods[2]': number
+  rate2: OutbreakStatus
+  'periods[1]': number
+  rate1: OutbreakStatus
+  'periods[0]': number
+  rate0: OutbreakStatus
+}
+
+export interface Prepared {
+  key: number
+  name: string
   'periods[2]': number
   rate2: OutbreakStatus
   'periods[1]': number

@@ -9,8 +9,7 @@ export {
   getDaysAgo, getPeriodCount, getPeriodName, getPeriodNames, validatePeriodLength, periodStatus,
 } from './calcPeriod';
 export {
-  sortOptions, textSorter, constructData6C,
-  constructData4C, constructColumns, constructColumnsSm, constructRenderColumns,
+  constructData6Col, constructData4Col, construct6Col, construct4Col,
 } from './tableUtils';
 export { default as commafy } from './conversion';
 export { default as getMissingCode } from './calcCountry';

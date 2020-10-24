@@ -10,7 +10,7 @@ import { GlobalDataChart } from '../charts';
 import { Page, SEO } from '../layout';
 import {
   GrowthTable, NewDeathsTable, TotalDeathsTable, NewCasesTable, TotalCasesTable,
-} from '../tables/prepareTables';
+} from '../tables/AllTables';
 import CountryFilter from './CountryFilter';
 
 const { Title, Text, Paragraph } = Typography;

@@ -5,13 +5,13 @@ import {
 import {
   Page, Loading, Error, SEO,
 } from 'components/layout';
-import { GrowthSummaryTable } from 'components/tables/prepareTables';
 import { PERIOD_LENGTH } from 'const';
 import {
   sumPeriodData, calculateSummaryData, calculateData, calculateGlobalSummary,
 } from 'lib';
 import { PandemicFreeChart, UnderControlChart, SummaryChart } from 'components/charts';
-import { Summary } from '../components/data';
+import { GrowthSummaryTable } from 'components/tables/AllTables';
+import { Summary } from 'components/data';
 import { useFetchCountries } from '../hooks';
 import { OutbreakStatus } from '../@types';
 
@@ -69,7 +69,7 @@ const IndexPage = () => {
           <GrowthSummaryTable data={winningData} periodLength={PERIOD_LENGTH} order={false} />
         </Col>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
-          <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} />
+          <GrowthSummaryTable data={losingData} periodLength={PERIOD_LENGTH} order />
         </Col>
       </Row>
     </Page>
