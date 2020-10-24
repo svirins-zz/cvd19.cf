@@ -14,13 +14,17 @@ const CountryFilter = ({
   setSelected: (tags: string[]) => void,
   countries: Tags[]
 }) => {
+  console.log('selected: ', selected,
+    'setFn: ', setSelected,
+    'allCountries:', countries);
   const handleChange = (currentArr: string[]) => {
     setSelected(currentArr);
   };
-  function tagRender(p: TagRenderProps) {
+  function tagRender(p) {
     const {
       label, closable, onClose,
     } = p;
+    console.log('tag props: ', p);
     return (
       <Tag
         key={label}
@@ -53,4 +57,3 @@ const CountryFilter = ({
 };
 
 export default CountryFilter;
-

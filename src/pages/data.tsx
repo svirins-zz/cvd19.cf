@@ -6,7 +6,6 @@ import { DataPageContent } from '../components/data';
 import { PeriodInfo } from '../@types';
 import { useFetchCountries } from '../hooks';
 // TODO: Change API - missing countries appear !!!Fix
-// TODO: Chart do not update, when add/remove countries
 const DataPage = () => {
   const [periodInfo, setPeriodInfo] = useState<PeriodInfo>({
     length: PERIOD_LENGTH,

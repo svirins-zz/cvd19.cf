@@ -16,8 +16,8 @@ import { useFetchCountries } from '../hooks';
 import { OutbreakStatus } from '../@types';
 
 const { Title, Paragraph } = Typography;
-// TODO: Refactor Victory=>antD charts!
-// TODO: Why 3-columns tabel has no global ???
+// TODO: Refactor Victory=>antD charts ??
+// TODO: Do we really need global column? data.tsx=>sumPeriodData
 const IndexPage = () => {
   // query countries data
   const { loading, error, data } = useFetchCountries();
