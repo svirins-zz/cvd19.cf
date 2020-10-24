@@ -1,11 +1,21 @@
-import React from 'react';
+import React from "react";
 import {
-  VictoryChart, VictoryLegend, VictoryLine, VictoryAxis, VictoryLabel,
-} from 'victory';
-import { PeriodSummary } from '@types';
-import Theme from 'styles/chartTheme';
+  VictoryChart,
+  VictoryLegend,
+  VictoryLine,
+  VictoryAxis,
+  VictoryLabel,
+} from "victory";
+import { PeriodSummary } from "@types";
+import Theme from "styles/chartTheme";
 
-const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string }) => (
+const SummaryChart = ({
+  data,
+  title,
+}: {
+  data: PeriodSummary[];
+  title: string;
+}) => (
   <VictoryChart
     theme={Theme}
     height={240}
@@ -27,13 +37,13 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
         },
       }}
       data={[
-        { name: 'No Outbreak', symbol: { fill: '#808080' } },
-        { name: 'Small Outbreak', symbol: { fill: '#eb2f96' } },
-        { name: 'Losing', symbol: { fill: '#f5222d' } },
-        { name: 'Flattening the Curve', symbol: { fill: '#fa541c' } },
-        { name: 'Crushing the Curve', symbol: { fill: '#fa8c16' } },
-        { name: 'Winning', symbol: { fill: '#13c2c2' } },
-        { name: 'Won', symbol: { fill: '#52c41a' } },
+        { name: "No Outbreak", symbol: { fill: "#808080" } },
+        { name: "Small Outbreak", symbol: { fill: "#eb2f96" } },
+        { name: "Losing", symbol: { fill: "#f5222d" } },
+        { name: "Flattening the Curve", symbol: { fill: "#fa541c" } },
+        { name: "Crushing the Curve", symbol: { fill: "#fa8c16" } },
+        { name: "Winning", symbol: { fill: "#13c2c2" } },
+        { name: "Won", symbol: { fill: "#52c41a" } },
       ]}
     />
     <VictoryAxis
@@ -73,7 +83,7 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: '#cccccc' },
+        data: { stroke: "#cccccc" },
       }}
       x="endDate"
       y="none"
@@ -82,7 +92,7 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: '#eb2f96' },
+        data: { stroke: "#eb2f96" },
       }}
       x="endDate"
       y="small"
@@ -91,7 +101,7 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: '#f5222d' },
+        data: { stroke: "#f5222d" },
       }}
       x="endDate"
       y="losing"
@@ -100,7 +110,7 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: '#fa8c16' },
+        data: { stroke: "#fa8c16" },
       }}
       x="endDate"
       y="flattening"
@@ -109,7 +119,7 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: '#fadb14' },
+        data: { stroke: "#fadb14" },
       }}
       x="endDate"
       y="crushing"
@@ -118,7 +128,7 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: '#13c2c2' },
+        data: { stroke: "#13c2c2" },
       }}
       x="endDate"
       y="winning"
@@ -127,7 +137,7 @@ const SummaryChart = ({ data, title }: { data: PeriodSummary[], title: string })
       data={data}
       interpolation="monotoneX"
       style={{
-        data: { stroke: '#52c41a' },
+        data: { stroke: "#52c41a" },
       }}
       x="endDate"
       y="won"

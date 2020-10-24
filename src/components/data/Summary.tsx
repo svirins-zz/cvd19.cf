@@ -1,18 +1,16 @@
-import React from 'react';
-import {
-  Statistic, Card, Row, Col,
-} from 'antd';
-import { getTagColor } from 'lib';
-import { GlobalStats, OutbreakStatus } from '@types';
+import React from "react";
+import { Statistic, Card, Row, Col } from "antd";
+import { getTagColor } from "lib";
+import { GlobalStats, OutbreakStatus } from "@types";
 
-const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }) => {
-  const {
-    confirmed,
-    deaths,
-    recovered,
-    days,
-    countries,
-  } = stats;
+const Summary = ({
+  stats,
+  trend,
+}: {
+  stats: GlobalStats;
+  trend: OutbreakStatus;
+}) => {
+  const { confirmed, deaths, recovered, days, countries } = stats;
   const trendColor = getTagColor(trend);
   return (
     <>
@@ -23,7 +21,7 @@ const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }
               title="Total Cases"
               value={confirmed}
               precision={0}
-              valueStyle={{ color: 'red', backgroundColor: '#f9f9fd' }}
+              valueStyle={{ color: "red", backgroundColor: "#f9f9fd" }}
             />
           </Card>
         </Col>
@@ -33,7 +31,7 @@ const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }
               title="Total Deaths"
               value={deaths}
               precision={0}
-              valueStyle={{ color: 'red', backgroundColor: '#f9f9fd' }}
+              valueStyle={{ color: "red", backgroundColor: "#f9f9fd" }}
             />
           </Card>
         </Col>
@@ -43,7 +41,7 @@ const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }
               title="Total Recovered"
               value={recovered}
               precision={0}
-              valueStyle={{ color: '#3f8600', backgroundColor: '#f9f9fd' }}
+              valueStyle={{ color: "#3f8600", backgroundColor: "#f9f9fd" }}
             />
           </Card>
         </Col>
@@ -55,7 +53,7 @@ const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }
               title="Days passed"
               value={days}
               precision={0}
-              valueStyle={{ color: '#120338', backgroundColor: '#f9f9fd' }}
+              valueStyle={{ color: "#120338", backgroundColor: "#f9f9fd" }}
             />
           </Card>
         </Col>
@@ -65,7 +63,7 @@ const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }
               title="Countries (incl. vessels)"
               value={countries}
               precision={0}
-              valueStyle={{ color: '#120338', backgroundColor: '#f9f9fd' }}
+              valueStyle={{ color: "#120338", backgroundColor: "#f9f9fd" }}
             />
           </Card>
         </Col>
@@ -75,7 +73,7 @@ const Summary = ({ stats, trend }: { stats: GlobalStats, trend: OutbreakStatus }
               title="Data Trend (last 5 days)"
               value={trend}
               precision={0}
-              valueStyle={{ color: trendColor, backgroundColor: '#f9f9fd' }}
+              valueStyle={{ color: trendColor, backgroundColor: "#f9f9fd" }}
             />
           </Card>
         </Col>

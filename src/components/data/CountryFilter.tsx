@@ -1,7 +1,7 @@
-import React from 'react';
-import { Select, Tag } from 'antd';
-import { Tags, TagRenderProps } from '@types';
-import { getColorByCountryName } from 'lib';
+import React from "react";
+import { Select, Tag } from "antd";
+import { Tags, TagRenderProps } from "@types";
+import { getColorByCountryName } from "lib";
 
 const { Option } = Select;
 // TODO: country remove doesn't works
@@ -10,21 +10,24 @@ const CountryFilter = ({
   setSelected,
   countries,
 }: {
-  selected: string[],
-  setSelected: (tags: string[]) => void,
-  countries: Tags[]
+  selected: string[];
+  setSelected: (tags: string[]) => void;
+  countries: Tags[];
 }) => {
-  console.log('selected: ', selected,
-    'setFn: ', setSelected,
-    'allCountries:', countries);
+  console.log(
+    "selected: ",
+    selected,
+    "setFn: ",
+    setSelected,
+    "allCountries:",
+    countries
+  );
   const handleChange = (currentArr: string[]) => {
     setSelected(currentArr);
   };
   function tagRender(p) {
-    const {
-      label, closable, onClose,
-    } = p;
-    console.log('tag props: ', p);
+    const { label, closable, onClose } = p;
+    console.log("tag props: ", p);
     return (
       <Tag
         key={label}
@@ -41,7 +44,7 @@ const CountryFilter = ({
   return (
     <Select
       mode="multiple"
-      style={{ width: '100%' }}
+      style={{ width: "100%" }}
       showArrow
       defaultValue={selected}
       placeholder="Add Country"
@@ -50,7 +53,9 @@ const CountryFilter = ({
       autoClearSearchValue
     >
       {countries.map((item) => (
-        <Option value={item.label} key={item.id}>{item.label}</Option>
+        <Option value={item.label} key={item.id}>
+          {item.label}
+        </Option>
       ))}
     </Select>
   );

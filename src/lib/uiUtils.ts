@@ -1,55 +1,74 @@
-import { COLORS } from 'const';
-import {
-  ChartInfo, OutbreakStatus, Tags, Country 
-} from '../@types';
+import { COLORS } from "const";
+import { ChartInfo, OutbreakStatus, Tags, Country } from "../@types";
 
-export const getChartInfo = (selectedTable: string, period: number): ChartInfo => {
-  if (selectedTable === 'growthRate') {
+export const getChartInfo = (
+  selectedTable: string,
+  period: number
+): ChartInfo => {
+  if (selectedTable === "growthRate") {
     return {
-      x: 'endDate',
-      y: 'growthRate',
-      title: 'Change in deaths between periods',
+      x: "endDate",
+      y: "growthRate",
+      title: "Change in deaths between periods",
     };
-  } if (selectedTable === 'newDeaths') {
+  }
+  if (selectedTable === "newDeaths") {
     return {
-      x: 'endDate',
-      y: 'newDeaths',
+      x: "endDate",
+      y: "newDeaths",
       title: `New deaths by ${period}-day period`,
     };
-  } if (selectedTable === 'totalDeaths') {
+  }
+  if (selectedTable === "totalDeaths") {
     return {
-      x: 'endDate',
-      y: 'totalDeaths',
-      title: 'Total deaths by date',
+      x: "endDate",
+      y: "totalDeaths",
+      title: "Total deaths by date",
     };
-  } if (selectedTable === 'newCases') {
+  }
+  if (selectedTable === "newCases") {
     return {
-      x: 'endDate',
-      y: 'newCases',
+      x: "endDate",
+      y: "newCases",
       title: `New cases by ${period}-day period`,
     };
-  } if (selectedTable === 'totalCases') {
+  }
+  if (selectedTable === "totalCases") {
     return {
-      x: 'endDate',
-      y: 'totalCases',
-      title: 'Total cases by date',
+      x: "endDate",
+      y: "totalCases",
+      title: "Total cases by date",
     };
   }
   return {
-    x: '',
-    y: '',
-    title: '',
+    x: "",
+    y: "",
+    title: "",
   };
 };
 
 export const menuInit = (title: string): string => {
-  let menuItem = '';
+  let menuItem = "";
   switch (title) {
-    case '/': { menuItem = 'main'; break; }
-    case '/data': { menuItem = 'data'; break; }
-    case '/map': { menuItem = 'map'; break; }
-    case '/about': { menuItem = 'about'; break; }
-    default: { menuItem = ''; }
+    case "/": {
+      menuItem = "main";
+      break;
+    }
+    case "/data": {
+      menuItem = "data";
+      break;
+    }
+    case "/map": {
+      menuItem = "map";
+      break;
+    }
+    case "/about": {
+      menuItem = "about";
+      break;
+    }
+    default: {
+      menuItem = "";
+    }
   }
   return menuItem;
 };
@@ -57,34 +76,56 @@ export const menuInit = (title: string): string => {
 export const commafy = (value: number): string => {
   const toStrValue = `${value}`;
   return toStrValue
-    .split('')
+    .split("")
     .reverse()
     .reduce((prev, current, index) => {
-      const shouldComma = (index + 1) % 3 === 0 && index + 1 < toStrValue.length;
+      const shouldComma =
+        (index + 1) % 3 === 0 && index + 1 < toStrValue.length;
       let updatedValue = `${prev}${current}`;
       if (shouldComma) {
         updatedValue = `${updatedValue},`;
       }
       return updatedValue;
-    }, '')
-    .split('')
+    }, "")
+    .split("")
     .reverse()
-    .join('');
+    .join("");
 };
 
-
-
 export const getTagColor = (rate: OutbreakStatus): string => {
-  let color = 'none';
+  let color = "none";
   switch (rate) {
-    case 'No Outbreak': { color = 'grey'; break; }
-    case 'Small Outbreak': { color = 'pink'; break; }
-    case 'Losing': { color = 'red'; break; }
-    case 'Flattening the Curve': { color = 'volcano'; break; }
-    case 'Crushing the Curve': { color = 'orange'; break; }
-    case 'Winning': { color = 'cyan'; break; }
-    case 'Won': { color = 'green'; break; }
-    default: { color = 'grey'; }
+    case "No Outbreak": {
+      color = "grey";
+      break;
+    }
+    case "Small Outbreak": {
+      color = "pink";
+      break;
+    }
+    case "Losing": {
+      color = "red";
+      break;
+    }
+    case "Flattening the Curve": {
+      color = "volcano";
+      break;
+    }
+    case "Crushing the Curve": {
+      color = "orange";
+      break;
+    }
+    case "Winning": {
+      color = "cyan";
+      break;
+    }
+    case "Won": {
+      color = "green";
+      break;
+    }
+    default: {
+      color = "grey";
+    }
   }
   return color;
 };
@@ -95,12 +136,14 @@ export const getColor = (index: number): string => {
 };
 
 // TODO: double check refactoring find -> filter
-export const getColorByCountryName = (countryName: string, countriesArray: Tags[]): string => (
-  countriesArray.filter((e) => e.label === countryName)[0].value
-);
+export const getColorByCountryName = (
+  countryName: string,
+  countriesArray: Tags[]
+): string => countriesArray.filter((e) => e.label === countryName)[0].value;
 
-export const getTags = (countries: Country[]): Tags[] => countries.map((country, index) => ({
-  id: index,
-  label: country.name ?? '',
-  value: getColor(index),
-}));
+export const getTags = (countries: Country[]): Tags[] =>
+  countries.map((country, index) => ({
+    id: index,
+    label: country.name ?? "",
+    value: getColor(index),
+  }));

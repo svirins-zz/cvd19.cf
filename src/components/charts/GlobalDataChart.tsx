@@ -1,20 +1,22 @@
-import React from 'react';
-import {
-  VictoryChart, VictoryLine, VictoryAxis, VictoryLabel,
-} from 'victory';
-import { DataChartProps, Selected } from '@types';
-import Theme from 'styles/chartTheme';
-import { getColorByCountryName } from 'lib';
+import React from "react";
+import { VictoryChart, VictoryLine, VictoryAxis, VictoryLabel } from "victory";
+import { DataChartProps, Selected } from "@types";
+import Theme from "styles/chartTheme";
+import { getColorByCountryName } from "lib";
 
 const GlobalDataChart = ({
-  countries, countriesT, selectedCountries, x, y, startAtDeaths, title,
+  countries,
+  countriesT,
+  selectedCountries,
+  x,
+  y,
+  startAtDeaths,
+  title,
 }: DataChartProps) => {
   const selected: Selected = {};
-  selectedCountries.forEach(
-    (tag) => {
-      selected[tag] = getColorByCountryName(tag, countriesT);
-    },
-  );
+  selectedCountries.forEach((tag) => {
+    selected[tag] = getColorByCountryName(tag, countriesT);
+  });
   return (
     <>
       <VictoryChart
@@ -45,25 +47,26 @@ const GlobalDataChart = ({
             fontSize: 5.5,
             fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
-            color: 'Gray',
+            color: "Gray",
           }}
         />
         {countries.map((country) => {
           if (
-            country.name === undefined
-            || (!Object.keys(selected).includes(country.name))
-            || (country.name === 'Global' && !Object.keys(selected).includes(country.name))
+            country.name === undefined ||
+            !Object.keys(selected).includes(country.name) ||
+            (country.name === "Global" &&
+              !Object.keys(selected).includes(country.name))
           ) {
             return undefined;
           }
           const data = Object.keys(selected).includes(country.name)
             ? {
-              stroke: selected[country.name],
-              strokeWidth: 1.8,
-            }
+                stroke: selected[country.name],
+                strokeWidth: 1.8,
+              }
             : {
-              strokeWidth: 1,
-            };
+                strokeWidth: 1,
+              };
           const periods = startAtDeaths
             ? country.periodsWithDeaths.slice(0).reverse()
             : country.periods.slice(0).reverse();
@@ -73,9 +76,7 @@ const GlobalDataChart = ({
               data={periods}
               interpolation="monotoneX"
               style={{ data }}
-              x={startAtDeaths
-                ? ''
-                : x}
+              x={startAtDeaths ? "" : x}
               y={y}
             />
           );

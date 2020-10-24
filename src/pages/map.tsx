@@ -1,36 +1,40 @@
-import React from 'react';
-import L, { LeafletMouseEvent } from 'leaflet';
-import { Feature, MapEffectSignature } from '@types';
-
+import React from "react";
+import L, { LeafletMouseEvent } from "leaflet";
+import { Feature, MapEffectSignature } from "@types";
 import {
-  promiseToFlyTo, trackerFeatureToHtmlMarker, geoJsonToMarkers, getMapData,
-} from 'lib';
-import {
-  Page, Loading, Error, SEO,
-}
-  from 'components/layout';
-import LeafletMap from '../components/map/LeafletMap';
-import { useFetchCountries } from '../hooks';
+  promiseToFlyTo,
+  trackerFeatureToHtmlMarker,
+  geoJsonToMarkers,
+  getMapData,
+} from "lib";
+import { Page, Loading, Error, SEO } from "components/layout";
+import LeafletMap from "../components/map/LeafletMap";
+import { useFetchCountries } from "../hooks";
 
 // TODO map with timescale (weekly)
 const MapPage = () => {
   const { loading, error, data } = useFetchCountries();
-  if (loading) { return <Loading />; }
-  if (error) { return <Error error={error} />; }
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <Error error={error} />;
+  }
   const handleOnMarkerClick = (
-    { feature }: { feature: Feature }, event: LeafletMouseEvent,
+    { feature }: { feature: Feature },
+    event: LeafletMouseEvent
   ) => {
     const { target } = event;
     const { _map: map } = target;
-
     const { geometry, properties } = feature;
     const { coordinates } = geometry;
     const { bounds, code } = properties;
 
     promiseToFlyTo(map, {
-      center: [coordinates[1], coordinates[0]], zoom: 3,
+      center: [coordinates[1], coordinates[0]],
+      zoom: 3,
     });
-    if (bounds && code !== 'US') {
+    if (bounds && code !== "US") {
       const boundsGeoJsonLayer = new L.GeoJSON(bounds);
       const boundsGeoJsonLayerBounds = boundsGeoJsonLayer.getBounds();
       map.fitBounds(boundsGeoJsonLayerBounds);

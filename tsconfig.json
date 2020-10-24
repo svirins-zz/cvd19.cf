@@ -1,35 +1,26 @@
 {
-  "ecmaFeatures": {
-    "jsx": true,
-  },
+  "compileOnSave": false,
   "ecmaVersion": 2018,
   "sourceType": "module",
   "compilerOptions": {
     "module": "commonjs",
     "target": "esnext",
-    "jsx": "preserve",
+    "jsx": "react",
     "lib": [
       "dom",
       "esnext",
     ],
+    "sourceMap": true,
     "baseUrl": "./src",
-    "paths": {
-      "*": [
-        "@types/*",
-        "*"
-      ]
-    },
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true
   },
-  "exclude": [
-    "node_modules",
-    "public",
-    ".cache",
-  ]
+  "include": ["./src/**/*"]
 }

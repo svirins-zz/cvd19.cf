@@ -1,51 +1,66 @@
-import L, { LatLngTuple, LatLngBoundsLiteral } from 'leaflet';
+import L, { LatLngTuple, LatLngBoundsLiteral } from "leaflet";
+import { Properties, Feature, Geometry, CodeFlagGeo, Countries } from "@types";
+import { getCode } from "country-list";
 import {
-  Properties, Feature, Geometry, CodeFlagGeo, Countries,
-} from '@types';
-import { getCode } from 'country-list';
-import { MISSING_COUNTRIES, ALL_COUNTRIES_DATA, VESSELS_CURRENT_COORDS } from '../const';
-import vessel from '../assets/vessel.png';
+  MISSING_COUNTRIES,
+  ALL_COUNTRIES_DATA,
+  VESSELS_CURRENT_COORDS,
+} from "../const";
+import vessel from "../assets/vessel.png";
 
 const getClassByCases = (totalCases: number) => {
-  if (totalCases < 99) { return 'icon-marker-small'; }
-  if (totalCases < 9999 && totalCases > 99) { return 'icon-marker-normal'; }
-  if (totalCases < 99999 && totalCases > 9999) { return 'icon-marker-large'; }
-  if (totalCases < 999999 && totalCases > 99999) { return 'icon-marker-extra-large'; }
-  if (totalCases > 999999) { return 'icon-marker-super-large'; }
-  return '';
+  if (totalCases < 99) {
+    return "icon-marker-small";
+  }
+  if (totalCases < 9999 && totalCases > 99) {
+    return "icon-marker-normal";
+  }
+  if (totalCases < 99999 && totalCases > 9999) {
+    return "icon-marker-large";
+  }
+  if (totalCases < 999999 && totalCases > 99999) {
+    return "icon-marker-extra-large";
+  }
+  if (totalCases > 999999) {
+    return "icon-marker-super-large";
+  }
+  return "";
 };
 
 export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
   return function (feature: Feature, latlng: LatLngTuple) {
     let html = '<span class="icon-marker"></span>';
-    if (typeof featureToHtml === 'function') {
+    if (typeof featureToHtml === "function") {
       html = featureToHtml(feature);
     }
 
     function onMarkerClick(e) {
-      if (typeof onClick === 'function') {
+      if (typeof onClick === "function") {
         onClick(
           {
             feature,
             latlng,
           },
-          e,
+          e
         );
       }
     }
 
     return L.marker(latlng, {
       icon: L.divIcon({
-        className: 'icon',
+        className: "icon",
         html,
       }),
       riseOnHover: true,
-    }).on('click', onMarkerClick);
+    }).on("click", onMarkerClick);
   };
 }
-export function promiseToFlyTo(map: L.Map, { zoom, center }: {zoom: number, center: LatLngTuple}) {
+export function promiseToFlyTo(
+  map: L.Map,
+  { zoom, center }: { zoom: number; center: LatLngTuple }
+) {
   return new Promise((resolve, reject) => {
-    const baseError = 'Failed to fly to area';
+    const baseError = "Failed to fly to area";
     if (!map.flyTo) {
       reject(`${baseError}: no flyTo method on map`);
     }
@@ -55,37 +70,39 @@ export function promiseToFlyTo(map: L.Map, { zoom, center }: {zoom: number, cent
       duration: 1,
     });
 
-    map.once('moveend', () => {
+    map.once("moveend", () => {
       resolve();
     });
   });
 }
 
-export function trackerFeatureToHtmlMarker({ properties }: {properties: Properties}) {
-  const {
-    name, flag, confirmed, deaths, recovered,
-  } = properties;
+export function trackerFeatureToHtmlMarker({
+  properties,
+}: {
+  properties: Properties;
+}) {
+  const { name, flag, confirmed, deaths, recovered } = properties;
   let header = name;
   header = `<img src="${flag}" name="flag"><div>${header}</div>`;
   const stats = [
     {
-      label: 'Confirmed',
+      label: "Confirmed",
       value: confirmed,
-      type: 'number',
+      type: "number",
     },
     {
-      label: 'Deaths',
+      label: "Deaths",
       value: deaths,
-      type: 'number',
+      type: "number",
     },
     {
-      label: 'Recovered',
+      label: "Recovered",
       value: recovered,
-      type: 'number',
+      type: "number",
     },
   ];
 
-  let statsString = '';
+  let statsString = "";
 
   stats.forEach(({ label, value }) => {
     statsString = `
@@ -94,7 +111,7 @@ export function trackerFeatureToHtmlMarker({ properties }: {properties: Properti
     `;
   });
 
-  const casesString = stats.find(({ label }) => label === 'Confirmed')?.value;
+  const casesString = stats.find(({ label }) => label === "Confirmed")?.value;
   const iconClass = getClassByCases(confirmed);
   return `
     <span class="icon-marker ${iconClass}">
@@ -107,7 +124,10 @@ export function trackerFeatureToHtmlMarker({ properties }: {properties: Properti
   `;
 }
 
-export function geoJsonToMarkers(geoJson: L.GeoJSON, options:L.GeoJSONOptions) {
+export function geoJsonToMarkers(
+  geoJson: L.GeoJSON,
+  options: L.GeoJSONOptions
+) {
   return new L.GeoJSON(geoJson, {
     pointToLayer: pointToLayerMarkerCreator(options),
   });
@@ -119,19 +139,24 @@ const getMissingCode = (countryName: String): string => {
 };
 
 const getCoords = (code: string, name: string): LatLngTuple => {
-  if (name === 'MS Zaandam' || name === 'Diamond Princess') { return VESSELS_CURRENT_COORDS[name]; }
+  if (name === "MS Zaandam" || name === "Diamond Princess") {
+    return VESSELS_CURRENT_COORDS[name];
+  }
   const element = ALL_COUNTRIES_DATA.find((e) => e.country_code === code);
   return [Number(element!.latlng[1]), Number(element!.latlng[0])];
 };
 
 export const getCountryExtData = (countryName: string): CodeFlagGeo => {
-  const code = !getCode(countryName) ? getMissingCode(countryName) : getCode(countryName);
-  const flag: string = code === 'VESSEL'
-    ? vessel
-    : `https://www.countryflags.io/${code?.toLowerCase()}/flat/64.png`;
+  const code = !getCode(countryName)
+    ? getMissingCode(countryName)
+    : getCode(countryName);
+  const flag: string =
+    code === "VESSEL"
+      ? vessel
+      : `https://www.countryflags.io/${code?.toLowerCase()}/flat/64.png`;
   const geometry: Geometry = {
-    type: 'Point',
-    coordinates: getCoords(code ?? '', countryName),
+    type: "Point",
+    coordinates: getCoords(code ?? "", countryName),
   };
   return { code, flag, geometry };
 };
@@ -141,27 +166,28 @@ export const getMapData = (data: Countries | undefined) => {
   data?.countries.forEach((e) => {
     // prepare data
     const { code, flag, geometry } = getCountryExtData(e.name);
-    const { confirmed, deaths, recovered } = e.results[data.countries.length - 1];
+    const { confirmed, deaths, recovered } = e.results[
+      data.countries.length - 1
+    ];
     // construct feature object
     const bounds: LatLngBoundsLiteral | undefined = undefined;
     const properties: Properties = {
-      name: e.name,
-      code,
       flag,
       bounds,
       confirmed,
       deaths,
       recovered,
+      code,
+      name: e.name,
     };
     features.push({
-      type: 'Feature',
       properties,
       geometry,
+      type: "Feature",
     });
   });
   return {
-    type: 'FeatureCollection',
+    type: "FeatureCollection",
     features,
-
   };
 };

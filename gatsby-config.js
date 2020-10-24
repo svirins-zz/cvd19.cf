@@ -52,6 +52,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-typescript',
+    'gatsby-plugin-tslint',
     'gatsby-plugin-offline',
     {
       resolve: 'gatsby-plugin-apollo',

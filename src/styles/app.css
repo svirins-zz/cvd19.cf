@@ -1,24 +1,32 @@
 .centered {
   text-align: center;
 }
+
 .bigIcon {
-  font-size: '18px'; color: 'WHITE'; vertical-align: 'middle'
+  font-size: '18px';
+  color: 'WHITE';
+  vertical-align: 'middle'
 }
+
 .site-statistic-demo-card .ant-statistic-title {
   font-size: 1.3em;
   font-weight: 500;
   color: #120338;
 }
+
 .site-layout-content {
   background: #fff;
   min-height: 480px;
 }
+
 .site-layout .site-layout-background {
   background: #fff;
 }
+
 .logoImg {
   padding: 12px 16px;
 }
+
 .logoText {
   font-weight: 600;
   text-transform: uppercase;
@@ -26,54 +34,65 @@
   font-size: 11px;
   line-height: 22px;
 }
+
 .alignBottom {
   position: fixed;
   text-align: center;
-  padding-left:12px;
+  padding-left: 12px;
   bottom: 0;
   height: 42px;
 }
+
 .tinyButton {
   font-size: 12px;
   background: none;
   color: white
 }
-.bottomSiderIcon a{
+
+.bottomSiderIcon a {
   padding: 28px;
 }
+
 .credentials {
   color: #000000;
   font-size: 12px;
   text-align: center;
 }
+
 .credentialsLink {
   color: #c242e2;
 }
+
 .credentialsLink:hover {
   color: #7eb0d6;
 }
+
 .largeText {
   font-size: 1.1em;
   font-weight: 500;
 }
+
 .statNone {
   color: #808080;
   font-weight: 600;
   text-decoration: underline;
 }
+
 .statSmall {
   color: #eb2f96;
   font-weight: 600;
   text-decoration: underline;
 }
+
 .statLosing {
   color: #f5222d;
   font-weight: 600;
   text-decoration: underline;
 }
+
 .statFlattening {
   color: #fa541c;
-  font-weight: 600; 
+  font-weight: 600;
   text-decoration: underline;
 }
 
@@ -82,24 +101,29 @@
   font-weight: 600;
   text-decoration: underline;
 }
+
 .statWinning {
-  color:#13c2c2;
+  color: #13c2c2;
   font-weight: 600;
   text-decoration: underline;
 }
+
 .statWon {
   color: #52c41a;
   font-weight: 600;
   text-decoration: underline;
 }
+
 .redB {
   background-color: 'red';
 }
+
 .leaflet-container {
-  width:100%;
+  width: 100%;
   height: 100vh;
   z-index: 999;
 }
+
 .conentWithMargin {
   padding: 24px 24px 0px 24px;
   background: #fff;
@@ -113,77 +137,77 @@
 
 .divider {
   margin: 14px 0;
-  border-top: 1px solid rgba(0,0,0,0.15);
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
 
 }
 
 .icon-marker {
-	display: flex;
+  display: flex;
   position: relative;
-	justify-content: center;
-	align-items: center;
-	color: white;
-	font-size: 1.1em;
-	font-weight: bold;
-	border-radius: 100%;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
 }
 
 .icon-marker:hover .icon-marker-tooltip {
-	display: block;
+  display: block;
 }
 
 .icon-marker-tooltip {
-	display: none;
-	position: absolute;
-	bottom: 100%;
-	width: 11em;
-	font-size: 1.1em;
-	padding: .5em;
-	background-color: #2b3f49 ;
-	border-radius: .2em;
-	margin-bottom: 1em;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.9);
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  width: 11em;
+  font-size: 1.1em;
+  padding: .5em;
+  background-color: #2b3f49;
+  border-radius: .2em;
+  margin-bottom: 1em;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.9);
 }
 
 .icon-marker-tooltip:before {
-	display: block;
-	position: absolute;
-	bottom: -.6em;
-	left: 50%;
-	content: '';
-	width: 1.4em;
-	height: 1.4em;
-	background-color: #fcfcfc;
-	transform: rotate(45deg);
-	margin-left: -.7em;          
+  display: block;
+  position: absolute;
+  bottom: -.6em;
+  left: 50%;
+  content: '';
+  width: 1.4em;
+  height: 1.4em;
+  background-color: #fcfcfc;
+  transform: rotate(45deg);
+  margin-left: -.7em;
 
 }
 
 .icon-marker-tooltip h2 {
-  color:#F3A207;
-	font-size: 1.5em;
-	line-height: 1.2;
-	margin-bottom: .1em;
-	margin-top: 0;
+  color: #F3A207;
+  font-size: 1.5em;
+  line-height: 1.2;
+  margin-bottom: .1em;
+  margin-top: 0;
 }
 
 .icon-marker-tooltip h3 {
-	font-size: 1.2em;
-	margin: .1em 0;
-	font-weight: normal;
-	color: #f1f1f0;
+  font-size: 1.2em;
+  margin: .1em 0;
+  font-weight: normal;
+  color: #f1f1f0;
 }
 
 .icon-marker-tooltip ul,
-  .icon-marker-tooltip p {
-	font-weight: normal;
+.icon-marker-tooltip p {
+  font-weight: normal;
 }
 
 .icon-marker-tooltip ul {
-	list-style: none;
-	padding: 0;
-	margin: .6em 0 0;
+  list-style: none;
+  padding: 0;
+  margin: .6em 0 0;
 }
 
 .icon-marker-small {
@@ -191,28 +215,31 @@
   height: 2.2em;
   background-color: #ffccc7;
 }
+
 .icon-marker-normal {
   width: 3.0em;
   height: 3.0em;
   background-color: #ff7875;
 }
+
 .icon-marker-large {
   width: 3.8em;
   height: 3.8em;
-  background-color:#f5222d;
+  background-color: #f5222d;
 }
+
 .icon-marker-extra-large {
   width: 4.6em;
   height: 4.6em;
-  background-color:#a8071a;
+  background-color: #a8071a;
 }
+
 .icon-marker-super-large {
   width: 5.4em;
   height: 5.4em;
-  background-color:#5c0011;
+  background-color: #5c0011;
 }
 
 .sider-box-shadow {
   box-shadow: 2px 0px 3px 0px #636363;
 }
-

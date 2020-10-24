@@ -1,10 +1,10 @@
-import React, { useMemo, useState } from 'react';
-import { Loading, Error } from 'components/layout';
-import { PERIOD_LENGTH } from 'const';
-import { calculateData, sumPeriodData } from 'lib';
-import { DataPageContent } from '../components/data';
-import { PeriodInfo } from '../@types';
-import { useFetchCountries } from '../hooks';
+import React, { useMemo, useState } from "react";
+import { Loading, Error } from "components/layout";
+import { PERIOD_LENGTH } from "const";
+import { calculateData, sumPeriodData } from "lib";
+import { DataPageContent } from "../components/data";
+import { PeriodInfo } from "../@types";
+import { useFetchCountries } from "../hooks";
 // TODO: Change API - missing countries appear !!!Fix
 const DataPage = () => {
   const [periodInfo, setPeriodInfo] = useState<PeriodInfo>({
@@ -12,10 +12,20 @@ const DataPage = () => {
     value: String(PERIOD_LENGTH),
   });
   const { loading, error, data } = useFetchCountries();
-  const countries = useMemo(() => calculateData(data, periodInfo.length), [data, periodInfo]);
-  const allData = [...countries, ...sumPeriodData(countries, periodInfo.length)];
-  if (loading) { return <Loading />; }
-  if (error) { return <Error error={error} />; }
+  const countries = useMemo(() => calculateData(data, periodInfo.length), [
+    data,
+    periodInfo,
+  ]);
+  const allData = [
+    ...countries,
+    ...sumPeriodData(countries, periodInfo.length),
+  ];
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <Error error={error} />;
+  }
   return (
     <DataPageContent
       countries={allData}

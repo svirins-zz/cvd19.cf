@@ -1,19 +1,21 @@
-import React from 'react';
-import { useTable, Column } from 'react-table';
-import { Table } from 'antd';
-import { Country, SummaryTable } from '@types';
+import React from "react";
+import { useTable, Column } from "react-table";
+import { Table } from "antd";
+import { Country, SummaryTable } from "@types";
 import {
-  getPeriodNames, construct6Col, construct4Col, constructData6Col,
+  getPeriodNames,
+  construct6Col,
+  construct4Col,
+  constructData6Col,
   constructData4Col,
-} from 'lib';
-export const TotalCasesTable = ({
-  data,
-  periodLength,
-}: SummaryTable) => {
+} from "lib";
+export const TotalCasesTable = ({ data, periodLength }: SummaryTable) => {
   const periodNames = getPeriodNames(periodLength);
-  const columns = construct6Col('totalCases', periodNames) as Array<Column<Country>>;
+  const columns = construct6Col("totalCases", periodNames) as Array<
+    Column<Country>
+  >;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'totalCases');
+  const { columnData, preparedData } = constructData6Col(table, "totalCases");
   console.log(columnData, preparedData);
   return (
     <Table
@@ -27,14 +29,13 @@ export const TotalCasesTable = ({
   );
 };
 
-export const NewCasesTable = ({
-  data,
-  periodLength,
-}: SummaryTable) => {
+export const NewCasesTable = ({ data, periodLength }: SummaryTable) => {
   const periodNames = getPeriodNames(periodLength);
-  const columns = construct6Col('newCases', periodNames) as Array<Column<Country>>;
+  const columns = construct6Col("newCases", periodNames) as Array<
+    Column<Country>
+  >;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'newCases');
+  const { columnData, preparedData } = constructData6Col(table, "newCases");
   return (
     <Table
       columns={columnData}
@@ -47,14 +48,13 @@ export const NewCasesTable = ({
   );
 };
 
-export const TotalDeathsTable = ({
-  data,
-  periodLength,
-}: SummaryTable) => {
+export const TotalDeathsTable = ({ data, periodLength }: SummaryTable) => {
   const periodNames = getPeriodNames(periodLength);
-  const columns = construct6Col('totalDeaths', periodNames) as Array<Column<Country>>;
+  const columns = construct6Col("totalDeaths", periodNames) as Array<
+    Column<Country>
+  >;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'totalDeaths');
+  const { columnData, preparedData } = constructData6Col(table, "totalDeaths");
   return (
     <Table
       columns={columnData}
@@ -67,14 +67,13 @@ export const TotalDeathsTable = ({
   );
 };
 
-export const NewDeathsTable = ({
-  data,
-  periodLength,
-}: SummaryTable) => {
+export const NewDeathsTable = ({ data, periodLength }: SummaryTable) => {
   const periodNames = getPeriodNames(periodLength);
-  const columns = construct6Col('newDeaths', periodNames) as Array<Column<Country>>;
+  const columns = construct6Col("newDeaths", periodNames) as Array<
+    Column<Country>
+  >;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'newDeaths');
+  const { columnData, preparedData } = constructData6Col(table, "newDeaths");
   return (
     <Table
       columns={columnData}
@@ -87,14 +86,13 @@ export const NewDeathsTable = ({
   );
 };
 
-export const GrowthTable = ({
-  data,
-  periodLength,
-}: SummaryTable) => {
+export const GrowthTable = ({ data, periodLength }: SummaryTable) => {
   const periodNames = getPeriodNames(periodLength);
-  const columns = construct6Col('growthRate', periodNames) as Array<Column<Country>>;
+  const columns = construct6Col("growthRate", periodNames) as Array<
+    Column<Country>
+  >;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'growthRate');
+  const { columnData, preparedData } = constructData6Col(table, "growthRate");
   return (
     <Table
       columns={columnData}
@@ -113,9 +111,15 @@ export const GrowthSummaryTable = ({
   order = true,
 }: SummaryTable) => {
   const periodNames = getPeriodNames(periodLength);
-  const columns = construct4Col('newDeaths', periodNames) as Array<Column<Country>>;
+  const columns = construct4Col("newDeaths", periodNames) as Array<
+    Column<Country>
+  >;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData4Col(table, 'newDeaths', order);
+  const { columnData, preparedData } = constructData4Col(
+    table,
+    "newDeaths",
+    order
+  );
   return (
     <Table
       columns={columnData}

@@ -1,17 +1,22 @@
-import React from 'react';
+import React from "react";
 import {
-  VictoryChart, VictoryLegend, VictoryAxis, VictoryLabel, VictoryArea,
-} from 'victory';
-import { PeriodSummary } from '@types';
-import Theme from 'styles/chartTheme';
+  VictoryChart,
+  VictoryLegend,
+  VictoryAxis,
+  VictoryLabel,
+  VictoryArea,
+} from "victory";
+import { PeriodSummary } from "@types";
+import Theme from "styles/chartTheme";
 
-const PandemicFreeChart = ({ data, title }: { data: PeriodSummary[], title: string }) => (
-  <VictoryChart
-    theme={Theme}
-    height={240}
-    width={600}
-    minDomain={{ y: 0 }}
-  >
+const PandemicFreeChart = ({
+  data,
+  title,
+}: {
+  data: PeriodSummary[];
+  title: string;
+}) => (
+  <VictoryChart theme={Theme} height={240} width={600} minDomain={{ y: 0 }}>
     <VictoryLegend
       x={325}
       y={20}
@@ -27,8 +32,8 @@ const PandemicFreeChart = ({ data, title }: { data: PeriodSummary[], title: stri
         },
       }}
       data={[
-        { name: '% With Cases or Deaths', symbol: { fill: '#f5222d' } },
-        { name: '% Pandemic Free', symbol: { fill: '#52c41a' } },
+        { name: "% With Cases or Deaths", symbol: { fill: "#f5222d" } },
+        { name: "% Pandemic Free", symbol: { fill: "#52c41a" } },
       ]}
     />
     <VictoryAxis
@@ -62,7 +67,7 @@ const PandemicFreeChart = ({ data, title }: { data: PeriodSummary[], title: stri
         fontSize: 5.5,
         fontFamily: `"Open Sans", Consolas, "Roboto Mono", "Droid Sans Mono",
             "Liberation Mono", Menlo, Courier, monospace`,
-        color: 'Gray',
+        color: "Gray",
       }}
     />
     <VictoryArea
@@ -70,9 +75,9 @@ const PandemicFreeChart = ({ data, title }: { data: PeriodSummary[], title: stri
       interpolation="monotoneX"
       style={{
         data: {
-          fill: '#f5222d',
+          fill: "#f5222d",
           fillOpacity: 0.5,
-          stroke: '#f5222d',
+          stroke: "#f5222d",
           strokeWidth: 0,
         },
       }}
@@ -85,9 +90,9 @@ const PandemicFreeChart = ({ data, title }: { data: PeriodSummary[], title: stri
       interpolation="monotoneX"
       style={{
         data: {
-          fill: '#52c41a',
+          fill: "#52c41a",
           fillOpacity: 0.5,
-          stroke: '#52c41a',
+          stroke: "#52c41a",
           strokeWidth: 2,
         },
       }}
