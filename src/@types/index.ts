@@ -208,12 +208,6 @@ export interface TagRenderProps {
   value: string
 }
 
-export interface RenderType {
-  text: number | string
-  record: Prepared
-  index?: number
-}
-
 export interface Column {
   title: string
   dataIndex: string
@@ -223,21 +217,13 @@ export interface Column {
   defaultSortOrder?: 'descend' | 'ascend' | 'null' | 'undefined'
   sortDirections?: [string, string]
 }
-export interface Prepared6Col {
-  key: number
-  name: string
+export interface PreparedExt extends Prepared {
   'periods[5]': number
   rate5: OutbreakStatus
   'periods[4]': number
   rate4: OutbreakStatus
   'periods[3]': number
   rate3: OutbreakStatus
-  'periods[2]': number
-  rate2: OutbreakStatus
-  'periods[1]': number
-  rate1: OutbreakStatus
-  'periods[0]': number
-  rate0: OutbreakStatus
 }
 
 export interface Prepared {

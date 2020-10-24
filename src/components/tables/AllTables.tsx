@@ -6,7 +6,6 @@ import {
   getPeriodNames, construct6Col, construct4Col, constructData6Col,
   constructData4Col,
 } from 'lib';
-// TODO: refactor everything
 export const TotalCasesTable = ({
   data,
   periodLength,
@@ -14,7 +13,7 @@ export const TotalCasesTable = ({
   const periodNames = getPeriodNames(periodLength);
   const columns = construct6Col('totalCases', periodNames) as Array<Column<Country>>;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'totalCases', true);
+  const { columnData, preparedData } = constructData6Col(table, 'totalCases');
   console.log(columnData, preparedData);
   return (
     <Table
@@ -35,7 +34,7 @@ export const NewCasesTable = ({
   const periodNames = getPeriodNames(periodLength);
   const columns = construct6Col('newCases', periodNames) as Array<Column<Country>>;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'newCases', true);
+  const { columnData, preparedData } = constructData6Col(table, 'newCases');
   return (
     <Table
       columns={columnData}
@@ -55,7 +54,7 @@ export const TotalDeathsTable = ({
   const periodNames = getPeriodNames(periodLength);
   const columns = construct6Col('totalDeaths', periodNames) as Array<Column<Country>>;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'totalDeaths', true);
+  const { columnData, preparedData } = constructData6Col(table, 'totalDeaths');
   return (
     <Table
       columns={columnData}
@@ -75,7 +74,7 @@ export const NewDeathsTable = ({
   const periodNames = getPeriodNames(periodLength);
   const columns = construct6Col('newDeaths', periodNames) as Array<Column<Country>>;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'newDeaths', true);
+  const { columnData, preparedData } = constructData6Col(table, 'newDeaths');
   return (
     <Table
       columns={columnData}
@@ -95,7 +94,7 @@ export const GrowthTable = ({
   const periodNames = getPeriodNames(periodLength);
   const columns = construct6Col('growthRate', periodNames) as Array<Column<Country>>;
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData6Col(table, 'growthRate', true);
+  const { columnData, preparedData } = constructData6Col(table, 'growthRate');
   return (
     <Table
       columns={columnData}

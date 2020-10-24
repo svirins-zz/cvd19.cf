@@ -2,17 +2,15 @@ import React from 'react';
 import { Tag } from 'antd';
 import { TableInstance } from 'react-table';
 import {
-  TableType, Country, Period, Prepared, Prepared6Col, Column,
+  TableType, Country, Period, Prepared, PreparedExt,
 } from '@types';
 import { getTagColor, commafy } from 'lib';
 
-const alphabeticalSorter = (a: Prepared, b: Prepared) => {
+const alphabeticalSorter = (a: Prepared | PreparedExt, b: Prepared | PreparedExt) => {
   if (a.name.toLowerCase() < b.name.toLowerCase()) { return -1; }
   if (a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
   return 0;
 };
-
-// TODO: !!incorrect color tagging ???
 
 export const construct6Col = (
   field: TableType,
@@ -82,9 +80,8 @@ export const construct4Col = (
 export const constructData6Col = (
   table: TableInstance<Country>,
   field: TableType,
-  order: true,
 ) => {
-  const preparedData: Prepared6Col[] = table.data.map((e, i) => ({
+  const preparedData: PreparedExt[] = table.data.map((e, i) => ({
     key: i,
     name: e.name,
     'periods[5]': e.periods[5][field],
@@ -104,113 +101,92 @@ export const constructData6Col = (
     {
       title: table.columns[0].Header,
       dataIndex: table.columns[0].id,
-      sorter: (a: Prepared6Col, b: Prepared6Col) => {
-        if (a.name.toLowerCase() < b.name.toLowerCase()) { return -1; }
-        if (a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
-        return 0;
-      },
+      sorter: alphabeticalSorter,
     },
     {
       title: table.columns[1].Header,
       dataIndex: 'periods[5]',
       align: 'center',
-      render: (text: number, row: any, index: number) => (
+      render: (text: number, record: PreparedExt) => (
         <Tag
-          color={getTagColor(preparedData[index].rate5)}
-          key={index}
+          color={getTagColor(record.rate5)}
         >
           {field === 'growthRate' ? text : commafy(text)}
           {field === 'growthRate' ? '%' : ''}
         </Tag>
       ),
-      sorter: (a: Prepared6Col, b: Prepared6Col) => a['periods[5]'] - b['periods[5]'],
-      defaultSortOrder: order ? 'descend' : 'ascend',
-      sortDirections: ['ascend', 'descend'],
+      sorter: (a: PreparedExt, b: PreparedExt) => a['periods[5]'] - b['periods[5]'],
     },
     {
       title: table.columns[2].Header,
       dataIndex: 'periods[4]',
       align: 'center',
-      render: (text: number, row: any, index: number) => (
+      render: (text: number, record: PreparedExt) => (
         <Tag
-          color={getTagColor(preparedData[index].rate4)}
-          key={index}
+          color={getTagColor(record.rate4)}
         >
           {field === 'growthRate' ? text : commafy(text)}
           {field === 'growthRate' ? '%' : ''}
         </Tag>
       ),
-      sorter: (a: Prepared6Col, b: Prepared6Col) => a['periods[4]'] - b['periods[4]'],
-      defaultSortOrder: order ? 'descend' : 'ascend',
-      sortDirections: ['ascend', 'descend'],
+      sorter: (a: PreparedExt, b: PreparedExt) => a['periods[4]'] - b['periods[4]'],
     },
     {
       title: table.columns[3].Header,
       dataIndex: 'periods[3]',
       align: 'center',
-      render: (text: number, row: any, index: number) => (
+      render: (text: number, record: PreparedExt) => (
         <Tag
-          color={getTagColor(preparedData[index].rate3)}
-          key={index}
+          color={getTagColor(record.rate3)}
         >
           {field === 'growthRate' ? text : commafy(text)}
           {field === 'growthRate' ? '%' : ''}
         </Tag>
       ),
-      sorter: (a: Prepared6Col, b: Prepared6Col) => a['periods[3]'] - b['periods[3]'],
-      defaultSortOrder: order ? 'descend' : 'ascend',
-      sortDirections: ['ascend', 'descend'],
+      sorter: (a: PreparedExt, b: PreparedExt) => a['periods[3]'] - b['periods[3]'],
     },
     {
       title: table.columns[4].Header,
       dataIndex: 'periods[2]',
       align: 'center',
-      render: (text: number, row: any, index: number) => (
+      render: (text: number, record: PreparedExt) => (
         <Tag
-          color={getTagColor(preparedData[index].rate2)}
-          key={index}
+          color={getTagColor(record.rate2)}
         >
           {field === 'growthRate' ? text : commafy(text)}
           {field === 'growthRate' ? '%' : ''}
         </Tag>
       ),
-      sorter: (a: Prepared6Col, b: Prepared6Col) => a['periods[2]'] - b['periods[2]'],
-      defaultSortOrder: order ? 'descend' : 'ascend',
-      sortDirections: ['ascend', 'descend'],
+      sorter: (a: PreparedExt, b: PreparedExt) => a['periods[2]'] - b['periods[2]'],
     },
     {
       title: table.columns[5].Header,
       dataIndex: 'periods[1]',
       align: 'center',
-      render: (text: number, row: any, index: number) => (
+      render: (text: number, record: PreparedExt) => (
         <Tag
-          color={getTagColor(preparedData[index].rate1)}
-          key={index}
+          color={getTagColor(record.rate1)}
         >
           {field === 'growthRate' ? text : commafy(text)}
           {field === 'growthRate' ? '%' : ''}
         </Tag>
       ),
-      sorter: (a: Prepared6Col, b: Prepared6Col) => a['periods[1]'] - b['periods[1]'],
-      defaultSortOrder: order ? 'descend' : 'ascend',
-      sortDirections: ['ascend', 'descend'],
+      sorter: (a: PreparedExt, b: PreparedExt) => a['periods[1]'] - b['periods[1]'],
     },
     {
       title: table.columns[6].Header,
       dataIndex: 'periods[0]',
       align: 'center',
-      render: (text: number, row: any, index: number) => (
+      render: (text: number, record: PreparedExt) => (
         <Tag
-          color={getTagColor(preparedData[index].rate0)}
-          key={index}
+          color={getTagColor(record.rate0)}
         >
           {field === 'growthRate' ? text : commafy(text)}
           {field === 'growthRate' ? '%' : ''}
         </Tag>
       ),
-      sorter: (a: Prepared6Col, b: Prepared6Col) => a['periods[0]'] - b['periods[0]'],
-      defaultSortOrder: order ? 'descend' : 'ascend',
-      sortDirections: ['ascend', 'descend'],
+      sorter: (a: PreparedExt, b: PreparedExt) => b['periods[0]'] - a['periods[0]'],
+      defaultSortOrder: 'ascend',
     },
   ];
   return { columnData, preparedData };
