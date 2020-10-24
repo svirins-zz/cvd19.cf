@@ -27,17 +27,17 @@ const IndexPage = () => {
   const globalSummaryData = useMemo(() => calculateGlobalSummary(countries, PERIOD_LENGTH),
     [countries]);
   const globalSummarySinceTwoMonths = globalSummaryData.slice(60 / PERIOD_LENGTH);
-  const losingData = countries.filter(
+  const losingData = useMemo(() => countries.filter(
     (country) => country.periods[0].status === OutbreakStatus.Losing
       || country.periods[0].status === OutbreakStatus.Flattening,
-  );
-  const winningData = countries.filter(
+  ), [countries]);
+  const winningData = useMemo(() => countries.filter(
     (country) => country.periods[0].status === OutbreakStatus.Winning
       || country.periods[0].status === OutbreakStatus.Won,
-  );
+  ), [countries]);
+  const summaryStats = useMemo(() => calculateSummaryData(data), [data]);
   if (loading) { return <Loading />; }
   if (error) { return <Error error={error} />; }
-  const summaryStats = calculateSummaryData(data);
   const trend = globalData[0].periods[0].status ?? OutbreakStatus.None;
   return (
     <Page>
@@ -59,8 +59,8 @@ const IndexPage = () => {
       <PandemicFreeChart data={globalSummaryData} title="Trend 'Pandemic free'" />
       <Row gutter={0}>
         <Col span={20} offset={2}>
-          <Title level={3} style={{ marginBottom: '0px' }}>New death cases by countries</Title>
-          <Paragraph>lessening / rising by last two 5-days periods</Paragraph>
+          <Title level={3} style={{ marginBottom: '0px' }}>New death cases by countries (last two periods)</Title>
+          <Paragraph>lessening / rising</Paragraph>
           <Divider className="divider" />
         </Col>
       </Row>

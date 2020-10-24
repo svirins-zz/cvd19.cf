@@ -1,5 +1,10 @@
-import L, { LatLngTuple } from 'leaflet';
-import { Properties, Feature } from '@types';
+import L, { LatLngTuple, LatLngBoundsLiteral } from 'leaflet';
+import {
+  Properties, Feature, Geometry, CodeFlagGeo, Countries,
+} from '@types';
+import { getCode } from 'country-list';
+import { MISSING_COUNTRIES, ALL_COUNTRIES_DATA, VESSELS_CURRENT_COORDS } from '../const';
+import vessel from '../assets/vessel.png';
 
 const getClassByCases = (totalCases: number) => {
   if (totalCases < 99) { return 'icon-marker-small'; }
@@ -107,3 +112,56 @@ export function geoJsonToMarkers(geoJson: L.GeoJSON, options:L.GeoJSONOptions) {
     pointToLayer: pointToLayerMarkerCreator(options),
   });
 }
+
+const getMissingCode = (countryName: String): string => {
+  const element = MISSING_COUNTRIES.find((el) => el.longName === countryName);
+  return element!.shortName;
+};
+
+const getCoords = (code: string, name: string): LatLngTuple => {
+  if (name === 'MS Zaandam' || name === 'Diamond Princess') { return VESSELS_CURRENT_COORDS[name]; }
+  const element = ALL_COUNTRIES_DATA.find((e) => e.country_code === code);
+  return [Number(element!.latlng[1]), Number(element!.latlng[0])];
+};
+
+export const getCountryExtData = (countryName: string): CodeFlagGeo => {
+  const code = !getCode(countryName) ? getMissingCode(countryName) : getCode(countryName);
+  const flag: string = code === 'VESSEL'
+    ? vessel
+    : `https://www.countryflags.io/${code?.toLowerCase()}/flat/64.png`;
+  const geometry: Geometry = {
+    type: 'Point',
+    coordinates: getCoords(code ?? '', countryName),
+  };
+  return { code, flag, geometry };
+};
+
+export const getMapData = (data: Countries | undefined) => {
+  const features: Feature[] = [];
+  data?.countries.forEach((e) => {
+    // prepare data
+    const { code, flag, geometry } = getCountryExtData(e.name);
+    const { confirmed, deaths, recovered } = e.results[data.countries.length - 1];
+    // construct feature object
+    const bounds: LatLngBoundsLiteral | undefined = undefined;
+    const properties: Properties = {
+      name: e.name,
+      code,
+      flag,
+      bounds,
+      confirmed,
+      deaths,
+      recovered,
+    };
+    features.push({
+      type: 'Feature',
+      properties,
+      geometry,
+    });
+  });
+  return {
+    type: 'FeatureCollection',
+    features,
+
+  };
+};
