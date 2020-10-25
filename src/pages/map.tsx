@@ -1,6 +1,6 @@
 import React from "react";
-import L, { LeafletMouseEvent } from "leaflet";
-import { Feature, MapEffectSignature } from "@types";
+import L, { LeafletMouseEvent, Map } from "leaflet";
+import { Feature } from "@types";
 import {
   promiseToFlyTo,
   trackerFeatureToHtmlMarker,
@@ -41,7 +41,11 @@ const MapPage = () => {
     }
   };
   // mapeffect
-  const mapEffect = ({ leafletElement }: MapEffectSignature) => {
+  const mapEffect = ({
+    leafletElement,
+  }: {
+    leafletElement: Map | undefined;
+  }) => {
     if (!leafletElement) return;
     const locationsGeoJson = getMapData(data);
     const locationsGeoJsonLayers = geoJsonToMarkers(locationsGeoJson, {

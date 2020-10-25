@@ -1,10 +1,6 @@
 import { ReactChildren, ReactChild } from "react";
 import { ApolloError } from "@apollo/client";
-import { LatLngTuple, LatLngBoundsLiteral, Map } from "leaflet";
-
-export interface MapEffectSignature {
-  leafletElement: Map | undefined;
-}
+import { LatLngTuple, LatLngBoundsLiteral } from "leaflet";
 
 export interface Countries {
   countries: Country[];
@@ -21,7 +17,7 @@ export interface Properties {
   name: string;
   code: string;
   flag: string;
-  bounds?: LatLngBoundsLiteral;
+  bounds?: LatLngBoundsLiteral & { type: "Point" };
   confirmed: number;
   deaths: number;
   recovered: number;
@@ -104,6 +100,8 @@ export interface ChartInfo {
 export interface SummaryTable {
   data: Country[];
   periodLength: number;
+  kind: TableType;
+  size: 4 | 6;
   order?: boolean;
 }
 
@@ -143,10 +141,10 @@ export interface MissingCountries {
 
 export type ContextProps = {
   choice: string;
-  handleSelect: Function;
+  handleSelect: ({ key }: { key: string }) => void;
   visible: boolean;
-  onClose: Function;
-  showDrawer: Function;
+  onClose: () => void;
+  showDrawer: () => void;
 };
 
 export interface AuxProps {
@@ -173,7 +171,7 @@ export interface FeatureCollection {
 }
 
 export interface CodeFlagGeo {
-  code?: string;
+  code: string;
   flag: string;
   geometry: Geometry;
 }
@@ -200,19 +198,17 @@ export interface SiteQuery {
 }
 
 export interface TagRenderProps {
-  closable: boolean;
-  disabled?: undefined;
   label: string;
-  onClose: Function;
-  value: string;
+  closable: boolean | undefined;
+  onClose: (e: MouseEvent) => void;
 }
 
 export interface Column {
   title: string;
   dataIndex: string;
   align?: string;
-  render?: (a) => JSX.Element;
-  sorter?: (a, b) => boolean;
+  render?: () => JSX.Element;
+  sorter?: () => boolean;
   defaultSortOrder?: "descend" | "ascend" | "null" | "undefined";
   sortDirections?: [string, string];
 }

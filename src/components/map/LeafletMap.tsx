@@ -1,14 +1,18 @@
 import React, { useRef } from "react";
 import { Map, TileLayer } from "react-leaflet";
-import { MapEffectSignature } from "@types";
 
 import { useRefEffect } from "../../hooks";
 import "leaflet/dist/leaflet.css";
 import { ATTRIBUTION_STRING } from "../../const";
 
 // Migrate from mapbox tiles
-// remove props in favor of function
-const LeafletMap = ({ mapEffect }: { mapEffect: MapEffectSignature }) => {
+
+
+const LeafletMap = ({
+  mapEffect,
+}: {
+  mapEffect: (leafletElement: Map | undefined) => void;
+}) => {
   const mapRef = useRef();
   useRefEffect({
     ref: mapRef,

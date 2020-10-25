@@ -5,7 +5,7 @@ const useRefEffect = ({
   effect,
   ref,
 }: {
-  effect: (l: Map | undefined) => void;
+  effect: (leafletElement: Map | undefined) => void;
   ref: React.MutableRefObject<undefined>;
 }) => {
   useEffect(() => {

@@ -4,7 +4,6 @@ import { Tags, TagRenderProps } from "@types";
 import { getColorByCountryName } from "lib";
 
 const { Option } = Select;
-// TODO: country remove doesn't works
 const CountryFilter = ({
   selected,
   setSelected,
@@ -14,20 +13,12 @@ const CountryFilter = ({
   setSelected: (tags: string[]) => void;
   countries: Tags[];
 }) => {
-  console.log(
-    "selected: ",
-    selected,
-    "setFn: ",
-    setSelected,
-    "allCountries:",
-    countries
-  );
   const handleChange = (currentArr: string[]) => {
     setSelected(currentArr);
   };
-  function tagRender(p) {
+  // tagRender called to often
+  function tagRender(p: TagRenderProps) {
     const { label, closable, onClose } = p;
-    console.log("tag props: ", p);
     return (
       <Tag
         key={label}
@@ -45,12 +36,12 @@ const CountryFilter = ({
     <Select
       mode="multiple"
       style={{ width: "100%" }}
-      showArrow
+      showArrow={true}
       defaultValue={selected}
       placeholder="Add Country"
       onChange={handleChange}
       tagRender={(p) => tagRender(p)}
-      autoClearSearchValue
+      autoClearSearchValue={true}
     >
       {countries.map((item) => (
         <Option value={item.label} key={item.id}>

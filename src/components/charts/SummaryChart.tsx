@@ -28,7 +28,7 @@ const SummaryChart = ({
       y={20}
       itemsPerRow={2}
       gutter={20}
-      centerTitle
+      centerTitle={true}
       style={{
         labels: {
           fontSize: 5,
@@ -47,13 +47,13 @@ const SummaryChart = ({
       ]}
     />
     <VictoryAxis
-      fixLabelOverlap
+      fixLabelOverlap={true}
       style={{
         tickLabels: { fontSize: 6 },
       }}
     />
     <VictoryAxis
-      dependentAxis
+      dependentAxis={true}
       style={{
         tickLabels: { fontSize: 6 },
       }}

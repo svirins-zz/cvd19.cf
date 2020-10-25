@@ -23,7 +23,7 @@ const PandemicFreeChart = ({
       itemsPerRow={1}
       orientation="horizontal"
       gutter={20}
-      centerTitle
+      centerTitle={true}
       style={{
         labels: {
           fontSize: 5,
@@ -37,13 +37,13 @@ const PandemicFreeChart = ({
       ]}
     />
     <VictoryAxis
-      fixLabelOverlap
+      fixLabelOverlap={true}
       style={{
         tickLabels: { fontSize: 6 },
       }}
     />
     <VictoryAxis
-      dependentAxis
+      dependentAxis={true}
       style={{
         tickLabels: { fontSize: 6 },
       }}

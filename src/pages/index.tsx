@@ -13,7 +13,7 @@ import {
   UnderControlChart,
   SummaryChart,
 } from "components/charts";
-import { GrowthSummaryTable } from "components/tables/AllTables";
+import TotalTable from "components/tables/TotalTable";
 import { Summary } from "components/data";
 import { useFetchCountries } from "../hooks";
 import { OutbreakStatus } from "../@types";
@@ -36,31 +36,23 @@ const IndexPage = () => {
   const globalSummarySinceTwoMonths = globalSummaryData.slice(
     60 / PERIOD_LENGTH
   );
-  const losingData = useMemo(
-    () =>
-      countries.filter(
-        (country) =>
-          country.periods[0].status === OutbreakStatus.Losing ||
-          country.periods[0].status === OutbreakStatus.Flattening
-      ),
-    [countries]
+  const losingData = countries.filter(
+    (country) =>
+      country.periods[0].status === OutbreakStatus.Losing ||
+      country.periods[0].status === OutbreakStatus.Flattening
   );
-  const winningData = useMemo(
-    () =>
-      countries.filter(
-        (country) =>
-          country.periods[0].status === OutbreakStatus.Winning ||
-          country.periods[0].status === OutbreakStatus.Won
-      ),
-    [countries]
+  const winningData = countries.filter(
+    (country) =>
+      country.periods[0].status === OutbreakStatus.Winning ||
+      country.periods[0].status === OutbreakStatus.Won
   );
-  const summaryStats = useMemo(() => calculateSummaryData(data), [data]);
   if (loading) {
     return <Loading />;
   }
   if (error) {
     return <Error error={error} />;
   }
+  const summaryStats = calculateSummaryData(data);
   const trend = globalData[0].periods[0].status ?? OutbreakStatus.None;
   return (
     <Page>
@@ -104,17 +96,21 @@ const IndexPage = () => {
       </Row>
       <Row>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
-          <GrowthSummaryTable
+          <TotalTable
             data={winningData}
             periodLength={PERIOD_LENGTH}
             order={false}
+            kind={"newDeaths"}
+            size={4}
           />
         </Col>
         <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
-          <GrowthSummaryTable
+          <TotalTable
             data={losingData}
             periodLength={PERIOD_LENGTH}
             order={true}
+            kind={"newDeaths"}
+            size={4}
           />
         </Col>
       </Row>

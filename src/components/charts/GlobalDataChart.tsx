@@ -26,8 +26,8 @@ const GlobalDataChart = ({
         domainPadding={{ x: [0, -4], y: [0, 1] }}
         minDomain={{ y: 0 }}
       >
-        <VictoryAxis fixLabelOverlap />
-        <VictoryAxis dependentAxis />
+        <VictoryAxis fixLabelOverlap={true} />
+        <VictoryAxis dependentAxis={true} />
         <VictoryLabel
           text={title}
           x={50}

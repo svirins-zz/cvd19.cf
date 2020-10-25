@@ -12,17 +12,12 @@ import { PeriodInfo, TableType, Country, Tags, ValT } from "@types";
 import { getTags, getChartInfo } from "lib";
 import { GlobalDataChart } from "../charts";
 import { Page, SEO } from "../layout";
-import {
-  GrowthTable,
-  NewDeathsTable,
-  TotalDeathsTable,
-  NewCasesTable,
-  TotalCasesTable,
-} from "../tables/AllTables";
+import TotalTable from "../tables/TotalTable";
 import CountryFilter from "./CountryFilter";
 
 const { Title, Text, Paragraph } = Typography;
-
+// TODO: check TotalTable re-renders and fix it
+// TODO fix wrong country deleting in country filter
 const DataPageContent = ({
   countries,
   periodInfo,
@@ -58,7 +53,9 @@ const DataPageContent = ({
         <Col span={20} offset={2}>
           <Radio.Group
             value={selectedTable}
-            onChange={(e) => setSelectedTable(e.target.value)}
+            onChange={(e) => {
+              setSelectedTable(e.target.value);
+            }}
           >
             <Radio.Button value="newDeaths">New Deaths</Radio.Button>
             <Radio.Button value="totalDeaths">Total Deaths</Radio.Button>
@@ -112,19 +109,44 @@ const DataPageContent = ({
         <Paragraph>all countries included, last 6 periods</Paragraph>
         <Divider className="divider" />
         {selectedTable === "growthRate" && (
-          <GrowthTable data={countries} periodLength={periodInfo.length} />
+          <TotalTable
+            data={countries}
+            periodLength={periodInfo.length}
+            kind={"growthRate"}
+            size={6}
+          />
         )}
         {selectedTable === "newDeaths" && (
-          <NewDeathsTable data={countries} periodLength={periodInfo.length} />
+          <TotalTable
+            data={countries}
+            periodLength={periodInfo.length}
+            kind={"newDeaths"}
+            size={6}
+          />
         )}
         {selectedTable === "totalDeaths" && (
-          <TotalDeathsTable data={countries} periodLength={periodInfo.length} />
+          <TotalTable
+            data={countries}
+            periodLength={periodInfo.length}
+            kind={"totalDeaths"}
+            size={6}
+          />
         )}
         {selectedTable === "newCases" && (
-          <NewCasesTable data={countries} periodLength={periodInfo.length} />
+          <TotalTable
+            data={countries}
+            periodLength={periodInfo.length}
+            kind={"newCases"}
+            size={6}
+          />
         )}
         {selectedTable === "totalCases" && (
-          <TotalCasesTable data={countries} periodLength={periodInfo.length} />
+          <TotalTable
+            data={countries}
+            periodLength={periodInfo.length}
+            kind={"totalCases"}
+            size={6}
+          />
         )}
       </Col>
     </Page>

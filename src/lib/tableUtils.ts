@@ -1,8 +1,6 @@
-import React from "react";
-import { Tag } from "antd";
 import { TableInstance } from "react-table";
 import { TableType, Country, Period, Prepared, PreparedExt } from "@types";
-import { getTagColor, commafy } from "lib";
+import ColorTag from "../components/data/ColorTag";
 
 const alphabeticalSorter = (
   a: Prepared | PreparedExt,
@@ -75,7 +73,7 @@ export const construct4Col = (field: TableType, periodNames: string[]) => [
     Cell: ({ value }: { value: Period & "" }) => value[field],
   },
 ];
-// TODO: Refactor Tag to separate file
+
 export const constructData6Col = (
   table: TableInstance<Country>,
   field: TableType
@@ -106,12 +104,8 @@ export const constructData6Col = (
       title: table.columns[1].Header,
       dataIndex: "periods[5]",
       align: "center",
-      render: (text: number, record: PreparedExt) => (
-        <Tag color={getTagColor(record.rate5)}>
-          {field === "growthRate" ? text : commafy(text)}
-          {field === "growthRate" ? "%" : ""}
-        </Tag>
-      ),
+      render: (text: number, record: PreparedExt) =>
+        ColorTag(text, record.rate5, field),
       sorter: (a: PreparedExt, b: PreparedExt) =>
         a["periods[5]"] - b["periods[5]"],
     },
@@ -119,12 +113,8 @@ export const constructData6Col = (
       title: table.columns[2].Header,
       dataIndex: "periods[4]",
       align: "center",
-      render: (text: number, record: PreparedExt) => (
-        <Tag color={getTagColor(record.rate4)}>
-          {field === "growthRate" ? text : commafy(text)}
-          {field === "growthRate" ? "%" : ""}
-        </Tag>
-      ),
+      render: (text: number, record: PreparedExt) =>
+        ColorTag(text, record.rate4, field),
       sorter: (a: PreparedExt, b: PreparedExt) =>
         a["periods[4]"] - b["periods[4]"],
     },
@@ -132,12 +122,8 @@ export const constructData6Col = (
       title: table.columns[3].Header,
       dataIndex: "periods[3]",
       align: "center",
-      render: (text: number, record: PreparedExt) => (
-        <Tag color={getTagColor(record.rate3)}>
-          {field === "growthRate" ? text : commafy(text)}
-          {field === "growthRate" ? "%" : ""}
-        </Tag>
-      ),
+      render: (text: number, record: PreparedExt) =>
+        ColorTag(text, record.rate3, field),
       sorter: (a: PreparedExt, b: PreparedExt) =>
         a["periods[3]"] - b["periods[3]"],
     },
@@ -145,12 +131,8 @@ export const constructData6Col = (
       title: table.columns[4].Header,
       dataIndex: "periods[2]",
       align: "center",
-      render: (text: number, record: PreparedExt) => (
-        <Tag color={getTagColor(record.rate2)}>
-          {field === "growthRate" ? text : commafy(text)}
-          {field === "growthRate" ? "%" : ""}
-        </Tag>
-      ),
+      render: (text: number, record: PreparedExt) =>
+        ColorTag(text, record.rate2, field),
       sorter: (a: PreparedExt, b: PreparedExt) =>
         a["periods[2]"] - b["periods[2]"],
     },
@@ -158,12 +140,8 @@ export const constructData6Col = (
       title: table.columns[5].Header,
       dataIndex: "periods[1]",
       align: "center",
-      render: (text: number, record: PreparedExt) => (
-        <Tag color={getTagColor(record.rate1)}>
-          {field === "growthRate" ? text : commafy(text)}
-          {field === "growthRate" ? "%" : ""}
-        </Tag>
-      ),
+      render: (text: number, record: PreparedExt) =>
+        ColorTag(text, record.rate1, field),
       sorter: (a: PreparedExt, b: PreparedExt) =>
         a["periods[1]"] - b["periods[1]"],
     },
@@ -171,12 +149,8 @@ export const constructData6Col = (
       title: table.columns[6].Header,
       dataIndex: "periods[0]",
       align: "center",
-      render: (text: number, record: PreparedExt) => (
-        <Tag color={getTagColor(record.rate0)}>
-          {field === "growthRate" ? text : commafy(text)}
-          {field === "growthRate" ? "%" : ""}
-        </Tag>
-      ),
+      render: (text: number, record: PreparedExt) =>
+        ColorTag(text, record.rate0, field),
       sorter: (a: PreparedExt, b: PreparedExt) =>
         b["periods[0]"] - a["periods[0]"],
       defaultSortOrder: "ascend",
@@ -188,7 +162,7 @@ export const constructData6Col = (
 export const constructData4Col = (
   table: TableInstance<Country>,
   field: TableType,
-  order: boolean
+  order?: boolean
 ) => {
   const preparedData: Prepared[] = table.data.map((e, i) => ({
     key: i,
@@ -211,27 +185,24 @@ export const constructData4Col = (
       title: table.columns[1].Header,
       dataIndex: "periods[2]",
       align: "center",
-      render: (text: number, record: Prepared) => (
-        <Tag color={getTagColor(record.rate2)}>{commafy(text)}</Tag>
-      ),
+      render: (text: number, record: Prepared) =>
+        ColorTag(text, record.rate2, "newDeaths"),
       sorter: (a: Prepared, b: Prepared) => a["periods[2]"] - b["periods[2]"],
     },
     {
       title: table.columns[2].Header,
       dataIndex: "periods[1]",
       align: "center",
-      render: (text: number, record: Prepared) => (
-        <Tag color={getTagColor(record.rate1)}>{commafy(text)}</Tag>
-      ),
+      render: (text: number, record: Prepared) =>
+        ColorTag(text, record.rate1, "newDeaths"),
       sorter: (a: Prepared, b: Prepared) => a["periods[1]"] - b["periods[1]"],
     },
     {
       title: table.columns[3].Header,
       dataIndex: "periods[0]",
       align: "center",
-      render: (text: number, record: Prepared) => (
-        <Tag color={getTagColor(record.rate0)}>{commafy(text)}</Tag>
-      ),
+      render: (text: number, record: Prepared) =>
+        ColorTag(text, record.rate0, "newDeaths"),
       sorter: (a: Prepared, b: Prepared) => b["periods[0]"] - a["periods[0]"],
       defaultSortOrder: order ? "ascend" : "descend",
     },

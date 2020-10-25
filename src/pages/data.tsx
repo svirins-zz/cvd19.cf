@@ -5,7 +5,6 @@ import { calculateData, sumPeriodData } from "lib";
 import { DataPageContent } from "../components/data";
 import { PeriodInfo } from "../@types";
 import { useFetchCountries } from "../hooks";
-// TODO: Change API - missing countries appear !!!Fix
 const DataPage = () => {
   const [periodInfo, setPeriodInfo] = useState<PeriodInfo>({
     length: PERIOD_LENGTH,

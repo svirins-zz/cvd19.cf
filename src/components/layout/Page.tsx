@@ -30,7 +30,7 @@ const Page = ({ children }: React.PropsWithChildren<{}>) => {
           <Drawer
             title="Data trends in colors"
             placement="left"
-            closable
+            closable={true}
             onClose={context.onClose}
             visible={context.visible}
             width={480}
@@ -38,14 +38,14 @@ const Page = ({ children }: React.PropsWithChildren<{}>) => {
             <SideDrawer />
           </Drawer>
           <Sider
-            collapsed
+            collapsed={true}
             style={{ position: "sticky" }}
             className="sider-box-shadow"
           >
             <Menu
               onSelect={context.handleSelect}
-              selectable
-              focusable
+              selectable={true}
+              focusable={true}
               selectedKeys={[defaultItem]}
               mode="inline"
               style={{ position: "fixed", border: "0" }}

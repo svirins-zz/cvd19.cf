@@ -30,7 +30,7 @@ export const periodStatus = (
   currentNewDeaths: number,
   previousNewDeaths: number,
   growthRate: number
-): OutbreakStatus | undefined => {
+): OutbreakStatus => {
   if (totalDeaths === 0) {
     return OutbreakStatus.None;
   }
@@ -58,7 +58,7 @@ export const periodStatus = (
   if ((currentNewDeaths >= 10 && currentNewDeaths < 100) || growthRate < -50) {
     return OutbreakStatus.Crushing;
   }
-  return undefined;
+  return OutbreakStatus.None;
 };
 
 export const getPeriodName = (endingDaysAgo: number) => {

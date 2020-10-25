@@ -28,7 +28,7 @@ const getClassByCases = (totalCases: number) => {
 };
 
 export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
-  return function (feature: Feature, latlng: LatLngTuple) {
+  return (feature: Feature, latlng: LatLngTuple) => {
     let html = '<span class="icon-marker"></span>';
     if (typeof featureToHtml === "function") {
       html = featureToHtml(feature);
@@ -48,8 +48,8 @@ export function pointToLayerMarkerCreator({ featureToHtml, onClick } = {}) {
 
     return L.marker(latlng, {
       icon: L.divIcon({
-        className: "icon",
         html,
+        className: "icon",
       }),
       riseOnHover: true,
     }).on("click", onMarkerClick);
@@ -133,7 +133,7 @@ export function geoJsonToMarkers(
   });
 }
 
-const getMissingCode = (countryName: String): string => {
+const getMissingCode = (countryName: string): string => {
   const element = MISSING_COUNTRIES.find((el) => el.longName === countryName);
   return element!.shortName;
 };
@@ -149,7 +149,7 @@ const getCoords = (code: string, name: string): LatLngTuple => {
 export const getCountryExtData = (countryName: string): CodeFlagGeo => {
   const code = !getCode(countryName)
     ? getMissingCode(countryName)
-    : getCode(countryName);
+    : getCode(countryName) ?? "";
   const flag: string =
     code === "VESSEL"
       ? vessel
@@ -187,7 +187,7 @@ export const getMapData = (data: Countries | undefined) => {
     });
   });
   return {
-    type: "FeatureCollection",
     features,
+    type: "FeatureCollection",
   };
 };
