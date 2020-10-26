@@ -15,7 +15,7 @@ const Summary = ({
   return (
     <>
       <Row gutter={0}>
-        <Col xs={24} sm={24} md={12} lg={8} xl={8} key="1">
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="1">
           <Card>
             <Statistic
               title="Total Cases"
@@ -25,7 +25,7 @@ const Summary = ({
             />
           </Card>
         </Col>
-        <Col xs={24} sm={24} md={12} lg={8} xl={8} key="2">
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="2">
           <Card>
             <Statistic
               title="Total Deaths"
@@ -35,7 +35,7 @@ const Summary = ({
             />
           </Card>
         </Col>
-        <Col xs={24} sm={24} md={12} lg={8} xl={8} key="3">
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="3">
           <Card>
             <Statistic
               title="Total Recovered"
@@ -47,7 +47,7 @@ const Summary = ({
         </Col>
       </Row>
       <Row gutter={0}>
-        <Col xs={24} sm={24} md={12} lg={8} xl={8} key="4">
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="4">
           <Card>
             <Statistic
               title="Days passed"
@@ -57,7 +57,7 @@ const Summary = ({
             />
           </Card>
         </Col>
-        <Col xs={24} sm={24} md={12} lg={8} xl={8} key="5">
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="5">
           <Card>
             <Statistic
               title="Countries (incl. vessels)"
@@ -67,7 +67,7 @@ const Summary = ({
             />
           </Card>
         </Col>
-        <Col xs={24} sm={24} md={12} lg={8} xl={8} key="6">
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="6">
           <Card>
             <Statistic
               title="Data Trend (last 5 days)"
