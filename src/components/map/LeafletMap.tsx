@@ -1,12 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import { Map, TileLayer } from "react-leaflet";
-
 import { useRefEffect } from "../../hooks";
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 import { ATTRIBUTION_STRING } from "../../const";
 
 // Migrate from mapbox tiles
-
 
 const LeafletMap = ({
   mapEffect,
@@ -18,23 +16,26 @@ const LeafletMap = ({
     ref: mapRef,
     effect: mapEffect,
   });
-
-  return (
-    <Map
-      ref={mapRef}
-      zoom={10}
-      minZoom={3}
-      maxzoom={14}
-      center={[0, 0]}
-      className="leaflet-container"
-    >
-      <TileLayer
-        url={process.env.GATSBY_MAPBOX_STATIC_TILES_ENDPOINT ?? ""}
-        attribution={ATTRIBUTION_STRING ?? ""}
-        tilesize={512}
-      />
-    </Map>
+  const memoizedMap = useMemo(
+    () => (
+      <Map
+        ref={mapRef}
+        zoom={10}
+        minZoom={3}
+        maxzoom={14}
+        center={[0, 0]}
+        className="leaflet-container"
+      >
+        <TileLayer
+          url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT ?? ""}
+          attribution={ATTRIBUTION_STRING ?? ""}
+          tilesize={512}
+        />
+      </Map>
+    ),
+    [mapRef]
   );
+  return <> {memoizedMap} </>;
 };
 
 export default LeafletMap;

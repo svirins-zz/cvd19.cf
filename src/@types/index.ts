@@ -79,11 +79,6 @@ export type Tags = {
   value: string;
 };
 
-export interface PeriodInfo {
-  length: number;
-  value: string;
-}
-
 export type TableType =
   | "growthRate"
   | "totalDeaths"
@@ -118,8 +113,6 @@ export interface DataChartProps {
 export interface Selected {
   [key: string]: string;
 }
-
-export type ValT = number | string | undefined;
 
 export type GlobalStats = {
   confirmed: number;
@@ -231,3 +224,19 @@ export interface Prepared {
   "periods[0]": number;
   rate0: OutbreakStatus;
 }
+
+export interface TableState {
+  table: "growthRate" | "totalDeaths" | "newDeaths" | "totalCases" | "newCases";
+}
+
+// export interface StartAtDeathState {
+//   isStart: boolean;
+// }
+
+export interface CountriesState {
+  countries: string[];
+}
+
+// export interface PeriodState {
+//   length: number;
+// }

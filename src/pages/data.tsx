@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
+import { useImmer } from "use-immer";
 import {
   Typography,
   Divider,
@@ -14,19 +15,24 @@ import GlobalDataChart from "components/charts/GlobalDataChart";
 import TotalTable from "components/tables/TotalTable";
 import { PERIOD_LENGTH } from "const";
 import { calculateData, sumPeriodData, getTags, getChartInfo } from "lib";
-import { PeriodInfo, TableType, Tags, ValT } from "../@types";
+import { TableState, Tags, CountriesState } from "../@types";
 import { useFetchCountries } from "../hooks";
 
 const { Title, Text, Paragraph } = Typography;
-
-const DataPage = () => {
-  const [periodInfo, setPeriodInfo] = useState<PeriodInfo>({
+// TODO: Remove direct state changes
+const Data = () => {
+  const [periodInfo, setPeriodInfo] = useImmer({
     length: PERIOD_LENGTH,
-    value: String(PERIOD_LENGTH),
   });
-  const [selectedTable, setSelectedTable] = useState<TableType>("newDeaths");
-  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
-  const [startAtDeaths, setStartAtDeaths] = useState(false);
+  const [selectedTable, setSelectedTable] = useImmer<TableState>({
+    table: "newDeaths",
+  });
+  const [selectedCountries, setSelectedCountries] = useImmer<CountriesState>({
+    countries: [],
+  });
+  const [startAtDeaths, setStartAtDeaths] = useImmer({
+    isStart: false,
+  });
   const { loading, error, data } = useFetchCountries();
   if (loading) {
     return <Loading />;
@@ -36,26 +42,16 @@ const DataPage = () => {
   }
 
   const countries = calculateData(data, periodInfo.length);
-  const chartInfo = getChartInfo(selectedTable, periodInfo.length);
+  const chartInfo = getChartInfo(selectedTable.table, periodInfo.length);
   const allCountries: Tags[] = getTags(countries);
   const preparedCountries = [
     ...countries,
     ...sumPeriodData(countries, periodInfo.length),
   ];
-
-  const onPeriodChange = (val: number) => {
-    const length = val;
-    if (length > 0) {
-      setPeriodInfo({
-        length: val,
-        value: val.toString(),
-      });
-    } else {
-      setPeriodInfo({
-        length: PERIOD_LENGTH,
-        value: val.toString(),
-      });
-    }
+  const onCountriesChange = (currentCountries: string[]) => {
+    setSelectedCountries((draft) => {
+      draft.countries = [...currentCountries];
+    });
   };
   return (
     <Page>
@@ -72,9 +68,11 @@ const DataPage = () => {
       <Row gutter={[8, 8]}>
         <Col span={20} offset={2}>
           <Radio.Group
-            value={selectedTable}
+            value={selectedTable.table}
             onChange={(e) => {
-              setSelectedTable(e.target.value);
+              setSelectedTable((draft) => {
+                draft.table = e.target.value;
+              });
             }}
           >
             <Radio.Button value="newDeaths">New Deaths</Radio.Button>
@@ -92,13 +90,21 @@ const DataPage = () => {
             min={1}
             max={20}
             placeholder="Period length, days"
-            defaultValue={Number(periodInfo.value)}
-            onChange={(val: ValT) => onPeriodChange(Number(val))}
+            defaultValue={periodInfo.length}
+            onChange={(val) =>
+              setPeriodInfo((draft) => {
+                draft.length = Number(val);
+              })
+            }
           />
           {"    "}
           <Checkbox
-            onChange={(e) => setStartAtDeaths(e.target.checked)}
-            checked={startAtDeaths}
+            onChange={(e) =>
+              setStartAtDeaths((draft) => {
+                draft.isStart = e.target.checked;
+              })
+            }
+            checked={startAtDeaths.isStart}
           >
             Start at 1-st death
           </Checkbox>
@@ -107,8 +113,8 @@ const DataPage = () => {
       <Row gutter={[8, 8]}>
         <Col span={20} offset={2}>
           <CountryFilter
-            selected={selectedCountries}
-            setSelected={setSelectedCountries}
+            selected={selectedCountries.countries}
+            setSelected={onCountriesChange}
             countries={allCountries}
           />
         </Col>
@@ -116,10 +122,10 @@ const DataPage = () => {
       <GlobalDataChart
         countries={preparedCountries}
         countriesT={allCountries}
-        selectedCountries={selectedCountries}
+        selectedCountries={selectedCountries.countries}
         x={chartInfo.x}
         y={chartInfo.y}
-        startAtDeaths={startAtDeaths}
+        startAtDeaths={startAtDeaths.isStart}
         title={chartInfo.title}
       />
       <Col span={20} offset={2}>
@@ -128,15 +134,15 @@ const DataPage = () => {
         </Title>
         <Paragraph>all countries included, last 6 periods</Paragraph>
         <Divider className="divider" />
-        <TotalTable
+        {/* <TotalTable
           data={preparedCountries}
           periodLength={periodInfo.length}
-          kind={selectedTable}
+          kind={selectedTable.table}
           size={6}
-        />
+        /> */}
       </Col>
     </Page>
   );
 };
 
-export default DataPage;
+export default Data;

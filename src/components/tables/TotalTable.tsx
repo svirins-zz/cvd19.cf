@@ -23,7 +23,6 @@ const TotalTable = ({
       ? construct6Col("totalCases", periodNames)
       : construct4Col("newDeaths", periodNames);
   const table = useTable({ columns, data });
-  console.log("rerender");
   const { columnData, preparedData } =
     size === 6
       ? constructData6Col(table, kind)

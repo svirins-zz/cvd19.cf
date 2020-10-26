@@ -10,13 +10,9 @@ const CountryFilter = ({
   countries,
 }: {
   selected: string[];
-  setSelected: (tags: string[]) => void;
+  setSelected: (currentCountries: string[]) => void;
   countries: Tags[];
 }) => {
-  const handleChange = (currentArr: string[]) => {
-    setSelected(currentArr);
-  };
-  // tagRender called to often
   function tagRender(p: TagRenderProps) {
     const { label, closable, onClose } = p;
     return (
@@ -39,7 +35,7 @@ const CountryFilter = ({
       showArrow={true}
       defaultValue={selected}
       placeholder="Add Country"
-      onChange={handleChange}
+      onChange={(arr) => setSelected(arr)}
       tagRender={(p) => tagRender(p)}
       autoClearSearchValue={true}
     >

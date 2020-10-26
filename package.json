@@ -28,6 +28,7 @@
     "gatsby-plugin-typescript": "^2.4.24",
     "gatsby-source-filesystem": "^2.3.36",
     "gatsby-transformer-sharp": "^2.5.20",
+    "immer": "^7.0.14",
     "leaflet": "^1.7.1",
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
@@ -36,7 +37,8 @@
     "react-ga": "^3.2.0",
     "react-helmet": "^6.1.0",
     "react-leaflet": "^2.8.0",
-    "react-table": "^7.6.0",
+    "react-table": "^7.6.1",
+    "use-immer": "^0.4.1",
     "victory": "^35.3.1"
   },
   "devDependencies": {
