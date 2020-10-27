@@ -1,11 +1,7 @@
 import React, { useRef, useMemo } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import { useRefEffect } from "../../hooks";
-// import "leaflet/dist/leaflet.css";
 import { ATTRIBUTION_STRING } from "../../const";
-
-// Migrate from mapbox tiles
-
 const LeafletMap = ({
   mapEffect,
 }: {

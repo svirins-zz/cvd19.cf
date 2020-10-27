@@ -1,6 +1,8 @@
 import React from "react";
+import { useQuery } from "@apollo/client";
 import L, { LeafletMouseEvent, Map } from "leaflet";
-import { Feature } from "@types";
+import { Feature, Countries } from "@types";
+import COUNTRY_QUERY from "queries";
 import {
   promiseToFlyTo,
   trackerFeatureToHtmlMarker,
@@ -9,11 +11,10 @@ import {
 } from "lib";
 import { Page, Loading, Error, SEO } from "components/layout";
 import LeafletMap from "../components/map/LeafletMap";
-import { useFetchCountries } from "../hooks";
 
 // TODO map with timescale (weekly)
 const MapPage = () => {
-  const { loading, error, data } = useFetchCountries();
+  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
   if (loading) {
     return <Loading />;
   }

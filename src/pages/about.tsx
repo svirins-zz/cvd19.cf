@@ -9,7 +9,7 @@ const AboutPage = () => (
   <Page>
     <SEO title="About" />
     <Row gutter={[8, 8]}>
-      <Col span={20} offset={2}>
+      <Col span={24}>
         <Title level={3} style={{ marginBottom: "0px" }}>
           Covid-19 Pandemic Information
         </Title>
@@ -18,7 +18,7 @@ const AboutPage = () => (
       </Col>
     </Row>
     <Row gutter={[8, 8]}>
-      <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
+    <Col xs={24} sm={24} md={24} lg={12} xl={12}>
         <Paragraph>
           This site aims to provide a simple tool to track global progress in
           defeating Covid-19, by focusing on the rate of change in death count
@@ -32,7 +32,7 @@ const AboutPage = () => (
           countries successfully eradicate the virus.
         </Paragraph>
       </Col>
-      <Col xs={20} sm={20} md={20} lg={9} xl={9} offset={2}>
+      <Col xs={24} sm={24} md={24} lg={12} xl={12}>
         <Paragraph>
           Summary: the pandemic is serious; we won&apos;t have an economy if we
           don&apos;t defeat it; herd immunity and waiting on a vaccine are not
@@ -41,7 +41,7 @@ const AboutPage = () => (
       </Col>
     </Row>
     <Row gutter={[8, 16]}>
-      <Col span={20} offset={2}>
+      <Col span={24}>
         <Title level={3}>Extra info and useful resources</Title>
         <Paragraph>
           If you want expert information visit

@@ -1,21 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
+import { useImmer } from "use-immer";
 import { ContextProps, AuxProps } from "../@types";
 
 export const myContext = React.createContext<Partial<ContextProps>>({});
 
 const Provider = ({ children }: AuxProps) => {
-  const [choice, setChoice] = useState("");
-  const [visible, setVisible] = useState(false);
+  const [choice, setChoice] = useImmer({
+    key: "",
+  });
+  const [visible, setVisible] = useImmer({
+    isVisible: false,
+  });
   return (
     <myContext.Provider
       value={{
         choice,
         visible,
-        handleSelect: ({ key }: { key: string }) => {
-          setChoice(key);
+        handleSelect: (key) => {
+          setChoice((draft) => {
+            draft.key = key;
+          });
         },
-        onClose: () => setVisible(false),
-        showDrawer: () => setVisible(true),
+        onClose: () =>
+          setVisible((draft) => {
+            draft.isVisible = false;
+          }),
+        showDrawer: () =>
+          setVisible((draft) => {
+            draft.isVisible = true;
+          }),
       }}
     >
       {children}

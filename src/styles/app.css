@@ -176,9 +176,9 @@
   bottom: -.6em;
   left: 50%;
   content: '';
-  width: 1.4em;
-  height: 1.4em;
-  background-color: #fcfcfc;
+  width: 1em;
+  height: 1em;
+  background-color: #2b3f49;
   transform: rotate(45deg);
   margin-left: -.7em;
 }

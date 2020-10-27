@@ -133,9 +133,9 @@ export interface MissingCountries {
 }
 
 export type ContextProps = {
-  choice: string;
-  handleSelect: ({ key }: { key: string }) => void;
-  visible: boolean;
+  choice: { key: string };
+  visible: { isVisible: boolean };
+  handleSelect: (key: string) => void;
   onClose: () => void;
   showDrawer: () => void;
 };
@@ -229,14 +229,6 @@ export interface TableState {
   table: "growthRate" | "totalDeaths" | "newDeaths" | "totalCases" | "newCases";
 }
 
-// export interface StartAtDeathState {
-//   isStart: boolean;
-// }
-
 export interface CountriesState {
   countries: string[];
 }
-
-// export interface PeriodState {
-//   length: number;
-// }

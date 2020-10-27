@@ -1,7 +1,7 @@
-import React from "react";
-import { useTable } from "react-table";
+import React, { useMemo } from "react";
+import { useTable, Column } from "react-table";
 import { Table } from "antd";
-import { SummaryTable } from "@types";
+import { Country, SummaryTable } from "@types";
 import {
   getPeriodNames,
   construct6Col,
@@ -20,8 +20,8 @@ const TotalTable = ({
   const periodNames = getPeriodNames(periodLength);
   const columns =
     size === 6
-      ? construct6Col("totalCases", periodNames)
-      : construct4Col("newDeaths", periodNames);
+      ? construct6Col(kind, periodNames)
+      : construct4Col(kind, periodNames);
   const table = useTable({ columns, data });
   const { columnData, preparedData } =
     size === 6

@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
 import { useImmer } from "use-immer";
+import { useQuery } from "@apollo/client";
+
 import {
   Typography,
   Divider,
@@ -14,12 +16,11 @@ import CountryFilter from "components/data/CountryFilter";
 import GlobalDataChart from "components/charts/GlobalDataChart";
 import TotalTable from "components/tables/TotalTable";
 import { PERIOD_LENGTH } from "const";
+import COUNTRY_QUERY from "queries";
 import { calculateData, sumPeriodData, getTags, getChartInfo } from "lib";
-import { TableState, Tags, CountriesState } from "../@types";
-import { useFetchCountries } from "../hooks";
+import { TableState, Tags, CountriesState, Countries } from "../@types";
 
 const { Title, Text, Paragraph } = Typography;
-// TODO: Remove direct state changes
 const Data = () => {
   const [periodInfo, setPeriodInfo] = useImmer({
     length: PERIOD_LENGTH,
@@ -33,7 +34,7 @@ const Data = () => {
   const [startAtDeaths, setStartAtDeaths] = useImmer({
     isStart: false,
   });
-  const { loading, error, data } = useFetchCountries();
+  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
   if (loading) {
     return <Loading />;
   }
@@ -48,6 +49,7 @@ const Data = () => {
     ...countries,
     ...sumPeriodData(countries, periodInfo.length),
   ];
+
   const onCountriesChange = (currentCountries: string[]) => {
     setSelectedCountries((draft) => {
       draft.countries = [...currentCountries];
@@ -57,7 +59,7 @@ const Data = () => {
     <Page>
       <SEO title="All Data" />
       <Row gutter={[8, 8]}>
-        <Col span={20} offset={2}>
+        <Col span={24}>
           <Title level={3} style={{ marginBottom: "0px" }}>
             Data reports constructor
           </Title>
@@ -66,7 +68,7 @@ const Data = () => {
         </Col>
       </Row>
       <Row gutter={[8, 8]}>
-        <Col span={20} offset={2}>
+        <Col span={24}>
           <Radio.Group
             value={selectedTable.table}
             onChange={(e) => {
@@ -84,7 +86,7 @@ const Data = () => {
         </Col>
       </Row>
       <Row gutter={[8, 8]}>
-        <Col span={20} offset={2}>
+        <Col span={24}>
           <Text>Period, days: </Text>
           <InputNumber
             min={1}
@@ -111,7 +113,7 @@ const Data = () => {
         </Col>
       </Row>{" "}
       <Row gutter={[8, 8]}>
-        <Col span={20} offset={2}>
+        <Col span={24}>
           <CountryFilter
             selected={selectedCountries.countries}
             setSelected={onCountriesChange}
@@ -128,7 +130,7 @@ const Data = () => {
         startAtDeaths={startAtDeaths.isStart}
         title={chartInfo.title}
       />
-      <Col span={20} offset={2}>
+      <Col span={24}>
         <Title level={3} style={{ marginBottom: "0px" }}>
           {chartInfo.title}
         </Title>

@@ -33,7 +33,7 @@ const Page = ({ children }: React.PropsWithChildren<{}>) => {
             placement="left"
             closable={true}
             onClose={context.onClose}
-            visible={context.visible}
+            visible={context.visible?.isVisible}
             width={480}
           >
             <SideDrawer />
