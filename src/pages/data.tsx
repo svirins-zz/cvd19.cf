@@ -1,7 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import { useImmer } from "use-immer";
 import { useQuery } from "@apollo/client";
-
 import {
   Typography,
   Divider,
@@ -18,8 +17,13 @@ import TotalTable from "components/tables/TotalTable";
 import { PERIOD_LENGTH } from "const";
 import COUNTRY_QUERY from "queries";
 import { calculateData, sumPeriodData, getTags, getChartInfo } from "lib";
-import { TableState, Tags, CountriesState, Countries } from "../@types";
-
+import {
+  TableState,
+  Tags,
+  CountriesState,
+  Countries,
+  Country,
+} from "../@types";
 const { Title, Text, Paragraph } = Typography;
 const Data = () => {
   const [periodInfo, setPeriodInfo] = useImmer({
@@ -34,6 +38,13 @@ const Data = () => {
   const [startAtDeaths, setStartAtDeaths] = useImmer({
     isStart: false,
   });
+  const chartInfo = getChartInfo(selectedTable.table, periodInfo.length);
+  const onCountriesChange = (currentCountries: string[]) => {
+    setSelectedCountries((draft) => {
+      draft.countries = [...currentCountries];
+    });
+  };
+
   const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
   if (loading) {
     return <Loading />;
@@ -41,20 +52,15 @@ const Data = () => {
   if (error) {
     return <Error error={error} />;
   }
-
-  const countries = calculateData(data, periodInfo.length);
-  const chartInfo = getChartInfo(selectedTable.table, periodInfo.length);
+  const countries: Country[] = useMemo(
+    () => calculateData(data, periodInfo.length),
+    [data, periodInfo.length]
+  );
   const allCountries: Tags[] = getTags(countries);
-  const preparedCountries = [
+  const preparedCountries: Country[] = [
     ...countries,
     ...sumPeriodData(countries, periodInfo.length),
   ];
-
-  const onCountriesChange = (currentCountries: string[]) => {
-    setSelectedCountries((draft) => {
-      draft.countries = [...currentCountries];
-    });
-  };
   return (
     <Page>
       <SEO title="All Data" />
@@ -136,15 +142,16 @@ const Data = () => {
         </Title>
         <Paragraph>all countries included, last 6 periods</Paragraph>
         <Divider className="divider" />
-        {/* <TotalTable
+        <TotalTable
           data={preparedCountries}
           periodLength={periodInfo.length}
           kind={selectedTable.table}
           size={6}
-        /> */}
+        />
       </Col>
     </Page>
   );
 };
 
 export default Data;
+

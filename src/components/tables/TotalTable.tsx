@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useCallback } from "react";
 import { useTable, Column } from "react-table";
 import { Table } from "antd";
 import { Country, SummaryTable } from "@types";
@@ -14,15 +14,19 @@ const TotalTable = ({
   data,
   periodLength,
   kind,
-  order,
+  order = true,
   size,
 }: SummaryTable) => {
-  const periodNames = getPeriodNames(periodLength);
-  const columns =
-    size === 6
-      ? construct6Col(kind, periodNames)
-      : construct4Col(kind, periodNames);
-  const table = useTable({ columns, data });
+  if (!data) {return null}
+  const periodNames = useMemo(() => getPeriodNames(periodLength), [
+    periodLength,
+  ]);
+  let columns = []
+  if (size === 6) {columns = useMemo(() => construct6Col(kind, periodNames), [kind, periodNames])}
+  else {columns = useMemo(() => construct4Col(kind, periodNames), [kind, periodNames])}
+ 
+  const table = useTable( {columns, data} );
+  console.log("rere")
   const { columnData, preparedData } =
     size === 6
       ? constructData6Col(table, kind)
