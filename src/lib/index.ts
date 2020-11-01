@@ -19,12 +19,7 @@ export {
   calculateSummaryData,
   calculateGlobalSummary,
 } from "./calcUtils";
-export {
-  constructData6Col,
-  constructData4Col,
-  construct6Col,
-  construct4Col,
-} from "./tableUtils";
+export { constructData, constructColumns } from "./tableUtils";
 export {
   getChartInfo,
   menuInit,
@@ -33,4 +28,5 @@ export {
   getColor,
   getColorByCountryName,
   getTags,
+  hexToHsl,
 } from "./uiUtils";

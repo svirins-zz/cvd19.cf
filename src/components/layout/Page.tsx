@@ -3,7 +3,6 @@ import { Layout, Menu, Drawer, Button, Divider } from "antd";
 import { Link } from "gatsby";
 import { useLocation } from "@reach/router";
 import "styles/app.css";
-import "leaflet/dist/leaflet.css";
 import {
   GlobalOutlined,
   BarChartOutlined,

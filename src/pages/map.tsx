@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import L, { LeafletMouseEvent, Map } from "leaflet";
+import "leaflet/dist/leaflet.css";
 import { Feature, Countries } from "@types";
 import COUNTRY_QUERY from "queries";
 import {
@@ -12,7 +13,6 @@ import {
 import { Page, Loading, Error, SEO } from "components/layout";
 import LeafletMap from "../components/map/LeafletMap";
 
-// TODO map with timescale (weekly)
 const MapPage = () => {
   const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
   if (loading) {

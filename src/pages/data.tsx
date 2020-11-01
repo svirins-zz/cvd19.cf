@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import React from "react";
 import { useImmer } from "use-immer";
 import { useQuery } from "@apollo/client";
 import {
@@ -12,6 +12,7 @@ import {
 } from "antd";
 import { Loading, Error, Page, SEO } from "components/layout";
 import CountryFilter from "components/data/CountryFilter";
+import NivoGlobal from "components/charts/NivoGlobal";
 import GlobalDataChart from "components/charts/GlobalDataChart";
 import TotalTable from "components/tables/TotalTable";
 import { PERIOD_LENGTH } from "const";
@@ -24,6 +25,7 @@ import {
   Countries,
   Country,
 } from "../@types";
+// Refactor to NivoCharts
 const { Title, Text, Paragraph } = Typography;
 const Data = () => {
   const [periodInfo, setPeriodInfo] = useImmer({
@@ -52,10 +54,7 @@ const Data = () => {
   if (error) {
     return <Error error={error} />;
   }
-  const countries: Country[] = useMemo(
-    () => calculateData(data, periodInfo.length),
-    [data, periodInfo.length]
-  );
+  const countries: Country[] = calculateData(data, periodInfo.length);
   const allCountries: Tags[] = getTags(countries);
   const preparedCountries: Country[] = [
     ...countries,
@@ -127,20 +126,33 @@ const Data = () => {
           />
         </Col>
       </Row>
-      <GlobalDataChart
+      <Col span={24}>
+        <div style={{ height: "400px" }}>
+          <NivoGlobal
+            countries={preparedCountries}
+            colors={allCountries}
+            selectedCountries={selectedCountries.countries}
+            x={chartInfo.x}
+            y={chartInfo.y}
+            startAtDeaths={startAtDeaths.isStart}
+            title={chartInfo.title}
+          />
+        </div>
+      </Col>
+      {/* <GlobalDataChart
         countries={preparedCountries}
-        countriesT={allCountries}
+        colors={allCountries}
         selectedCountries={selectedCountries.countries}
         x={chartInfo.x}
         y={chartInfo.y}
         startAtDeaths={startAtDeaths.isStart}
         title={chartInfo.title}
-      />
+      /> */}
       <Col span={24}>
         <Title level={3} style={{ marginBottom: "0px" }}>
           {chartInfo.title}
         </Title>
-        <Paragraph>all countries included, last 6 periods</Paragraph>
+        <Paragraph>all countries included, last 5 periods</Paragraph>
         <Divider className="divider" />
         <TotalTable
           data={preparedCountries}
@@ -154,4 +166,3 @@ const Data = () => {
 };
 
 export default Data;
-

@@ -21,7 +21,6 @@ import { OutbreakStatus, Countries } from "../@types";
 
 const { Title, Paragraph } = Typography;
 // TODO: Refactor Victory=>antD charts ??
-// TODO: Do we really need global column? data.tsx=>sumPeriodData
 const IndexPage = () => {
   // query countries data
   const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);

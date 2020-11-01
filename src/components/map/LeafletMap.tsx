@@ -23,7 +23,7 @@ const LeafletMap = ({
         className="leaflet-container"
       >
         <TileLayer
-          url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT ?? ""}
+          url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT ?? ""}
           attribution={ATTRIBUTION_STRING ?? ""}
           tilesize={512}
         />

@@ -6,7 +6,7 @@ import { getColorByCountryName } from "lib";
 
 const GlobalDataChart = ({
   countries,
-  countriesT,
+  colors,
   selectedCountries,
   x,
   y,
@@ -15,8 +15,38 @@ const GlobalDataChart = ({
 }: DataChartProps) => {
   const selected: Selected = {};
   selectedCountries.forEach((tag) => {
-    selected[tag] = getColorByCountryName(tag, countriesT);
+    selected[tag] = getColorByCountryName(tag, colors);
   });
+  // try logic for nivo charts
+  const chartData = [] 
+  {
+    countries.map((country) => {
+      if (
+        country.name === undefined ||
+        !Object.keys(selected).includes(country.name) ||
+        (country.name === "Global" &&
+          !Object.keys(selected).includes(country.name))
+      ) {
+        return undefined;
+      }
+      const periods = startAtDeaths
+        ? country.periodsWithDeaths.slice(0).reverse()
+        : country.periods.slice(0).reverse();
+      const preparedPeriods = periods.map((period) => {
+        return {
+          "x": period.endDate,
+          "y": period.[y],
+        }
+      }
+      )      
+      chartData.push({
+        "id": country.name,
+        "color": selected[country.name],
+        "data": preparedPeriods,
+      }) 
+    });
+  }
+ 
   return (
     <>
       <VictoryChart
@@ -70,6 +100,7 @@ const GlobalDataChart = ({
           const periods = startAtDeaths
             ? country.periodsWithDeaths.slice(0).reverse()
             : country.periods.slice(0).reverse();
+
           return (
             <VictoryLine
               key={country.name}

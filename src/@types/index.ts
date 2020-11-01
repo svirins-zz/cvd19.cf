@@ -102,7 +102,7 @@ export interface SummaryTable {
 
 export interface DataChartProps {
   countries: Country[];
-  countriesT: Tags[];
+  colors: Tags[];
   selectedCountries: string[];
   x: string;
   y: string;
@@ -196,6 +196,12 @@ export interface TagRenderProps {
   onClose: (e: MouseEvent) => void;
 }
 
+export type ConstructedColumn = {
+  Header: string;
+  accessor: string;
+  Cell: ({ value }: { value: Period & "" }) => number | undefined;
+};
+
 export interface Column {
   title: string;
   dataIndex: string;
@@ -206,8 +212,6 @@ export interface Column {
   sortDirections?: [string, string];
 }
 export interface PreparedExt extends Prepared {
-  "periods[5]": number;
-  rate5: OutbreakStatus;
   "periods[4]": number;
   rate4: OutbreakStatus;
   "periods[3]": number;

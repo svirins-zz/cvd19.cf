@@ -53,11 +53,17 @@ module.exports = {
     },
     'gatsby-plugin-typescript',
     'gatsby-plugin-tslint',
-    'gatsby-plugin-offline',
+    // 'gatsby-plugin-offline',
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
         uri: process.env.GATSBY_APPLLO_GRAPHQL_ENDPOINT,
+         headers: {
+         'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Origin': '*',
+         'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS ,POST ,PUT ',
+        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,   Access-Control-Request-Method, Access-Control-Request-Headers'      
+        },
       },
     },
     {
