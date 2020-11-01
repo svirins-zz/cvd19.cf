@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: 'Covid-19 stats and charts',
     description: 'In progress',
-    author: '@svirins',
+    author: 'svirins',
     siteURL: 'https://cvd19.cf',
     googleAnalyticsId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
     menuLinks: [
@@ -58,12 +58,7 @@ module.exports = {
       resolve: 'gatsby-plugin-apollo',
       options: {
         uri: process.env.GATSBY_APPLLO_GRAPHQL_ENDPOINT,
-         headers: {
-         'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Origin': '*',
-         'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS ,POST ,PUT ',
-        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,   Access-Control-Request-Method, Access-Control-Request-Headers'      
-        },
+
       },
     },
     {
