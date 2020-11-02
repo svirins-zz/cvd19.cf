@@ -2,6 +2,7 @@ import React, { useRef, useMemo } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import { useRefEffect } from "../../hooks";
 import { ATTRIBUTION_STRING } from "../../const";
+// TODO:Refactor to react-leaflet 3 https://react-leaflet.js.org/
 const LeafletMap = ({
   mapEffect,
 }: {

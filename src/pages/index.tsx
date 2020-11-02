@@ -1,14 +1,15 @@
 import React, { useMemo } from "react";
-import { useQuery } from "@apollo/client";
 import { Typography, Row, Col, Divider } from "antd";
 import { Page, Loading, Error, SEO } from "components/layout";
 import { PERIOD_LENGTH } from "const";
-import COUNTRY_QUERY from "queries";
+import useSWR from "swr";
+
 import {
   sumPeriodData,
   calculateSummaryData,
   calculateData,
   calculateGlobalSummary,
+  fetchAndTransform,
 } from "lib";
 import {
   PandemicFreeChart,
@@ -17,13 +18,22 @@ import {
 } from "components/charts";
 import TotalTable from "components/tables/TotalTable";
 import { Summary } from "components/data";
-import { OutbreakStatus, Countries } from "../@types";
+import { OutbreakStatus } from "../@types";
 
 const { Title, Paragraph } = Typography;
-// TODO: Refactor Victory=>antD charts ??
+
 const IndexPage = () => {
-  // query countries data
-  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
+  // writw
+  const { data, error } = useSWR(
+    process.env.GATSBY_FETCH_ENDPOINT ?? "",
+    fetchAndTransform
+  );
+
+  if (error) return <Error message={error.message} />;
+  if (!data) return <Loading />;
+
+  // TODO: Refactor Victory=>antD charts ??
+
   // prepare data to display
   const countries = useMemo(() => calculateData(data, PERIOD_LENGTH), [data]);
   const globalData = useMemo(() => sumPeriodData(countries, PERIOD_LENGTH), [
@@ -46,12 +56,7 @@ const IndexPage = () => {
       country.periods[0].status === OutbreakStatus.Winning ||
       country.periods[0].status === OutbreakStatus.Won
   );
-  if (loading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <Error error={error} />;
-  }
+
   const summaryStats = calculateSummaryData(data);
   const trend = globalData[0].periods[0].status ?? OutbreakStatus.None;
   return (

@@ -1,5 +1,4 @@
 import { ReactChildren, ReactChild } from "react";
-import { ApolloError } from "@apollo/client";
 import { LatLngTuple, LatLngBoundsLiteral } from "leaflet";
 
 export interface Countries {
@@ -143,10 +142,6 @@ export type ContextProps = {
 export interface AuxProps {
   children: ReactChild | ReactChildren;
 }
-export type ErrorProps = {
-  error?: ApolloError;
-};
-
 export interface Geometry {
   type: "Point";
   coordinates: LatLngTuple;
@@ -236,3 +231,4 @@ export interface TableState {
 export interface CountriesState {
   countries: string[];
 }
+

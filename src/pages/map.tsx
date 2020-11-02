@@ -1,9 +1,7 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
 import L, { LeafletMouseEvent, Map } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Feature, Countries } from "@types";
-import COUNTRY_QUERY from "queries";
 import {
   promiseToFlyTo,
   trackerFeatureToHtmlMarker,
@@ -14,13 +12,10 @@ import { Page, Loading, Error, SEO } from "components/layout";
 import LeafletMap from "../components/map/LeafletMap";
 
 const MapPage = () => {
-  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
-  if (loading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <Error error={error} />;
-  }
+  const loading = true;
+  const error = false;
+  const data = null;
+  
   const handleOnMarkerClick = (
     { feature }: { feature: Feature },
     event: LeafletMouseEvent

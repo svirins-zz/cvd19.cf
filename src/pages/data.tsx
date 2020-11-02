@@ -1,6 +1,5 @@
 import React from "react";
 import { useImmer } from "use-immer";
-import { useQuery } from "@apollo/client";
 import {
   Typography,
   Divider,
@@ -16,7 +15,6 @@ import NivoGlobal from "components/charts/NivoGlobal";
 import GlobalDataChart from "components/charts/GlobalDataChart";
 import TotalTable from "components/tables/TotalTable";
 import { PERIOD_LENGTH } from "const";
-import COUNTRY_QUERY from "queries";
 import { calculateData, sumPeriodData, getTags, getChartInfo } from "lib";
 import {
   TableState,
@@ -46,14 +44,10 @@ const Data = () => {
       draft.countries = [...currentCountries];
     });
   };
-
-  const { loading, error, data } = useQuery<Countries>(COUNTRY_QUERY);
-  if (loading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <Error error={error} />;
-  }
+  const loading = true;
+  const error = false;
+  const data = null;
+  
   const countries: Country[] = calculateData(data, periodInfo.length);
   const allCountries: Tags[] = getTags(countries);
   const preparedCountries: Country[] = [

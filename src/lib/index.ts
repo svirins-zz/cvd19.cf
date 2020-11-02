@@ -1,3 +1,4 @@
+export { fetchAndTransform } from "./dataUtils";
 export {
   pointToLayerMarkerCreator,
   promiseToFlyTo,
