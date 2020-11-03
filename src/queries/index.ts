@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from "graphql-request";
 
-const CountryQuery = gql`
+const COUNTRY_QUERY = gql`
   query {
     countries {
       name
@@ -14,4 +14,4 @@ const CountryQuery = gql`
   }
 `;
 
-export default CountryQuery;
+export default COUNTRY_QUERY;

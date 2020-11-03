@@ -9,6 +9,8 @@ import {
   Checkbox,
   InputNumber,
 } from "antd";
+import { useDataFetch } from "hooks";
+
 import { Loading, Error, Page, SEO } from "components/layout";
 import CountryFilter from "components/data/CountryFilter";
 import NivoGlobal from "components/charts/NivoGlobal";
@@ -16,15 +18,10 @@ import GlobalDataChart from "components/charts/GlobalDataChart";
 import TotalTable from "components/tables/TotalTable";
 import { PERIOD_LENGTH } from "const";
 import { calculateData, sumPeriodData, getTags, getChartInfo } from "lib";
-import {
-  TableState,
-  Tags,
-  CountriesState,
-  Countries,
-  Country,
-} from "../@types";
+import { TableState, Tags, CountriesState, Country } from "../@types";
 // Refactor to NivoCharts
 const { Title, Text, Paragraph } = Typography;
+
 const Data = () => {
   const [periodInfo, setPeriodInfo] = useImmer({
     length: PERIOD_LENGTH,
@@ -44,10 +41,10 @@ const Data = () => {
       draft.countries = [...currentCountries];
     });
   };
-  const loading = true;
-  const error = false;
-  const data = null;
-  
+  const { data, isLoading, isError } = useDataFetch();
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={isError} />;
+
   const countries: Country[] = calculateData(data, periodInfo.length);
   const allCountries: Tags[] = getTags(countries);
   const preparedCountries: Country[] = [

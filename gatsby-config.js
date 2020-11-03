@@ -7,7 +7,6 @@ module.exports = {
     title: 'Covid-19 stats and charts',
     description: 'In progress',
     author: 'svirins',
-    siteURL: 'https://cvd19.cf',
     googleAnalyticsId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
     menuLinks: [
       {
@@ -55,13 +54,6 @@ module.exports = {
     'gatsby-plugin-tslint',
     // 'gatsby-plugin-offline',
     {
-      resolve: 'gatsby-plugin-apollo',
-      options: {
-        uri: process.env.GATSBY_APPLLO_GRAPHQL_ENDPOINT,
-
-      },
-    },
-    {
       resolve: 'gatsby-plugin-antd',
       options: {
         style: true,
@@ -96,7 +88,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: process.env.GATSBY_FETCH_ENDPOINT,
+        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
         anonymize: true,
       },
     },

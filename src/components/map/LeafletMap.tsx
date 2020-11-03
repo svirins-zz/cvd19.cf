@@ -1,13 +1,9 @@
 import React, { useRef, useMemo } from "react";
-import { Map, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { useRefEffect } from "../../hooks";
 import { ATTRIBUTION_STRING } from "../../const";
 // TODO:Refactor to react-leaflet 3 https://react-leaflet.js.org/
-const LeafletMap = ({
-  mapEffect,
-}: {
-  mapEffect: (leafletElement: Map | undefined) => void;
-}) => {
+const LeafletMap = ({ mapEffect }: { mapEffect: (el) => void }) => {
   const mapRef = useRef();
   useRefEffect({
     ref: mapRef,
@@ -15,7 +11,7 @@ const LeafletMap = ({
   });
   const memoizedMap = useMemo(
     () => (
-      <Map
+      <MapContainer
         ref={mapRef}
         zoom={10}
         minZoom={3}
@@ -26,9 +22,9 @@ const LeafletMap = ({
         <TileLayer
           url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT ?? ""}
           attribution={ATTRIBUTION_STRING ?? ""}
-          tilesize={512}
+          tileSize={512}
         />
-      </Map>
+      </MapContainer>
     ),
     [mapRef]
   );

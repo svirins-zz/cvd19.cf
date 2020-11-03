@@ -1,7 +1,8 @@
 import React from "react";
 import L, { LeafletMouseEvent, Map } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Feature, Countries } from "@types";
+import { useDataFetch } from "hooks";
+import { Feature } from "@types";
 import {
   promiseToFlyTo,
   trackerFeatureToHtmlMarker,
@@ -12,10 +13,9 @@ import { Page, Loading, Error, SEO } from "components/layout";
 import LeafletMap from "../components/map/LeafletMap";
 
 const MapPage = () => {
-  const loading = true;
-  const error = false;
-  const data = null;
-  
+  const { data, isLoading, isError } = useDataFetch();
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={isError} />;
   const handleOnMarkerClick = (
     { feature }: { feature: Feature },
     event: LeafletMouseEvent

@@ -1,48 +1,39 @@
 import React, { useMemo } from "react";
 import { Typography, Row, Col, Divider } from "antd";
+import useSWR from "swr";
 import { Page, Loading, Error, SEO } from "components/layout";
 import { PERIOD_LENGTH } from "const";
-import useSWR from "swr";
-
+import COUNTRY_QUERY from "queries";
+import { OutbreakStatus, Countries } from "../@types";
+import { fetcher } from "api";
+import TotalTable from "components/tables/TotalTable";
+import { Summary } from "components/data";
 import {
   sumPeriodData,
   calculateSummaryData,
   calculateData,
   calculateGlobalSummary,
-  fetchAndTransform,
 } from "lib";
+
 import {
   PandemicFreeChart,
   UnderControlChart,
   SummaryChart,
 } from "components/charts";
-import TotalTable from "components/tables/TotalTable";
-import { Summary } from "components/data";
-import { OutbreakStatus } from "../@types";
 
 const { Title, Paragraph } = Typography;
 
 const IndexPage = () => {
-  // writw
-  const { data, error } = useSWR(
-    process.env.GATSBY_FETCH_ENDPOINT ?? "",
-    fetchAndTransform
-  );
-
-  if (error) return <Error message={error.message} />;
-  if (!data) return <Loading />;
+  const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
+  if (!error && !data) return <Loading />;
+  if (error) return <Error error={error} />;
 
   // TODO: Refactor Victory=>antD charts ??
 
   // prepare data to display
-  const countries = useMemo(() => calculateData(data, PERIOD_LENGTH), [data]);
-  const globalData = useMemo(() => sumPeriodData(countries, PERIOD_LENGTH), [
-    countries,
-  ]);
-  const globalSummaryData = useMemo(
-    () => calculateGlobalSummary(countries, PERIOD_LENGTH),
-    [countries]
-  );
+  const countries =  calculateData(data, PERIOD_LENGTH);
+  const globalData =  sumPeriodData(countries, PERIOD_LENGTH);
+  const globalSummaryData = calculateGlobalSummary(countries, PERIOD_LENGTH);
   const globalSummarySinceTwoMonths = globalSummaryData.slice(
     60 / PERIOD_LENGTH
   );
