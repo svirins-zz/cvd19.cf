@@ -26,7 +26,6 @@ export {
   commafy,
   getTagColor,
   getColor,
-  getColorByCountryName,
-  getTags,
-  hexToHsl,
+  getCountriesList,
+makeDatum,
 } from "./uiUtils";

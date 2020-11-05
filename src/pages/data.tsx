@@ -9,44 +9,67 @@ import {
   Checkbox,
   InputNumber,
 } from "antd";
-import { useDataFetch } from "hooks";
-
+import useSWR from "swr";
+import COUNTRY_QUERY from "queries";
+import { fetcher } from "api";
 import { Loading, Error, Page, SEO } from "components/layout";
 import CountryFilter from "components/data/CountryFilter";
-import NivoGlobal from "components/charts/NivoGlobal";
-import GlobalDataChart from "components/charts/GlobalDataChart";
+import { DataChart } from "components/charts";
 import TotalTable from "components/tables/TotalTable";
 import { PERIOD_LENGTH } from "const";
-import { calculateData, sumPeriodData, getTags, getChartInfo } from "lib";
-import { TableState, Tags, CountriesState, Country } from "../@types";
-// Refactor to NivoCharts
+import {
+  calculateData,
+  sumPeriodData,
+  getColor,
+  getCountriesList,
+  getChartInfo,
+} from "lib";
+import {
+  TableState,
+  CountriesList,
+  Country,
+  Countries,
+  SelectedCountries,
+} from "../@types";
 const { Title, Text, Paragraph } = Typography;
 
 const Data = () => {
+  // initialize state
   const [periodInfo, setPeriodInfo] = useImmer({
     length: PERIOD_LENGTH,
   });
   const [selectedTable, setSelectedTable] = useImmer<TableState>({
     table: "newDeaths",
   });
-  const [selectedCountries, setSelectedCountries] = useImmer<CountriesState>({
-    countries: [],
-  });
+  const [selectedCountries, setSelectedCountries] = useImmer<SelectedCountries>(
+    {
+      countries: [],
+    }
+  );
   const [startAtDeaths, setStartAtDeaths] = useImmer({
     isStart: false,
   });
   const chartInfo = getChartInfo(selectedTable.table, periodInfo.length);
   const onCountriesChange = (currentCountries: string[]) => {
+    const countriesWithcolors = currentCountries.map((country, index) => {
+      return {
+        name: country,
+        color: getColor(index),
+      };
+    });
     setSelectedCountries((draft) => {
-      draft.countries = [...currentCountries];
+      draft.countries = [...countriesWithcolors];
     });
   };
-  const { data, isLoading, isError } = useDataFetch();
-  if (isLoading) return <Loading />;
-  if (isError) return <Error error={isError} />;
 
+  // fetch data
+  const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
+  if (!error && !data) return <Loading />;
+  if (error) return <Error error={error} />;
+
+  // transform and prepare adata
   const countries: Country[] = calculateData(data, periodInfo.length);
-  const allCountries: Tags[] = getTags(countries);
+  const countriesList: CountriesList[] = getCountriesList(countries);
   const preparedCountries: Country[] = [
     ...countries,
     ...sumPeriodData(countries, periodInfo.length),
@@ -59,7 +82,7 @@ const Data = () => {
           <Title level={3} style={{ marginBottom: "0px" }}>
             Data reports constructor
           </Title>
-          <Paragraph>choose data type, period, countries</Paragraph>
+          <Paragraph>choose data type, period, countries (up to 10)</Paragraph>
           <Divider className="divider" />
         </Col>
       </Row>
@@ -113,32 +136,23 @@ const Data = () => {
           <CountryFilter
             selected={selectedCountries.countries}
             setSelected={onCountriesChange}
-            countries={allCountries}
+            countries={countriesList}
           />
         </Col>
       </Row>
       <Col span={24}>
+        <Title level={5} style={{ marginBottom: "0px" }}>
+          {chartInfo.title}
+        </Title>
         <div style={{ height: "400px" }}>
-          <NivoGlobal
+          <DataChart
             countries={preparedCountries}
-            colors={allCountries}
             selectedCountries={selectedCountries.countries}
-            x={chartInfo.x}
-            y={chartInfo.y}
-            startAtDeaths={startAtDeaths.isStart}
-            title={chartInfo.title}
+            yValue={chartInfo.y}
+            isStartAtDeaths={startAtDeaths.isStart}
           />
         </div>
       </Col>
-      {/* <GlobalDataChart
-        countries={preparedCountries}
-        colors={allCountries}
-        selectedCountries={selectedCountries.countries}
-        x={chartInfo.x}
-        y={chartInfo.y}
-        startAtDeaths={startAtDeaths.isStart}
-        title={chartInfo.title}
-      /> */}
       <Col span={24}>
         <Title level={3} style={{ marginBottom: "0px" }}>
           {chartInfo.title}

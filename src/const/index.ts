@@ -59,13 +59,16 @@ export const MAP_SERVICES = {
 };
 
 export const COLORS: string[] = [
-  "#eb2f96",
-  "#f5222d",
-  "#fa8c16",
-  "#fadb14",
-  "#13c2c2",
-  "#52c41a",
-  "#cccccc",
+  "pink",
+  "red",
+  "orange",
+  "cyan",
+  "green",
+  "blue",
+  "brown",
+  "magenta",
+  "purple",
+  "yellow",
 ];
 // TODO: consider use API to get countries cener point coordinates
 export const ALL_COUNTRIES_DATA = [

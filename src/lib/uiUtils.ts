@@ -1,5 +1,6 @@
-import { COLORS } from "const";
-import { ChartInfo, OutbreakStatus, Tags, Country } from "../@types";
+import { Datum } from "@nivo/line";
+import { COLORS, X_ASIS_TICKS_AMOUNT } from "const";
+import { ChartInfo, OutbreakStatus, CountriesList, Country, Period } from "../@types";
 
 export const getChartInfo = (
   selectedTable: string,
@@ -131,51 +132,23 @@ export const getTagColor = (rate: OutbreakStatus): string => {
 };
 
 export const getColor = (index: number): string => {
-  const colorNum = index < 7 ? index : index % 7;
+  const colorNum = index < 10 ? index : index % 10;
   return COLORS[colorNum];
 };
 
-// TODO: double check refactoring find -> filter
-export const getColorByCountryName = (
-  countryName: string,
-  countriesArray: Tags[]
-): string => countriesArray.filter((e) => e.label === countryName)[0].value;
-
-export const getTags = (countries: Country[]): Tags[] =>
+export const getCountriesList = (countries: Country[]): CountriesList[] =>
   countries.map((country, index) => ({
     id: index,
     label: country.name ?? "",
-    value: getColor(index),
   }));
-
-/**
- * Converts hex color string to hsl object
- * @param color color string in hex representation
- */
-export const hexToHsl = (color: string): string => {
-  const red = parseInt(color.substr(1, 2), 16) / 255;
-  const green = parseInt(color.substr(3, 2), 16) / 255;
-  const blue = parseInt(color.substr(5, 2), 16) / 255;
-
-  const max = Math.max(red, green, blue);
-  const min = Math.min(red, green, blue);
-
-  const delta = max - min;
-
-  let hue;
-  if (delta === 0) {
-    hue = 0;
-  } else if (max === red) {
-    hue = 60 * (((green - blue) / delta) % 6);
-  } else if (max === green) {
-    hue = 60 * ((green - blue) / delta + 2);
-  } else if (max === blue) {
-    hue = 60 * ((green - blue) / delta + 4);
-  }
-
-  const luminance = (max + min) / 2;
-  const saturation =
-    delta === 0 ? 0 : delta / (1 - Math.abs(2 * luminance - 1));
-
-  return `hsl(${hue}, ${saturation}%, ${luminance}%)`;
-};
+// TODO: !Make thereshold dependable from view width
+export const makeDatum = (periods: Period[], yValue: string): Datum[] => {
+  const thereshold = Math.floor(periods.length / X_ASIS_TICKS_AMOUNT ) 
+  const datum: Datum[] = periods.map((period, index) => {
+    if (index === 0 || index === periods.length - 1
+        || index % thereshold === 0) {
+          return({"key": index, "x": period.endDate, "y": Number(period.[yValue])})
+    } 
+  }).filter((e) => e ).reverse();
+  return datum;
+}

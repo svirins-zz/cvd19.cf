@@ -18,7 +18,7 @@ const AboutPage = () => (
       </Col>
     </Row>
     <Row gutter={[8, 8]}>
-    <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+      <Col xs={24} sm={24} md={24} lg={12} xl={12}>
         <Paragraph>
           This site aims to provide a simple tool to track global progress in
           defeating Covid-19, by focusing on the rate of change in death count

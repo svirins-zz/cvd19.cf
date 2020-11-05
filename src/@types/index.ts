@@ -72,10 +72,9 @@ export enum OutbreakStatus {
   Won = "Won",
 }
 
-export type Tags = {
+export type CountriesList = {
   id: string | number;
   label: string;
-  value: string;
 };
 
 export type TableType =
@@ -101,16 +100,18 @@ export interface SummaryTable {
 
 export interface DataChartProps {
   countries: Country[];
-  colors: Tags[];
-  selectedCountries: string[];
-  x: string;
-  y: string;
-  startAtDeaths: boolean;
-  title: string;
+  selectedCountries?: Selected[];
+  yValue: string;
+  isStartAtDeaths: boolean;
 }
 
 export interface Selected {
-  [key: string]: string;
+  name: string;
+  color: string;
+}
+
+export interface SelectedCountries {
+  countries?: Selected[];
 }
 
 export type GlobalStats = {
@@ -227,8 +228,3 @@ export interface Prepared {
 export interface TableState {
   table: "growthRate" | "totalDeaths" | "newDeaths" | "totalCases" | "newCases";
 }
-
-export interface CountriesState {
-  countries: string[];
-}
-

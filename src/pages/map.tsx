@@ -1,8 +1,10 @@
 import React from "react";
 import L, { LeafletMouseEvent, Map } from "leaflet";
+import useSWR from "swr";
 import "leaflet/dist/leaflet.css";
-import { useDataFetch } from "hooks";
-import { Feature } from "@types";
+import { fetcher } from "api";
+import COUNTRY_QUERY from "queries";
+import { Feature, Countries } from "@types";
 import {
   promiseToFlyTo,
   trackerFeatureToHtmlMarker,
@@ -13,9 +15,9 @@ import { Page, Loading, Error, SEO } from "components/layout";
 import LeafletMap from "../components/map/LeafletMap";
 
 const MapPage = () => {
-  const { data, isLoading, isError } = useDataFetch();
-  if (isLoading) return <Loading />;
-  if (isError) return <Error error={isError} />;
+  const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
+  if (!error && !data) return <Loading />;
+  if (error) return <Error error={error} />;
   const handleOnMarkerClick = (
     { feature }: { feature: Feature },
     event: LeafletMouseEvent

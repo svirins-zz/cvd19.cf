@@ -31,8 +31,8 @@ const IndexPage = () => {
   // TODO: Refactor Victory=>antD charts ??
 
   // prepare data to display
-  const countries =  calculateData(data, PERIOD_LENGTH);
-  const globalData =  sumPeriodData(countries, PERIOD_LENGTH);
+  const countries = calculateData(data, PERIOD_LENGTH);
+  const globalData = sumPeriodData(countries, PERIOD_LENGTH);
   const globalSummaryData = calculateGlobalSummary(countries, PERIOD_LENGTH);
   const globalSummarySinceTwoMonths = globalSummaryData.slice(
     60 / PERIOD_LENGTH
