@@ -1,1 +1,1 @@
-export { default as useRefEffect } from "./useRefEffect";
+export { useRefEffect } from "./useRefEffect";

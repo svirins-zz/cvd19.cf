@@ -23,6 +23,7 @@ const Page = ({ children }: React.PropsWithChildren<{}>) => {
     ? "conentWithoutMargin"
     : "conentWithMargin";
   const defaultItem = menuInit(pathname);
+  // TODO: add patreon logo
   return (
     <myContext.Consumer>
       {(context) => (

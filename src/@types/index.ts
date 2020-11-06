@@ -103,6 +103,7 @@ export interface DataChartProps {
   selectedCountries?: Selected[];
   yValue: string;
   isStartAtDeaths: boolean;
+  multiplyer: number;
 }
 
 export interface Selected {
@@ -135,6 +136,7 @@ export interface MissingCountries {
 export type ContextProps = {
   choice: { key: string };
   visible: { isVisible: boolean };
+  width: { multiplyer: number };
   handleSelect: (key: string) => void;
   onClose: () => void;
   showDrawer: () => void;
@@ -186,7 +188,7 @@ export interface SiteQuery {
   };
 }
 
-export interface TagRenderProps {
+export interface RenderProps {
   label: string;
   closable: boolean | undefined;
   onClose: (e: MouseEvent) => void;

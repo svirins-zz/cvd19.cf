@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Map } from "leaflet";
 
-const useRefEffect = ({
+export const useRefEffect = ({
   effect,
   ref,
 }: {
@@ -12,5 +12,3 @@ const useRefEffect = ({
     effect(ref!.current);
   }, [effect, ref]);
 };
-
-export default useRefEffect;

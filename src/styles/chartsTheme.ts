@@ -1,7 +1,7 @@
 export const theme = {
   background: "#ffffff",
   textColor: "#333333",
-  fontSize: 13,
+  fontSize: 12,
   axis: {
     domain: {
       line: {

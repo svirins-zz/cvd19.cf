@@ -141,9 +141,8 @@ export const getCountriesList = (countries: Country[]): CountriesList[] =>
     id: index,
     label: country.name ?? "",
   }));
-// TODO: !Make thereshold dependable from view width
-export const makeDatum = (periods: Period[], yValue: string): Datum[] => {
-  const thereshold = Math.floor(periods.length / X_ASIS_TICKS_AMOUNT ) 
+export const makeDatum = (periods: Period[], yValue: string, multiplyer: number): Datum[] => {
+  const thereshold = Math.floor(periods.length / (X_ASIS_TICKS_AMOUNT * multiplyer)) 
   const datum: Datum[] = periods.map((period, index) => {
     if (index === 0 || index === periods.length - 1
         || index % thereshold === 0) {

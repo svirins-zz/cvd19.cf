@@ -1,19 +1,19 @@
 import React from "react";
 import { Select, Tag } from "antd";
-import { Tags, TagRenderProps, Selected } from "@types";
+import { RenderProps, Selected, CountriesList } from "@types";
 
 const { Option } = Select;
 const CountryFilter = ({
-  selected,
+  selected = [],
   setSelected,
   countries,
 }: {
-  selected: Selected[];
-  setSelected: (currentCountries: Selected[]) => void;
-  countries: Tags[];
+  selected?: Selected[];
+  setSelected: (currentCountries: string[]) => void;
+  countries: CountriesList[];
 }) => {
-  function tagRender(p: TagRenderProps) {
-    const { label, closable, onClose } = p;
+  function tagRender(props: RenderProps) {
+    const { label, closable, onClose } = props;
     return (
       <Tag
         key={label}
@@ -35,7 +35,7 @@ const CountryFilter = ({
       defaultValue={selected.map((country) => country.name)}
       placeholder="Add Country"
       maxTagCount={10}
-      onChange={(arr) => setSelected(arr)}
+      onChange={(selectedCountriesArray) => setSelected(selectedCountriesArray)}
       tagRender={(p) => tagRender(p)}
       autoClearSearchValue={true}
     >

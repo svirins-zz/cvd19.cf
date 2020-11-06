@@ -10,6 +10,7 @@ import {
   InputNumber,
 } from "antd";
 import useSWR from "swr";
+import { myContext } from "context";
 import COUNTRY_QUERY from "queries";
 import { fetcher } from "api";
 import { Loading, Error, Page, SEO } from "components/layout";
@@ -144,14 +145,19 @@ const Data = () => {
         <Title level={5} style={{ marginBottom: "0px" }}>
           {chartInfo.title}
         </Title>
-        <div style={{ height: "400px" }}>
-          <DataChart
-            countries={preparedCountries}
-            selectedCountries={selectedCountries.countries}
-            yValue={chartInfo.y}
-            isStartAtDeaths={startAtDeaths.isStart}
-          />
-        </div>
+        <myContext.Consumer>
+          {(context) => (
+            <div style={{ height: "450px" }}>
+              <DataChart
+                countries={preparedCountries}
+                selectedCountries={selectedCountries.countries}
+                yValue={chartInfo.y}
+                isStartAtDeaths={startAtDeaths.isStart}
+                multiplyer={context.width!.multiplyer}
+              />
+            </div>
+          )}
+        </myContext.Consumer>
       </Col>
       <Col span={24}>
         <Title level={3} style={{ marginBottom: "0px" }}>
