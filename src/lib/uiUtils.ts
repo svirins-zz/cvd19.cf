@@ -1,6 +1,6 @@
 import { Datum } from "@nivo/line";
 import { COLORS, X_ASIS_TICKS_AMOUNT } from "const";
-import { ChartInfo, OutbreakStatus, CountriesList, Country, Period } from "../@types";
+import { ChartInfo, OutbreakStatus, CountriesList, Country, Period, PeriodSummary } from "../@types";
 
 export const getChartInfo = (
   selectedTable: string,
@@ -141,13 +141,16 @@ export const getCountriesList = (countries: Country[]): CountriesList[] =>
     id: index,
     label: country.name ?? "",
   }));
-export const makeDatum = (periods: Period[], yValue: string, multiplyer: number): Datum[] => {
+
+// 
+export const makeDatum = (periods: Period[] | Period[], yValue: string, multiplyer: number): Datum[] => {
   const thereshold = Math.floor(periods.length / (X_ASIS_TICKS_AMOUNT * multiplyer)) 
   const datum: Datum[] = periods.map((period, index) => {
     if (index === 0 || index === periods.length - 1
         || index % thereshold === 0) {
           return({"key": index, "x": period.endDate, "y": Number(period.[yValue])})
     } 
-  }).filter((e) => e ).reverse();
+  }).filter((e) => e )
   return datum;
 }
+

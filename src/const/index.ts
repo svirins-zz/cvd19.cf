@@ -1,5 +1,5 @@
 import { LatLngTuple } from "leaflet";
-import { MissingCountries } from "../@types";
+import { MissingCountries, ColorMap } from "../@types";
 
 export const X_ASIS_TICKS_AMOUNT: number = 25;
 export const EPIDEMIC_START: string = "2020/01/07";
@@ -69,6 +69,16 @@ export const COLORS: string[] = [
   "rgb(127, 127, 127)",
   "rgb(188, 189, 34)",
   "rgb(23, 190, 207)",
+];
+
+export const TRENDS_AND_COLORS_MAP = [
+  { trend: "none", color: "#cccccc" },
+  { trend: "small", color: "#eb2f96" },
+  { trend: "losing", color: "#f5222d" },
+  { trend: "flattening", color: "#fa8c16" },
+  { trend: "crushing", color: "#fadb14" },
+  { trend: "winning", color: "#13c2c2" },
+  { trend: "won", color: "#52c41a" },
 ];
 
 // TODO: consider use API to get countries cener point coordinates

@@ -8,7 +8,8 @@ const TotalTable = ({
   periodLength,
   kind,
   order = true,
-  size,
+  variation,
+  multiplyer = 1,
 }: SummaryTable) => {
   if (!data) {
     return null;
@@ -16,14 +17,19 @@ const TotalTable = ({
   const periodNames = useMemo(() => getPeriodNames(periodLength), [
     periodLength,
   ]);
-  const columns = useMemo(() => constructColumns(size, kind, periodNames), [
-    kind,
-    periodNames,
-    size,
-  ]);
+  const columns = useMemo(
+    () => constructColumns(variation, multiplyer, kind, periodNames),
+    [kind, periodNames, variation, multiplyer]
+  );
 
   const table = useTable({ columns, data });
-  const { columnData, preparedData } = constructData(table, kind, size, order);
+  const { columnData, preparedData } = constructData(
+    table,
+    kind,
+    variation,
+    order,
+    multiplyer
+  );
   return (
     <Table
       columns={columnData}

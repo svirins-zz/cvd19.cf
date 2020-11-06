@@ -22,9 +22,11 @@ const alphabeticalSorter = (
   }
   return 0;
 };
+// TODO: refactor to a shorter version. Must follow DRY!
 
 export const constructColumns = (
-  size: number,
+  variation: "tight" | "wide",
+  multiplyer: number,
   field: TableType,
   periodNames: string[]
 ): ConstructedColumn[] => {
@@ -35,21 +37,23 @@ export const constructColumns = (
       Cell: ({ value }: { value: Period & "" }) => undefined,
     },
   ];
-  const middle =
-    size === 4
-      ? []
-      : [
-          {
-            Header: periodNames[4],
-            accessor: "periods[4]",
-            Cell: ({ value }: { value: Period & "" }) => value[field],
-          },
-          {
-            Header: periodNames[3],
-            accessor: "periods[3]",
-            Cell: ({ value }: { value: Period & "" }) => value[field],
-          },
-        ];
+  let middle: ConstructedColumn[] = [];
+  if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
+    middle = [];
+  } else {
+    middle = [
+      {
+        Header: periodNames[4],
+        accessor: "periods[4]",
+        Cell: ({ value }: { value: Period & "" }) => value[field],
+      },
+      {
+        Header: periodNames[3],
+        accessor: "periods[3]",
+        Cell: ({ value }: { value: Period & "" }) => value[field],
+      },
+    ];
+  }
   const tail = [
     {
       Header: periodNames[2],
@@ -69,14 +73,19 @@ export const constructColumns = (
   ];
   return [...head, ...middle, ...tail];
 };
+// TODO: refactor to a shorter version. Must follow DRY!
 export const constructData = (
   table: TableInstance<Country>,
   field: TableType,
-  size: number,
-  order: boolean
-): { columnData: Column[]; preparedData: Prepared[] | PreparedExt[] } => {
-  const preparedData: Prepared[] | PreparedExt[] = table.data.map((e, i) => {
-    if (size === 4) {
+  variation: "tight" | "wide",
+  order: boolean,
+  multiplyer: number
+): {
+  columnData: Column[];
+  preparedData: Prepared[] | PreparedExt[];
+} => {
+  const preparedData = table.data.map((e, i) => {
+    if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
       return {
         key: i,
         name: e.name,
@@ -112,86 +121,85 @@ export const constructData = (
     },
   ];
 
-  const tail =
-    size === 4
-      ? [
-          {
-            title: table.columns[1].Header,
-            dataIndex: "periods[2]",
-            align: "center",
-            render: (text: number, record: Prepared) =>
-              ColorTag(text, record.rate2, "newDeaths"),
-            sorter: (a: Prepared, b: Prepared) =>
-              a["periods[2]"] - b["periods[2]"],
-          },
-          {
-            title: table.columns[2].Header,
-            dataIndex: "periods[1]",
-            align: "center",
-            render: (text: number, record: Prepared) =>
-              ColorTag(text, record.rate1, "newDeaths"),
-            sorter: (a: Prepared, b: Prepared) =>
-              a["periods[1]"] - b["periods[1]"],
-          },
-          {
-            title: table.columns[3].Header,
-            dataIndex: "periods[0]",
-            align: "center",
-            render: (text: number, record: Prepared) =>
-              ColorTag(text, record.rate0, "newDeaths"),
-            sorter: (a: Prepared, b: Prepared) =>
-              b["periods[0]"] - a["periods[0]"],
-            defaultSortOrder: order ? "ascend" : "descend",
-          },
-        ]
-      : [
-          {
-            title: table.columns[1].Header,
-            dataIndex: "periods[4]",
-            align: "center",
-            render: (text: number, record: PreparedExt) =>
-              ColorTag(text, record.rate4, field),
-            sorter: (a: PreparedExt, b: PreparedExt) =>
-              a["periods[4]"] - b["periods[4]"],
-          },
-          {
-            title: table.columns[2].Header,
-            dataIndex: "periods[3]",
-            align: "center",
-            render: (text: number, record: PreparedExt) =>
-              ColorTag(text, record.rate3, field),
-            sorter: (a: PreparedExt, b: PreparedExt) =>
-              a["periods[3]"] - b["periods[3]"],
-          },
-          {
-            title: table.columns[3].Header,
-            dataIndex: "periods[2]",
-            align: "center",
-            render: (text: number, record: PreparedExt) =>
-              ColorTag(text, record.rate2, field),
-            sorter: (a: PreparedExt, b: PreparedExt) =>
-              a["periods[2]"] - b["periods[2]"],
-          },
-          {
-            title: table.columns[4].Header,
-            dataIndex: "periods[1]",
-            align: "center",
-            render: (text: number, record: PreparedExt) =>
-              ColorTag(text, record.rate1, field),
-            sorter: (a: PreparedExt, b: PreparedExt) =>
-              a["periods[1]"] - b["periods[1]"],
-          },
-          {
-            title: table.columns[5].Header,
-            dataIndex: "periods[0]",
-            align: "center",
-            render: (text: number, record: PreparedExt) =>
-              ColorTag(text, record.rate0, field),
-            sorter: (a: PreparedExt, b: PreparedExt) =>
-              b["periods[0]"] - a["periods[0]"],
-            defaultSortOrder: order ? "ascend" : "descend",
-          },
-        ];
+  let tail = [];
+  if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
+    tail = [
+      {
+        title: table.columns[1].Header,
+        dataIndex: "periods[2]",
+        align: "center",
+        render: (text: number, record: Prepared) =>
+          ColorTag(text, record.rate2, "newDeaths"),
+        sorter: (a: Prepared, b: Prepared) => a["periods[2]"] - b["periods[2]"],
+      },
+      {
+        title: table.columns[2].Header,
+        dataIndex: "periods[1]",
+        align: "center",
+        render: (text: number, record: Prepared) =>
+          ColorTag(text, record.rate1, "newDeaths"),
+        sorter: (a: Prepared, b: Prepared) => a["periods[1]"] - b["periods[1]"],
+      },
+      {
+        title: table.columns[3].Header,
+        dataIndex: "periods[0]",
+        align: "center",
+        render: (text: number, record: Prepared) =>
+          ColorTag(text, record.rate0, "newDeaths"),
+        sorter: (a: Prepared, b: Prepared) => b["periods[0]"] - a["periods[0]"],
+        defaultSortOrder: order ? "ascend" : "descend",
+      },
+    ];
+  } else {
+    tail = [
+      {
+        title: table.columns[1].Header,
+        dataIndex: "periods[4]",
+        align: "center",
+        render: (text: number, record: PreparedExt) =>
+          ColorTag(text, record.rate4, field),
+        sorter: (a: PreparedExt, b: PreparedExt) =>
+          a["periods[4]"] - b["periods[4]"],
+      },
+      {
+        title: table.columns[2].Header,
+        dataIndex: "periods[3]",
+        align: "center",
+        render: (text: number, record: PreparedExt) =>
+          ColorTag(text, record.rate3, field),
+        sorter: (a: PreparedExt, b: PreparedExt) =>
+          a["periods[3]"] - b["periods[3]"],
+      },
+      {
+        title: table.columns[3].Header,
+        dataIndex: "periods[2]",
+        align: "center",
+        render: (text: number, record: PreparedExt) =>
+          ColorTag(text, record.rate2, field),
+        sorter: (a: PreparedExt, b: PreparedExt) =>
+          a["periods[2]"] - b["periods[2]"],
+      },
+      {
+        title: table.columns[4].Header,
+        dataIndex: "periods[1]",
+        align: "center",
+        render: (text: number, record: PreparedExt) =>
+          ColorTag(text, record.rate1, field),
+        sorter: (a: PreparedExt, b: PreparedExt) =>
+          a["periods[1]"] - b["periods[1]"],
+      },
+      {
+        title: table.columns[5].Header,
+        dataIndex: "periods[0]",
+        align: "center",
+        render: (text: number, record: PreparedExt) =>
+          ColorTag(text, record.rate0, field),
+        sorter: (a: PreparedExt, b: PreparedExt) =>
+          b["periods[0]"] - a["periods[0]"],
+        defaultSortOrder: order ? "ascend" : "descend",
+      },
+    ];
+  }
   const columnData = [...head, ...tail];
   return { columnData, preparedData };
 };

@@ -14,10 +14,10 @@ export {
   validatePeriodLength,
   periodStatus,
   calulatePeriodData,
-  calculateData,
+  calcCountries,
   sumPeriodData,
-  calculateSummaryData,
-  calculateGlobalSummary,
+  calcStats,
+  calcTrends,
 } from "./calcUtils";
 export { constructData, constructColumns } from "./tableUtils";
 export {
@@ -27,5 +27,5 @@ export {
   getTagColor,
   getColor,
   getCountriesList,
-makeDatum,
+  makeDatum,
 } from "./uiUtils";

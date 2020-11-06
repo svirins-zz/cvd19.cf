@@ -1,5 +1,4 @@
-export { default as PandemicFreeChart } from "./PandemicFreeChart";
-export { default as SummaryChart } from "./SummaryChart";
-export { default as UnderControlChart } from "./UnderControlChart";
+export { AreaChart } from "./areaChart";
+export { SummaryChart } from "./summaryChart";
 export { DataChart } from "./dataChart";
 export { PlaceholderChart } from "./placeholderChart";

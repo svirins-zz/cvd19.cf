@@ -62,6 +62,12 @@ export interface PeriodSummary {
   underControl: number;
 }
 
+export interface SummaryChartProps {
+  periods: PeriodSummary[];
+  multiplyer: number;
+  type?: "Under control" | "Pandemic free";
+}
+
 export enum OutbreakStatus {
   None = "No Outbreak",
   Small = "Small Outbreak",
@@ -94,8 +100,9 @@ export interface SummaryTable {
   data: Country[];
   periodLength: number;
   kind: TableType;
-  size: 4 | 6;
+  variation: "tight" | "wide";
   order?: boolean;
+  multiplyer?: number;
 }
 
 export interface DataChartProps {
@@ -111,6 +118,11 @@ export interface Selected {
   color: string;
 }
 
+export interface ColorMap {
+  name: string;
+  color: string;
+}
+
 export interface SelectedCountries {
   countries?: Selected[];
 }
@@ -121,6 +133,7 @@ export type GlobalStats = {
   recovered: number;
   countries: number;
   days: number;
+  trend: OutbreakStatus;
 };
 
 export interface CalculatedSummary {

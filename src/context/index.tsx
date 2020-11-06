@@ -16,7 +16,6 @@ const Provider = ({ children }: AuxProps) => {
   });
   // calculate multiplyer, based on global window width
   const isBrowser = typeof window !== "undefined";
-
   useEffect(() => {
     if (!isBrowser) return false;
 

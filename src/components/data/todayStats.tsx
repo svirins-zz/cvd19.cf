@@ -1,16 +1,10 @@
 import React from "react";
 import { Statistic, Card, Row, Col } from "antd";
 import { getTagColor } from "lib";
-import { GlobalStats, OutbreakStatus } from "@types";
+import { GlobalStats } from "@types";
 
-const Summary = ({
-  stats,
-  trend,
-}: {
-  stats: GlobalStats;
-  trend: OutbreakStatus;
-}) => {
-  const { confirmed, deaths, recovered, days, countries } = stats;
+export const TodayStats = ({ stats }: { stats: GlobalStats }) => {
+  const { confirmed, deaths, recovered, days, countries, trend } = stats;
   const trendColor = getTagColor(trend);
   return (
     <>
@@ -81,4 +75,3 @@ const Summary = ({
     </>
   );
 };
-export default Summary;

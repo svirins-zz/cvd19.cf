@@ -1,39 +1,22 @@
 import React from "react";
 import { ResponsiveLine, Serie } from "@nivo/line";
-
-import { PlaceholderChart } from "./placeholderChart";
-import { DataChartProps, Selected } from "@types";
 import { makeDatum } from "lib";
+import { PlaceholderChart } from "./placeholderChart";
+import { SummaryChartProps } from "@types";
 import { theme } from "../../styles/chartsTheme";
+import { TRENDS_AND_COLORS_MAP } from "const";
+// source: JHU & CSSE
 
-export const DataChart = ({
-  countries,
-  selectedCountries,
-  yValue,
-  isStartAtDeaths,
-  multiplyer,
-}: DataChartProps) => {
+export const SummaryChart = ({ periods, multiplyer }: SummaryChartProps) => {
   const chartData: Serie[] = [];
-  const colors = selectedCountries!.map((country) => country.color);
-  countries.map((e, i) => {
-    const isSelectedcountry: Selected | undefined = selectedCountries?.find(
-      (country) => country.name === e.name
-    );
-    if (
-      e.name === undefined ||
-      !isSelectedcountry ||
-      (e.name === "Global" && !isSelectedcountry)
-    ) {
-      return undefined;
-    }
-    const periods = isStartAtDeaths
-      ? e.periodsWithDeaths.slice(0)
-      : e.periods.slice(0);
-    const preparedPeriods = makeDatum(periods, yValue, multiplyer);
+  const colors: string[] = [];
+  TRENDS_AND_COLORS_MAP.forEach((element, index) => {
+    const preparedPeriods = makeDatum(periods, element.trend, multiplyer);
+    colors.push(element.color);
     chartData.push({
-      id: e.name,
-      key: e.name,
-      data: preparedPeriods.reverse(),
+      id: element.trend,
+      key: index,
+      data: preparedPeriods,
     });
   });
   if (chartData.length === 0) return <PlaceholderChart />;
@@ -44,15 +27,15 @@ export const DataChart = ({
       curve="monotoneX"
       yScale={{ type: "linear", min: "auto", max: "auto" }}
       data={chartData}
-      margin={{ top: 60, right: 10, bottom: 60, left: 55 }}
+      margin={{ top: 20, right: 10, bottom: 60, left: 25 }}
       useMesh={true}
       legends={[
         {
-          anchor: "bottom-right",
+          anchor: "top-left",
           direction: "column",
           justify: false,
-          translateX: 100,
-          translateY: 0,
+          translateX: 10,
+          translateY: 10,
           itemsSpacing: 0,
           itemDirection: "left-to-right",
           itemWidth: 80,

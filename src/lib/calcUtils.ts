@@ -7,7 +7,6 @@ import {
   Country,
   OutbreakStatus,
   PeriodSummary,
-  GlobalStats,
 } from "../@types";
 
 export const validatePeriodLength = (periodLength: number) => {
@@ -131,7 +130,7 @@ export const calulatePeriodData = (
   };
 };
 
-export const calculateData = (
+export const calcCountries = (
   data: Countries | undefined,
   periodLength: number
 ): Country[] => {
@@ -201,7 +200,7 @@ export const sumPeriodData = (
   ];
 };
 
-export const calculateGlobalSummary = (
+export const calcTrends = (
   countries: Country[],
   periodLength: number
 ): PeriodSummary[] => {
@@ -279,9 +278,7 @@ export const calculateGlobalSummary = (
   return periodSummaries;
 };
 
-export const calculateSummaryData = (
-  data: Countries | undefined
-): GlobalStats => {
+export const calcStats = (data: Countries | undefined) => {
   const days = data!.countries[0].results.length;
   const countries = data!.countries.length ? data!.countries.length : 0;
   const reducedResult = data!.countries
