@@ -1,7 +1,8 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
 });
-
+// TODO: implent build-time queries
+/* TODO: implement re-building after json api changes. 3 times a day */
 module.exports = {
   siteMetadata: {
     title: 'Covid-19 stats and charts',

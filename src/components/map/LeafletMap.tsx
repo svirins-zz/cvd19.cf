@@ -21,7 +21,7 @@ const LeafletMap = ({ mapEffect }: { mapEffect: (el) => void }) => {
       >
         <TileLayer
           url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT ?? ""}
-          attribution={ATTRIBUTION_STRING ?? ""}
+          attribution={ATTRIBUTION_STRING}
           tileSize={512}
         />
       </MapContainer>

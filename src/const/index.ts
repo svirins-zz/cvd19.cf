@@ -1,17 +1,15 @@
-import { LatLngTuple } from "leaflet";
-import { MissingCountries, ColorMap } from "../@types";
+import { MissingCountries } from "../@types";
 
 export const X_ASIS_TICKS_AMOUNT: number = 25;
 export const EPIDEMIC_START: string = "2020/01/07";
 export const PERIOD_LENGTH: number = 5;
 
 export const VESSELS_CURRENT_COORDS = {
-  "MS Zaandam": [-3.51, 50.44] as LatLngTuple,
-  "Diamond Princess": [104.53, 1.7] as LatLngTuple,
+  "MS Zaandam": [-3.51, 50.44],
+  "Diamond Princess": [104.53, 1.7],
 };
 
-export const ATTRIBUTION_STRING =
-  '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+export const ATTRIBUTION_STRING = `&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`;
 
 export const MISSING_COUNTRIES: MissingCountries[] = [
   { longName: "Bolivia", shortName: "BO" },

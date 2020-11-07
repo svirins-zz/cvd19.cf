@@ -15,9 +15,11 @@ import { Page, Loading, Error, SEO } from "components/layout";
 import LeafletMap from "../components/map/LeafletMap";
 
 const MapPage = () => {
+  // fetch countries
   const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
   if (!error && !data) return <Loading />;
   if (error) return <Error error={error} />;
+
   const handleOnMarkerClick = (
     { feature }: { feature: Feature },
     event: LeafletMouseEvent
