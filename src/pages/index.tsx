@@ -74,25 +74,25 @@ const IndexPage = () => {
             </Col>
             <Col span={24}>
               <Title level={5} style={{ marginBottom: "0px" }}>
-                Trend 'Under control' by countries
+                Trend 'Under control %' by countries
               </Title>
               <div style={{ height: "450px" }}>
                 <AreaChart
                   periods={trends}
                   multiplyer={context.width!.multiplyer}
-                  type="Under control"
+                  yValue="underControl"
                 />
               </div>
             </Col>
             <Col span={24}>
               <Title level={5} style={{ marginBottom: "0px" }}>
-                Trend 'Pandemic free' by countries
+                Trend 'Pandemic free %' by countries
               </Title>
               <div style={{ height: "450px" }}>
                 <AreaChart
                   periods={trends}
                   multiplyer={context.width!.multiplyer}
-                  type="Pandemic free"
+                  yValue="pandemicFree"
                 />
               </div>
             </Col>

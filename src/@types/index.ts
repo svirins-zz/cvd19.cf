@@ -65,7 +65,7 @@ export interface PeriodSummary {
 export interface SummaryChartProps {
   periods: PeriodSummary[];
   multiplyer: number;
-  type?: "Under control" | "Pandemic free";
+  yValue?: string;
 }
 
 export enum OutbreakStatus {

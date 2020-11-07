@@ -106,9 +106,7 @@ const Data = () => {
                 >
                   <Radio.Button value="newDeaths">New Deaths</Radio.Button>
                   <Radio.Button value="totalDeaths">Total Deaths</Radio.Button>
-                  <Radio.Button value="growthRate">
-                    Change in Deaths
-                  </Radio.Button>
+                  <Radio.Button value="growthRate">Change in Deaths</Radio.Button>
                   <Radio.Button value="newCases">New Cases</Radio.Button>
                   <Radio.Button value="totalCases">Total Cases</Radio.Button>
                 </Radio.Group>

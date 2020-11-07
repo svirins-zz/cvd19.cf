@@ -27,14 +27,15 @@ export const SummaryChart = ({ periods, multiplyer }: SummaryChartProps) => {
       curve="monotoneX"
       yScale={{ type: "linear", min: "auto", max: "auto" }}
       data={chartData}
+      lineWidth={2}
       margin={{ top: 20, right: 10, bottom: 60, left: 25 }}
       useMesh={true}
       legends={[
         {
-          anchor: "top-left",
+          anchor: "top-right",
           direction: "column",
           justify: false,
-          translateX: 10,
+          translateX: -20,
           translateY: 10,
           itemsSpacing: 0,
           itemDirection: "left-to-right",

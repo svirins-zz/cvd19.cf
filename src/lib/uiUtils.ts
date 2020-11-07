@@ -143,14 +143,12 @@ export const getCountriesList = (countries: Country[]): CountriesList[] =>
   }));
 
 // 
-export const makeDatum = (periods: Period[] | Period[], yValue: string, multiplyer: number): Datum[] => {
+export const makeDatum = (periods: Period[] & PeriodSummary[], yValue: string, multiplyer: number): Datum[] => {
   const thereshold = Math.floor(periods.length / (X_ASIS_TICKS_AMOUNT * multiplyer)) 
-  const datum: Datum[] = periods.map((period, index) => {
-    if (index === 0 || index === periods.length - 1
-        || index % thereshold === 0) {
-          return({"key": index, "x": period.endDate, "y": Number(period.[yValue])})
-    } 
-  }).filter((e) => e )
+  const datum = periods.map((period, index) => { 
+    if (index === 0 || index === periods.length - 1 || index % thereshold === 0) { 
+      return({ "key": index, "x": period.endDate, "y": Number(period.[yValue].toFixed(2))})
+    }}).filter((e) => e)
   return datum;
 }
 

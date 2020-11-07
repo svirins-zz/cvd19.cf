@@ -54,8 +54,7 @@ export const MAP_SERVICES_DEFAULT = {
 export const MAP_SERVICES = {
   name: "MapboxTilesMap",
   url: process.env.GATSBY_MAPBOX_STATIC_TILES_ENDPOINT,
-  attribution: `Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a>,
-                Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>`,
+  attribution: `Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a>,Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>`,
 };
 
 export const COLORS: string[] = [

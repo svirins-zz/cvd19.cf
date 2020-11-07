@@ -48,11 +48,11 @@ export const DataChart = ({
       useMesh={true}
       legends={[
         {
-          anchor: "bottom-right",
+          anchor: "top-left",
           direction: "column",
           justify: false,
-          translateX: 100,
-          translateY: 0,
+          translateX: 10,
+          translateY: 10,
           itemsSpacing: 0,
           itemDirection: "left-to-right",
           itemWidth: 80,
@@ -70,6 +70,7 @@ export const DataChart = ({
               },
             },
           ],
+          
         },
       ]}
     />
