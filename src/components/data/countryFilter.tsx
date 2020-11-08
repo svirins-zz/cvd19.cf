@@ -3,7 +3,7 @@ import { Select, Tag } from "antd";
 import { RenderProps, Selected, CountriesList } from "@types";
 
 const { Option } = Select;
-const CountryFilter = ({
+export const CountryFilter = ({
   selected = [],
   setSelected,
   countries,
@@ -48,4 +48,3 @@ const CountryFilter = ({
   );
 };
 
-export default CountryFilter;

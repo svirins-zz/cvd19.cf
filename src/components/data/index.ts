@@ -1,2 +1,2 @@
-export { default as CountryFilter } from "./CountryFilter";
+export { CountryFilter } from "./countryFilter";
 export { TodayStats } from "./todayStats";

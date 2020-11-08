@@ -14,9 +14,9 @@ import { myContext } from "context";
 import COUNTRY_QUERY from "queries";
 import { fetcher } from "api";
 import { Loading, Error, Page, SEO } from "components/layout";
-import CountryFilter from "components/data/CountryFilter";
+import { CountryFilter } from "components/data/countryFilter";
 import { DataChart } from "components/charts";
-import TotalTable from "components/tables/TotalTable";
+import { Table } from "components/tables/table";
 import { PERIOD_LENGTH } from "const";
 import {
   calcCountries,
@@ -34,7 +34,7 @@ import {
 } from "../@types";
 const { Title, Text, Paragraph } = Typography;
 
-const Data = () => {
+export const Data = () => {
   // initialize state
   const [periodInfo, setPeriodInfo] = useImmer({
     length: PERIOD_LENGTH,
@@ -168,7 +168,7 @@ const Data = () => {
               </Title>
               <Paragraph>all countries included, last 5 periods</Paragraph>
               <Divider className="divider" />
-              <TotalTable
+              <Table
                 data={preparedCountries}
                 periodLength={periodInfo.length}
                 kind={selectedTable.table}
@@ -182,5 +182,3 @@ const Data = () => {
     </Page>
   );
 };
-
-export default Data;

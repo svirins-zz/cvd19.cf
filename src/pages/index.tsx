@@ -7,14 +7,14 @@ import { PERIOD_LENGTH } from "const";
 import COUNTRY_QUERY from "queries";
 import { OutbreakStatus, Countries } from "../@types";
 import { fetcher } from "api";
-import TotalTable from "components/tables/TotalTable";
+import { Table } from "components/tables/table";
 import { TodayStats } from "components/data";
 import { sumPeriodData, calcStats, calcCountries, calcTrends } from "lib";
 import { AreaChart, SummaryChart } from "components/charts";
 
 const { Title, Paragraph, Text } = Typography;
 
-const IndexPage = () => {
+export const Index = () => {
   // fetch data
   const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
   if (!error && !data) return <Loading />;
@@ -114,7 +114,7 @@ const IndexPage = () => {
           style={{ paddingRight: "10px" }}
         >
           <Text>Winning / Won trends</Text>
-          <TotalTable
+          <Table
             data={winTableData}
             periodLength={PERIOD_LENGTH}
             order={false}
@@ -131,7 +131,7 @@ const IndexPage = () => {
           style={{ paddingLeft: "10px" }}
         >
           <Text>Losing / Flattening trends</Text>
-          <TotalTable
+          <Table
             data={loseTableData}
             periodLength={PERIOD_LENGTH}
             order={true}
@@ -143,5 +143,3 @@ const IndexPage = () => {
     </Page>
   );
 };
-
-export default IndexPage;

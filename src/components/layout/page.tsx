@@ -13,11 +13,10 @@ import {
 import { menuInit } from "lib";
 import logo from "assets/coronavirus.png";
 import { myContext } from "context";
-import SideDrawer from "./SideDrawer";
+import { SideDrawer } from "./sideDrawer";
 
 const { Content, Sider, Footer } = Layout;
-// TODO: explore function signatures and write types for handlers
-const Page = ({ children }: React.PropsWithChildren<{}>) => {
+export const Page = ({ children }: React.PropsWithChildren<{}>) => {
   const { pathname } = useLocation();
   const marginClassName: string = pathname.includes("map")
     ? "conentWithoutMargin"
@@ -99,7 +98,7 @@ const Page = ({ children }: React.PropsWithChildren<{}>) => {
             <Content>
               <div className={marginClassName}>{children}</div>
             </Content>
-            {pathname === "/map" ? undefined : (
+            {pathname.includes("map") ? undefined : (
               <Footer>
                 <Divider className="divider" />
                 <div className="credentials">
@@ -131,5 +130,3 @@ const Page = ({ children }: React.PropsWithChildren<{}>) => {
     </myContext.Consumer>
   );
 };
-
-export default Page;

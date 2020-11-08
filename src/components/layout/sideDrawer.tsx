@@ -5,7 +5,7 @@ import { OutbreakStatus } from "@types";
 
 const { Paragraph } = Typography;
 
-const SideDrawer = () => {
+export const SideDrawer = () => {
   const data = [
     {
       key: "1",
@@ -79,5 +79,3 @@ const SideDrawer = () => {
     </>
   );
 };
-
-export default SideDrawer;

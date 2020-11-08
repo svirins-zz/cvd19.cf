@@ -5,7 +5,7 @@ import { Page, SEO } from "components/layout";
 const { Title, Paragraph } = Typography;
 
 // TODO: Add typography and styling
-const AboutPage = () => (
+export const About = () => (
   <Page>
     <SEO title="About" />
     <Row gutter={[8, 8]}>
@@ -85,5 +85,3 @@ const AboutPage = () => (
     </Row>
   </Page>
 );
-
-export default AboutPage;

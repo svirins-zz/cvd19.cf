@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { Typography, Spin } from "antd";
-import PageLayout from "./Page";
+import { Page } from "./page";
 
 const { Title, Paragraph } = Typography;
 
-const Loading = () => {
+export const Loading = () => {
   const memoizedResult = useMemo(
     () => (
-      <PageLayout>
+      <Page>
         <Paragraph
           className="centered"
           style={{ height: "100vh", paddingTop: "15%" }}
@@ -17,11 +17,9 @@ const Loading = () => {
             <Spin size="large" /> <Title level={5}>Loading</Title>
           </div>
         </Paragraph>
-      </PageLayout>
+      </Page>
     ),
     []
   );
   return memoizedResult;
 };
-
-export default Loading;

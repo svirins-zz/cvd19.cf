@@ -1,68 +1,77 @@
 import React from "react";
-import L, { LeafletMouseEvent, Map } from "leaflet";
 import useSWR from "swr";
-import "leaflet/dist/leaflet.css";
-import { fetcher } from "api";
-import COUNTRY_QUERY from "queries";
-import { Feature, Countries } from "@types";
 import {
-  promiseToFlyTo,
-  trackerFeatureToHtmlMarker,
-  geoJsonToMarkers,
-  getMapData,
-} from "lib";
+  MapContainer,
+  TileLayer,
+  LayersControl,
+  Marker,
+  Popup,
+  LayerGroup,
+} from "react-leaflet";
+import { fetcher } from "api";
+import { makeFeatures, getDataFromProperties } from "lib";
+import { ATTRIBUTION_STRING } from "const";
+import COUNTRY_QUERY from "queries";
+import { Countries } from "@types";
 import { Page, Loading, Error, SEO } from "components/layout";
-import LeafletMap from "../components/map/LeafletMap";
 
-const MapPage = () => {
+import "leaflet/dist/leaflet.css";
+
+export const Map = () => {
   // fetch countries
   const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
   if (!error && !data) return <Loading />;
   if (error) return <Error error={error} />;
+  const { features } = makeFeatures(data);
+  const countriesMarkers = features.map((feature, index) => {
+    const {
+      header,
+      statsString,
+      casesString,
+      iconClass,
+    } = getDataFromProperties(feature.properties);
+    console.log(header, statsString);
+    return (
+      <Marker position={feature.geometry.coordinates.reverse()} key={index}>
+        <Popup key={index}>
+          <span className="icon-marker-tooltip">
+            <h2>{header}</h2>
+            <ul>{statsString}</ul>
+          </span>
+        </Popup>
+      </Marker>
+    );
+  });
 
-  const handleOnMarkerClick = (
-    { feature }: { feature: Feature },
-    event: LeafletMouseEvent
-  ) => {
-    const { target } = event;
-    const { _map: map } = target;
-    const { geometry, properties } = feature;
-    const { coordinates } = geometry;
-    const { bounds, code } = properties;
-
-    promiseToFlyTo(map, {
-      center: [coordinates[1], coordinates[0]],
-      zoom: 3,
-    });
-    if (bounds && code !== "US") {
-      const boundsGeoJsonLayer = new L.GeoJSON(bounds);
-      const boundsGeoJsonLayerBounds = boundsGeoJsonLayer.getBounds();
-      map.fitBounds(boundsGeoJsonLayerBounds);
-    }
-  };
-  // mapeffect
-  const mapEffect = ({
-    leafletElement,
-  }: {
-    leafletElement: Map | undefined;
-  }) => {
-    if (!leafletElement) return;
-    const locationsGeoJson = getMapData(data);
-    const locationsGeoJsonLayers = geoJsonToMarkers(locationsGeoJson, {
-      onClick: handleOnMarkerClick,
-      featureToHtml: trackerFeatureToHtmlMarker,
-    });
-    const bounds = locationsGeoJsonLayers.getBounds();
-    locationsGeoJsonLayers.addTo(leafletElement);
-    leafletElement.fitBounds(bounds);
-  };
-
+  // TODO: memoize map, when ready
   return (
     <Page>
       <SEO title="World Map" />
-      <LeafletMap mapEffect={mapEffect} />
+      <div className="leaflet-container">
+        <MapContainer
+          center={[0, 0]}
+          zoom={3.0}
+          scrollWheelZoom={false}
+          minZoom={3}
+          maxzoom={14}
+        >
+          <LayersControl position="topright">
+            <LayersControl.BaseLayer checked={true} name="Stadia">
+              <TileLayer
+                attribution={ATTRIBUTION_STRING}
+                url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT}
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="OpenStreetMap">
+              <TileLayer
+                attribution={ATTRIBUTION_STRING}
+                url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT}
+              />
+            </LayersControl.BaseLayer>
+          </LayersControl>
+          <LayerGroup>{countriesMarkers}</LayerGroup>
+        </MapContainer>
+      </div>
     </Page>
   );
 };
-
-export default MapPage;

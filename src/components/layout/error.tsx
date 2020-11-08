@@ -1,14 +1,11 @@
 import React from "react";
 import { Typography } from "antd";
-import { ErrorProps } from "@types";
-import PageLayout from "./Page";
+import { Page } from "./page";
 
 const { Paragraph } = Typography;
 
-const Error = (error: ErrorProps) => (
-  <PageLayout>
+export const Error = (error: Error) => (
+  <Page>
     <Paragraph className="centered">{error?.message}</Paragraph>
-  </PageLayout>
+  </Page>
 );
-
-export default Error;

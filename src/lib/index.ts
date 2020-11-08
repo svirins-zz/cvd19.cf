@@ -1,10 +1,8 @@
 export {
-  pointToLayerMarkerCreator,
-  promiseToFlyTo,
-  trackerFeatureToHtmlMarker,
-  geoJsonToMarkers,
+  getDataFromProperties,
   getCountryExtData,
-  getMapData,
+  makeFeatures,
+  getClassNameByCases,
 } from "./mapUtils";
 export {
   getDaysAgo,

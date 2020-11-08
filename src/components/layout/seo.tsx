@@ -3,7 +3,12 @@ import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import { Props, SiteQuery } from "@types";
 
-const SEO = ({ description = "", lang = "en", meta = [], title }: Props) => {
+export const SEO = ({
+  description = "",
+  lang = "en",
+  meta = [],
+  title,
+}: Props) => {
   const { site }: SiteQuery = useStaticQuery(
     graphql`
       query Site {
@@ -65,4 +70,3 @@ const SEO = ({ description = "", lang = "en", meta = [], title }: Props) => {
   );
 };
 
-export default SEO;

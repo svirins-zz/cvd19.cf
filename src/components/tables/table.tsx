@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 import { useTable } from "react-table";
-import { Table } from "antd";
+import { Table as AntTable } from "antd";
 import { SummaryTable } from "@types";
 import { getPeriodNames, constructData, constructColumns } from "lib";
-const TotalTable = ({
+export const Table = ({
   data,
   periodLength,
   kind,
@@ -31,7 +31,7 @@ const TotalTable = ({
     multiplyer
   );
   return (
-    <Table
+    <AntTable
       columns={columnData}
       bordered={true}
       dataSource={preparedData}
@@ -41,5 +41,3 @@ const TotalTable = ({
     />
   );
 };
-
-export default TotalTable;
