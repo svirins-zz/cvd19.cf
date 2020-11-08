@@ -140,12 +140,17 @@
   margin: 14px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
+.markerText {
+  text-align: center !important;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  margin: auto;
+}
 
 .icon-marker {
   display: flex;
   position: relative;
-  justify-content: center;
-  align-items: center;
   color: white;
   font-size: 1.1em;
   font-weight: bold;
@@ -153,35 +158,17 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
 }
 
-.icon-marker:hover .icon-marker-tooltip {
-  display: block;
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: #2b3f49 !important;
+  color: white !important;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+  border-radius: 4px !important;
 }
 
-.icon-marker-tooltip {
-  position: absolute;
-  bottom: 100%;
-  width: 11em;
-  font-size: 1.1em;
-  padding: .5em;
-  background-color: #2b3f49;
-  border-radius: .2em;
-  margin-bottom: 1em;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.9);
+.leaflet-popup-content {
+  margin: 0.5em 1em !important;
+  line-height: 1.4;
 }
-
-.icon-marker-tooltip:before {
-  display: block;
-  position: absolute;
-  bottom: -.6em;
-  left: 50%;
-  content: '';
-  width: 1em;
-  height: 1em;
-  background-color: #2b3f49;
-  transform: rotate(45deg);
-  margin-left: -.7em;
-}
-
 .title {
   color: #F3A207;
   font-size: 1.5em;
@@ -193,38 +180,38 @@
 .marker-list {
   list-style: none;
   padding: 0;
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: normal;
   color: #f1f1f0;
 }
 
 .icon-marker-small {
-  width: 2.2em;
-  height: 2.2em;
+  width: 2.2em !important;
+  height: 2.2em !important;
   background-color: #ffccc7;
 }
 
 .icon-marker-normal {
-  width: 3.0em;
-  height: 3.0em;
+  width: 3.0em !important;
+  height: 3.0em !important;
   background-color: #ff7875;
 }
 
 .icon-marker-large {
-  width: 3.8em;
-  height: 3.8em;
+  width: 3.8em !important;
+  height: 3.8em !important;;
   background-color: #f5222d;
 }
 
 .icon-marker-extra-large {
-  width: 4.6em;
-  height: 4.6em;
+  width: 4.6em !important;
+  height: 4.6em !important;
   background-color: #a8071a;
 }
 
 .icon-marker-super-large {
-  width: 5.4em;
-  height: 5.4em;
+  width: 5.4em !important;
+  height: 5.4em !important;
   background-color: #5c0011;
 }
 

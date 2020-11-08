@@ -17,6 +17,7 @@ import { COUNTRY_QUERY } from "queries";
 import { Countries } from "@types";
 import { Page, Loading, Error, SEO } from "components/layout";
 import "leaflet/dist/leaflet.css";
+import { AutoComplete } from "antd";
 
 const Map = () => {
   // fetch countries
@@ -28,13 +29,15 @@ const Map = () => {
   const { features } = getFeatures(data);
   const countriesMarkers = features.map((feature, index) => {
     const { name, flag, confirmed, deaths, recovered } = feature.properties;
-    const markerClass = getClassNameByCase(confirmed);
+    const markerIcon = new divIcon({
+      html: `<p class="markerText">${commafy(confirmed)}</p>`,
+      className: `${getClassNameByCase(confirmed)} icon-marker`,
+    });
     return (
       <Marker
         key={index}
         position={feature.geometry.coordinates.reverse()}
-        zIndexOffset={999}
-        // icon={}
+        icon={markerIcon}
         eventHandlers={{
           click: () => {
             // process fly to
@@ -42,20 +45,16 @@ const Map = () => {
           },
         }}
       >
-        <Popup
-        // TODO: apply styling, when ready
-          key={index}
-          minWidth={300}
-          minHeight={300}
-          className="icon-marker-tooltip"
-        >
-          <img src={flag} alt="name" />
-          <h2 className="title">{name}</h2>
-          <ul className="marker-list">
-            <li>Confirmed:&nbsp;{commafy(confirmed)}</li>
-            <li>Deaths:&nbsp;{commafy(deaths)}</li>
-            <li>Recovered:&nbsp;{commafy(recovered)}</li>
-          </ul>
+        <Popup key={index}>
+          <span>
+            <img src={flag} alt="name" />
+            <h2 className="title">{name}</h2>
+            <ul className="marker-list">
+              <li>Confirmed:&nbsp;{commafy(confirmed)}</li>
+              <li>Deaths:&nbsp;{commafy(deaths)}</li>
+              <li>Recovered:&nbsp;{commafy(recovered)}</li>
+            </ul>
+          </span>
         </Popup>
       </Marker>
     );
@@ -67,14 +66,14 @@ const Map = () => {
       <SEO title="World Map" />
       <div className="leaflet-container">
         <MapContainer
-          center={[0, 0]}
-          zoom={3.0}
+          center={[20, 10]}
+          zoom={2.9}
           scrollWheelZoom={false}
           minZoom={2.5}
           maxzoom={14}
         >
           <LayersControl position="topright">
-            <LayersControl.BaseLayer checked={true} name="Stadia">
+            <LayersControl.BaseLayer checked={true} name="Stadia.Smooth">
               <TileLayer
                 attribution={ATTRIBUTION_STRING}
                 url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT}
