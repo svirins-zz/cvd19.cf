@@ -1,10 +1,10 @@
 import React from "react";
-import { Typography, Row, Col, Divider } from "antd";
 import useSWR from "swr";
+import { Typography, Row, Col, Divider } from "antd";
 import { Page, Loading, Error, SEO } from "components/layout";
 import { myContext } from "context";
 import { PERIOD_LENGTH } from "const";
-import COUNTRY_QUERY from "queries";
+import { COUNTRY_QUERY } from "queries";
 import { OutbreakStatus, Countries } from "../@types";
 import { fetcher } from "api";
 import { Table } from "components/tables/table";
@@ -14,7 +14,7 @@ import { AreaChart, SummaryChart } from "components/charts";
 
 const { Title, Paragraph, Text } = Typography;
 
-export const Index = () => {
+const Index = () => {
   // fetch data
   const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
   if (!error && !data) return <Loading />;
@@ -143,3 +143,5 @@ export const Index = () => {
     </Page>
   );
 };
+
+export default Index;

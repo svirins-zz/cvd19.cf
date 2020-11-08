@@ -139,7 +139,6 @@
 .divider {
   margin: 14px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
-
 }
 
 .icon-marker {
@@ -159,7 +158,6 @@
 }
 
 .icon-marker-tooltip {
-  display: none;
   position: absolute;
   bottom: 100%;
   width: 11em;
@@ -184,7 +182,7 @@
   margin-left: -.7em;
 }
 
-.icon-marker-tooltip h2 {
+.title {
   color: #F3A207;
   font-size: 1.5em;
   line-height: 1.2;
@@ -192,22 +190,12 @@
   margin-top: 0;
 }
 
-.icon-marker-tooltip h3 {
-  font-size: 1.2em;
-  margin: .1em 0;
-  font-weight: normal;
-  color: #f1f1f0;
-}
-
-.icon-marker-tooltip ul,
-.icon-marker-tooltip p {
-  font-weight: normal;
-}
-
-.icon-marker-tooltip ul {
+.marker-list {
   list-style: none;
   padding: 0;
-  margin: .6em 0 0;
+  font-size: 1em;
+  font-weight: normal;
+  color: #f1f1f0;
 }
 
 .icon-marker-small {

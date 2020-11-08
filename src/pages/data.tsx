@@ -1,4 +1,5 @@
 import React from "react";
+import useSWR from "swr";
 import { useImmer } from "use-immer";
 import {
   Typography,
@@ -9,9 +10,8 @@ import {
   Checkbox,
   InputNumber,
 } from "antd";
-import useSWR from "swr";
 import { myContext } from "context";
-import COUNTRY_QUERY from "queries";
+import { COUNTRY_QUERY } from "queries";
 import { fetcher } from "api";
 import { Loading, Error, Page, SEO } from "components/layout";
 import { CountryFilter } from "components/data/countryFilter";
@@ -34,7 +34,7 @@ import {
 } from "../@types";
 const { Title, Text, Paragraph } = Typography;
 
-export const Data = () => {
+const Data = () => {
   // initialize state
   const [periodInfo, setPeriodInfo] = useImmer({
     length: PERIOD_LENGTH,
@@ -182,3 +182,5 @@ export const Data = () => {
     </Page>
   );
 };
+
+export default Data;

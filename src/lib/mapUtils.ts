@@ -59,7 +59,7 @@ export const getCountryExtData = (countryName: string): CodeFlagGeo => {
  * @param {number} totalCases
  * @return {*}
  */
-export const getClassNameByCases = (totalCases: number) => {
+export const getClassNameByCase = (totalCases: number) => {
   if (totalCases < 99) {
     return "icon-marker-small";
   }
@@ -84,7 +84,7 @@ export const getClassNameByCases = (totalCases: number) => {
  * @param {(Countries | undefined)} data
  * @return {*}
  */
-export const makeFeatures = (data: Countries | undefined) => {
+export const getFeatures = (data: Countries | undefined) => {
   const features: Feature[] = [];
   data!.countries.forEach((country) => {
     const { code, flag, geometry } = getCountryExtData(country.name);
@@ -111,42 +111,4 @@ export const makeFeatures = (data: Countries | undefined) => {
     features,
     type: "FeatureCollection",
   };
-};
-/**
- * extract Marker and Popup properties from feature.properties
- *
- * @param {Properties} properties
- * @return {*} 
- */
-export const getDataFromProperties = (properties: Properties) => {
-  const { name, flag, confirmed, deaths, recovered } = properties;
-  const header = `<img src="${flag}" name="flag"><div>${name}</div>`;
-  const stats = [
-    {
-      label: "Confirmed",
-      value: confirmed,
-      type: "number",
-    },
-    {
-      label: "Deaths",
-      value: deaths,
-      type: "number",
-    },
-    {
-      label: "Recovered",
-      value: recovered,
-      type: "number",
-    },
-  ];
-  let statsString = "";
-  stats.forEach(({ label, value }) => {
-    statsString = `
-      ${statsString}
-      <li><strong>${label}:</strong> ${value}</li>
-    `;
-  });
-  const casesString = stats.find(({ label }) => label === "Confirmed")?.value;
-  const iconClass = getClassNameByCases(confirmed);
-
-  return { header, statsString, casesString, iconClass };
 };

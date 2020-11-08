@@ -2,7 +2,7 @@ import React from "react";
 import { Result, Button } from "antd";
 import { Page, SEO } from "components/layout";
 
-export const NotFoundPage = () => (
+const NotFoundPage = () => (
   <Page>
     <SEO title="404: Not found" />
     <Result
@@ -17,3 +17,5 @@ export const NotFoundPage = () => (
     />
   </Page>
 );
+
+export default NotFoundPage;

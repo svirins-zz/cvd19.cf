@@ -1,6 +1,6 @@
-/* eslint-disable react/jsx-filename-extension */
-// require('antd/dist/antd.css');
-/* eslint-disable react/jsx-props-no-spreading */
 import Provider from './src/context';
+import LogRocket from 'logrocket';
 
 export const wrapRootElement = Provider;
+export const onClientEntry = () => LogRocket.init('rhcw85/cvd10');
+

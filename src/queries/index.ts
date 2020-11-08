@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 
-const COUNTRY_QUERY = gql`
+export const COUNTRY_QUERY = gql`
   query {
     countries {
       name
@@ -13,5 +13,3 @@ const COUNTRY_QUERY = gql`
     }
   }
 `;
-
-export default COUNTRY_QUERY;

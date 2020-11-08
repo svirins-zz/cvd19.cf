@@ -1,5 +1,7 @@
 import React from "react";
 import useSWR from "swr";
+import { divIcon } from "leaflet";
+
 import {
   MapContainer,
   TileLayer,
@@ -9,35 +11,51 @@ import {
   LayerGroup,
 } from "react-leaflet";
 import { fetcher } from "api";
-import { makeFeatures, getDataFromProperties } from "lib";
+import { getFeatures, getClassNameByCase, commafy } from "lib";
 import { ATTRIBUTION_STRING } from "const";
-import COUNTRY_QUERY from "queries";
+import { COUNTRY_QUERY } from "queries";
 import { Countries } from "@types";
 import { Page, Loading, Error, SEO } from "components/layout";
-
 import "leaflet/dist/leaflet.css";
 
-export const Map = () => {
+const Map = () => {
   // fetch countries
-  const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
+  const { data, error } = useSWR<Countries, Error>(COUNTRY_QUERY, fetcher);
   if (!error && !data) return <Loading />;
   if (error) return <Error error={error} />;
-  const { features } = makeFeatures(data);
+
+  // maker markers/popups layer
+  const { features } = getFeatures(data);
   const countriesMarkers = features.map((feature, index) => {
-    const {
-      header,
-      statsString,
-      casesString,
-      iconClass,
-    } = getDataFromProperties(feature.properties);
-    console.log(header, statsString);
+    const { name, flag, confirmed, deaths, recovered } = feature.properties;
+    const markerClass = getClassNameByCase(confirmed);
     return (
-      <Marker position={feature.geometry.coordinates.reverse()} key={index}>
-        <Popup key={index}>
-          <span className="icon-marker-tooltip">
-            <h2>{header}</h2>
-            <ul>{statsString}</ul>
-          </span>
+      <Marker
+        key={index}
+        position={feature.geometry.coordinates.reverse()}
+        zIndexOffset={999}
+        // icon={}
+        eventHandlers={{
+          click: () => {
+            // process fly to
+            console.log("marker clicked");
+          },
+        }}
+      >
+        <Popup
+        // TODO: apply styling, when ready
+          key={index}
+          minWidth={300}
+          minHeight={300}
+          className="icon-marker-tooltip"
+        >
+          <img src={flag} alt="name" />
+          <h2 className="title">{name}</h2>
+          <ul className="marker-list">
+            <li>Confirmed:&nbsp;{commafy(confirmed)}</li>
+            <li>Deaths:&nbsp;{commafy(deaths)}</li>
+            <li>Recovered:&nbsp;{commafy(recovered)}</li>
+          </ul>
         </Popup>
       </Marker>
     );
@@ -52,7 +70,7 @@ export const Map = () => {
           center={[0, 0]}
           zoom={3.0}
           scrollWheelZoom={false}
-          minZoom={3}
+          minZoom={2.5}
           maxzoom={14}
         >
           <LayersControl position="topright">
@@ -75,3 +93,5 @@ export const Map = () => {
     </Page>
   );
 };
+
+export default Map;

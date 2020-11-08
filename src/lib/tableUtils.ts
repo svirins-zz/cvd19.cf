@@ -8,7 +8,7 @@ import {
   ConstructedColumn,
   Column,
 } from "@types";
-import ColorTag from "components/data/ColorTag";
+import { ColorTag } from "components/data";
 
 const alphabeticalSorter = (
   a: Prepared | PreparedExt,
