@@ -1,5 +1,4 @@
 import React from "react";
-import useSWR from "swr";
 import { divIcon } from "leaflet";
 
 import {
@@ -10,20 +9,15 @@ import {
   Popup,
   LayerGroup,
 } from "react-leaflet";
-import { fetcher } from "api";
 import { getFeatures, getClassNameByCase, commafy } from "lib";
 import { ATTRIBUTION_STRING } from "const";
-import { COUNTRY_QUERY } from "queries";
 import { Countries } from "@types";
-import { Page, Loading, Error, SEO } from "components/layout";
+import { Page, SEO } from "components/layout";
 import "leaflet/dist/leaflet.css";
-import { AutoComplete } from "antd";
 
-const Map = () => {
-  // fetch countries
-  const { data, error } = useSWR<Countries, Error>(COUNTRY_QUERY, fetcher);
-  if (!error && !data) return <Loading />;
-  if (error) return <Error error={error} />;
+const Map = ({ pageContext }) => {
+  // get build-time data
+  const data: Countries = pageContext.data;
 
   // maker markers/popups layer
   const { features } = getFeatures(data);
@@ -41,7 +35,6 @@ const Map = () => {
         eventHandlers={{
           click: () => {
             // process fly to
-            console.log("marker clicked");
           },
         }}
       >

@@ -13,6 +13,11 @@
   font-weight: 500;
   color: #120338;
 }
+.choiceText {
+  color: #120338;
+  font-style: italic;
+  font-weight: 300;
+}
 
 .site-layout-content {
   background: #fff;

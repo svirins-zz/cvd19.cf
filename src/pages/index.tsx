@@ -1,25 +1,18 @@
 import React from "react";
-import useSWR from "swr";
 import { Typography, Row, Col, Divider } from "antd";
-import { Page, Loading, Error, SEO } from "components/layout";
+import { Page, SEO } from "components/layout";
 import { myContext } from "context";
 import { PERIOD_LENGTH } from "const";
-import { COUNTRY_QUERY } from "queries";
 import { OutbreakStatus, Countries } from "../@types";
-import { fetcher } from "api";
 import { Table } from "components/tables/table";
 import { TodayStats } from "components/data";
 import { sumPeriodData, calcStats, calcCountries, calcTrends } from "lib";
 import { AreaChart, SummaryChart } from "components/charts";
+const { Title, Text } = Typography;
 
-const { Title, Paragraph, Text } = Typography;
-
-function Index (location, pageContext)  {
-  console.log(pageContext)
-  // fetch data
-  const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
-  if (!error && !data) return <Loading />;
-  if (error) return <Error error={error} />;
+function index({ pageContext }) {
+  // get build-time data
+  const data: Countries = pageContext.data;
 
   // prepare data to display
   const countries = calcCountries(data, PERIOD_LENGTH);
@@ -45,16 +38,11 @@ function Index (location, pageContext)  {
           <Title level={3} style={{ marginBottom: "0px" }}>
             Covid-19 Global epidemic situation
           </Title>
-          <Paragraph>
-            daily data update occurs between 04:45 and 05:15 GM
-          </Paragraph>
+          <Title level={5} style={{ marginBottom: "10px" }}>
+            Today's stats (data updated 3-times per day)
+          </Title>
           <Divider className="divider" />
         </Col>
-      </Row>
-      <Row gutter={[8, 16]}>
-        <Title level={5} style={{ marginBottom: "10px" }}>
-          Today's stats
-        </Title>
         <Col span={24}>
           <TodayStats stats={stats} />
         </Col>
@@ -66,10 +54,11 @@ function Index (location, pageContext)  {
               <Title level={5} style={{ marginBottom: "0px" }}>
                 Global data trends by countries
               </Title>
+              <Divider className="divider" />
               <div style={{ height: "450px" }}>
                 <SummaryChart
                   periods={trends}
-                  multiplyer={context.width!.multiplyer}
+                  multiplyer={context.width?.multiplyer ?? 1}
                 />
               </div>
             </Col>
@@ -77,10 +66,11 @@ function Index (location, pageContext)  {
               <Title level={5} style={{ marginBottom: "0px" }}>
                 Trend 'Under control %' by countries
               </Title>
+              <Divider className="divider" />
               <div style={{ height: "450px" }}>
                 <AreaChart
                   periods={trends}
-                  multiplyer={context.width!.multiplyer}
+                  multiplyer={context.width?.multiplyer ?? 1}
                   yValue="underControl"
                 />
               </div>
@@ -89,10 +79,11 @@ function Index (location, pageContext)  {
               <Title level={5} style={{ marginBottom: "0px" }}>
                 Trend 'Pandemic free %' by countries
               </Title>
+              <Divider className="divider" />
               <div style={{ height: "450px" }}>
                 <AreaChart
                   periods={trends}
-                  multiplyer={context.width!.multiplyer}
+                  multiplyer={context.width?.multiplyer ?? 1}
                   yValue="pandemicFree"
                 />
               </div>
@@ -104,6 +95,7 @@ function Index (location, pageContext)  {
         <Title level={5} style={{ marginBottom: "0px" }}>
           New death cases by countries (last two periods)
         </Title>
+        <Divider className="divider" />
       </Col>
       <Row gutter={0}>
         <Col
@@ -143,6 +135,6 @@ function Index (location, pageContext)  {
       </Row>
     </Page>
   );
-};
+}
 
-export default Index;
+export default index;

@@ -1,5 +1,4 @@
 import React from "react";
-import useSWR from "swr";
 import { useImmer } from "use-immer";
 import {
   Typography,
@@ -11,9 +10,7 @@ import {
   InputNumber,
 } from "antd";
 import { myContext } from "context";
-import { COUNTRY_QUERY } from "queries";
-import { fetcher } from "api";
-import { Loading, Error, Page, SEO } from "components/layout";
+import { Page, SEO } from "components/layout";
 import { CountryFilter } from "components/data/countryFilter";
 import { DataChart } from "components/charts";
 import { Table } from "components/tables/table";
@@ -32,9 +29,12 @@ import {
   Countries,
   SelectedCountries,
 } from "../@types";
-const { Title, Text, Paragraph } = Typography;
+const { Title, Text } = Typography;
 
-const Data = () => {
+const Data = ({ pageContext }) => {
+  // get build-time data
+  const data: Countries = pageContext.data;
+
   // initialize state
   const [periodInfo, setPeriodInfo] = useImmer({
     length: PERIOD_LENGTH,
@@ -65,12 +65,7 @@ const Data = () => {
     });
   };
 
-  // fetch data
-  const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
-  if (!error && !data) return <Loading />;
-  if (error) return <Error error={error} />;
-
-  // transform and prepare adata
+  // transform and prepare country data
   const countries: Country[] = calcCountries(data, periodInfo.length);
   const countriesList: CountriesList[] = getCountriesList(countries);
   const preparedCountries: Country[] = [
@@ -88,9 +83,11 @@ const Data = () => {
                 <Title level={3} style={{ marginBottom: "0px" }}>
                   Data reports constructor
                 </Title>
-                <Paragraph>
-                  choose data type, period, countries (up to 10)
-                </Paragraph>
+                <Title level={5} style={{ marginBottom: "0px" }}>
+                  Choose data type, period, countries (up to 10). Current
+                  choice:&nbsp;
+                  <span className="choiceText">{chartInfo.title}</span>
+                </Title>
                 <Divider className="divider" />
               </Col>
             </Row>
@@ -106,7 +103,9 @@ const Data = () => {
                 >
                   <Radio.Button value="newDeaths">New Deaths</Radio.Button>
                   <Radio.Button value="totalDeaths">Total Deaths</Radio.Button>
-                  <Radio.Button value="growthRate">Change in Deaths</Radio.Button>
+                  <Radio.Button value="growthRate">
+                    Change in Deaths
+                  </Radio.Button>
                   <Radio.Button value="newCases">New Cases</Radio.Button>
                   <Radio.Button value="totalCases">Total Cases</Radio.Button>
                 </Radio.Group>
@@ -149,31 +148,27 @@ const Data = () => {
               </Col>
             </Row>
             <Col span={24}>
-              <Title level={5} style={{ marginBottom: "0px" }}>
-                {chartInfo.title}
-              </Title>
               <div style={{ height: "450px" }}>
                 <DataChart
                   countries={preparedCountries}
                   selectedCountries={selectedCountries.countries}
                   yValue={chartInfo.y}
                   isStartAtDeaths={startAtDeaths.isStart}
-                  multiplyer={context.width!.multiplyer}
+                  multiplyer={context.width?.multiplyer ?? 1}
                 />
               </div>
             </Col>
             <Col span={24}>
-              <Title level={3} style={{ marginBottom: "0px" }}>
-                {chartInfo.title}
+              <Title level={5} style={{ marginBottom: "0px" }}>
+                {chartInfo.title}&nbsp;(all countries included)
               </Title>
-              <Paragraph>all countries included, last 5 periods</Paragraph>
               <Divider className="divider" />
               <Table
                 data={preparedCountries}
                 periodLength={periodInfo.length}
                 kind={selectedTable.table}
                 variation={"wide"}
-                multiplyer={context.width!.multiplyer}
+                multiplyer={context.width?.multiplyer ?? 1}
               />
             </Col>
           </>

@@ -42,6 +42,13 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-plugin-resolve-src',
     {
+      resolve: 'gatsby-plugin-typegen',
+      options: {
+        emitSchema: { 'src/__generated__/gatsby-introspection.json': true },
+        emitPluginDocuments: { 'src/__generated__/gatsby-plugin-documents.graphql': true },
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Covid-19 stats and charts',
@@ -65,7 +72,7 @@ module.exports = {
       options: {
         lessOptions: {
           modifyVars: {
-            'font-family': 'Open Sans',
+            'font-family': 'Montserrat',
             'font-size-base': '16px',
             'primary-color': '#183C52',
             'heading-color': '#120338',

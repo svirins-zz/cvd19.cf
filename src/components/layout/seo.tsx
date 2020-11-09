@@ -9,7 +9,7 @@ export const SEO = ({
   meta = [],
   title,
 }: Props) => {
-  const { site }: SiteQuery = useStaticQuery(
+  const { site }: SiteQuery = useStaticQuery<GatsbyTypes.SiteQuery>(
     graphql`
       query Site {
         site {
