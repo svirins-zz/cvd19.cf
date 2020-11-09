@@ -129,7 +129,7 @@ export const calulatePeriodData = (
     periods,
   };
 };
-
+// Countries | undefined,
 export const calcCountries = (
   data: Countries | undefined,
   periodLength: number

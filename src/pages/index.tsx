@@ -8,19 +8,24 @@ import { Table } from "components/tables/table";
 import { TodayStats } from "components/data";
 import { sumPeriodData, calcStats, calcCountries, calcTrends } from "lib";
 import { AreaChart, SummaryChart } from "components/charts";
-import { SitePageContext } from "../@types/__generated__/gatsby-types";
 
 const { Title, Text } = Typography;
 
-function index({ pageContext }: { pageContext: SitePageContext }) {
+const Index = ({
+  pageContext,
+}: {
+  pageContext: GatsbyTypes.SitePageContext;
+}) => {
   // get build-time data
-  const data: Countries = pageContext.data;
-
+  const data = pageContext.data;
   // prepare data to display
-  const countries = calcCountries(data, PERIOD_LENGTH);
+  const countries = calcCountries(data as Countries, PERIOD_LENGTH);
   // TODO: find another way to deteremine global text trend
   const globalData = sumPeriodData(countries, PERIOD_LENGTH);
-  const stats = { ...calcStats(data), trend: globalData[0].periods[0].status };
+  const stats = {
+    ...calcStats(data as Countries),
+    trend: globalData[0].periods[0].status,
+  };
   const trends = calcTrends(countries, PERIOD_LENGTH);
   const loseTableData = countries.filter(
     (country) =>
@@ -137,6 +142,6 @@ function index({ pageContext }: { pageContext: SitePageContext }) {
       </Row>
     </Page>
   );
-}
+};
 
-export default index;
+export default Index;

@@ -29,11 +29,16 @@ import {
   Countries,
   SelectedCountries,
 } from "../@types";
+
 const { Title, Text } = Typography;
 
-const Data = ({ pageContext }) => {
+const Data = ({
+  pageContext,
+}: {
+  pageContext: GatsbyTypes.SitePageContext;
+}) => {
   // get build-time data
-  const data: Countries = pageContext.data;
+  const data = pageContext.data;
 
   // initialize state
   const [periodInfo, setPeriodInfo] = useImmer({
@@ -44,7 +49,7 @@ const Data = ({ pageContext }) => {
   });
   const [selectedCountries, setSelectedCountries] = useImmer<SelectedCountries>(
     {
-      countries: [],
+      countries: [{ name: "United States", color: "rgb(31,119,180)" }],
     }
   );
   const [startAtDeaths, setStartAtDeaths] = useImmer({
@@ -54,19 +59,22 @@ const Data = ({ pageContext }) => {
   // util functions
   const chartInfo = getChartInfo(selectedTable.table, periodInfo.length);
   const onCountriesChange = (currentCountries: string[]) => {
-    const countriesWithcolors = currentCountries.map((country, index) => {
+    const countriesWithColors = currentCountries.map((country, index) => {
       return {
         name: country,
         color: getColor(index),
       };
     });
     setSelectedCountries((draft) => {
-      draft.countries = [...countriesWithcolors];
+      draft.countries = [...countriesWithColors];
     });
   };
 
   // transform and prepare country data
-  const countries: Country[] = calcCountries(data, periodInfo.length);
+  const countries: Country[] = calcCountries(
+    data as Countries,
+    periodInfo.length
+  );
   const countriesList: CountriesList[] = getCountriesList(countries);
   const preparedCountries: Country[] = [
     ...countries,

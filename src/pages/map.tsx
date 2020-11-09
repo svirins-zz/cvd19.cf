@@ -1,6 +1,5 @@
 import React from "react";
 import { divIcon } from "leaflet";
-
 import {
   MapContainer,
   TileLayer,
@@ -15,18 +14,17 @@ import { Countries } from "@types";
 import { Page, SEO } from "components/layout";
 import "leaflet/dist/leaflet.css";
 
-const Map = ({ pageContext }) => {
+const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
   // get build-time data
-  const data: Countries = pageContext.data;
+  const data = pageContext.data;
 
   // maker markers/popups layer
-  const { features } = getFeatures(data);
+  const { features } = getFeatures(data as Countries);
   const countriesMarkers = features.map((feature, index) => {
     const { name, flag, confirmed, deaths, recovered } = feature.properties;
-    const markerIcon = new divIcon({
-      html: `<p class="markerText">${commafy(confirmed)}</p>`,
-      className: `${getClassNameByCase(confirmed)} icon-marker`,
-    });
+    const html = `<p class="markerText">${commafy(confirmed)}</p>`;
+    const className = `${getClassNameByCase(confirmed)} icon-marker`;
+    const markerIcon = divIcon({ html, className });
     return (
       <Marker
         key={index}
@@ -66,7 +64,13 @@ const Map = ({ pageContext }) => {
           maxzoom={14}
         >
           <LayersControl position="topright">
-            <LayersControl.BaseLayer checked={true} name="Stadia.Smooth">
+            <LayersControl.BaseLayer checked={true} name="Stadia.Dark">
+              <TileLayer
+                attribution={ATTRIBUTION_STRING}
+                url={process.env.GATSBY_STADIA_DARK_STATIC_TILES_ENDPOINT}
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Stadia.Smooth">
               <TileLayer
                 attribution={ATTRIBUTION_STRING}
                 url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT}
@@ -87,3 +91,4 @@ const Map = ({ pageContext }) => {
 };
 
 export default Map;
+

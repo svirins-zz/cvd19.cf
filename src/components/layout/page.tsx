@@ -121,13 +121,6 @@ export const Page = ({ children }: React.PropsWithChildren<{}>) => {
                     <GithubOutlined style={{ fontSize: "14px" }} />
                   </a>
                 </div>
-                <div className="credentials">
-                  {" "}
-                  Support me on Pathreon{" "}
-                  <a href="https://github.com/svirins/cvd19.cf">
-                    <GithubOutlined style={{ fontSize: "14px" }} />
-                  </a>
-                </div>
               </Footer>
             )}
           </Layout>
