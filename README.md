@@ -1,1 +1,1 @@
-# covid-charts-and-tables
+COVID-19 Global Reports
