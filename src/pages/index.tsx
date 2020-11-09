@@ -14,7 +14,8 @@ import { AreaChart, SummaryChart } from "components/charts";
 
 const { Title, Paragraph, Text } = Typography;
 
-const Index = () => {
+function Index (location, pageContext)  {
+  console.log(pageContext)
   // fetch data
   const { data, error } = useSWR<Countries>(COUNTRY_QUERY, fetcher);
   if (!error && !data) return <Loading />;
