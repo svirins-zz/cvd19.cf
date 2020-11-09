@@ -8,9 +8,11 @@ import { Table } from "components/tables/table";
 import { TodayStats } from "components/data";
 import { sumPeriodData, calcStats, calcCountries, calcTrends } from "lib";
 import { AreaChart, SummaryChart } from "components/charts";
+import { SitePageContext } from "../@types/__generated__/gatsby-types";
+
 const { Title, Text } = Typography;
 
-function index({ pageContext }) {
+function index({ pageContext }: { pageContext: SitePageContext }) {
   // get build-time data
   const data: Countries = pageContext.data;
 
@@ -36,7 +38,7 @@ function index({ pageContext }) {
       <Row gutter={[8, 8]}>
         <Col span={24}>
           <Title level={3} style={{ marginBottom: "0px" }}>
-            Covid-19 Global epidemic situation
+            Covid-19 Global pandemic situation
           </Title>
           <Title level={5} style={{ marginBottom: "10px" }}>
             Today's stats (data updated 3-times per day)

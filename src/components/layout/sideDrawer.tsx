@@ -45,7 +45,7 @@ export const SideDrawer = () => {
   ];
   const columns = [
     {
-      title: "Status",
+      title: "Trends explained",
       dataIndex: "status",
       key: "status",
       render: (text: OutbreakStatus, row: number, index: number) => (
@@ -68,13 +68,14 @@ export const SideDrawer = () => {
         columns={columns}
         dataSource={data}
         pagination={false}
+        style={{ marginBottom: "2em" }}
       />
       <Paragraph>
         The items below all cover a single period, unless otherwise stated.
       </Paragraph>
       <Paragraph>
         A single period is 5-days by default, though you can set your own
-        period.
+        period. Data updated 3-times per day.
       </Paragraph>
     </>
   );

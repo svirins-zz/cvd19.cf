@@ -1,17 +1,16 @@
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
-    name: 'babel-plugin-import',
+    name: "babel-plugin-import",
     options: {
-      libraryName: 'antd',
+      libraryName: "antd",
       style: true,
     },
   });
 };
 
-// Fetch data during build time
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`, 
-})
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 const { GraphQLClient, gql } = require("graphql-request");
 const COUNTRY_QUERY = gql`
   query {
@@ -27,11 +26,20 @@ const COUNTRY_QUERY = gql`
   }
 `;
 exports.onCreatePage = async ({ page, actions }) => {
-  const graphQLClient = new GraphQLClient(process.env.GATSBY_GRAPHQL_ENDPOINT, {credentials: 'include', mode: 'cors'})
-  if (page.path === '/' || page.path === '/map' || page.path === '/map/' || page.path === '/data' || page.path === '/data/') {
-    const { createPage, deletePage } = actions
-    deletePage(page)
-    const data  = await graphQLClient.request(COUNTRY_QUERY);
+  const graphQLClient = new GraphQLClient(process.env.GATSBY_GRAPHQL_ENDPOINT, {
+    credentials: "include",
+    mode: "cors",
+  });
+  if (
+    page.path === "/" ||
+    page.path === "/map" ||
+    page.path === "/map/" ||
+    page.path === "/data" ||
+    page.path === "/data/"
+  ) {
+    const { createPage, deletePage } = actions;
+    deletePage(page);
+    const data = await graphQLClient.request(COUNTRY_QUERY);
 
     createPage({
       ...page,
@@ -39,8 +47,6 @@ exports.onCreatePage = async ({ page, actions }) => {
         ...page.context,
         data,
       },
-    })
+    });
   }
-}
-
-
+};

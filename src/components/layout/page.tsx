@@ -22,7 +22,6 @@ export const Page = ({ children }: React.PropsWithChildren<{}>) => {
     ? "conentWithoutMargin"
     : "conentWithMargin";
   const defaultItem = menuInit(pathname);
-  // TODO: add patreon logo
   return (
     <myContext.Consumer>
       {(context) => (
@@ -118,6 +117,13 @@ export const Page = ({ children }: React.PropsWithChildren<{}>) => {
                 <div className="credentials">
                   {" "}
                   View source{" "}
+                  <a href="https://github.com/svirins/cvd19.cf">
+                    <GithubOutlined style={{ fontSize: "14px" }} />
+                  </a>
+                </div>
+                <div className="credentials">
+                  {" "}
+                  Support me on Pathreon{" "}
                   <a href="https://github.com/svirins/cvd19.cf">
                     <GithubOutlined style={{ fontSize: "14px" }} />
                   </a>

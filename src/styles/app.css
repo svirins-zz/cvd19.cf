@@ -44,7 +44,7 @@
   position: fixed;
   text-align: center;
   padding-left: 12px;
-  bottom: 0;
+  bottom: 5px;
   height: 42px;
 }
 
@@ -146,14 +146,16 @@
   border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 .markerText {
-  text-align: center !important;
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
   margin: auto;
+  display: inline-block;
+  left: 10%
 }
 
 .icon-marker {
+  text-align: center !important;
   display: flex;
   position: relative;
   color: white;
@@ -222,4 +224,8 @@
 
 .sider-box-shadow {
   box-shadow: 2px 0px 3px 0px #636363;
+}
+
+h1, h2, h3, h4, h5 ,h6 {
+  font-weight: 400;
 }
