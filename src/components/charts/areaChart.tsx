@@ -1,14 +1,21 @@
-import React from "react";
-import { ResponsiveLine, Serie } from "@nivo/line";
 import { makeDatum } from "lib";
-import { PlaceholderChart } from "./placeholderChart";
-import { SummaryChartProps } from "@types";
+import React from "react";
+
+import { ResponsiveLine, Serie } from "@nivo/line";
+import { Period } from "@types";
+
 import { theme } from "../../styles/chartsTheme";
+import { PlaceholderChart } from "./placeholderChart";
+
 export const AreaChart = ({
   periods,
   multiplyer,
   yValue,
-}: SummaryChartProps) => {
+}: {
+  periods: Period[];
+  multiplyer: number;
+  yValue: string;
+}) => {
   const iterable =
     yValue === "underControl" ? ["under control"] : ["pandemic free"];
   const chartData: Serie[] = [];

@@ -1,7 +1,8 @@
-import React from "react";
-import { Typography, Table, Tag } from "antd";
+import { Table, Tag, Typography } from "antd";
 import { getTagColor } from "lib";
-import { OutbreakStatus } from "@types";
+import React from "react";
+
+import { SideDrawerColumn } from "@types";
 
 const { Paragraph } = Typography;
 
@@ -43,12 +44,13 @@ export const SideDrawer = () => {
       descr: "We have had no new deaths for two periods",
     },
   ];
-  const columns = [
+
+  const columns: SideDrawerColumn[] = [
     {
       title: "Trends explained",
       dataIndex: "status",
       key: "status",
-      render: (text: OutbreakStatus, row: number, index: number) => (
+      render: (text, row, index) => (
         <Tag color={getTagColor(text)} key={index}>
           {text}
         </Tag>

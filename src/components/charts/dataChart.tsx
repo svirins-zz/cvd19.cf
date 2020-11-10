@@ -1,10 +1,11 @@
-import React from "react";
-import { ResponsiveLine, Serie } from "@nivo/line";
-
-import { PlaceholderChart } from "./placeholderChart";
-import { DataChartProps, Selected } from "@types";
 import { makeDatum } from "lib";
+import React from "react";
+
+import { ResponsiveLine, Serie } from "@nivo/line";
+import { DataChartProps, Selected } from "@types";
+
 import { theme } from "../../styles/chartsTheme";
+import { PlaceholderChart } from "./placeholderChart";
 
 export const DataChart = ({
   countries,
@@ -15,7 +16,7 @@ export const DataChart = ({
 }: DataChartProps) => {
   const chartData: Serie[] = [];
   const colors = selectedCountries!.map((country) => country.color);
-  countries.map((e, i) => {
+  countries!.map((e, i) => {
     const isSelectedcountry: Selected | undefined = selectedCountries?.find(
       (country) => country.name === e.name
     );
@@ -70,7 +71,6 @@ export const DataChart = ({
               },
             },
           ],
-          
         },
       ]}
     />

@@ -1,6 +1,7 @@
-import React from "react";
 import { Select, Tag } from "antd";
-import { RenderProps, Selected, CountriesList } from "@types";
+import React from "react";
+
+import { CountriesList, RenderProps, Selected } from "@types";
 
 const { Option } = Select;
 export const CountryFilter = ({
@@ -47,4 +48,3 @@ export const CountryFilter = ({
     </Select>
   );
 };
-

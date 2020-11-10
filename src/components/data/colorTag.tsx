@@ -13,4 +13,3 @@ export const ColorTag = (
     {field === "growthRate" ? "%" : ""}
   </Tag>
 );
-

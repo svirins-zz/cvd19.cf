@@ -1,6 +1,14 @@
-import { Datum } from "@nivo/line";
 import { COLORS, X_ASIS_TICKS_AMOUNT } from "const";
-import { ChartInfo, OutbreakStatus, CountriesList, Country, Period, PeriodSummary } from "../@types";
+
+import { Datum } from "@nivo/line";
+
+import {
+  ChartInfo,
+  CountriesList,
+  Country,
+  OutbreakStatus,
+  Period,
+} from "../@types";
 
 export const getChartInfo = (
   selectedTable: string,
@@ -136,19 +144,49 @@ export const getColor = (index: number): string => {
   return COLORS[colorNum];
 };
 
+/**
+ * prepare countries list to feed countries filter
+ *
+ * @param {Country[]} countries
+ * @return {*}  {CountriesList[]}
+ */
+
 export const getCountriesList = (countries: Country[]): CountriesList[] =>
   countries.map((country, index) => ({
     id: index,
     label: country.name ?? "",
   }));
 
-// 
-export const makeDatum = (periods: Period[] & PeriodSummary[], yValue: string, multiplyer: number): Datum[] => {
-  const thereshold = Math.floor(periods.length / (X_ASIS_TICKS_AMOUNT * multiplyer)) 
-  const datum = periods.map((period, index) => { 
-    if (index === 0 || index === periods.length - 1 || index % thereshold === 0) { 
-      return({ "key": index, "x": period.endDate, "y": Number(period.[yValue].toFixed(2))})
-    }}).filter((e) => e)
-  return datum;
-}
+/**
+ * prepare data for nivo-line charts
+ *
+ * @param {Period[]} periods
+ * @param {string} yValue
+ * @param {number} multiplyer
+ * @return {*}
+ */
 
+export const makeDatum = (
+  periods: Period[],
+  yValue: string,
+  multiplyer: number
+) => {
+  const thereshold = Math.floor(
+    periods.length / (X_ASIS_TICKS_AMOUNT * multiplyer)
+  );
+  const datum: Datum[] = [];
+  periods.forEach((period, index) => {
+    if (
+      index === 0 ||
+      index === periods.length - 1 ||
+      index % thereshold === 0
+    ) {
+      datum.push({
+        key: index,
+        x: period.endDate,
+        y: Number(period[yValue]).toFixed(2),
+      });
+    }
+  });
+  return datum;
+};

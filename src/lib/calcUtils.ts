@@ -1,12 +1,12 @@
 import { EPIDEMIC_START } from "const";
+
 import {
-  Counts,
-  Periods,
-  Period,
   Countries,
   Country,
+  Counts,
   OutbreakStatus,
-  PeriodSummary,
+  Period,
+  Periods,
 } from "../@types";
 
 export const validatePeriodLength = (periodLength: number) => {
@@ -181,8 +181,11 @@ export const sumPeriodData = (
   const counts = countries.reduce(
     (global, country) =>
       global.map((currentPeriodTotals, index) => ({
-        deaths: currentPeriodTotals.deaths + country.periods[index].totalDeaths,
-        cases: currentPeriodTotals.cases + country.periods[index].totalCases,
+        deaths:
+          currentPeriodTotals.deaths +
+          Number(country.periods[index].totalDeath),
+        cases:
+          currentPeriodTotals.cases + Number(country.periods[index].totalCases),
       })),
     Array.from({ length: periodCount }, () => ({
       deaths: 0,
@@ -200,13 +203,10 @@ export const sumPeriodData = (
   ];
 };
 
-export const calcTrends = (
-  countries: Country[],
-  periodLength: number
-): PeriodSummary[] => {
+export const calcTrends = (countries: Country[], periodLength: number) => {
   const validPeriodLength = validatePeriodLength(periodLength);
   const periodCount = getPeriodCount(validPeriodLength);
-  const initialPeriodSummaries: PeriodSummary[] = Array.from(
+  const initialPeriodSummaries = Array.from(
     { length: periodCount - 2 },
     (_value, index) => ({
       endDate: getPeriodName(1 + index * validPeriodLength),

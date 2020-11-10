@@ -1,18 +1,21 @@
+import "leaflet/dist/leaflet.css";
+
+import { Page, SEO } from "components/layout";
+import { ATTRIBUTION_STRING } from "const";
+import { commafy, getFeatures } from "lib";
 import React from "react";
-import { divIcon } from "leaflet";
 import {
-  MapContainer,
-  TileLayer,
+  LayerGroup,
   LayersControl,
+  MapContainer,
   Marker,
   Popup,
-  LayerGroup,
+  TileLayer,
 } from "react-leaflet";
-import { getFeatures, getClassNameByCase, commafy } from "lib";
-import { ATTRIBUTION_STRING } from "const";
+
 import { Countries } from "@types";
-import { Page, SEO } from "components/layout";
-import "leaflet/dist/leaflet.css";
+
+import { DivIconMarker } from "../components/data";
 
 const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
   // get build-time data
@@ -22,14 +25,12 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
   const { features } = getFeatures(data as Countries);
   const countriesMarkers = features.map((feature, index) => {
     const { name, flag, confirmed, deaths, recovered } = feature.properties;
-    const html = `<p class="markerText">${commafy(confirmed)}</p>`;
-    const className = `${getClassNameByCase(confirmed)} icon-marker`;
-    const markerIcon = divIcon({ html, className });
+
     return (
       <Marker
         key={index}
         position={feature.geometry.coordinates.reverse()}
-        icon={markerIcon}
+        icon={DivIconMarker(confirmed)}
         eventHandlers={{
           click: () => {
             // process fly to
@@ -91,4 +92,3 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
 };
 
 export default Map;
-

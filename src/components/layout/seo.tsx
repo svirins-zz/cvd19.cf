@@ -1,7 +1,7 @@
 import React, { MetaHTMLAttributes } from "react";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
-import { Props, SiteQuery } from "@types";
+import { Props } from "@types";
 
 export const SEO = ({
   description = "",
@@ -9,7 +9,7 @@ export const SEO = ({
   meta = [],
   title,
 }: Props) => {
-  const { site }: SiteQuery = useStaticQuery<GatsbyTypes.SiteQuery>(
+  const { site } = useStaticQuery<GatsbyTypes.SiteQuery>(
     graphql`
       query Site {
         site {
@@ -69,4 +69,3 @@ export const SEO = ({
     />
   );
 };
-

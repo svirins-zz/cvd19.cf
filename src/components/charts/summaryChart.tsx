@@ -1,13 +1,20 @@
-import React from "react";
-import { ResponsiveLine, Serie } from "@nivo/line";
-import { makeDatum } from "lib";
-import { PlaceholderChart } from "./placeholderChart";
-import { SummaryChartProps } from "@types";
-import { theme } from "../../styles/chartsTheme";
 import { TRENDS_AND_COLORS_MAP } from "const";
-// source: JHU & CSSE
+import { makeDatum } from "lib";
+import React from "react";
 
-export const SummaryChart = ({ periods, multiplyer }: SummaryChartProps) => {
+import { ResponsiveLine, Serie } from "@nivo/line";
+import { Period } from "@types";
+
+import { theme } from "../../styles/chartsTheme";
+import { PlaceholderChart } from "./placeholderChart";
+
+export const SummaryChart = ({
+  periods,
+  multiplyer,
+}: {
+  periods: Period[];
+  multiplyer: number;
+}) => {
   const chartData: Serie[] = [];
   const colors: string[] = [];
   TRENDS_AND_COLORS_MAP.forEach((element, index) => {

@@ -57,7 +57,7 @@ module.exports = {
     },
     "gatsby-plugin-typescript",
     "gatsby-plugin-tslint",
-    "gatsby-plugin-offline",
+    // "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-antd",
       options: {

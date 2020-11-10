@@ -1,5 +1,5 @@
-import { ReactChildren, ReactChild } from "react";
-import { LatLngTuple, LatLngBoundsLiteral } from "leaflet";
+import { LatLngBoundsLiteral, LatLngTuple } from "leaflet";
+import { ReactChild, ReactChildren } from "react";
 
 export interface Countries {
   countries: Country[];
@@ -40,32 +40,7 @@ export interface Periods {
 }
 
 export interface Period {
-  endDate: string;
-  totalDeaths: number;
-  newDeaths: number;
-  growthRate: number;
-  totalCases: number;
-  newCases: number;
-  status: OutbreakStatus;
-}
-
-export interface PeriodSummary {
-  endDate: string;
-  none: number;
-  small: number;
-  losing: number;
-  flattening: number;
-  crushing: number;
-  winning: number;
-  won: number;
-  pandemicFree: number;
-  underControl: number;
-}
-
-export interface SummaryChartProps {
-  periods: PeriodSummary[];
-  multiplyer: number;
-  yValue?: string;
+  [key: string]: number | string | OutbreakStatus;
 }
 
 export enum OutbreakStatus {
@@ -104,12 +79,12 @@ export interface SummaryTable {
   order?: boolean;
   multiplyer?: number;
 }
-
 export interface DataChartProps {
-  countries: Country[];
+  countries?: Country[];
+  periods?: Period[];
   selectedCountries?: Selected[];
-  yValue: string;
   isStartAtDeaths: boolean;
+  yValue: string;
   multiplyer: number;
 }
 
@@ -146,11 +121,15 @@ export interface MissingCountries {
   shortName: string;
 }
 
+export type MenuSelectfunction = (info: {
+  selectedKeys?: React.Key[] | React.Key;
+}) => void;
+
 export type ContextProps = {
   choice: { key: string };
   visible: { isVisible: boolean };
   width: { multiplyer: number };
-  handleSelect: (key: string) => void;
+  handleSelect: MenuSelectfunction;
   onClose: () => void;
   showDrawer: () => void;
 };
@@ -191,20 +170,14 @@ export interface Props {
   title: string;
 }
 
-export interface SiteQuery {
-  site: {
-    siteMetadata: {
-      title: string;
-      description: string;
-      author: string;
-    };
-  };
-}
-
 export interface RenderProps {
-  label: string;
-  closable: boolean | undefined;
-  onClose: (e: MouseEvent) => void;
+  label: string | number;
+  value: string | number;
+  disabled: boolean;
+  onClose: (
+    event?: React.MouseEvent<HTMLElement, MouseEvent> | undefined
+  ) => void;
+  closable?: boolean;
 }
 
 export type ConstructedColumn = {
@@ -243,3 +216,10 @@ export interface Prepared {
 export interface TableState {
   table: "growthRate" | "totalDeaths" | "newDeaths" | "totalCases" | "newCases";
 }
+
+export type SideDrawerColumn = {
+  title: string;
+  dataIndex: string;
+  render?: (text: OutbreakStatus, row: unknown, index: number) => JSX.Element;
+  key: string;
+};

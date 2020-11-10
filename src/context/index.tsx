@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useImmer } from "use-immer";
-import { ContextProps, AuxProps } from "../@types";
+
+import { AuxProps, ContextProps } from "../@types";
 
 export const myContext = React.createContext<Partial<ContextProps>>({});
 
@@ -17,8 +18,6 @@ const Provider = ({ children }: AuxProps) => {
   // calculate multiplyer, based on global window width
   const isBrowser = typeof window !== "undefined";
   useEffect(() => {
-    if (!isBrowser) return false;
-
     const handleResize = () => {
       const windowWidth = isBrowser ? window.innerWidth : 0;
       let multiplyer = 1;
@@ -49,7 +48,7 @@ const Provider = ({ children }: AuxProps) => {
         width,
         handleSelect: (key) => {
           setChoice((draft) => {
-            draft.key = key;
+            draft.key = key.toString();
           });
         },
         onClose: () =>

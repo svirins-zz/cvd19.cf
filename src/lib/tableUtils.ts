@@ -1,14 +1,14 @@
-import { TableInstance } from "react-table";
+import { ColorTag } from "components/data";
+import { Column, TableInstance } from "react-table";
+
 import {
-  TableType,
+  ConstructedColumn,
   Country,
   Period,
   Prepared,
   PreparedExt,
-  ConstructedColumn,
-  Column,
+  TableType,
 } from "@types";
-import { ColorTag } from "components/data";
 
 const alphabeticalSorter = (
   a: Prepared | PreparedExt,
@@ -29,8 +29,8 @@ export const constructColumns = (
   multiplyer: number,
   field: TableType,
   periodNames: string[]
-): ConstructedColumn[] => {
-  const head = [
+) => {
+  const head: ConstructedColumn[] = [
     {
       Header: "Country",
       accessor: "name",
@@ -45,30 +45,30 @@ export const constructColumns = (
       {
         Header: periodNames[4],
         accessor: "periods[4]",
-        Cell: ({ value }: { value: Period & "" }) => value[field],
+        Cell: ({ value }: { value: Period & "" }) => Number(value[field]),
       },
       {
         Header: periodNames[3],
         accessor: "periods[3]",
-        Cell: ({ value }: { value: Period & "" }) => value[field],
+        Cell: ({ value }: { value: Period & "" }) => Number(value[field]),
       },
     ];
   }
-  const tail = [
+  const tail: ConstructedColumn[] = [
     {
       Header: periodNames[2],
       accessor: "periods[2]",
-      Cell: ({ value }: { value: Period & "" }) => value[field],
+      Cell: ({ value }: { value: Period & "" }) => Number(value[field]),
     },
     {
       Header: periodNames[1],
       accessor: "periods[1]",
-      Cell: ({ value }: { value: Period & "" }) => value[field],
+      Cell: ({ value }: { value: Period & "" }) => Number(value[field]),
     },
     {
       Header: periodNames[0],
       accessor: "periods[0]",
-      Cell: ({ value }: { value: Period & "" }) => value[field],
+      Cell: ({ value }: { value: Period & "" }) => Number(value[field]),
     },
   ];
   return [...head, ...middle, ...tail];
@@ -80,10 +80,7 @@ export const constructData = (
   variation: "tight" | "wide",
   order: boolean,
   multiplyer: number
-): {
-  columnData: Column[];
-  preparedData: Prepared[] | PreparedExt[];
-} => {
+) => {
   const preparedData = table.data.map((e, i) => {
     if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
       return {
@@ -200,6 +197,6 @@ export const constructData = (
       },
     ];
   }
-  const columnData = [...head, ...tail];
+  const columnData: Column[] = [...head, ...tail];
   return { columnData, preparedData };
 };

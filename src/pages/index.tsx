@@ -1,13 +1,14 @@
-import React from "react";
-import { Typography, Row, Col, Divider } from "antd";
-import { Page, SEO } from "components/layout";
-import { myContext } from "context";
-import { PERIOD_LENGTH } from "const";
-import { OutbreakStatus, Countries } from "../@types";
-import { Table } from "components/tables/table";
-import { TodayStats } from "components/data";
-import { sumPeriodData, calcStats, calcCountries, calcTrends } from "lib";
+import { Col, Divider, Row, Typography } from "antd";
 import { AreaChart, SummaryChart } from "components/charts";
+import { TodayStats } from "components/data";
+import { Page, SEO } from "components/layout";
+import { Table } from "components/tables/table";
+import { PERIOD_LENGTH } from "const";
+import { myContext } from "context";
+import { calcCountries, calcStats, calcTrends, sumPeriodData } from "lib";
+import React from "react";
+
+import { Countries, OutbreakStatus } from "../@types";
 
 const { Title, Text } = Typography;
 
@@ -24,7 +25,7 @@ const Index = ({
   const globalData = sumPeriodData(countries, PERIOD_LENGTH);
   const stats = {
     ...calcStats(data as Countries),
-    trend: globalData[0].periods[0].status,
+    trend: globalData[0].periods[0].status as OutbreakStatus,
   };
   const trends = calcTrends(countries, PERIOD_LENGTH);
   const loseTableData = countries.filter(

@@ -1,8 +1,10 @@
+import { Table as AntTable } from "antd";
+import { constructColumns, constructData, getPeriodNames } from "lib";
 import React, { useMemo } from "react";
 import { useTable } from "react-table";
-import { Table as AntTable } from "antd";
+
 import { SummaryTable } from "@types";
-import { getPeriodNames, constructData, constructColumns } from "lib";
+
 export const Table = ({
   data,
   periodLength,
@@ -21,7 +23,6 @@ export const Table = ({
     () => constructColumns(variation, multiplyer, kind, periodNames),
     [kind, periodNames, variation, multiplyer]
   );
-
   const table = useTable({ columns, data });
   const { columnData, preparedData } = constructData(
     table,
