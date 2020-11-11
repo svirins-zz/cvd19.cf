@@ -1,8 +1,9 @@
 import "leaflet/dist/leaflet.css";
-import { DivIcon, divIcon } from "leaflet";
-import { getClassNameByCase, commafy } from "lib";
 
-export const DivIconMarker = (confirmed: number): DivIcon => {
+import { divIcon } from "leaflet";
+import { commafy, getClassNameByCase } from "lib";
+
+export const DivIconMarker = (confirmed: number) => {
   return divIcon({
     html: `<p class="markerText">${commafy(confirmed)}</p>`,
     className: `${getClassNameByCase(confirmed)} icon-marker`,

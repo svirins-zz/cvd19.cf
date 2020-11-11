@@ -17,7 +17,7 @@ export const CountryFilter = ({
     const { label, closable, onClose } = props;
     return (
       <Tag
-        key={label}
+        key={label!.toString()}
         color={selected.find((country) => country.name === label)?.color}
         closable={closable}
         onClose={(e) => onClose(e)}

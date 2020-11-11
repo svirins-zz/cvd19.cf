@@ -37,7 +37,6 @@
     "react-ga": "^3.2.1",
     "react-helmet": "^6.1.0",
     "react-leaflet": "^3.0.2",
-    "react-leaflet-div-icon": "^1.1.0",
     "react-table": "^7.6.1",
     "use-immer": "^0.4.1"
   },

@@ -10,7 +10,7 @@ import {
   MapContainer,
   Marker,
   Popup,
-  TileLayer,
+  TileLayer
 } from "react-leaflet";
 
 import { Countries } from "@types";
@@ -29,7 +29,7 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
     return (
       <Marker
         key={index}
-        position={feature.geometry.coordinates.reverse()}
+        position={feature.geometry.coordinates}
         icon={DivIconMarker(confirmed)}
         eventHandlers={{
           click: () => {
@@ -62,25 +62,25 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
           zoom={2.9}
           scrollWheelZoom={false}
           minZoom={2.5}
-          maxzoom={14}
+          maxZoom={14}
         >
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked={true} name="Stadia.Dark">
               <TileLayer
                 attribution={ATTRIBUTION_STRING}
-                url={process.env.GATSBY_STADIA_DARK_STATIC_TILES_ENDPOINT}
+                url={process.env.GATSBY_STADIA_DARK_STATIC_TILES_ENDPOINT!}
               />
             </LayersControl.BaseLayer>
             <LayersControl.BaseLayer name="Stadia.Smooth">
               <TileLayer
                 attribution={ATTRIBUTION_STRING}
-                url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT}
+                url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT!}
               />
             </LayersControl.BaseLayer>
             <LayersControl.BaseLayer name="OpenStreetMap">
               <TileLayer
                 attribution={ATTRIBUTION_STRING}
-                url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT}
+                url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT!}
               />
             </LayersControl.BaseLayer>
           </LayersControl>

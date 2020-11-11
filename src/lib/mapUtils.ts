@@ -1,11 +1,13 @@
-import { Properties, Feature, Geometry, CodeFlagGeo, Countries } from "@types";
-import { getCode } from "country-list";
+import vessel from "assets/vessel.png";
 import {
-  MISSING_COUNTRIES,
   ALL_COUNTRIES_DATA,
+  MISSING_COUNTRIES,
   VESSELS_CURRENT_COORDS,
 } from "const";
-import vessel from "assets/vessel.png";
+import { getCode } from "country-list";
+import { LatLngExpression } from "leaflet";
+
+import { CodeFlagGeo, Countries, Feature, Geometry, Properties } from "@types";
 
 /**
  * add missing countries names
@@ -25,12 +27,12 @@ const getMissingCode = (countryName: string): string => {
  * @param {string} name
  * @return {*}
  */
-const getCoords = (code: string, name: string) => {
+const getCoords = (code: string, name: string): LatLngExpression => {
   if (name === "MS Zaandam" || name === "Diamond Princess") {
-    return VESSELS_CURRENT_COORDS[name];
+    return VESSELS_CURRENT_COORDS[name] as LatLngExpression;
   }
   const element = ALL_COUNTRIES_DATA.find((e) => e.country_code === code);
-  return [Number(element!.latlng[1]), Number(element!.latlng[0])];
+  return [Number(element!.latlng[0]), Number(element!.latlng[1])];
 };
 /**
  * get country properties

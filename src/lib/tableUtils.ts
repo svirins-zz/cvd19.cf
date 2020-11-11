@@ -1,19 +1,16 @@
 import { ColorTag } from "components/data";
-import { Column, TableInstance } from "react-table";
+import { TableInstance } from "react-table";
 
 import {
+  Column,
   ConstructedColumn,
   Country,
   Period,
-  Prepared,
-  PreparedExt,
+  Sorter,
   TableType,
 } from "@types";
 
-const alphabeticalSorter = (
-  a: Prepared | PreparedExt,
-  b: Prepared | PreparedExt
-) => {
+const alphabeticalSorter: Sorter = (a, b) => {
   if (a.name.toLowerCase() < b.name.toLowerCase()) {
     return -1;
   }
@@ -74,7 +71,8 @@ export const constructColumns = (
   return [...head, ...middle, ...tail];
 };
 // TODO: refactor to a shorter version. Must follow DRY!
-export const constructData = (
+export const constructData = 
+(
   table: TableInstance<Country>,
   field: TableType,
   variation: "tight" | "wide",
@@ -110,7 +108,7 @@ export const constructData = (
     };
   });
 
-  const head = [
+  const head: Column[] = [
     {
       title: table.columns[0].Header,
       dataIndex: table.columns[0].id,
@@ -118,32 +116,29 @@ export const constructData = (
     },
   ];
 
-  let tail = [];
+  let tail: Column[] = [];
   if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
     tail = [
       {
         title: table.columns[1].Header,
         dataIndex: "periods[2]",
         align: "center",
-        render: (text: number, record: Prepared) =>
-          ColorTag(text, record.rate2, "newDeaths"),
-        sorter: (a: Prepared, b: Prepared) => a["periods[2]"] - b["periods[2]"],
+        render: (text, record) => ColorTag(text, record.rate2, "newDeaths"),
+        sorter: (a, b) => a["periods[2]"] - b["periods[2]"],
       },
       {
         title: table.columns[2].Header,
         dataIndex: "periods[1]",
         align: "center",
-        render: (text: number, record: Prepared) =>
-          ColorTag(text, record.rate1, "newDeaths"),
-        sorter: (a: Prepared, b: Prepared) => a["periods[1]"] - b["periods[1]"],
+        render: (text, record) => ColorTag(text, record.rate1, "newDeaths"),
+        sorter: (a, b) => a["periods[1]"] - b["periods[1]"],
       },
       {
         title: table.columns[3].Header,
         dataIndex: "periods[0]",
         align: "center",
-        render: (text: number, record: Prepared) =>
-          ColorTag(text, record.rate0, "newDeaths"),
-        sorter: (a: Prepared, b: Prepared) => b["periods[0]"] - a["periods[0]"],
+        render: (text, record) => ColorTag(text, record.rate0, "newDeaths"),
+        sorter: (a, b) => b["periods[0]"] - a["periods[0]"],
         defaultSortOrder: order ? "ascend" : "descend",
       },
     ];
@@ -153,46 +148,36 @@ export const constructData = (
         title: table.columns[1].Header,
         dataIndex: "periods[4]",
         align: "center",
-        render: (text: number, record: PreparedExt) =>
-          ColorTag(text, record.rate4, field),
-        sorter: (a: PreparedExt, b: PreparedExt) =>
-          a["periods[4]"] - b["periods[4]"],
+        render: (text, record) => ColorTag(text, record.rate4!, field),
+        sorter: (a, b) => a["periods[4]"]! - b["periods[4]"]!,
       },
       {
         title: table.columns[2].Header,
         dataIndex: "periods[3]",
         align: "center",
-        render: (text: number, record: PreparedExt) =>
-          ColorTag(text, record.rate3, field),
-        sorter: (a: PreparedExt, b: PreparedExt) =>
-          a["periods[3]"] - b["periods[3]"],
+        render: (text, record) => ColorTag(text, record.rate3!, field),
+        sorter: (a, b) => a["periods[3]"]! - b["periods[3]"]!,
       },
       {
         title: table.columns[3].Header,
         dataIndex: "periods[2]",
         align: "center",
-        render: (text: number, record: PreparedExt) =>
-          ColorTag(text, record.rate2, field),
-        sorter: (a: PreparedExt, b: PreparedExt) =>
-          a["periods[2]"] - b["periods[2]"],
+        render: (text, record) => ColorTag(text, record.rate2, field),
+        sorter: (a, b) => a["periods[2]"] - b["periods[2]"],
       },
       {
         title: table.columns[4].Header,
         dataIndex: "periods[1]",
         align: "center",
-        render: (text: number, record: PreparedExt) =>
-          ColorTag(text, record.rate1, field),
-        sorter: (a: PreparedExt, b: PreparedExt) =>
-          a["periods[1]"] - b["periods[1]"],
+        render: (text, record) => ColorTag(text, record.rate1, field),
+        sorter: (a, b) => a["periods[1]"] - b["periods[1]"],
       },
       {
         title: table.columns[5].Header,
         dataIndex: "periods[0]",
         align: "center",
-        render: (text: number, record: PreparedExt) =>
-          ColorTag(text, record.rate0, field),
-        sorter: (a: PreparedExt, b: PreparedExt) =>
-          b["periods[0]"] - a["periods[0]"],
+        render: (text, record) => ColorTag(text, record.rate0, field),
+        sorter: (a, b) => b["periods[0]"] - a["periods[0]"],
         defaultSortOrder: order ? "ascend" : "descend",
       },
     ];

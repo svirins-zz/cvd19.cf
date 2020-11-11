@@ -1,6 +1,6 @@
-import React from "react";
-import placeholder from "assets/chart_placeholder.svg";
 import { Col } from "antd";
+import placeholder from "assets/chart_placeholder.svg";
+import React from "react";
 
 export const PlaceholderChart = () => (
   <Col span={24} className="centered">

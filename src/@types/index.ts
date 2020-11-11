@@ -1,4 +1,4 @@
-import { LatLngBoundsLiteral, LatLngTuple } from "leaflet";
+import { LatLngExpression } from "leaflet";
 import { ReactChild, ReactChildren } from "react";
 
 export interface Countries {
@@ -16,7 +16,7 @@ export interface Properties {
   name: string;
   code: string;
   flag: string;
-  bounds?: LatLngBoundsLiteral & { type: "Point" };
+  bounds?: LatLngExpression & { type: "Point" };
   confirmed: number;
   deaths: number;
   recovered: number;
@@ -139,7 +139,7 @@ export interface AuxProps {
 }
 export interface Geometry {
   type: "Point";
-  coordinates: LatLngTuple;
+  coordinates: LatLngExpression;
 }
 
 export type Feature = {
@@ -171,8 +171,8 @@ export interface Props {
 }
 
 export interface RenderProps {
-  label: string | number;
-  value: string | number;
+  label: string | number | React.ReactNode;
+  value: string | number | React.ReactNode;
   disabled: boolean;
   onClose: (
     event?: React.MouseEvent<HTMLElement, MouseEvent> | undefined
@@ -182,29 +182,27 @@ export interface RenderProps {
 
 export type ConstructedColumn = {
   Header: string;
-  accessor: string;
+  accessor: string | "periodsWithDeaths" | "periods" | "results" | "name";
   Cell: ({ value }: { value: Period & "" }) => number | undefined;
 };
 
 export interface Column {
-  title: string;
+  title?: string | number | {};
   dataIndex: string;
   align?: string;
-  render?: () => JSX.Element;
-  sorter?: () => boolean;
-  defaultSortOrder?: "descend" | "ascend" | "null" | "undefined";
+  render?: Render;
+  sorter?: Sorter;
+  defaultSortOrder?: "descend" | "ascend" | null;
   sortDirections?: [string, string];
-}
-export interface PreparedExt extends Prepared {
-  "periods[4]": number;
-  rate4: OutbreakStatus;
-  "periods[3]": number;
-  rate3: OutbreakStatus;
 }
 
 export interface Prepared {
   key: number;
   name: string;
+  "periods[4]"?: number;
+  rate4?: OutbreakStatus;
+  "periods[3]"?: number;
+  rate3?: OutbreakStatus;
   "periods[2]": number;
   rate2: OutbreakStatus;
   "periods[1]": number;
@@ -223,3 +221,7 @@ export type SideDrawerColumn = {
   render?: (text: OutbreakStatus, row: unknown, index: number) => JSX.Element;
   key: string;
 };
+
+export type Sorter = (a: Prepared, b: Prepared) => number;
+
+export type Render = (text: number, record: Prepared) => JSX.Element;

@@ -1,6 +1,7 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React, { MetaHTMLAttributes } from "react";
 import Helmet from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
+
 import { Props } from "@types";
 
 export const SEO = ({
