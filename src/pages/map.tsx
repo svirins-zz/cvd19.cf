@@ -10,12 +10,12 @@ import {
   MapContainer,
   Marker,
   Popup,
-  TileLayer
+  TileLayer,
 } from "react-leaflet";
 
 import { Countries } from "@types";
 
-import { DivIconMarker } from "../components/data";
+import { MarkerIcon } from "../components/data";
 
 const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
   // get build-time data
@@ -30,7 +30,7 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
       <Marker
         key={index}
         position={feature.geometry.coordinates}
-        icon={DivIconMarker(confirmed)}
+        icon={MarkerIcon(confirmed)}
         eventHandlers={{
           click: () => {
             // process fly to

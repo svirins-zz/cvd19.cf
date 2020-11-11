@@ -121,7 +121,7 @@ export interface MissingCountries {
   shortName: string;
 }
 
-export type MenuSelectfunction = (info: {
+type MenuSelectFunction = (info: {
   selectedKeys?: React.Key[] | React.Key;
 }) => void;
 
@@ -129,7 +129,7 @@ export type ContextProps = {
   choice: { key: string };
   visible: { isVisible: boolean };
   width: { multiplyer: number };
-  handleSelect: MenuSelectfunction;
+  handleSelect: MenuSelectFunction;
   onClose: () => void;
   showDrawer: () => void;
 };
@@ -225,3 +225,10 @@ export type SideDrawerColumn = {
 export type Sorter = (a: Prepared, b: Prepared) => number;
 
 export type Render = (text: number, record: Prepared) => JSX.Element;
+
+export type SvgMarker = {
+  radius: string;
+  stroke: string;
+  fill: string;
+  strokeWidth: string;
+}

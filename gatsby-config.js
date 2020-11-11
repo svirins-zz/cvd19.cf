@@ -4,8 +4,11 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: "Covid-19 stats and charts",
-    description: "v 0.4.1",
+    description: `This site aims to provide a simple tool to track global trends in
+    Covid-19 pandemic.`,
+    version: "0.4.1",
     author: "svirins",
+    siteUrl: "https://cvd19.cf",
     googleAnalyticsId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
     menuLinks: [
       {

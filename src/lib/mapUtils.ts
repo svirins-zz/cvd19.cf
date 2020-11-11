@@ -2,7 +2,8 @@ import vessel from "assets/vessel.png";
 import {
   ALL_COUNTRIES_DATA,
   MISSING_COUNTRIES,
-  VESSELS_CURRENT_COORDS,
+  SVG_MARKERS,
+  VESSELS_CURRENT_COORDS
 } from "const";
 import { getCode } from "country-list";
 import { LatLngExpression } from "leaflet";
@@ -61,23 +62,23 @@ export const getCountryExtData = (countryName: string): CodeFlagGeo => {
  * @param {number} totalCases
  * @return {*}
  */
-export const getClassNameByCase = (totalCases: number) => {
+export const getSvgMarkerDetails = (totalCases: number) => {
   if (totalCases < 99) {
-    return "icon-marker-small";
+    return SVG_MARKERS[0];
   }
   if (totalCases < 9999 && totalCases > 99) {
-    return "icon-marker-normal";
+    return SVG_MARKERS[1];
   }
   if (totalCases < 99999 && totalCases > 9999) {
-    return "icon-marker-large";
+    return SVG_MARKERS[2];
   }
   if (totalCases < 999999 && totalCases > 99999) {
-    return "icon-marker-extra-large";
+    return SVG_MARKERS[3];
   }
   if (totalCases > 999999) {
-    return "icon-marker-super-large";
+    return SVG_MARKERS[4];
   }
-  return "icon-marker-normal";
+  return SVG_MARKERS[1];
 };
 
 /**

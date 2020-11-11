@@ -192,10 +192,11 @@
   color: #f1f1f0;
 }
 
-.icon-marker-small {
+/* .icon-marker-small {
   width: 2.2em !important;
   height: 2.2em !important;
-  background-color: #ffccc7;
+  fill: #ffccc7;
+  stroke-width: 2px;
 }
 
 .icon-marker-normal {
@@ -220,7 +221,7 @@
   width: 5.4em !important;
   height: 5.4em !important;
   background-color: #5c0011;
-}
+} */
 
 .sider-box-shadow {
   box-shadow: 2px 0px 3px 0px #636363;

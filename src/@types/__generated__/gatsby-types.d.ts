@@ -1846,7 +1846,9 @@ enum SiteFieldsEnum {
   buildTime = 'buildTime',
   siteMetadata___title = 'siteMetadata.title',
   siteMetadata___description = 'siteMetadata.description',
+  siteMetadata___version = 'siteMetadata.version',
   siteMetadata___author = 'siteMetadata.author',
+  siteMetadata___siteUrl = 'siteMetadata.siteUrl',
   siteMetadata___googleAnalyticsId = 'siteMetadata.googleAnalyticsId',
   siteMetadata___menuLinks = 'siteMetadata.menuLinks',
   siteMetadata___menuLinks___name = 'siteMetadata.menuLinks.name',
@@ -2679,7 +2681,9 @@ type SitePluginSortInput = {
 type SiteSiteMetadata = {
   readonly title: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly version: Maybe<Scalars['String']>;
   readonly author: Maybe<Scalars['String']>;
+  readonly siteUrl: Maybe<Scalars['String']>;
   readonly googleAnalyticsId: Maybe<Scalars['String']>;
   readonly menuLinks: Maybe<ReadonlyArray<Maybe<SiteSiteMetadataMenuLinks>>>;
 };
@@ -2687,7 +2691,9 @@ type SiteSiteMetadata = {
 type SiteSiteMetadataFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
+  readonly version: Maybe<StringQueryOperatorInput>;
   readonly author: Maybe<StringQueryOperatorInput>;
+  readonly siteUrl: Maybe<StringQueryOperatorInput>;
   readonly googleAnalyticsId: Maybe<StringQueryOperatorInput>;
   readonly menuLinks: Maybe<SiteSiteMetadataMenuLinksFilterListInput>;
 };
@@ -2729,5 +2735,10 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type SiteQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SiteQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 }

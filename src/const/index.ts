@@ -1,10 +1,47 @@
-import { MissingCountries } from "../@types";
+import { MissingCountries, SvgMarker } from "../@types";
 
 export const X_ASIS_TICKS_AMOUNT: number = 25;
 export const EPIDEMIC_START: string = "2020/01/07";
 export const PERIOD_LENGTH: number = 5;
 
-export const VESSELS_CURRENT_COORDS  = {
+export const SVG_MARKERS: SvgMarker[] = [
+  {
+    radius: "30",
+    stroke: "#120338",
+    fill: "#ffccc7",
+    strokeWidth: "2px",
+  },
+
+  {
+    radius: "30",
+    stroke: "#120338",
+    fill: "#ff7875",
+    strokeWidth: "2px",
+  },
+
+  {
+    radius: "30",
+    stroke: "#120338",
+    fill: "#f5222d",
+    strokeWidth: "2px",
+  },
+
+  {
+    radius: "30",
+    stroke: "#120338",
+    fill: "#a8071a",
+    strokeWidth: "2px",
+  },
+
+  {
+    radius: "30",
+    stroke: "#120338",
+    fill: "#5c0011",
+    strokeWidth: "2px",
+  },
+];
+
+export const VESSELS_CURRENT_COORDS = {
   "MS Zaandam": [-3.51, 50.44],
   "Diamond Princess": [104.53, 1.7],
 };

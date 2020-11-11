@@ -1,4 +1,8 @@
-export { getCountryExtData, getFeatures, getClassNameByCase } from "./mapUtils";
+export {
+  getCountryExtData,
+  getFeatures,
+  getSvgMarkerDetails,
+} from "./mapUtils";
 export {
   getDaysAgo,
   getPeriodCount,
