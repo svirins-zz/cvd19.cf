@@ -2,7 +2,8 @@ import "leaflet/dist/leaflet.css";
 
 import { Page, SEO } from "components/layout";
 import { ATTRIBUTION_STRING } from "const";
-import { commafy, getFeatures } from "lib";
+import { DivIcon } from "leaflet";
+import { commafy, getFeatures, getMarkerDetails, isDomAvailable } from "lib";
 import React from "react";
 import {
   LayerGroup,
@@ -15,8 +16,6 @@ import {
 
 import { Countries } from "@types";
 
-import { MarkerIcon } from "../components/data";
-
 const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
   // get build-time data
   const data = pageContext.data;
@@ -24,13 +23,22 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
   // maker markers/popups layer
   const { features } = getFeatures(data as Countries);
   const countriesMarkers = features.map((feature, index) => {
+    if (!isDomAvailable()) {
+      return <p>No DOM - no Map</p>;
+    }
     const { name, flag, confirmed, deaths, recovered } = feature.properties;
-
+    // TODO: don't forget to cleanup after force markers work
+    getMarkerDetails(confirmed);
+    const icon = new DivIcon({
+      html: `<div class="icon-marker ${getMarkerDetails(confirmed)}">
+        <p className="markerText">${commafy(confirmed)}</p>
+      </div>`,
+    });
     return (
       <Marker
         key={index}
         position={feature.geometry.coordinates}
-        icon={MarkerIcon(confirmed)}
+        icon={icon}
         eventHandlers={{
           click: () => {
             // process fly to
@@ -60,9 +68,14 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
         <MapContainer
           center={[20, 10]}
           zoom={2.9}
-          scrollWheelZoom={false}
           minZoom={2.5}
           maxZoom={14}
+          attributionControl={true}
+          zoomControl={true}
+          doubleClickZoom={true}
+          scrollWheelZoom={true}
+          dragging={true}
+          easeLinearity={0.35}
         >
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked={true} name="Stadia.Dark">

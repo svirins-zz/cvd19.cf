@@ -1,7 +1,8 @@
 export {
   getCountryExtData,
   getFeatures,
-  getSvgMarkerDetails,
+  getMarkerDetails,
+  isDomAvailable,
 } from "./mapUtils";
 export {
   getDaysAgo,

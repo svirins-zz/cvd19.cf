@@ -2,8 +2,7 @@ import vessel from "assets/vessel.png";
 import {
   ALL_COUNTRIES_DATA,
   MISSING_COUNTRIES,
-  SVG_MARKERS,
-  VESSELS_CURRENT_COORDS
+  VESSELS_CURRENT_COORDS,
 } from "const";
 import { getCode } from "country-list";
 import { LatLngExpression } from "leaflet";
@@ -57,28 +56,28 @@ export const getCountryExtData = (countryName: string): CodeFlagGeo => {
 };
 
 /**
- * get marker size and color based on confirmed cases
+ * get marker class based on confirmed cases
  *
  * @param {number} totalCases
  * @return {*}
  */
-export const getSvgMarkerDetails = (totalCases: number) => {
+export const getMarkerDetails = (totalCases: number): string => {
   if (totalCases < 99) {
-    return SVG_MARKERS[0];
+    return "icon-marker-small";
   }
   if (totalCases < 9999 && totalCases > 99) {
-    return SVG_MARKERS[1];
+    return "icon-marker-normal";
   }
   if (totalCases < 99999 && totalCases > 9999) {
-    return SVG_MARKERS[2];
+    return "icon-marker-large";
   }
   if (totalCases < 999999 && totalCases > 99999) {
-    return SVG_MARKERS[3];
+    return "icon-marker-extra-large";
   }
   if (totalCases > 999999) {
-    return SVG_MARKERS[4];
+    return "icon-marker-super-large";
   }
-  return SVG_MARKERS[1];
+  return "icon-marker-normal";
 };
 
 /**
@@ -115,3 +114,17 @@ export const getFeatures = (data: Countries | undefined) => {
     type: "FeatureCollection",
   };
 };
+
+/**
+ * isDomAvailable
+ * @description Checks to see if the DOM is available by checking the existence of the window and document
+ * @see https://github.com/facebook/fbjs/blob/master/packages/fbjs/src/core/ExecutionEnvironment.js#L12
+ */
+
+export function isDomAvailable() {
+  return (
+    typeof window !== "undefined" &&
+    !!window.document &&
+    !!window.document.createElement
+  );
+}

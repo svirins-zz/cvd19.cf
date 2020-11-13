@@ -71,8 +71,7 @@ export const constructColumns = (
   return [...head, ...middle, ...tail];
 };
 // TODO: refactor to a shorter version. Must follow DRY!
-export const constructData = 
-(
+export const constructData = (
   table: TableInstance<Country>,
   field: TableType,
   variation: "tight" | "wide",

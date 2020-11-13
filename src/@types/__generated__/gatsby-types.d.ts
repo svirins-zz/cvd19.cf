@@ -24,6 +24,16 @@ type Scalars = {
 
 
 
+type BlurredOptions = {
+  /** Width of the generated low-res preview. Default is 20px */
+  readonly width: Maybe<Scalars['Int']>;
+  /**
+   * Force the output format for the low-res preview. Default is to use the same
+   * format as the input. You should rarely need to change this
+   */
+  readonly toFormat: Maybe<ImageFormat>;
+};
+
 type BooleanQueryOperatorInput = {
   readonly eq: Maybe<Scalars['Boolean']>;
   readonly ne: Maybe<Scalars['Boolean']>;
@@ -557,7 +567,7 @@ enum FileFieldsEnum {
   childImageSharp___sizes___originalName = 'childImageSharp.sizes.originalName',
   childImageSharp___sizes___presentationWidth = 'childImageSharp.sizes.presentationWidth',
   childImageSharp___sizes___presentationHeight = 'childImageSharp.sizes.presentationHeight',
-  childImageSharp___gatsbyImage___imageData = 'childImageSharp.gatsbyImage.imageData',
+  childImageSharp___gatsbyImageData = 'childImageSharp.gatsbyImageData',
   childImageSharp___original___width = 'childImageSharp.original.width',
   childImageSharp___original___height = 'childImageSharp.original.height',
   childImageSharp___original___src = 'childImageSharp.original.src',
@@ -784,6 +794,7 @@ enum ImageFit {
 
 enum ImageFormat {
   NO_CHANGE = '',
+  AUTO = '',
   JPG = 'jpg',
   PNG = 'png',
   WEBP = 'webp'
@@ -798,7 +809,7 @@ enum ImageLayout {
 enum ImagePlaceholder {
   DOMINANT_COLOR = 'dominantColor',
   TRACED_SVG = 'tracedSVG',
-  BASE64 = 'base64',
+  BLURRED = 'blurred',
   NONE = 'none'
 }
 
@@ -809,7 +820,7 @@ type ImageSharp = Node & {
   readonly fluid: Maybe<ImageSharpFluid>;
   /** @deprecated Sizes was deprecated in Gatsby v2. It's been renamed to "fluid" https://example.com/write-docs-and-fix-this-example-link */
   readonly sizes: Maybe<ImageSharpSizes>;
-  readonly gatsbyImage: Maybe<ImageSharpGatsbyImage>;
+  readonly gatsbyImageData: Scalars['JSON'];
   readonly original: Maybe<ImageSharpOriginal>;
   readonly resize: Maybe<ImageSharpResize>;
   readonly id: Scalars['ID'];
@@ -915,34 +926,24 @@ type ImageSharp_sizesArgs = {
 };
 
 
-type ImageSharp_gatsbyImageArgs = {
+type ImageSharp_gatsbyImageDataArgs = {
   layout?: Maybe<ImageLayout>;
   maxWidth: Maybe<Scalars['Int']>;
   maxHeight: Maybe<Scalars['Int']>;
   width: Maybe<Scalars['Int']>;
   height: Maybe<Scalars['Int']>;
-  placeholder: Maybe<ImagePlaceholder>;
+  placeholder?: Maybe<ImagePlaceholder>;
+  blurredOptions: Maybe<BlurredOptions>;
   tracedSVGOptions: Maybe<Potrace>;
-  webP?: Maybe<Scalars['Boolean']>;
+  formats?: Maybe<ReadonlyArray<Maybe<ImageFormat>>>;
   outputPixelDensities: Maybe<ReadonlyArray<Maybe<Scalars['Float']>>>;
   sizes?: Maybe<Scalars['String']>;
-  base64Width: Maybe<Scalars['Int']>;
-  grayscale?: Maybe<Scalars['Boolean']>;
-  jpegProgressive?: Maybe<Scalars['Boolean']>;
-  pngCompressionSpeed?: Maybe<Scalars['Int']>;
-  duotone: Maybe<DuotoneGradient>;
   quality: Maybe<Scalars['Int']>;
-  jpegQuality: Maybe<Scalars['Int']>;
-  pngQuality: Maybe<Scalars['Int']>;
-  webpQuality: Maybe<Scalars['Int']>;
-  toFormat?: Maybe<ImageFormat>;
-  toFormatBase64?: Maybe<ImageFormat>;
-  cropFocus?: Maybe<ImageCropFocus>;
-  fit?: Maybe<ImageFit>;
+  jpgOptions: Maybe<JPGOptions>;
+  pngOptions: Maybe<PNGOptions>;
+  webpOptions: Maybe<WebPOptions>;
+  transformOptions: Maybe<TransformOptions>;
   background?: Maybe<Scalars['String']>;
-  rotate?: Maybe<Scalars['Int']>;
-  trim?: Maybe<Scalars['Float']>;
-  srcSetBreakpoints?: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
 };
 
 
@@ -1040,7 +1041,7 @@ enum ImageSharpFieldsEnum {
   sizes___originalName = 'sizes.originalName',
   sizes___presentationWidth = 'sizes.presentationWidth',
   sizes___presentationHeight = 'sizes.presentationHeight',
-  gatsbyImage___imageData = 'gatsbyImage.imageData',
+  gatsbyImageData = 'gatsbyImageData',
   original___width = 'original.width',
   original___height = 'original.height',
   original___src = 'original.src',
@@ -1143,7 +1144,7 @@ type ImageSharpFilterInput = {
   readonly resolutions: Maybe<ImageSharpResolutionsFilterInput>;
   readonly fluid: Maybe<ImageSharpFluidFilterInput>;
   readonly sizes: Maybe<ImageSharpSizesFilterInput>;
-  readonly gatsbyImage: Maybe<ImageSharpGatsbyImageFilterInput>;
+  readonly gatsbyImageData: Maybe<JSONQueryOperatorInput>;
   readonly original: Maybe<ImageSharpOriginalFilterInput>;
   readonly resize: Maybe<ImageSharpResizeFilterInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
@@ -1206,14 +1207,6 @@ type ImageSharpFluidFilterInput = {
   readonly originalName: Maybe<StringQueryOperatorInput>;
   readonly presentationWidth: Maybe<IntQueryOperatorInput>;
   readonly presentationHeight: Maybe<IntQueryOperatorInput>;
-};
-
-type ImageSharpGatsbyImage = {
-  readonly imageData: Scalars['JSON'];
-};
-
-type ImageSharpGatsbyImageFilterInput = {
-  readonly imageData: Maybe<JSONQueryOperatorInput>;
 };
 
 type ImageSharpGroupConnection = {
@@ -1349,6 +1342,11 @@ type IntQueryOperatorInput = {
   readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
 };
 
+type JPGOptions = {
+  readonly quality: Maybe<Scalars['Int']>;
+  readonly progressive: Maybe<Scalars['Boolean']>;
+};
+
 
 type JSONQueryOperatorInput = {
   readonly eq: Maybe<Scalars['JSON']>;
@@ -1386,6 +1384,11 @@ type PageInfo = {
   readonly pageCount: Scalars['Int'];
   readonly perPage: Maybe<Scalars['Int']>;
   readonly totalCount: Scalars['Int'];
+};
+
+type PNGOptions = {
+  readonly quality: Maybe<Scalars['Int']>;
+  readonly compressionSpeed: Maybe<Scalars['Int']>;
 };
 
 type Potrace = {
@@ -1580,7 +1583,7 @@ type Query_imageSharpArgs = {
   resolutions: Maybe<ImageSharpResolutionsFilterInput>;
   fluid: Maybe<ImageSharpFluidFilterInput>;
   sizes: Maybe<ImageSharpSizesFilterInput>;
-  gatsbyImage: Maybe<ImageSharpGatsbyImageFilterInput>;
+  gatsbyImageData: Maybe<JSONQueryOperatorInput>;
   original: Maybe<ImageSharpOriginalFilterInput>;
   resize: Maybe<ImageSharpResizeFilterInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -2729,6 +2732,19 @@ type StringQueryOperatorInput = {
   readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly regex: Maybe<Scalars['String']>;
   readonly glob: Maybe<Scalars['String']>;
+};
+
+type TransformOptions = {
+  readonly grayscale: Maybe<Scalars['Boolean']>;
+  readonly duotone: Maybe<DuotoneGradient>;
+  readonly rotate: Maybe<Scalars['Int']>;
+  readonly trim: Maybe<Scalars['Float']>;
+  readonly cropFocus: Maybe<ImageCropFocus>;
+  readonly fit: Maybe<ImageFit>;
+};
+
+type WebPOptions = {
+  readonly quality: Maybe<Scalars['Int']>;
 };
 
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;

@@ -225,10 +225,3 @@ export type SideDrawerColumn = {
 export type Sorter = (a: Prepared, b: Prepared) => number;
 
 export type Render = (text: number, record: Prepared) => JSX.Element;
-
-export type SvgMarker = {
-  radius: string;
-  stroke: string;
-  fill: string;
-  strokeWidth: string;
-}

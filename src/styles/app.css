@@ -162,6 +162,7 @@
   font-size: 1.1em;
   font-weight: bold;
   border-radius: 100%;
+  border: 2px solid #3f0202;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
 }
 
@@ -192,7 +193,7 @@
   color: #f1f1f0;
 }
 
-/* .icon-marker-small {
+.icon-marker-small {
   width: 2.2em !important;
   height: 2.2em !important;
   fill: #ffccc7;
@@ -221,7 +222,7 @@
   width: 5.4em !important;
   height: 5.4em !important;
   background-color: #5c0011;
-} */
+}
 
 .sider-box-shadow {
   box-shadow: 2px 0px 3px 0px #636363;
@@ -234,3 +235,9 @@ h1, h2, h3, h4, h5 ,h6 {
 .no-border {
   border-width: 0;
 }
+
+.leaflet-div-icon {
+  background: none !important;
+  border: none !important;
+}
+
