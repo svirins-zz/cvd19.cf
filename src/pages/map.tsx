@@ -78,7 +78,7 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
           easeLinearity={0.35}
         >
           <LayersControl position="topright">
-            <LayersControl.BaseLayer checked={true} name="Stadia.Dark">
+            <LayersControl.BaseLayer name="Stadia.Dark">
               <TileLayer
                 attribution={ATTRIBUTION_STRING}
                 url={process.env.GATSBY_STADIA_DARK_STATIC_TILES_ENDPOINT!}
@@ -90,7 +90,7 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
                 url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT!}
               />
             </LayersControl.BaseLayer>
-            <LayersControl.BaseLayer name="OpenStreetMap">
+            <LayersControl.BaseLayer checked={true} name="OpenStreetMap">
               <TileLayer
                 attribution={ATTRIBUTION_STRING}
                 url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT!}
