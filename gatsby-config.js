@@ -42,6 +42,7 @@ module.exports = {
     "gatsby-plugin-react-leaflet",
     "gatsby-plugin-sharp",
     "gatsby-plugin-resolve-src",
+    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-typegen",
       options: {
@@ -98,6 +99,21 @@ module.exports = {
       options: {
         trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
         anonymize: true,
+      },
+    },    
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        sitemap: 'https://cvd19.cf/sitemap.xml',
+        resolveEnv: () => process.env.GATSBY_ENV,
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }]
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }]
+          }
+        },
       },
     },
   ],
