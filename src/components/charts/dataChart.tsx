@@ -45,7 +45,7 @@ export const DataChart = ({
       curve="monotoneX"
       yScale={{ type: "linear", min: "auto", max: "auto" }}
       data={chartData}
-      margin={{ top: 60, right: 10, bottom: 60, left: 55 }}
+      margin={{ top: 55, right: 55, bottom: 55, left: 55 }}
       useMesh={true}
       legends={[
         {

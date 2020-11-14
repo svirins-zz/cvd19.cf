@@ -1852,7 +1852,6 @@ enum SiteFieldsEnum {
   siteMetadata___version = 'siteMetadata.version',
   siteMetadata___author = 'siteMetadata.author',
   siteMetadata___siteUrl = 'siteMetadata.siteUrl',
-  siteMetadata___googleAnalyticsId = 'siteMetadata.googleAnalyticsId',
   siteMetadata___menuLinks = 'siteMetadata.menuLinks',
   siteMetadata___menuLinks___name = 'siteMetadata.menuLinks.name',
   siteMetadata___menuLinks___link = 'siteMetadata.menuLinks.link',
@@ -2205,6 +2204,8 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___stripMetadata = 'pluginCreator.pluginOptions.stripMetadata',
   pluginCreator___pluginOptions___defaultQuality = 'pluginCreator.pluginOptions.defaultQuality',
   pluginCreator___pluginOptions___failOnError = 'pluginCreator.pluginOptions.failOnError',
+  pluginCreator___pluginOptions___output = 'pluginCreator.pluginOptions.output',
+  pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
   pluginCreator___pluginOptions___outputPath = 'pluginCreator.pluginOptions.outputPath',
   pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
   pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
@@ -2220,11 +2221,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___allExtensions = 'pluginCreator.pluginOptions.allExtensions',
   pluginCreator___pluginOptions___style = 'pluginCreator.pluginOptions.style',
   pluginCreator___pluginOptions___lessOptions___javascriptEnabled = 'pluginCreator.pluginOptions.lessOptions.javascriptEnabled',
-  pluginCreator___pluginOptions___trackingId = 'pluginCreator.pluginOptions.trackingId',
-  pluginCreator___pluginOptions___anonymize = 'pluginCreator.pluginOptions.anonymize',
-  pluginCreator___pluginOptions___head = 'pluginCreator.pluginOptions.head',
-  pluginCreator___pluginOptions___respectDNT = 'pluginCreator.pluginOptions.respectDNT',
-  pluginCreator___pluginOptions___pageTransitionDelay = 'pluginCreator.pluginOptions.pageTransitionDelay',
+  pluginCreator___pluginOptions___sitemap = 'pluginCreator.pluginOptions.sitemap',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
@@ -2419,6 +2416,8 @@ enum SitePluginFieldsEnum {
   pluginOptions___stripMetadata = 'pluginOptions.stripMetadata',
   pluginOptions___defaultQuality = 'pluginOptions.defaultQuality',
   pluginOptions___failOnError = 'pluginOptions.failOnError',
+  pluginOptions___output = 'pluginOptions.output',
+  pluginOptions___createLinkInHead = 'pluginOptions.createLinkInHead',
   pluginOptions___outputPath = 'pluginOptions.outputPath',
   pluginOptions___short_name = 'pluginOptions.short_name',
   pluginOptions___start_url = 'pluginOptions.start_url',
@@ -2450,11 +2449,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___lessOptions___modifyVars___icon_color = 'pluginOptions.lessOptions.modifyVars.icon_color',
   pluginOptions___lessOptions___modifyVars___menu_icon_size = 'pluginOptions.lessOptions.modifyVars.menu_icon_size',
   pluginOptions___lessOptions___javascriptEnabled = 'pluginOptions.lessOptions.javascriptEnabled',
-  pluginOptions___trackingId = 'pluginOptions.trackingId',
-  pluginOptions___anonymize = 'pluginOptions.anonymize',
-  pluginOptions___head = 'pluginOptions.head',
-  pluginOptions___respectDNT = 'pluginOptions.respectDNT',
-  pluginOptions___pageTransitionDelay = 'pluginOptions.pageTransitionDelay',
+  pluginOptions___sitemap = 'pluginOptions.sitemap',
+  pluginOptions___env___development___policy = 'pluginOptions.env.development.policy',
+  pluginOptions___env___production___policy = 'pluginOptions.env.production.policy',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -2575,6 +2572,8 @@ type SitePluginPluginOptions = {
   readonly stripMetadata: Maybe<Scalars['Boolean']>;
   readonly defaultQuality: Maybe<Scalars['Int']>;
   readonly failOnError: Maybe<Scalars['Boolean']>;
+  readonly output: Maybe<Scalars['String']>;
+  readonly createLinkInHead: Maybe<Scalars['Boolean']>;
   readonly outputPath: Maybe<Scalars['String']>;
   readonly short_name: Maybe<Scalars['String']>;
   readonly start_url: Maybe<Scalars['String']>;
@@ -2590,12 +2589,63 @@ type SitePluginPluginOptions = {
   readonly allExtensions: Maybe<Scalars['Boolean']>;
   readonly style: Maybe<Scalars['Boolean']>;
   readonly lessOptions: Maybe<SitePluginPluginOptionsLessOptions>;
-  readonly trackingId: Maybe<Scalars['String']>;
-  readonly anonymize: Maybe<Scalars['Boolean']>;
-  readonly head: Maybe<Scalars['Boolean']>;
-  readonly respectDNT: Maybe<Scalars['Boolean']>;
-  readonly pageTransitionDelay: Maybe<Scalars['Int']>;
+  readonly sitemap: Maybe<Scalars['String']>;
+  readonly env: Maybe<SitePluginPluginOptionsEnv>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
+};
+
+type SitePluginPluginOptionsEnv = {
+  readonly development: Maybe<SitePluginPluginOptionsEnvDevelopment>;
+  readonly production: Maybe<SitePluginPluginOptionsEnvProduction>;
+};
+
+type SitePluginPluginOptionsEnvDevelopment = {
+  readonly policy: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsEnvDevelopmentPolicy>>>;
+};
+
+type SitePluginPluginOptionsEnvDevelopmentFilterInput = {
+  readonly policy: Maybe<SitePluginPluginOptionsEnvDevelopmentPolicyFilterListInput>;
+};
+
+type SitePluginPluginOptionsEnvDevelopmentPolicy = {
+  readonly userAgent: Maybe<Scalars['String']>;
+  readonly disallow: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+};
+
+type SitePluginPluginOptionsEnvDevelopmentPolicyFilterInput = {
+  readonly userAgent: Maybe<StringQueryOperatorInput>;
+  readonly disallow: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsEnvDevelopmentPolicyFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPluginOptionsEnvDevelopmentPolicyFilterInput>;
+};
+
+type SitePluginPluginOptionsEnvFilterInput = {
+  readonly development: Maybe<SitePluginPluginOptionsEnvDevelopmentFilterInput>;
+  readonly production: Maybe<SitePluginPluginOptionsEnvProductionFilterInput>;
+};
+
+type SitePluginPluginOptionsEnvProduction = {
+  readonly policy: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsEnvProductionPolicy>>>;
+};
+
+type SitePluginPluginOptionsEnvProductionFilterInput = {
+  readonly policy: Maybe<SitePluginPluginOptionsEnvProductionPolicyFilterListInput>;
+};
+
+type SitePluginPluginOptionsEnvProductionPolicy = {
+  readonly userAgent: Maybe<Scalars['String']>;
+  readonly allow: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsEnvProductionPolicyFilterInput = {
+  readonly userAgent: Maybe<StringQueryOperatorInput>;
+  readonly allow: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsEnvProductionPolicyFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPluginOptionsEnvProductionPolicyFilterInput>;
 };
 
 type SitePluginPluginOptionsFilterInput = {
@@ -2605,6 +2655,8 @@ type SitePluginPluginOptionsFilterInput = {
   readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
   readonly defaultQuality: Maybe<IntQueryOperatorInput>;
   readonly failOnError: Maybe<BooleanQueryOperatorInput>;
+  readonly output: Maybe<StringQueryOperatorInput>;
+  readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
   readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly short_name: Maybe<StringQueryOperatorInput>;
   readonly start_url: Maybe<StringQueryOperatorInput>;
@@ -2620,11 +2672,8 @@ type SitePluginPluginOptionsFilterInput = {
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
   readonly style: Maybe<BooleanQueryOperatorInput>;
   readonly lessOptions: Maybe<SitePluginPluginOptionsLessOptionsFilterInput>;
-  readonly trackingId: Maybe<StringQueryOperatorInput>;
-  readonly anonymize: Maybe<BooleanQueryOperatorInput>;
-  readonly head: Maybe<BooleanQueryOperatorInput>;
-  readonly respectDNT: Maybe<BooleanQueryOperatorInput>;
-  readonly pageTransitionDelay: Maybe<IntQueryOperatorInput>;
+  readonly sitemap: Maybe<StringQueryOperatorInput>;
+  readonly env: Maybe<SitePluginPluginOptionsEnvFilterInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
 };
 
@@ -2687,7 +2736,6 @@ type SiteSiteMetadata = {
   readonly version: Maybe<Scalars['String']>;
   readonly author: Maybe<Scalars['String']>;
   readonly siteUrl: Maybe<Scalars['String']>;
-  readonly googleAnalyticsId: Maybe<Scalars['String']>;
   readonly menuLinks: Maybe<ReadonlyArray<Maybe<SiteSiteMetadataMenuLinks>>>;
 };
 
@@ -2697,7 +2745,6 @@ type SiteSiteMetadataFilterInput = {
   readonly version: Maybe<StringQueryOperatorInput>;
   readonly author: Maybe<StringQueryOperatorInput>;
   readonly siteUrl: Maybe<StringQueryOperatorInput>;
-  readonly googleAnalyticsId: Maybe<StringQueryOperatorInput>;
   readonly menuLinks: Maybe<SiteSiteMetadataMenuLinksFilterListInput>;
 };
 

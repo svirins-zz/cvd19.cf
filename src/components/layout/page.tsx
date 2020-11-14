@@ -1,18 +1,21 @@
-import React from "react";
-import { Layout, Menu, Drawer, Button, Divider } from "antd";
-import { Link } from "gatsby";
-import { useLocation } from "@reach/router";
 import "styles/app.css";
-import {
-  GlobalOutlined,
-  BarChartOutlined,
-  QuestionCircleOutlined,
-  EnvironmentOutlined,
-  GithubOutlined,
-} from "@ant-design/icons";
-import { menuInit } from "lib";
+
+import { Button, Divider, Drawer, Layout, Menu } from "antd";
 import logo from "assets/coronavirus.png";
 import { myContext } from "context";
+import { Link } from "gatsby";
+import { menuInit } from "lib";
+import React from "react";
+
+import {
+  BarChartOutlined,
+  EnvironmentOutlined,
+  GithubOutlined,
+  GlobalOutlined,
+  QuestionCircleOutlined,
+} from "@ant-design/icons";
+import { useLocation } from "@reach/router";
+
 import { SideDrawer } from "./sideDrawer";
 
 const { Content, Sider, Footer } = Layout;
@@ -26,16 +29,6 @@ export const Page = ({ children }: React.PropsWithChildren<{}>) => {
     <myContext.Consumer>
       {(context) => (
         <Layout style={{ minHeight: "100vh" }}>
-          <Drawer
-            title="Data trends in colors"
-            placement="left"
-            closable={true}
-            onClose={context.onClose}
-            visible={context.visible?.isVisible}
-            width={480}
-          >
-            <SideDrawer />
-          </Drawer>
           <Sider
             collapsed={true}
             style={{ position: "sticky" }}
@@ -92,6 +85,16 @@ export const Page = ({ children }: React.PropsWithChildren<{}>) => {
                 </Button>
               </div>
             </Menu>
+            <Drawer
+              title="Data trends in colors"
+              placement="left"
+              closable={true}
+              onClose={context.onClose}
+              visible={context.visible?.isVisible}
+              width={480}
+            >
+              <SideDrawer />
+            </Drawer>
           </Sider>
           <Layout className={marginClassName}>
             <Content>

@@ -3,6 +3,7 @@ import { MissingCountries } from "../@types";
 export const X_ASIS_TICKS_AMOUNT: number = 25;
 export const EPIDEMIC_START: string = "2020/01/07";
 export const PERIOD_LENGTH: number = 5;
+export const DEFAULT_ZOOM: number = 2.8;
 
 export const VESSELS_CURRENT_COORDS = {
   "MS Zaandam": [-3.51, 50.44],

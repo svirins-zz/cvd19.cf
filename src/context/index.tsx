@@ -26,9 +26,11 @@ const Provider = ({ children }: AuxProps) => {
       } else if (windowWidth > 1200 && windowWidth <= 1600) {
         multiplyer = 1;
       } else if (windowWidth > 800 && windowWidth <= 1200) {
-        multiplyer = 0.75;
+        multiplyer = 0.7;
       } else if (windowWidth < 800) {
-        multiplyer = 0.5;
+        multiplyer = 0.4;
+      } else if (windowWidth < 600) {
+        multiplyer = 0.3;
       }
       setWidth((draft) => {
         draft.multiplyer = multiplyer;

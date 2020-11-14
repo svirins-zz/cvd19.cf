@@ -20,12 +20,12 @@
 }
 
 .site-layout-content {
-  background: #fff;
+  background: inherit;
   min-height: 480px;
 }
 
 .site-layout .site-layout-background {
-  background: #fff;
+  background: inherit;
 }
 
 .logoImg {
@@ -125,6 +125,7 @@
 
 .leaflet-container {
   width: 100%;
+  min-width: 388px;
   height: 100vh;
   padding: 0;
   margin: 0;
@@ -132,26 +133,23 @@
 
 .conentWithMargin {
   padding: 24px 24px 0px 24px;
-  background: #fff;
-  min-height: 480px;
+  background: #f5f6f9;
+  min-height: 640px;
+  min-width: 388px;
 }
 
 .conentWithoutMargin {
-  background: #fff;
-  min-height: 480px;
+  background: #f5f6f9;
+  min-height: 388px;
 }
 
 .divider {
   margin: 14px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
-.markerText {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  margin: auto;
-  display: inline-block;
-  left: 10%
+.marker-text {
+  margin: auto ;
+  display: inline-block ;
 }
 
 .icon-marker {
@@ -162,7 +160,6 @@
   font-size: 1.1em;
   font-weight: bold;
   border-radius: 100%;
-  border: 2px solid #3f0202;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
 }
 
@@ -194,34 +191,41 @@
 }
 
 .icon-marker-small {
-  width: 2.2em !important;
-  height: 2.2em !important;
-  fill: #ffccc7;
-  stroke-width: 2px;
+  width: 2.3em !important;
+  height: 2.3em !important;
+  background-color: #f8b7b2;
+  border: 1px solid #ff7875;
 }
 
 .icon-marker-normal {
-  width: 3.0em !important;
-  height: 3.0em !important;
+  width: 3.1em !important;
+  height: 3.1em !important;
   background-color: #ff7875;
+  border: 1px solid #f5222d;
+
 }
 
 .icon-marker-large {
-  width: 3.8em !important;
-  height: 3.8em !important;;
+  width: 3.9em !important;
+  height: 3.9em !important;;
   background-color: #f5222d;
+  border: 1px solid #a8071a;
 }
 
 .icon-marker-extra-large {
-  width: 4.6em !important;
-  height: 4.6em !important;
+  width: 4.7em !important;
+  height: 4.7em !important;
   background-color: #a8071a;
+  border: 1px solid #5c0011;
+
 }
 
 .icon-marker-super-large {
-  width: 5.4em !important;
-  height: 5.4em !important;
+  width: 5.5em !important;
+  height: 5.6em !important;
   background-color: #5c0011;
+  border: 1px solid #3a010b;
+
 }
 
 .sider-box-shadow {
@@ -241,3 +245,6 @@ h1, h2, h3, h4, h5 ,h6 {
   border: none !important;
 }
 
+.with-shadow {
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.15)
+}

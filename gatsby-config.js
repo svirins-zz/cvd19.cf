@@ -9,7 +9,6 @@ module.exports = {
     version: "0.4.1",
     author: "svirins",
     siteUrl: "https://cvd19.cf",
-    googleAnalyticsId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
     menuLinks: [
       {
         name: "main",
@@ -80,9 +79,9 @@ module.exports = {
             "link-color": "#e24275",
             "link-hover-color": "#497bd8",
             "link-active-color": "#497bd8",
-            "layout-header-background": "#030f40",
-            "layout-footer-background": "#ffffff",
-            "menu-bg": "#030f40",
+            "layout-header-background": "#20263d",
+            "layout-footer-background": "#f5f6f9",
+            "menu-bg": "#20263d",
             "menu-item-color": "#fff",
             "menu-highlight-color": "#e46ca5",
             "menu-item-active-bg": "#e46ca5",
@@ -94,13 +93,6 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
-        anonymize: true,
-      },
-    },    
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {

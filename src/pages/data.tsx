@@ -1,33 +1,34 @@
-import React from "react";
-import { useImmer } from "use-immer";
 import {
-  Typography,
-  Divider,
-  Col,
-  Row,
-  Radio,
   Checkbox,
+  Col,
+  Divider,
   InputNumber,
+  Radio,
+  Row,
+  Typography,
 } from "antd";
-import { myContext } from "context";
-import { Page, SEO } from "components/layout";
-import { CountryFilter } from "components/data/countryFilter";
 import { DataChart } from "components/charts";
+import { CountryFilter } from "components/data/countryFilter";
+import { Page, SEO } from "components/layout";
 import { Table } from "components/tables/table";
 import { PERIOD_LENGTH } from "const";
+import { myContext } from "context";
 import {
   calcCountries,
-  sumPeriodData,
+  getChartInfo,
   getColor,
   getCountriesList,
-  getChartInfo,
+  sumPeriodData,
 } from "lib";
+import React from "react";
+import { useImmer } from "use-immer";
+
 import {
-  TableState,
+  Countries,
   CountriesList,
   Country,
-  Countries,
   SelectedCountries,
+  TableState,
 } from "../@types";
 
 const { Title, Text } = Typography;
@@ -81,22 +82,22 @@ const Data = ({
     ...sumPeriodData(countries, periodInfo.length),
   ];
   return (
-    <Page>
-      <SEO title="All Data" />
-      <myContext.Consumer>
-        {(context) => (
+    <myContext.Consumer>
+      {(context) => (
+        <Page>
+          <SEO title="All Data" />
           <>
             <Row gutter={[8, 8]}>
               <Col span={24}>
                 <Title level={3} style={{ marginBottom: "0px" }}>
                   Data reports constructor
                 </Title>
+                <Divider className="divider" />
                 <Title level={5} style={{ marginBottom: "0px" }}>
                   Choose data type, period, countries (up to 10). Current
                   choice:&nbsp;
                   <span className="choiceText">{chartInfo.title}</span>
                 </Title>
-                <Divider className="divider" />
               </Col>
             </Row>
             <Row gutter={[8, 8]}>
@@ -180,9 +181,9 @@ const Data = ({
               />
             </Col>
           </>
-        )}
-      </myContext.Consumer>
-    </Page>
+        </Page>
+      )}
+    </myContext.Consumer>
   );
 };
 

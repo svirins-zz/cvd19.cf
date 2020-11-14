@@ -39,30 +39,29 @@ const Index = ({
       country.periods[0].status === OutbreakStatus.Won
   );
   return (
-    <Page>
-      <SEO title="Covid-19 Global epidemic situation" />
-      <Row gutter={[8, 8]}>
-        <Col span={24}>
-          <Title level={3} style={{ marginBottom: "0px" }}>
-            Covid-19 Global pandemic situation
-          </Title>
-          <Title level={5} style={{ marginBottom: "10px" }}>
-            Today's stats (data updated 3-times per day)
-          </Title>
-          <Divider className="divider" />
-        </Col>
-        <Col span={24}>
-          <TodayStats stats={stats} />
-        </Col>
-      </Row>
-      <myContext.Consumer>
-        {(context) => (
-          <>
+    <myContext.Consumer>
+      {(context) => (
+        <Page>
+          <SEO title="Covid-19 Global epidemic situation" />
+          <Row gutter={[8, 8]}>
             <Col span={24}>
-              <Title level={5} style={{ marginBottom: "0px" }}>
-                Global data trends by countries
+              <Title level={3} style={{ marginBottom: "0px" }}>
+                Covid-19 Global pandemic situation
               </Title>
               <Divider className="divider" />
+              <Title level={5} style={{ marginBottom: "10px" }}>
+                Today's stats (data updated 3-times per day)
+              </Title>
+            </Col>
+            <Col span={24} style={{ marginBottom: "10px" }}>
+              <TodayStats stats={stats} />
+            </Col>
+          </Row>
+          <>
+            <Col span={24} style={{ marginBottom: "20px" }}>
+              <Title level={5} style={{ marginBottom: "20px" }}>
+                Global data trends by countries
+              </Title>
               <div style={{ height: "450px" }}>
                 <SummaryChart
                   periods={trends}
@@ -70,11 +69,10 @@ const Index = ({
                 />
               </div>
             </Col>
-            <Col span={24}>
-              <Title level={5} style={{ marginBottom: "0px" }}>
+            <Col span={24} style={{ marginBottom: "20px" }}>
+              <Title level={5} style={{ marginBottom: "20px" }}>
                 Trend 'Under control %' by countries
               </Title>
-              <Divider className="divider" />
               <div style={{ height: "450px" }}>
                 <AreaChart
                   periods={trends}
@@ -83,11 +81,10 @@ const Index = ({
                 />
               </div>
             </Col>
-            <Col span={24}>
-              <Title level={5} style={{ marginBottom: "0px" }}>
+            <Col span={24} style={{ marginBottom: "20px" }}>
+              <Title level={5} style={{ marginBottom: "20px" }}>
                 Trend 'Pandemic free %' by countries
               </Title>
-              <Divider className="divider" />
               <div style={{ height: "450px" }}>
                 <AreaChart
                   periods={trends}
@@ -97,51 +94,50 @@ const Index = ({
               </div>
             </Col>
           </>
-        )}
-      </myContext.Consumer>
-      <Col span={24}>
-        <Title level={5} style={{ marginBottom: "0px" }}>
-          New death cases by countries (last two periods)
-        </Title>
-        <Divider className="divider" />
-      </Col>
-      <Row gutter={0}>
-        <Col
-          xs={24}
-          sm={24}
-          md={24}
-          lg={12}
-          xl={12}
-          style={{ paddingRight: "10px" }}
-        >
-          <Text>Winning / Won trends</Text>
-          <Table
-            data={winTableData}
-            periodLength={PERIOD_LENGTH}
-            order={false}
-            kind={"newDeaths"}
-            variation={"tight"}
-          />
-        </Col>
-        <Col
-          xs={24}
-          sm={24}
-          md={24}
-          lg={12}
-          xl={12}
-          style={{ paddingLeft: "10px" }}
-        >
-          <Text>Losing / Flattening trends</Text>
-          <Table
-            data={loseTableData}
-            periodLength={PERIOD_LENGTH}
-            order={true}
-            kind={"newDeaths"}
-            variation={"tight"}
-          />
-        </Col>
-      </Row>
-    </Page>
+          <Col span={24} style={{ marginBottom: "20px" }}>
+            <Title level={5} style={{ marginBottom: "10px" }}>
+              New death cases by countries (last two periods)
+            </Title>
+          </Col>
+          <Row gutter={0}>
+            <Col
+              xs={24}
+              sm={24}
+              md={24}
+              lg={12}
+              xl={12}
+              style={{ paddingRight: "10px" }}
+            >
+              <Text>Winning / Won trends</Text>
+              <Table
+                data={winTableData}
+                periodLength={PERIOD_LENGTH}
+                order={false}
+                kind={"newDeaths"}
+                variation={"tight"}
+              />
+            </Col>
+            <Col
+              xs={24}
+              sm={24}
+              md={24}
+              lg={12}
+              xl={12}
+              style={{ paddingLeft: "10px" }}
+            >
+              <Text>Losing / Flattening trends</Text>
+              <Table
+                data={loseTableData}
+                periodLength={PERIOD_LENGTH}
+                order={true}
+                kind={"newDeaths"}
+                variation={"tight"}
+              />
+            </Col>
+          </Row>
+        </Page>
+      )}
+    </myContext.Consumer>
   );
 };
 

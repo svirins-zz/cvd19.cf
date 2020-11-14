@@ -2,9 +2,16 @@ import "leaflet/dist/leaflet.css";
 
 import { Page, SEO } from "components/layout";
 import { ATTRIBUTION_STRING } from "const";
+import { myContext } from "context";
 import { DivIcon } from "leaflet";
-import { commafy, getFeatures, getMarkerDetails, isDomAvailable } from "lib";
-import React from "react";
+import {
+  commafy,
+  getCurrentZoom,
+  getFeatures,
+  getMarkerDetails,
+  isDomAvailable,
+} from "lib";
+import React, { useContext, useMemo } from "react";
 import {
   LayerGroup,
   LayersControl,
@@ -20,6 +27,10 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
   // get build-time data
   const data = pageContext.data;
 
+  // get zoom value, based on display width
+  const { width } = useContext(myContext);
+  const zoomValue = getCurrentZoom(width?.multiplyer);
+  
   // maker markers/popups layer
   const { features } = getFeatures(data as Countries);
   const countriesMarkers = features.map((feature, index) => {
@@ -27,11 +38,10 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
       return <p>No DOM - no Map</p>;
     }
     const { name, flag, confirmed, deaths, recovered } = feature.properties;
-    // TODO: don't forget to cleanup after force markers work
     getMarkerDetails(confirmed);
     const icon = new DivIcon({
       html: `<div class="icon-marker ${getMarkerDetails(confirmed)}">
-        <p className="markerText">${commafy(confirmed)}</p>
+        <p class="marker-text">${commafy(confirmed)}</p>
       </div>`,
     });
     return (
@@ -66,8 +76,8 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
       <SEO title="World Map" />
       <div className="leaflet-container">
         <MapContainer
-          center={[20, 10]}
-          zoom={2.9}
+          center={[20, 34]}
+          zoom={zoomValue}
           minZoom={2.5}
           maxZoom={14}
           attributionControl={true}
@@ -78,7 +88,7 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
           easeLinearity={0.35}
         >
           <LayersControl position="topright">
-            <LayersControl.BaseLayer name="Stadia.Dark">
+            <LayersControl.BaseLayer checked={true} name="Stadia.Dark">
               <TileLayer
                 attribution={ATTRIBUTION_STRING}
                 url={process.env.GATSBY_STADIA_DARK_STATIC_TILES_ENDPOINT!}
@@ -90,7 +100,7 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
                 url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT!}
               />
             </LayersControl.BaseLayer>
-            <LayersControl.BaseLayer checked={true} name="OpenStreetMap">
+            <LayersControl.BaseLayer name="OpenStreetMap">
               <TileLayer
                 attribution={ATTRIBUTION_STRING}
                 url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT!}

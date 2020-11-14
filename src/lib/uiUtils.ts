@@ -57,6 +57,7 @@ export const getChartInfo = (
 };
 
 export const menuInit = (title: string): string => {
+  console.log(title);
   let menuItem = "";
   switch (title) {
     case "/": {

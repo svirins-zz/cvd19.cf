@@ -39,7 +39,7 @@ export const AreaChart = ({
       data={chartData}
       enableArea={true}
       areaOpacity={0.6}
-      margin={{ top: 20, right: 10, bottom: 60, left: 30 }}
+      margin={{ top: 55, right: 55, bottom: 55, left: 55 }}
       useMesh={true}
       legends={[
         {

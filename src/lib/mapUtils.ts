@@ -1,8 +1,9 @@
 import vessel from "assets/vessel.png";
 import {
   ALL_COUNTRIES_DATA,
+  DEFAULT_ZOOM,
   MISSING_COUNTRIES,
-  VESSELS_CURRENT_COORDS,
+  VESSELS_CURRENT_COORDS
 } from "const";
 import { getCode } from "country-list";
 import { LatLngExpression } from "leaflet";
@@ -121,10 +122,28 @@ export const getFeatures = (data: Countries | undefined) => {
  * @see https://github.com/facebook/fbjs/blob/master/packages/fbjs/src/core/ExecutionEnvironment.js#L12
  */
 
-export function isDomAvailable() {
+/**
+ * check if window object exists
+ *
+ * @export
+ * @return {*} 
+ */
+export function isDomAvailable(): any {
   return (
     typeof window !== "undefined" &&
     !!window.document &&
     !!window.document.createElement
   );
 }
+/**
+ * determin current map zoom, based on window object width
+ *
+ * @param {(number | undefined)} multiplyerValue
+ * @return {*}  {number}
+ */
+export const getCurrentZoom = (multiplyerValue: number | undefined): number => {
+  if (!multiplyerValue || multiplyerValue > 1) {
+    return parseFloat((2.8).toFixed(1));
+  }
+  return parseFloat((2.8 / multiplyerValue).toFixed(1));
+};
