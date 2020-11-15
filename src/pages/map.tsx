@@ -21,6 +21,7 @@ import {
   TileLayer,
 } from "react-leaflet";
 
+import { useLocation } from "@reach/router";
 import { Countries } from "@types";
 
 const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
@@ -30,7 +31,6 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
   // get zoom value, based on display width
   const { width } = useContext(myContext);
   const zoomValue = getCurrentZoom(width?.multiplyer);
-  
   // maker markers/popups layer
   const { features } = getFeatures(data as Countries);
   const countriesMarkers = features.map((feature, index) => {
@@ -69,47 +69,55 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
       </Marker>
     );
   });
+  const displayMap = useMemo(() => {
+    return (
+      <MapContainer
+        center={[20, 34]}
+        zoom={zoomValue}
+        minZoom={2.5}
+        maxZoom={14}
+        attributionControl={true}
+        zoomControl={true}
+        doubleClickZoom={true}
+        scrollWheelZoom={true}
+        dragging={true}
+        easeLinearity={0.35}
+      >
+        <LayersControl position="topright">
+          {/* <LayersControl.BaseLayer checked={true} name="Stadia.Dark">
+            <TileLayer
+              attribution={ATTRIBUTION_STRING}
+              url={process.env.GATSBY_STADIA_DARK_STATIC_TILES_ENDPOINT!}
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Stadia.Smooth">
+            <TileLayer
+              attribution={ATTRIBUTION_STRING}
+              url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT!}
+            />
+          </LayersControl.BaseLayer> */}
+          <LayersControl.BaseLayer checked={true} name="OpenStreetMap">
+            <TileLayer
+              attribution={ATTRIBUTION_STRING}
+              url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT!}
+            />
+          </LayersControl.BaseLayer>
+        </LayersControl>
+        <LayerGroup>{countriesMarkers}</LayerGroup>
+      </MapContainer>
+    );
+  }, [zoomValue]);
+  const { pathname } = useLocation();
 
-  // TODO: memoize map, when ready
+  // TODO: refactor to bounds
   return (
     <Page>
-      <SEO title="World Map" />
-      <div className="leaflet-container">
-        <MapContainer
-          center={[20, 34]}
-          zoom={zoomValue}
-          minZoom={2.5}
-          maxZoom={14}
-          attributionControl={true}
-          zoomControl={true}
-          doubleClickZoom={true}
-          scrollWheelZoom={true}
-          dragging={true}
-          easeLinearity={0.35}
-        >
-          <LayersControl position="topright">
-            <LayersControl.BaseLayer checked={true} name="Stadia.Dark">
-              <TileLayer
-                attribution={ATTRIBUTION_STRING}
-                url={process.env.GATSBY_STADIA_DARK_STATIC_TILES_ENDPOINT!}
-              />
-            </LayersControl.BaseLayer>
-            <LayersControl.BaseLayer name="Stadia.Smooth">
-              <TileLayer
-                attribution={ATTRIBUTION_STRING}
-                url={process.env.GATSBY_STADIA_STATIC_TILES_ENDPOINT!}
-              />
-            </LayersControl.BaseLayer>
-            <LayersControl.BaseLayer name="OpenStreetMap">
-              <TileLayer
-                attribution={ATTRIBUTION_STRING}
-                url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT!}
-              />
-            </LayersControl.BaseLayer>
-          </LayersControl>
-          <LayerGroup>{countriesMarkers}</LayerGroup>
-        </MapContainer>
-      </div>
+      <SEO
+        title="Covid-19 pandemic map"
+        description="Global map data by countries"
+        pathname={pathname}
+      />
+      <div className="leaflet-container">{displayMap}</div>
     </Page>
   );
 };

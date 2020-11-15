@@ -57,28 +57,15 @@ export const getChartInfo = (
 };
 
 export const menuInit = (title: string): string => {
-  console.log(title);
-  let menuItem = "";
-  switch (title) {
-    case "/": {
-      menuItem = "main";
-      break;
-    }
-    case "/data": {
-      menuItem = "data";
-      break;
-    }
-    case "/map": {
-      menuItem = "map";
-      break;
-    }
-    case "/about": {
-      menuItem = "about";
-      break;
-    }
-    default: {
-      menuItem = "";
-    }
+  let menuItem = "main";
+  if (title.includes("data")) {
+    menuItem = "data";
+  } else if (title.includes("map")) {
+    menuItem = "map";
+  } else if (title.includes("about")) {
+    menuItem = "about";
+  } else {
+    menuItem = "main";
   }
   return menuItem;
 };

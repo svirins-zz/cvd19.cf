@@ -1,6 +1,5 @@
 import { LatLngExpression } from "leaflet";
 import { ReactChild, ReactChildren } from "react";
-
 export interface Countries {
   countries: Country[];
 }
@@ -121,15 +120,11 @@ export interface MissingCountries {
   shortName: string;
 }
 
-type MenuSelectFunction = (info: {
-  selectedKeys?: React.Key[] | React.Key;
-}) => void;
-
 export type ContextProps = {
   choice: { key: string };
   visible: { isVisible: boolean };
   width: { multiplyer: number };
-  handleSelect: MenuSelectFunction;
+  handleSelect: (info: { selectedKeys: React.Key }) => void;
   onClose: () => void;
   showDrawer: () => void;
 };
@@ -159,15 +154,10 @@ export interface CodeFlagGeo {
   geometry: Geometry;
 }
 
-export interface Props {
-  description?: string;
-  lang?: string;
-  meta?: {
-    name?: string | undefined;
-    content: string;
-    property?: string | undefined;
-  }[];
+export interface SeoProps {
+  description: string;
   title: string;
+  pathname: string;
 }
 
 export interface RenderProps {

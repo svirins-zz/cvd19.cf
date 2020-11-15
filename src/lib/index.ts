@@ -3,7 +3,7 @@ export {
   getFeatures,
   getMarkerDetails,
   isDomAvailable,
-  getCurrentZoom
+  getCurrentZoom,
 } from "./mapUtils";
 export {
   getDaysAgo,

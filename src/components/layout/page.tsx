@@ -5,7 +5,7 @@ import logo from "assets/coronavirus.png";
 import { myContext } from "context";
 import { Link } from "gatsby";
 import { menuInit } from "lib";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 import {
   BarChartOutlined,
@@ -20,115 +20,114 @@ import { SideDrawer } from "./sideDrawer";
 
 const { Content, Sider, Footer } = Layout;
 export const Page = ({ children }: React.PropsWithChildren<{}>) => {
+  // tslint:disable-next-line: prettier
+  const { handleSelect, showDrawer, onClose, visible, choice = { key: "main" }} = useContext(
+    myContext
+  );
   const { pathname } = useLocation();
   const marginClassName: string = pathname.includes("map")
     ? "conentWithoutMargin"
     : "conentWithMargin";
-  const defaultItem = menuInit(pathname);
+  // initialize menu selectedKey based on pathname
+  useEffect(() => {
+    const initiaValue = menuInit(pathname);
+    if (handleSelect) {
+      handleSelect({ selectedKeys: initiaValue });
+    }
+  }, []);
   return (
-    <myContext.Consumer>
-      {(context) => (
-        <Layout style={{ minHeight: "100vh" }}>
-          <Sider
-            collapsed={true}
-            style={{ position: "sticky" }}
-            className="sider-box-shadow"
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider
+        collapsed={true}
+        style={{ position: "sticky" }}
+        className="sider-box-shadow"
+      >
+        <Menu
+          onSelect={handleSelect}
+          selectable={true}
+          focusable={true}
+          selectedKeys={[choice.key]}
+          mode="inline"
+          style={{ position: "fixed", border: "0" }}
+        >
+          <div className="logoImg">
+            <img
+              src={logo}
+              alt="Covid-19 stats & facts"
+              height={48}
+              width={48}
+            />
+            <span className="logoText">cvd19.cf</span>
+          </div>
+          <Menu.Item
+            key="main"
+            icon={<GlobalOutlined style={{ color: "WHITE" }} />}
           >
-            <Menu
-              onSelect={context.handleSelect}
-              selectable={true}
-              focusable={true}
-              selectedKeys={[defaultItem]}
-              mode="inline"
-              style={{ position: "fixed", border: "0" }}
-            >
-              <div className="logoImg">
-                <img
-                  src={logo}
-                  alt="Covid-19 stats & facts"
-                  height={48}
-                  width={48}
-                />
-                <span className="logoText">cvd19.cf</span>
-              </div>
-              <Menu.Item
-                key="main"
-                icon={<GlobalOutlined style={{ color: "WHITE" }} />}
-              >
-                <Link to="/">Status</Link>
-              </Menu.Item>
-              <Menu.Item
-                key="data"
-                icon={<BarChartOutlined style={{ color: "WHITE" }} />}
-              >
-                <Link to="/data">Data</Link>
-              </Menu.Item>
-              <Menu.Item
-                key="map"
-                icon={<EnvironmentOutlined style={{ color: "WHITE" }} />}
-              >
-                <Link to="/map">Map</Link>
-              </Menu.Item>
-              <Menu.Item
-                key="about"
-                icon={<QuestionCircleOutlined style={{ color: "WHITE" }} />}
-              >
-                <Link to="/about">About</Link>
-              </Menu.Item>
-              <div className="alignBottom">
-                <Button
-                  className="tinyButton"
-                  size="small"
-                  onClick={context.showDrawer}
-                >
-                  Help →
-                </Button>
-              </div>
-            </Menu>
-            <Drawer
-              title="Data trends in colors"
-              placement="left"
-              closable={true}
-              onClose={context.onClose}
-              visible={context.visible?.isVisible}
-              width={480}
-            >
-              <SideDrawer />
-            </Drawer>
-          </Sider>
-          <Layout className={marginClassName}>
-            <Content>
-              <div className={marginClassName}>{children}</div>
-            </Content>
-            {pathname.includes("map") ? undefined : (
-              <Footer>
-                <Divider className="divider" />
-                <div className="credentials">
-                  Made with{" "}
-                  <span role="img" aria-labelledby="love">
-                    ❤️
-                  </span>{" "}
-                  by{" "}
-                  <a
-                    className="credentialsLink"
-                    href="https://twitter.com/svirins"
-                  >
-                    @svirins
-                  </a>
-                  .
-                </div>
-                <div className="credentials">
-                  {" "}
-                  View source{" "}
-                  <a href="https://github.com/svirins/cvd19.cf">
-                    <GithubOutlined style={{ fontSize: "14px" }} />
-                  </a>
-                </div>
-              </Footer>
-            )}
-          </Layout>
-        </Layout>
-      )}
-    </myContext.Consumer>
+            <Link to="/">Status</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="data"
+            icon={<BarChartOutlined style={{ color: "WHITE" }} />}
+          >
+            <Link to="/data">Data</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="map"
+            icon={<EnvironmentOutlined style={{ color: "WHITE" }} />}
+          >
+            <Link to="/map">Map</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="about"
+            icon={<QuestionCircleOutlined style={{ color: "WHITE" }} />}
+          >
+            <Link to="/about">About</Link>
+          </Menu.Item>
+          <div className="alignBottom">
+            <Button className="tinyButton" size="small" onClick={showDrawer}>
+              Help →
+            </Button>
+          </div>
+        </Menu>
+        <Drawer
+          title="Data trends in colors"
+          placement="left"
+          closable={true}
+          onClose={onClose}
+          visible={visible?.isVisible}
+          width={480}
+        >
+          <SideDrawer />
+        </Drawer>
+      </Sider>
+      <Layout className={marginClassName}>
+        <Content>
+          <div className={marginClassName}>{children}</div>
+        </Content>
+        {pathname.includes("map") ? undefined : (
+          <Footer>
+            <Divider className="divider" />
+            <div className="credentials">
+              Made with{" "}
+              <span role="img" aria-labelledby="love">
+                ❤️
+              </span>{" "}
+              by{" "}
+              <a className="credentialsLink" href="https://twitter.com/svirins">
+                @svirins
+              </a>
+              .
+            </div>
+            <div className="credentials">
+              {" "}
+              View source{" "}
+              <a href="https://github.com/svirins/cvd19.cf">
+                <GithubOutlined style={{ fontSize: "14px" }} />
+              </a>
+            </div>
+          </Footer>
+        )}
+      </Layout>
+    </Layout>
   );
 };

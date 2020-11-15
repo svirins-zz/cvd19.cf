@@ -7,8 +7,11 @@ module.exports = {
     description: `This site aims to provide a simple tool to track global trends in
     Covid-19 pandemic.`,
     version: "0.4.1",
-    author: "svirins",
+    author: "@svirins",
     siteUrl: "https://cvd19.cf",
+    keywords: ["Covid-19", "Pandemic", "Dashboard"],
+    language: "en",
+    metaImage: "/assets/coronavirus.webp",
     menuLinks: [
       {
         name: "main",
@@ -60,7 +63,7 @@ module.exports = {
     },
     "gatsby-plugin-typescript",
     "gatsby-plugin-tslint",
-    // "gatsby-plugin-offline",
+    "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-antd",
       options: {

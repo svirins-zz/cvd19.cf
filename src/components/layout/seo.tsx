@@ -1,15 +1,14 @@
 import { graphql, useStaticQuery } from "gatsby";
-import React, { MetaHTMLAttributes } from "react";
+import React from "react";
 import Helmet from "react-helmet";
 
-import { Props } from "@types";
+import { SeoProps } from "@types";
 
 export const SEO = ({
   description = "",
-  lang = "en",
-  meta = [],
   title,
-}: Props) => {
+  pathname = "https://cvd19.cf",
+}: SeoProps) => {
   const { site } = useStaticQuery<GatsbyTypes.SiteQuery>(
     graphql`
       query Site {
@@ -18,55 +17,98 @@ export const SEO = ({
             title
             description
             author
+            keywords
+            language
+            metaImage
+            siteUrl
           }
         }
       }
     `
   );
-  const metaDescription = description ?? site?.siteMetadata?.description ?? "";
-  const metaItems: MetaHTMLAttributes<HTMLMetaElement>[] = [
-    {
-      name: "description",
-      content: metaDescription,
-    },
-    {
-      property: "og:title",
-      content: title,
-    },
-    {
-      property: "og:description",
-      content: metaDescription,
-    },
-    {
-      property: "og:type",
-      content: "website",
-    },
-    {
-      name: "twitter:card",
-      content: "summary",
-    },
-    {
-      name: "twitter:creator",
-      content: site?.siteMetadata?.author ?? "",
-    },
-    {
-      name: "twitter:title",
-      content: title,
-    },
-    {
-      name: "twitter:description",
-      content: metaDescription,
-    },
-  ];
+  const metaDescription = description || site?.siteMetadata?.description;
+  const image = `${site?.siteMetadata?.siteUrl}${site?.siteMetadata?.metaImage}`;
+  const canonical = pathname
+    ? `${site?.siteMetadata?.siteUrl}${pathname}`
+    : null;
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        language: site?.siteMetadata?.language,
       }}
       title={title}
       titleTemplate={`%s | ${site?.siteMetadata?.title}`}
-      meta={metaItems.concat(meta)}
+      link={
+        canonical
+          ? [
+              {
+                rel: "canonical",
+                href: canonical,
+              },
+            ]
+          : []
+      }
+      meta={[
+        {
+          name: `description`,
+          content: metaDescription,
+        },
+        {
+          name: "keywords",
+          content: site?.siteMetadata?.keywords.join(","),
+        },
+        {
+          property: `og:title`,
+          content: title,
+        },
+        {
+          property: `og:description`,
+          content: metaDescription,
+        },
+        {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
+          name: `twitter:creator`,
+          content: site?.siteMetadata?.author,
+        },
+        {
+          name: `twitter:title`,
+          content: title,
+        },
+        {
+          name: `twitter:description`,
+          content: metaDescription,
+        },
+      ].concat(
+        image
+          ? [
+              {
+                property: "og:image",
+                content: image,
+              },
+              {
+                property: "og:image:width",
+                content: image.width ?? 480,
+              },
+              {
+                property: "og:image:height",
+                content: image.height ?? 320,
+              },
+              {
+                name: "twitter:card",
+                content: "summary_large_image",
+              },
+            ]
+          : [
+              {
+                name: "twitter:card",
+                content: "summary",
+              },
+            ]
+      )}
     />
   );
 };

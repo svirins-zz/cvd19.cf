@@ -125,7 +125,7 @@
 
 .leaflet-container {
   width: 100%;
-  min-width: 388px;
+  min-width: 388px !important;
   height: 100vh;
   padding: 0;
   margin: 0;

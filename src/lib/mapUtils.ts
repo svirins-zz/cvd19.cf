@@ -3,7 +3,7 @@ import {
   ALL_COUNTRIES_DATA,
   DEFAULT_ZOOM,
   MISSING_COUNTRIES,
-  VESSELS_CURRENT_COORDS
+  VESSELS_CURRENT_COORDS,
 } from "const";
 import { getCode } from "country-list";
 import { LatLngExpression } from "leaflet";
@@ -117,7 +117,7 @@ export const getFeatures = (data: Countries | undefined) => {
 };
 
 /**
- * isDomAvailable
+ * isDomAvailableн
  * @description Checks to see if the DOM is available by checking the existence of the window and document
  * @see https://github.com/facebook/fbjs/blob/master/packages/fbjs/src/core/ExecutionEnvironment.js#L12
  */
@@ -126,7 +126,7 @@ export const getFeatures = (data: Countries | undefined) => {
  * check if window object exists
  *
  * @export
- * @return {*} 
+ * @return {*}
  */
 export function isDomAvailable(): any {
   return (
@@ -143,7 +143,7 @@ export function isDomAvailable(): any {
  */
 export const getCurrentZoom = (multiplyerValue: number | undefined): number => {
   if (!multiplyerValue || multiplyerValue > 1) {
-    return parseFloat((2.8).toFixed(1));
+    return parseFloat(DEFAULT_ZOOM.toFixed(1));
   }
-  return parseFloat((2.8 / multiplyerValue).toFixed(1));
+  return parseFloat((DEFAULT_ZOOM / multiplyerValue).toFixed(1));
 };
