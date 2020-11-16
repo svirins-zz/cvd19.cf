@@ -8,8 +8,6 @@ import { myContext } from "context";
 import { calcCountries, calcStats, calcTrends, sumPeriodData } from "lib";
 import React, { useContext } from "react";
 
-import { useLocation } from "@reach/router";
-
 import { Countries, OutbreakStatus } from "../@types";
 
 const { Title, Text } = Typography;
@@ -47,13 +45,12 @@ const Index = ({
       country.periods[0].status === OutbreakStatus.Winning ||
       country.periods[0].status === OutbreakStatus.Won
   );
-  const { pathname } = useLocation();
   return (
     <Page>
       <SEO
         title="Covid-19 Global epidemic situation"
         description="Gloval covid-19 trends and statistics"
-        pathname={pathname}
+        pathname="/"
       />
       <Row gutter={[8, 8]}>
         <Col span={24}>
@@ -112,14 +109,7 @@ const Index = ({
         </Title>
       </Col>
       <Row gutter={0}>
-        <Col
-          xs={24}
-          sm={24}
-          md={24}
-          lg={12}
-          xl={12}
-          style={{ paddingRight: "10px" }}
-        >
+        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
           <Text>Winning / Won trends</Text>
           <Table
             data={winTableData}
@@ -129,14 +119,7 @@ const Index = ({
             variation={"tight"}
           />
         </Col>
-        <Col
-          xs={24}
-          sm={24}
-          md={24}
-          lg={12}
-          xl={12}
-          style={{ paddingLeft: "10px" }}
-        >
+        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
           <Text>Losing / Flattening trends</Text>
           <Table
             data={loseTableData}

@@ -2,18 +2,15 @@ import { Alert, Col, Divider, Row, Typography } from "antd";
 import { DonatePayPalButton, Page, SEO } from "components/layout";
 import React from "react";
 
-import { useLocation } from "@reach/router";
-
 const { Title, Paragraph } = Typography;
 
 const About = () => {
-  const { pathname } = useLocation();
   return (
     <Page>
       <SEO
         title="Covid-19 Global pandemic dasboard app by @svirins"
         description="About page and further information"
-        pathname={pathname}
+        pathname="/about"
       />
       <Row gutter={[8, 8]}>
         <Col span={24}>

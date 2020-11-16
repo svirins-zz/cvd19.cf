@@ -10,7 +10,6 @@ export {
   getPeriodCount,
   getPeriodName,
   getPeriodNames,
-  validatePeriodLength,
   periodStatus,
   calulatePeriodData,
   calcCountries,

@@ -21,7 +21,6 @@ import {
   TileLayer,
 } from "react-leaflet";
 
-import { useLocation } from "@reach/router";
 import { Countries } from "@types";
 
 const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
@@ -107,7 +106,6 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
       </MapContainer>
     );
   }, [zoomValue]);
-  const { pathname } = useLocation();
 
   // TODO: refactor to bounds
   return (
@@ -115,7 +113,7 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
       <SEO
         title="Covid-19 pandemic map"
         description="Global map data by countries"
-        pathname={pathname}
+        pathname="/map"
       />
       <div className="leaflet-container">{displayMap}</div>
     </Page>

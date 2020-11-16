@@ -23,8 +23,6 @@ import {
 import React, { useContext } from "react";
 import { useImmer } from "use-immer";
 
-import { useLocation } from "@reach/router";
-
 import {
   Countries,
   CountriesList,
@@ -85,13 +83,12 @@ const Data = ({
     ...countries,
     ...sumPeriodData(countries, periodInfo.length),
   ];
-  const { pathname } = useLocation();
   return (
     <Page>
       <SEO
         title="Covid-19 pandemic details"
         description="Covid-19 data, detailed and filtered"
-        pathname={pathname}
+        pathname="/data"
       />
       <>
         <Row gutter={[8, 8]}>

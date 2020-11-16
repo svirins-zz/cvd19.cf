@@ -56,7 +56,7 @@ export const SEO = ({
         },
         {
           name: "keywords",
-          content: site?.siteMetadata?.keywords.join(","),
+          content: site?.siteMetadata?.keywords?.join(","),
         },
         {
           property: `og:title`,

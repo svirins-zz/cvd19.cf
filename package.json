@@ -65,6 +65,7 @@
     "clean": "gatsby clean",
     "develop": "gatsby develop",
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+    "build-profile": "gatsby build --profile",
     "deploy": "vercel --prod",
     "serve": "gatsby serve",
     "type-check": "tsc --noEmit",

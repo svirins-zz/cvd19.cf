@@ -2,16 +2,13 @@ import { Button, Result } from "antd";
 import { Page, SEO } from "components/layout";
 import React from "react";
 
-import { useLocation } from "@reach/router";
-
-const NotFoundPage = () => {
-  const { pathname } = useLocation();
+const Error_404 = () => {
   return (
     <Page>
       <SEO
         title="404 Error: Page not found"
         description="Sorry, this page never exists"
-        pathname={pathname}
+        pathname="/error_404"
       />
       <Result
         status="404"
@@ -27,4 +24,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default Error_404;
