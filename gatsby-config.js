@@ -57,8 +57,11 @@ module.exports = {
         name: "Covid-19 stats and charts",
         short_name: "Covid-19 stats and charts",
         start_url: "/",
-        display: "browser",
+        display: "mimimal-ui",
         icon: "src/assets/coronavirus.png",
+        background_color: "#f5f6f9",
+        theme_color: "#20263d",
+        crossOrigin: `use-credentials`,
       },
     },
     "gatsby-plugin-typescript",
@@ -97,19 +100,12 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-robots-txt',
+      resolve: "gatsby-plugin-robots-txt",
       options: {
-        sitemap: 'https://cvd19.cf/sitemap.xml',
-        resolveEnv: () => process.env.GATSBY_ENV,
-        env: {
-          development: {
-            policy: [{ userAgent: '*', disallow: ['/'] }]
-          },
-          production: {
-            policy: [{ userAgent: '*', allow: '/' }]
-          }
-        },
-      },
+        host: "https://cvd19.cf",
+        sitemap: "https://cvd19.cf/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }]
+      }
     },
   ],
 };

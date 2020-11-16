@@ -5,10 +5,8 @@ import { Page, SEO } from "components/layout";
 import { Table } from "components/tables/table";
 import { PERIOD_LENGTH } from "const";
 import { myContext } from "context";
-import { calcCountries, calcStats, calcTrends, sumPeriodData } from "lib";
+import { useGetGlobalData } from "hooks";
 import React, { useContext } from "react";
-
-import { Countries, OutbreakStatus } from "../@types";
 
 const { Title, Text } = Typography;
 
@@ -17,33 +15,9 @@ const Index = ({
 }: {
   pageContext: GatsbyTypes.SitePageContext;
 }) => {
-  // access context
   const { width } = useContext(myContext);
-
-  // get build-time data
-  const data = pageContext.data;
-
-  // prepare data to display
-  const countries = calcCountries(data as Countries, PERIOD_LENGTH);
-
-  // TODO: move calcStats co buildtime + move calcCountries to build time
-
-  const globalData = sumPeriodData(countries, PERIOD_LENGTH);
-
-  const stats = {
-    ...calcStats(data as Countries),
-    trend: globalData[0].periods[0].status as OutbreakStatus,
-  };
-  const trends = calcTrends(countries, PERIOD_LENGTH);
-  const loseTableData = countries.filter(
-    (country) =>
-      country.periods[0].status === OutbreakStatus.Losing ||
-      country.periods[0].status === OutbreakStatus.Flattening
-  );
-  const winTableData = countries.filter(
-    (country) =>
-      country.periods[0].status === OutbreakStatus.Winning ||
-      country.periods[0].status === OutbreakStatus.Won
+  const { stats, trends, loseTableData, winTableData } = useGetGlobalData(
+    pageContext.data
   );
   return (
     <Page>

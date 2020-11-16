@@ -2,7 +2,7 @@ import { Button, Result } from "antd";
 import { Page, SEO } from "components/layout";
 import React from "react";
 
-const Error_404 = () => {
+const error404 = () => {
   return (
     <Page>
       <SEO
@@ -24,4 +24,4 @@ const Error_404 = () => {
   );
 };
 
-export default Error_404;
+export default error404;

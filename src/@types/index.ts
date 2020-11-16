@@ -107,9 +107,21 @@ export type GlobalStats = {
   recovered: number;
   countries: number;
   days: number;
-  trend: OutbreakStatus;
+  trend?: OutbreakStatus;
 };
 
+export interface Trends {
+  endDate: string;
+  none: number;
+  small: number;
+  losing: number;
+  flattening: number;
+  crushing: number;
+  winning: number;
+  won: number;
+  pandemicFree: number;
+  underControl: number;
+}
 export interface CalculatedSummary {
   stats: GlobalStats;
   trend: OutbreakStatus;

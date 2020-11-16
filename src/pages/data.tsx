@@ -13,23 +13,12 @@ import { Page, SEO } from "components/layout";
 import { Table } from "components/tables/table";
 import { PERIOD_LENGTH } from "const";
 import { myContext } from "context";
-import {
-  calcCountries,
-  getChartInfo,
-  getColor,
-  getCountriesList,
-  sumPeriodData,
-} from "lib";
+import { useGetDetailedData } from "hooks";
+import { getChartInfo, getColor } from "lib";
 import React, { useContext } from "react";
 import { useImmer } from "use-immer";
 
-import {
-  Countries,
-  CountriesList,
-  Country,
-  SelectedCountries,
-  TableState,
-} from "../@types";
+import { SelectedCountries, TableState } from "../@types";
 
 const { Title, Text } = Typography;
 
@@ -73,16 +62,10 @@ const Data = ({
   };
 
   // transform and prepare country data
-  // TODO: move countries list co buildtime + move calcCountries to build time
-  const countries: Country[] = calcCountries(
-    data as Countries,
+  const { countriesList, preparedCountries } = useGetDetailedData(
+    data,
     periodInfo.length
   );
-  const countriesList: CountriesList[] = getCountriesList(countries);
-  const preparedCountries: Country[] = [
-    ...countries,
-    ...sumPeriodData(countries, periodInfo.length),
-  ];
   return (
     <Page>
       <SEO

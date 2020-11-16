@@ -35,7 +35,7 @@ export const SEO = ({
   return (
     <Helmet
       htmlAttributes={{
-        language: site?.siteMetadata?.language,
+        lang: site?.siteMetadata?.language,
       }}
       title={title}
       titleTemplate={`%s | ${site?.siteMetadata?.title}`}

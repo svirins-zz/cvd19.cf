@@ -4,9 +4,11 @@ import {
   Countries,
   Country,
   Counts,
+  GlobalStats,
   OutbreakStatus,
   Period,
   Periods,
+  Trends,
 } from "../@types";
 
 export const getDaysAgo = (date: Date): number => {
@@ -125,7 +127,6 @@ export const calcCountries = (
   data: Countries | undefined,
   periodLength: number
 ): Country[] => {
-  console.log("enterCountries: ", data);
   const periodCount = getPeriodCount(periodLength);
   if (!data?.countries) {
     return [];
@@ -160,7 +161,6 @@ export const calcCountries = (
       });
     }
   });
-  console.log("calculatedCountries: ", countries);
 
   return countries;
 };
@@ -195,7 +195,10 @@ export const sumPeriodData = (
   ];
 };
 
-export const calcTrends = (countries: Country[], periodLength: number) => {
+export const calcTrends = (
+  countries: Country[],
+  periodLength: number
+): Trends => {
   const periodCount = getPeriodCount(periodLength);
   const initialPeriodSummaries = Array.from(
     { length: periodCount - 2 },
@@ -269,7 +272,7 @@ export const calcTrends = (countries: Country[], periodLength: number) => {
   return periodSummaries;
 };
 
-export const calcStats = (data: Countries | undefined) => {
+export const calcStats = (data: Countries | undefined): GlobalStats => {
   const days = data!.countries[0].results.length;
   const countries = data!.countries.length ? data!.countries.length : 0;
   const reducedResult = data!.countries
