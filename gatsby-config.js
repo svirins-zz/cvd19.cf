@@ -56,8 +56,11 @@ module.exports = {
       options: {
         name: "Covid-19 stats and charts",
         short_name: "Covid-19 stats and charts",
+        description: `This site aims to provide a simple tool to track global trends in
+        Covid-19 pandemic.`,
         start_url: "/",
-        display: "mimimal-ui",
+        lang: "en",
+        display: "standalone",
         icon: "src/assets/coronavirus.png",
         background_color: "#f5f6f9",
         theme_color: "#20263d",

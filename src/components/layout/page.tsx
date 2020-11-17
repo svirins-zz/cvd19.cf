@@ -20,15 +20,17 @@ import { SideDrawer } from "./sideDrawer";
 
 const { Content, Sider, Footer } = Layout;
 export const Page = ({ children }: React.PropsWithChildren<{}>) => {
-  // tslint:disable-next-line: prettier
-  const { handleSelect, showDrawer, onClose, visible, choice = { key: "main" }} = useContext(
-    myContext
-  );
+  const {
+    handleSelect,
+    showDrawer,
+    onClose,
+    visible,
+    choice = { key: "main" },
+  } = useContext(myContext);
   const { pathname } = useLocation();
   const marginClassName: string = pathname.includes("map")
     ? "conentWithoutMargin"
     : "conentWithMargin";
-  // initialize menu selectedKey based on pathname
   useEffect(() => {
     const initiaValue = menuInit(pathname);
     if (handleSelect) {

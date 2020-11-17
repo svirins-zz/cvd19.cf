@@ -6,8 +6,7 @@ import { Table } from "components/tables/table";
 import { PERIOD_LENGTH } from "const";
 import { myContext } from "context";
 import { useGetGlobalData } from "hooks";
-import React, { useContext } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
 const { Title, Text } = Typography;
 
 const Index = ({
@@ -15,10 +14,25 @@ const Index = ({
 }: {
   pageContext: GatsbyTypes.SitePageContext;
 }) => {
+  const [state, setState] = useState({
+    stats: [],
+    trends: [],
+    loseTableData: [],
+    winTableData: [],
+  });
+  useEffect(() => {
+    const { stats, trends, loseTableData, winTableData } = useGetGlobalData(
+      pageContext.data
+    );
+    setState({
+      stats,
+      trends,
+      loseTableData,
+      winTableData,
+    });
+  }, []);
   const { width } = useContext(myContext);
-  const { stats, trends, loseTableData, winTableData } = useGetGlobalData(
-    pageContext.data
-  );
+
   return (
     <Page>
       <SEO
@@ -37,7 +51,7 @@ const Index = ({
           </Title>
         </Col>
         <Col span={24} style={{ marginBottom: "10px" }}>
-          <TodayStats stats={stats} />
+          <TodayStats stats={state.stats} />
         </Col>
       </Row>
       <>
@@ -47,7 +61,7 @@ const Index = ({
           </Title>
           <div style={{ height: "450px" }}>
             <SummaryChart
-              periods={trends}
+              periods={state.trends}
               multiplyer={width?.multiplyer ?? 1}
             />
           </div>
@@ -58,7 +72,7 @@ const Index = ({
           </Title>
           <div style={{ height: "450px" }}>
             <AreaChart
-              periods={trends}
+              periods={state.trends}
               multiplyer={width?.multiplyer ?? 1}
               yValue="underControl"
             />
@@ -70,7 +84,7 @@ const Index = ({
           </Title>
           <div style={{ height: "450px" }}>
             <AreaChart
-              periods={trends}
+              periods={state.trends}
               multiplyer={width?.multiplyer ?? 1}
               yValue="pandemicFree"
             />
@@ -86,7 +100,7 @@ const Index = ({
         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
           <Text>Winning / Won trends</Text>
           <Table
-            data={winTableData}
+            data={state.winTableData}
             periodLength={PERIOD_LENGTH}
             order={false}
             kind={"newDeaths"}
@@ -96,7 +110,7 @@ const Index = ({
         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
           <Text>Losing / Flattening trends</Text>
           <Table
-            data={loseTableData}
+            data={state.loseTableData}
             periodLength={PERIOD_LENGTH}
             order={true}
             kind={"newDeaths"}

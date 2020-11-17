@@ -2211,7 +2211,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
   pluginCreator___pluginOptions___outputPath = 'pluginCreator.pluginOptions.outputPath',
   pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
+  pluginCreator___pluginOptions___description = 'pluginCreator.pluginOptions.description',
   pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
+  pluginCreator___pluginOptions___lang = 'pluginCreator.pluginOptions.lang',
   pluginCreator___pluginOptions___display = 'pluginCreator.pluginOptions.display',
   pluginCreator___pluginOptions___icon = 'pluginCreator.pluginOptions.icon',
   pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
@@ -2430,7 +2432,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___createLinkInHead = 'pluginOptions.createLinkInHead',
   pluginOptions___outputPath = 'pluginOptions.outputPath',
   pluginOptions___short_name = 'pluginOptions.short_name',
+  pluginOptions___description = 'pluginOptions.description',
   pluginOptions___start_url = 'pluginOptions.start_url',
+  pluginOptions___lang = 'pluginOptions.lang',
   pluginOptions___display = 'pluginOptions.display',
   pluginOptions___icon = 'pluginOptions.icon',
   pluginOptions___background_color = 'pluginOptions.background_color',
@@ -2591,7 +2595,9 @@ type SitePluginPluginOptions = {
   readonly createLinkInHead: Maybe<Scalars['Boolean']>;
   readonly outputPath: Maybe<Scalars['String']>;
   readonly short_name: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
   readonly start_url: Maybe<Scalars['String']>;
+  readonly lang: Maybe<Scalars['String']>;
   readonly display: Maybe<Scalars['String']>;
   readonly icon: Maybe<Scalars['String']>;
   readonly background_color: Maybe<Scalars['String']>;
@@ -2624,7 +2630,9 @@ type SitePluginPluginOptionsFilterInput = {
   readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
   readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly short_name: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
   readonly start_url: Maybe<StringQueryOperatorInput>;
+  readonly lang: Maybe<StringQueryOperatorInput>;
   readonly display: Maybe<StringQueryOperatorInput>;
   readonly icon: Maybe<StringQueryOperatorInput>;
   readonly background_color: Maybe<StringQueryOperatorInput>;
@@ -2787,10 +2795,5 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
-type SiteQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type SiteQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author' | 'keywords' | 'language' | 'metaImage' | 'siteUrl'>> }> };
 
 }
