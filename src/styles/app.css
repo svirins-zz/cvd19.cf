@@ -65,11 +65,10 @@
 }
 
 .credentialsLink {
-  color: #c242e2;
+  color: #ef4d4d;
 }
-
 .credentialsLink:hover {
-  color: #7eb0d6;
+  color: #ff0000;
 }
 
 .largeText {
@@ -160,8 +159,36 @@
   font-size: 1.1em;
   font-weight: bold;
   border-radius: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
 }
+
+
+.icon-marker:before, .icon-marker:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 192, 192, 0.7);
+  filter: blur(0);
+  transform-origin: 50%;
+  z-index: -1;
+}
+.icon-marker:hover:before, .icon-marker:hover:after {
+  border-color: transparent;
+  filter: blur(2px);
+  transform: scale(3);
+  transition: 1000ms transform ease, 2100ms blur ease, 900ms border-color ease;
+}
+.icon-marker:hover:after {
+  transition-delay: 150ms;
+}
+
+
+
+
 
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
   background: #2b3f49 !important;
@@ -194,38 +221,35 @@
   width: 2.3em !important;
   height: 2.3em !important;
   background-color: #f8b7b2;
-  border: 1px solid #ff7875;
+  /* border: 1px solid #ff7875; */
 }
 
 .icon-marker-normal {
   width: 3.1em !important;
   height: 3.1em !important;
   background-color: #ff7875;
-  border: 1px solid #f5222d;
-
+  /* border: 1px solid #f5222d; */
 }
 
 .icon-marker-large {
   width: 3.9em !important;
   height: 3.9em !important;;
   background-color: #f5222d;
-  border: 1px solid #a8071a;
+  /* border: 1px solid #a8071a; */
 }
 
 .icon-marker-extra-large {
   width: 4.7em !important;
   height: 4.7em !important;
   background-color: #a8071a;
-  border: 1px solid #5c0011;
-
+  /* border: 1px solid #5c0011; */
 }
 
 .icon-marker-super-large {
   width: 5.5em !important;
   height: 5.6em !important;
   background-color: #5c0011;
-  border: 1px solid #3a010b;
-
+  /* border: 1px solid #3a010b; */
 }
 
 .sider-box-shadow {

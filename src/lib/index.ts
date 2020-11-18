@@ -22,7 +22,7 @@ export {
   getChartInfo,
   menuInit,
   commafy,
-  getTagColor,
+  getColorByStatus,
   getColor,
   getCountriesList,
   makeDatum,

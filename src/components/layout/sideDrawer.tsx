@@ -1,5 +1,5 @@
 import { Table, Tag, Typography } from "antd";
-import { getTagColor } from "lib";
+import { getColorByStatus } from "lib";
 import React from "react";
 
 import { SideDrawerColumn } from "@types";
@@ -51,7 +51,7 @@ export const SideDrawer = () => {
       dataIndex: "status",
       key: "status",
       render: (text, row, index) => (
-        <Tag color={getTagColor(text)} key={index}>
+        <Tag color={getColorByStatus(text)} key={index}>
           {text}
         </Tag>
       ),

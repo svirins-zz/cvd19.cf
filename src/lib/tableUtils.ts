@@ -1,4 +1,4 @@
-import { ColorTag } from "components/data";
+import { ColorCell } from "components/data";
 import { TableInstance } from "react-table";
 
 import {
@@ -122,21 +122,22 @@ export const constructData = (
         title: table.columns[1].Header,
         dataIndex: "periods[2]",
         align: "center",
-        render: (text, record) => ColorTag(text, record.rate2, "newDeaths"),
+        // render: (text, record) => ColorCell(text, record.rate2, "newDeaths"),
+        render: (text, record) => ColorCell(text, record.rate2, "newDeaths"),
         sorter: (a, b) => a["periods[2]"] - b["periods[2]"],
       },
       {
         title: table.columns[2].Header,
         dataIndex: "periods[1]",
         align: "center",
-        render: (text, record) => ColorTag(text, record.rate1, "newDeaths"),
+        render: (text, record) => ColorCell(text, record.rate1, "newDeaths"),
         sorter: (a, b) => a["periods[1]"] - b["periods[1]"],
       },
       {
         title: table.columns[3].Header,
         dataIndex: "periods[0]",
         align: "center",
-        render: (text, record) => ColorTag(text, record.rate0, "newDeaths"),
+        render: (text, record) => ColorCell(text, record.rate0, "newDeaths"),
         sorter: (a, b) => b["periods[0]"] - a["periods[0]"],
         defaultSortOrder: order ? "ascend" : "descend",
       },
@@ -147,35 +148,35 @@ export const constructData = (
         title: table.columns[1].Header,
         dataIndex: "periods[4]",
         align: "center",
-        render: (text, record) => ColorTag(text, record.rate4!, field),
+        render: (text, record) => ColorCell(text, record.rate4!, field),
         sorter: (a, b) => a["periods[4]"]! - b["periods[4]"]!,
       },
       {
         title: table.columns[2].Header,
         dataIndex: "periods[3]",
         align: "center",
-        render: (text, record) => ColorTag(text, record.rate3!, field),
+        render: (text, record) => ColorCell(text, record.rate3!, field),
         sorter: (a, b) => a["periods[3]"]! - b["periods[3]"]!,
       },
       {
         title: table.columns[3].Header,
         dataIndex: "periods[2]",
         align: "center",
-        render: (text, record) => ColorTag(text, record.rate2, field),
+        render: (text, record) => ColorCell(text, record.rate2, field),
         sorter: (a, b) => a["periods[2]"] - b["periods[2]"],
       },
       {
         title: table.columns[4].Header,
         dataIndex: "periods[1]",
         align: "center",
-        render: (text, record) => ColorTag(text, record.rate1, field),
+        render: (text, record) => ColorCell(text, record.rate1, field),
         sorter: (a, b) => a["periods[1]"] - b["periods[1]"],
       },
       {
         title: table.columns[5].Header,
         dataIndex: "periods[0]",
         align: "center",
-        render: (text, record) => ColorTag(text, record.rate0, field),
+        render: (text, record) => ColorCell(text, record.rate0, field),
         sorter: (a, b) => b["periods[0]"] - a["periods[0]"],
         defaultSortOrder: order ? "ascend" : "descend",
       },

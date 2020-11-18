@@ -89,39 +89,39 @@ export const commafy = (value: number): string => {
     .join("");
 };
 
-export const getTagColor = (rate: OutbreakStatus): string => {
+export const getColorByStatus = (rate: OutbreakStatus): string => {
   let color = "none";
   switch (rate) {
     case "No Outbreak": {
-      color = "grey";
+      color = "#808080";
       break;
     }
     case "Small Outbreak": {
-      color = "pink";
+      color = "#eb2f96";
       break;
     }
     case "Losing": {
-      color = "red";
+      color = "#f5222d";
       break;
     }
     case "Flattening the Curve": {
-      color = "volcano";
+      color = "#fa541c";
       break;
     }
     case "Crushing the Curve": {
-      color = "orange";
+      color = "#fa8c16";
       break;
     }
     case "Winning": {
-      color = "cyan";
+      color = "#13c2c2";
       break;
     }
     case "Won": {
-      color = "green";
+      color = "#52c41a";
       break;
     }
     default: {
-      color = "grey";
+      color = "#808080";
     }
   }
   return color;

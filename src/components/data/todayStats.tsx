@@ -1,11 +1,12 @@
+import { Card, Col, Row, Statistic } from "antd";
+import { getColorByStatus } from "lib";
 import React from "react";
-import { Statistic, Card, Row, Col } from "antd";
-import { getTagColor } from "lib";
+
 import { GlobalStats } from "@types";
 
 export const TodayStats = ({ stats }: { stats: GlobalStats }) => {
   const { confirmed, deaths, recovered, days, countries, trend } = stats;
-  const trendColor = getTagColor(trend);
+  const trendColor = getColorByStatus(trend);
   return (
     <>
       <Row gutter={0}>
