@@ -8,7 +8,7 @@ jobs:
     name: Build Gatsby Site
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - name: Build Gatsby Site
       uses: jzweifel/gatsby-cli-github-action@master
       with:
