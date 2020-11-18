@@ -2234,6 +2234,10 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___policy = 'pluginCreator.pluginOptions.policy',
   pluginCreator___pluginOptions___policy___userAgent = 'pluginCreator.pluginOptions.policy.userAgent',
   pluginCreator___pluginOptions___policy___allow = 'pluginCreator.pluginOptions.policy.allow',
+  pluginCreator___pluginOptions___fonts = 'pluginCreator.pluginOptions.fonts',
+  pluginCreator___pluginOptions___fonts___family = 'pluginCreator.pluginOptions.fonts.family',
+  pluginCreator___pluginOptions___fonts___subsets = 'pluginCreator.pluginOptions.fonts.subsets',
+  pluginCreator___pluginOptions___fonts___variants = 'pluginCreator.pluginOptions.fonts.variants',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
@@ -2471,6 +2475,10 @@ enum SitePluginFieldsEnum {
   pluginOptions___policy = 'pluginOptions.policy',
   pluginOptions___policy___userAgent = 'pluginOptions.policy.userAgent',
   pluginOptions___policy___allow = 'pluginOptions.policy.allow',
+  pluginOptions___fonts = 'pluginOptions.fonts',
+  pluginOptions___fonts___family = 'pluginOptions.fonts.family',
+  pluginOptions___fonts___subsets = 'pluginOptions.fonts.subsets',
+  pluginOptions___fonts___variants = 'pluginOptions.fonts.variants',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -2616,6 +2624,7 @@ type SitePluginPluginOptions = {
   readonly host: Maybe<Scalars['String']>;
   readonly sitemap: Maybe<Scalars['String']>;
   readonly policy: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsPolicy>>>;
+  readonly fonts: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsFonts>>>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
 };
 
@@ -2651,7 +2660,24 @@ type SitePluginPluginOptionsFilterInput = {
   readonly host: Maybe<StringQueryOperatorInput>;
   readonly sitemap: Maybe<StringQueryOperatorInput>;
   readonly policy: Maybe<SitePluginPluginOptionsPolicyFilterListInput>;
+  readonly fonts: Maybe<SitePluginPluginOptionsFontsFilterListInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsFonts = {
+  readonly family: Maybe<Scalars['String']>;
+  readonly subsets: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly variants: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+};
+
+type SitePluginPluginOptionsFontsFilterInput = {
+  readonly family: Maybe<StringQueryOperatorInput>;
+  readonly subsets: Maybe<StringQueryOperatorInput>;
+  readonly variants: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsFontsFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPluginOptionsFontsFilterInput>;
 };
 
 type SitePluginPluginOptionsLessOptions = {
