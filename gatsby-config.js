@@ -110,17 +110,5 @@ module.exports = {
         policy: [{ userAgent: "*", allow: "/" }]
       }
     },
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Open Sans`,
-            subsets: [`latin`],
-            variants: [`400`, `600`],
-          },
-        ],
-      },
-    },
   ],
 };
