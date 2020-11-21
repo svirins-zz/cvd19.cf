@@ -84,16 +84,16 @@ module.exports = {
             "font-family": "Open Sans",
             "font-size-base": "16px",
             "primary-color": "#183C52",
-            "heading-color": "#030f40",
-            "link-color": "#ef4d4d",
-            "link-hover-color": "#ff0000",
-            "link-active-color": "#ff0000",
+            "heading-color": "#05264c",
+            "link-color": "#ff0000",
+            "link-hover-color": "#ef4d4d",
+            "link-active-color": "#ef4d4d",
             "layout-header-background": "#05264C",
             "layout-footer-background": "#f5f6f9",
             "menu-bg": "#05264C",
             "menu-item-color": "#fff",
-            "menu-highlight-color": "#032F62",
-            "menu-item-active-bg": "#032F62",
+            "menu-highlight-color": "#E50058",
+            "menu-item-active-bg": "#E50058",
             "menu-item-vertical-margin": "middle",
             "icon-color": "#120338",
             "menu-icon-size": "28`px",
@@ -109,6 +109,21 @@ module.exports = {
         sitemap: "https://cvd19.cf/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }]
       }
+    },
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Open Sans",
+              variants: ["400", "600"],
+              //fontDisplay: 'swap',
+              //strategy: 'selfHosted' // 'base64' || 'cdn'
+            },
+          ],
+        },
+      },
     },
   ],
 };

@@ -1,12 +1,15 @@
 import { Col, Divider, Row, Typography } from "antd";
 import { AreaChart, SummaryChart } from "components/charts";
 import { TodayStats } from "components/data";
-import { Page, SEO } from "components/layout";
+import { Page, SEO, Spinner } from "components/layout";
 import { Table } from "components/tables/table";
 import { PERIOD_LENGTH } from "const";
 import { myContext } from "context";
 import { useGetGlobalData } from "hooks";
 import React, { useContext, useEffect, useState } from "react";
+
+import { IndexPageState } from "@types";
+
 const { Title, Text } = Typography;
 
 const Index = ({
@@ -14,12 +17,7 @@ const Index = ({
 }: {
   pageContext: GatsbyTypes.SitePageContext;
 }) => {
-  const [state, setState] = useState({
-    stats: [],
-    trends: [],
-    loseTableData: [],
-    winTableData: [],
-  });
+  const [state, setState] = useState<IndexPageState>();
   useEffect(() => {
     const { stats, trends, loseTableData, winTableData } = useGetGlobalData(
       pageContext.data
@@ -32,7 +30,7 @@ const Index = ({
     });
   }, []);
   const { width } = useContext(myContext);
-
+  if (!state) return <Spinner />;
   return (
     <Page>
       <SEO
@@ -51,7 +49,7 @@ const Index = ({
           </Title>
         </Col>
         <Col span={24} style={{ marginBottom: "10px" }}>
-          <TodayStats stats={state.stats} />
+          <TodayStats stats={state!.stats} />
         </Col>
       </Row>
       <>
@@ -61,7 +59,7 @@ const Index = ({
           </Title>
           <div style={{ height: "450px" }}>
             <SummaryChart
-              periods={state.trends}
+              periods={state!.trends}
               multiplyer={width?.multiplyer ?? 1}
             />
           </div>
@@ -72,7 +70,7 @@ const Index = ({
           </Title>
           <div style={{ height: "450px" }}>
             <AreaChart
-              periods={state.trends}
+              periods={state!.trends}
               multiplyer={width?.multiplyer ?? 1}
               yValue="underControl"
             />
@@ -84,7 +82,7 @@ const Index = ({
           </Title>
           <div style={{ height: "450px" }}>
             <AreaChart
-              periods={state.trends}
+              periods={state!.trends}
               multiplyer={width?.multiplyer ?? 1}
               yValue="pandemicFree"
             />
@@ -100,7 +98,7 @@ const Index = ({
         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
           <Text>Winning / Won trends</Text>
           <Table
-            data={state.winTableData}
+            data={state!.winTableData}
             periodLength={PERIOD_LENGTH}
             order={false}
             kind={"newDeaths"}
@@ -110,7 +108,7 @@ const Index = ({
         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
           <Text>Losing / Flattening trends</Text>
           <Table
-            data={state.loseTableData}
+            data={state!.loseTableData}
             periodLength={PERIOD_LENGTH}
             order={true}
             kind={"newDeaths"}

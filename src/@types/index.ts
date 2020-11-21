@@ -80,7 +80,6 @@ export interface SummaryTable {
 }
 export interface DataChartProps {
   countries?: Country[];
-  periods?: Period[];
   selectedCountries?: Selected[];
   isStartAtDeaths: boolean;
   yValue: string;
@@ -136,7 +135,7 @@ export type ContextProps = {
   choice: { key: string };
   visible: { isVisible: boolean };
   width: { multiplyer: number };
-  handleSelect: (info: { selectedKeys: React.Key }) => void;
+  handleSelect: (info: { selectedKeys?: React.Key[] | React.Key }) => void;
   onClose: () => void;
   showDrawer: () => void;
 };
@@ -226,4 +225,14 @@ export type SideDrawerColumn = {
 
 export type Sorter = (a: Prepared, b: Prepared) => number;
 
-export type Render = (text: number, record: Prepared) => JSX.Element;
+export type Render = (
+  text: number,
+  record: Prepared
+) => { props: { style: { background: string } }; children: string };
+
+export interface IndexPageState {
+  stats: GlobalStats;
+  trends: Trends[];
+  loseTableData: Country[];
+  winTableData: Country[];
+}

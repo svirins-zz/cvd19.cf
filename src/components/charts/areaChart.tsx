@@ -2,7 +2,7 @@ import { makeDatum } from "lib";
 import React from "react";
 
 import { ResponsiveLine, Serie } from "@nivo/line";
-import { Period } from "@types";
+import { Trends } from "@types";
 
 import { theme } from "../../styles/chartsTheme";
 import { PlaceholderChart } from "./placeholderChart";
@@ -12,7 +12,7 @@ export const AreaChart = ({
   multiplyer,
   yValue,
 }: {
-  periods: Period[];
+  periods: Trends[];
   multiplyer: number;
   yValue: string;
 }) => {

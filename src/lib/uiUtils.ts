@@ -7,7 +7,7 @@ import {
   CountriesList,
   Country,
   OutbreakStatus,
-  Period,
+  Trends,
 } from "../@types";
 
 export const getChartInfo = (
@@ -155,7 +155,7 @@ export const getCountriesList = (countries: Country[]): CountriesList[] =>
  */
 
 export const makeDatum = (
-  periods: Period[],
+  periods: Trends[],
   yValue: string,
   multiplyer: number
 ) => {

@@ -198,7 +198,7 @@ export const sumPeriodData = (
 export const calcTrends = (
   countries: Country[],
   periodLength: number
-): Trends => {
+): Trends[] => {
   const periodCount = getPeriodCount(periodLength);
   const initialPeriodSummaries = Array.from(
     { length: periodCount - 2 },

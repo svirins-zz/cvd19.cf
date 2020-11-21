@@ -26,6 +26,7 @@ export const SEO = ({
       }
     `
   );
+  // : { site: GatsbyTypes.SiteSiteMetadata }
   const metaDescription = description || site?.siteMetadata?.description;
   const image = `${site?.siteMetadata?.siteUrl}${site?.siteMetadata?.metaImage}`;
   const canonical = pathname

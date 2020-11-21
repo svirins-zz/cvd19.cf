@@ -7,12 +7,10 @@ export const ColorCell = (
   status: OutbreakStatus,
   field: TableType
 ) => {
-  const cellValue = `${field === "growthRate" ? text : commafy(text)}${
-    field === "growthRate" ? "%" : ""
-  }`;
+  const cellValue = `${field === "growthRate" ? text : commafy(text)}`;
   return {
     props: {
-      style: { background: `${getColorByStatus(status)}7a`},
+      style: { background: `${getColorByStatus(status)}7a` },
     },
     children: cellValue,
   };

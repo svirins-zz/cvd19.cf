@@ -11,13 +11,7 @@ import {
   getMarkerDetails,
   isDomAvailable,
 } from "lib";
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useContext, useMemo } from "react";
 import {
   LayerGroup,
   LayersControl,
@@ -25,7 +19,6 @@ import {
   Marker,
   Popup,
   TileLayer,
-  useMap,
 } from "react-leaflet";
 
 import { Countries } from "@types";
@@ -48,48 +41,45 @@ import { Countries } from "@types";
 
 const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
   const data = pageContext.data;
-  if (!isDomAvailable()) {
-    return <p>No DOM - no Map</p>;
-  }
-  // const map = useMap()
   const { width } = useContext(myContext);
   const zoomValue = getCurrentZoom(width?.multiplyer);
   const { features } = getFeatures(data as Countries);
-  const markers = features
-    .sort((a, b) => b.properties.confirmed - a.properties.confirmed)
-    .map((feature, index) => {
-      const { name, flag, confirmed, deaths, recovered } = feature.properties;
-      const icon = new DivIcon({
-        html: `<div class="icon-marker ${getMarkerDetails(confirmed)}">
+  if (!isDomAvailable()) {
+    return <span>waiting for DOM...</span>;
+  }
+  const markers = features.map((feature, index) => {
+    const { name, flag, confirmed, deaths, recovered } = feature.properties;
+    const icon = new DivIcon({
+      html: `<div class="icon-marker ${getMarkerDetails(confirmed)}">
           <p class="marker-text">${commafy(confirmed)}</p>
         </div>`,
-      });
-      return (
-        <Marker
-          key={index}
-          position={feature.geometry.coordinates}
-          icon={icon}
-          eventHandlers={{
-            click: () => {
-              // DisplayPosition(map);
-              // flyto
-            },
-          }}
-        >
-          <Popup key={index}>
-            <span>
-              <img src={flag} alt="name" />
-              <h2 className="title">{name}</h2>
-              <ul className="marker-list">
-                <li>Confirmed:&nbsp;{commafy(confirmed)}</li>
-                <li>Deaths:&nbsp;{commafy(deaths)}</li>
-                <li>Recovered:&nbsp;{commafy(recovered)}</li>
-              </ul>
-            </span>
-          </Popup>
-        </Marker>
-      );
     });
+    return (
+      <Marker
+        key={index}
+        position={feature.geometry.coordinates}
+        icon={icon}
+        eventHandlers={{
+          click: () => {
+            // DisplayPosition(map);
+            // flyto
+          },
+        }}
+      >
+        <Popup key={index}>
+          <span>
+            <img src={flag} alt="name" />
+            <h2 className="title">{name}</h2>
+            <ul className="marker-list">
+              <li>Confirmed:&nbsp;{commafy(confirmed)}</li>
+              <li>Deaths:&nbsp;{commafy(deaths)}</li>
+              <li>Recovered:&nbsp;{commafy(recovered)}</li>
+            </ul>
+          </span>
+        </Popup>
+      </Marker>
+    );
+  });
   const displayMap = useMemo(
     () => (
       <MapContainer
@@ -102,7 +92,6 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
         doubleClickZoom={true}
         scrollWheelZoom={true}
         dragging={true}
-        animate={true}
         easeLinearity={0.35}
       >
         <LayersControl position="topright">

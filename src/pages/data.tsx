@@ -28,10 +28,7 @@ const Data = ({
   pageContext: GatsbyTypes.SitePageContext;
 }) => {
   const { width } = useContext(myContext);
-  // get build-time data
   const data = pageContext.data;
-
-  // initialize state
   const [periodInfo, setPeriodInfo] = useImmer({
     length: PERIOD_LENGTH,
   });
@@ -46,8 +43,6 @@ const Data = ({
   const [startAtDeaths, setStartAtDeaths] = useImmer({
     isStart: false,
   });
-
-  // util functions
   const chartInfo = getChartInfo(selectedTable.table, periodInfo.length);
   const onCountriesChange = (currentCountries: string[]) => {
     const countriesWithColors = currentCountries.map((country, index) => {
@@ -60,8 +55,6 @@ const Data = ({
       draft.countries = [...countriesWithColors];
     });
   };
-
-  // transform and prepare country data
   const { countriesList, preparedCountries } = useGetDetailedData(
     data,
     periodInfo.length

@@ -36,7 +36,7 @@
 .logoText {
   font-weight: 600;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #ffb655;
   font-size: 11px;
   line-height: 22px;
 }
@@ -63,14 +63,6 @@
   color: #000000;
   font-size: 12px;
   text-align: center;
-}
-
-.credentialsLink {
-  color: #ef4d4d;
-}
-
-.credentialsLink:hover {
-  color: #ff0000;
 }
 
 .largeText {
@@ -195,7 +187,7 @@
 
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-  background: #2b3f49 !important;
+  background: #39393a !important;
   color: white !important;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
   border-radius: 4px !important;
@@ -273,3 +265,13 @@ h6 {
   background: none !important;
   border: none !important;
 }
+
+
+.ant-table {
+  line-height: 1.15rem !important;
+}
+
+.ant-table.ant-table-small {
+  font-size: 14px !important;
+}
+

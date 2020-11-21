@@ -117,12 +117,6 @@ export const getFeatures = (data: Countries | undefined) => {
 };
 
 /**
- * isDomAvailableн
- * @description Checks to see if the DOM is available by checking the existence of the window and document
- * @see https://github.com/facebook/fbjs/blob/master/packages/fbjs/src/core/ExecutionEnvironment.js#L12
- */
-
-/**
  * check if window object exists
  *
  * @export

@@ -12,13 +12,6 @@ export const DonatePayPalButton = () => {
         title="PayPal - The safer, easier way to pay online!"
         alt="Donate with PayPal button"
       />
-      <img
-        alt=""
-        className="no-border"
-        src="https://www.paypal.com/en_BY/i/scr/pixel.gif"
-        width="1"
-        height="1"
-      />
     </form>
   );
 };

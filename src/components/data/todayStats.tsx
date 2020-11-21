@@ -6,7 +6,7 @@ import { GlobalStats } from "@types";
 
 export const TodayStats = ({ stats }: { stats: GlobalStats }) => {
   const { confirmed, deaths, recovered, days, countries, trend } = stats;
-  const trendColor = getColorByStatus(trend);
+  const trendColor = getColorByStatus(trend!);
   return (
     <>
       <Row gutter={0}>

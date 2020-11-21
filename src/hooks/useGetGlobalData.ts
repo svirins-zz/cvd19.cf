@@ -12,7 +12,7 @@ export const useGetGlobalData = (
     ...calcStats(data as Countries),
     trend: globalData[0].periods[0].status as OutbreakStatus,
   };
-  const trends: Trends = calcTrends(countries, PERIOD_LENGTH);
+  const trends: Trends[] = calcTrends(countries, PERIOD_LENGTH);
   const loseTableData = countries.filter(
     (country) =>
       country.periods[0].status === OutbreakStatus.Losing ||

@@ -2219,10 +2219,10 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
   pluginCreator___pluginOptions___theme_color = 'pluginCreator.pluginOptions.theme_color',
   pluginCreator___pluginOptions___crossOrigin = 'pluginCreator.pluginOptions.crossOrigin',
-  pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator.pluginOptions.cache_busting_mode',
-  pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
   pluginCreator___pluginOptions___legacy = 'pluginCreator.pluginOptions.legacy',
   pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator.pluginOptions.theme_color_in_head',
+  pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator.pluginOptions.cache_busting_mode',
+  pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
   pluginCreator___pluginOptions___cacheDigest = 'pluginCreator.pluginOptions.cacheDigest',
   pluginCreator___pluginOptions___isTSX = 'pluginCreator.pluginOptions.isTSX',
   pluginCreator___pluginOptions___jsxPragma = 'pluginCreator.pluginOptions.jsxPragma',
@@ -2234,10 +2234,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___policy = 'pluginCreator.pluginOptions.policy',
   pluginCreator___pluginOptions___policy___userAgent = 'pluginCreator.pluginOptions.policy.userAgent',
   pluginCreator___pluginOptions___policy___allow = 'pluginCreator.pluginOptions.policy.allow',
-  pluginCreator___pluginOptions___fonts = 'pluginCreator.pluginOptions.fonts',
-  pluginCreator___pluginOptions___fonts___family = 'pluginCreator.pluginOptions.fonts.family',
-  pluginCreator___pluginOptions___fonts___subsets = 'pluginCreator.pluginOptions.fonts.subsets',
-  pluginCreator___pluginOptions___fonts___variants = 'pluginCreator.pluginOptions.fonts.variants',
+  pluginCreator___pluginOptions___fonts___google = 'pluginCreator.pluginOptions.fonts.google',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
@@ -2444,10 +2441,10 @@ enum SitePluginFieldsEnum {
   pluginOptions___background_color = 'pluginOptions.background_color',
   pluginOptions___theme_color = 'pluginOptions.theme_color',
   pluginOptions___crossOrigin = 'pluginOptions.crossOrigin',
-  pluginOptions___cache_busting_mode = 'pluginOptions.cache_busting_mode',
-  pluginOptions___include_favicon = 'pluginOptions.include_favicon',
   pluginOptions___legacy = 'pluginOptions.legacy',
   pluginOptions___theme_color_in_head = 'pluginOptions.theme_color_in_head',
+  pluginOptions___cache_busting_mode = 'pluginOptions.cache_busting_mode',
+  pluginOptions___include_favicon = 'pluginOptions.include_favicon',
   pluginOptions___cacheDigest = 'pluginOptions.cacheDigest',
   pluginOptions___isTSX = 'pluginOptions.isTSX',
   pluginOptions___jsxPragma = 'pluginOptions.jsxPragma',
@@ -2475,10 +2472,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___policy = 'pluginOptions.policy',
   pluginOptions___policy___userAgent = 'pluginOptions.policy.userAgent',
   pluginOptions___policy___allow = 'pluginOptions.policy.allow',
-  pluginOptions___fonts = 'pluginOptions.fonts',
-  pluginOptions___fonts___family = 'pluginOptions.fonts.family',
-  pluginOptions___fonts___subsets = 'pluginOptions.fonts.subsets',
-  pluginOptions___fonts___variants = 'pluginOptions.fonts.variants',
+  pluginOptions___fonts___google = 'pluginOptions.fonts.google',
+  pluginOptions___fonts___google___family = 'pluginOptions.fonts.google.family',
+  pluginOptions___fonts___google___variants = 'pluginOptions.fonts.google.variants',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -2611,10 +2607,10 @@ type SitePluginPluginOptions = {
   readonly background_color: Maybe<Scalars['String']>;
   readonly theme_color: Maybe<Scalars['String']>;
   readonly crossOrigin: Maybe<Scalars['String']>;
-  readonly cache_busting_mode: Maybe<Scalars['String']>;
-  readonly include_favicon: Maybe<Scalars['Boolean']>;
   readonly legacy: Maybe<Scalars['Boolean']>;
   readonly theme_color_in_head: Maybe<Scalars['Boolean']>;
+  readonly cache_busting_mode: Maybe<Scalars['String']>;
+  readonly include_favicon: Maybe<Scalars['Boolean']>;
   readonly cacheDigest: Maybe<Scalars['String']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
   readonly jsxPragma: Maybe<Scalars['String']>;
@@ -2624,7 +2620,7 @@ type SitePluginPluginOptions = {
   readonly host: Maybe<Scalars['String']>;
   readonly sitemap: Maybe<Scalars['String']>;
   readonly policy: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsPolicy>>>;
-  readonly fonts: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsFonts>>>;
+  readonly fonts: Maybe<SitePluginPluginOptionsFonts>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
 };
 
@@ -2647,10 +2643,10 @@ type SitePluginPluginOptionsFilterInput = {
   readonly background_color: Maybe<StringQueryOperatorInput>;
   readonly theme_color: Maybe<StringQueryOperatorInput>;
   readonly crossOrigin: Maybe<StringQueryOperatorInput>;
-  readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
-  readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
   readonly legacy: Maybe<BooleanQueryOperatorInput>;
   readonly theme_color_in_head: Maybe<BooleanQueryOperatorInput>;
+  readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
+  readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
   readonly cacheDigest: Maybe<StringQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
   readonly jsxPragma: Maybe<StringQueryOperatorInput>;
@@ -2660,24 +2656,30 @@ type SitePluginPluginOptionsFilterInput = {
   readonly host: Maybe<StringQueryOperatorInput>;
   readonly sitemap: Maybe<StringQueryOperatorInput>;
   readonly policy: Maybe<SitePluginPluginOptionsPolicyFilterListInput>;
-  readonly fonts: Maybe<SitePluginPluginOptionsFontsFilterListInput>;
+  readonly fonts: Maybe<SitePluginPluginOptionsFontsFilterInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsFonts = {
-  readonly family: Maybe<Scalars['String']>;
-  readonly subsets: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly variants: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly google: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsFontsGoogle>>>;
 };
 
 type SitePluginPluginOptionsFontsFilterInput = {
+  readonly google: Maybe<SitePluginPluginOptionsFontsGoogleFilterListInput>;
+};
+
+type SitePluginPluginOptionsFontsGoogle = {
+  readonly family: Maybe<Scalars['String']>;
+  readonly variants: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+};
+
+type SitePluginPluginOptionsFontsGoogleFilterInput = {
   readonly family: Maybe<StringQueryOperatorInput>;
-  readonly subsets: Maybe<StringQueryOperatorInput>;
   readonly variants: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsFontsFilterListInput = {
-  readonly elemMatch: Maybe<SitePluginPluginOptionsFontsFilterInput>;
+type SitePluginPluginOptionsFontsGoogleFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPluginOptionsFontsGoogleFilterInput>;
 };
 
 type SitePluginPluginOptionsLessOptions = {

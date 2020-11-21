@@ -1,7 +1,7 @@
 import "styles/app.css";
 
 import { Button, Divider, Drawer, Layout, Menu } from "antd";
-import logo from "assets/coronavirus.png";
+import logo from "assets/cvd4.svg";
 import { myContext } from "context";
 import { Link } from "gatsby";
 import { menuInit } from "lib";
@@ -114,11 +114,7 @@ export const Page = ({ children }: React.PropsWithChildren<{}>) => {
               <span role="img" aria-labelledby="love">
                 ❤️
               </span>{" "}
-              by{" "}
-              <a className="credentialsLink" href="https://twitter.com/svirins">
-                @svirins
-              </a>
-              .
+              by <a href="https://twitter.com/svirins">@svirins</a>.
             </div>
             <div className="credentials">
               {" "}
