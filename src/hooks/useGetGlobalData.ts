@@ -1,11 +1,17 @@
 import { PERIOD_LENGTH } from "const";
 import { calcCountries, calcStats, calcTrends, sumPeriodData } from "lib";
 
-import { Countries, GlobalStats, OutbreakStatus, Trends } from "../@types";
+import {
+  Countries,
+  GlobalStats,
+  IndexPageState,
+  OutbreakStatus,
+  Trends,
+} from "../@types";
 
 export const useGetGlobalData = (
   data: GatsbyTypes.Maybe<GatsbyTypes.SitePageContextData>
-) => {
+): IndexPageState => {
   const countries = calcCountries(data as Countries, PERIOD_LENGTH);
   const globalData = sumPeriodData(countries, PERIOD_LENGTH);
   const stats: GlobalStats = {

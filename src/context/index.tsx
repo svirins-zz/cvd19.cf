@@ -77,6 +77,10 @@ const Provider = ({ children }: AuxProps) => {
   );
 };
 
-export default ({ element }: { element: React.ReactChildren }) => (
-  <Provider>{element}</Provider>
-);
+export default function MyContext({
+  element,
+}: {
+  element: React.ReactChildren;
+}): JSX.Element {
+  return <Provider>{element}</Provider>;
+}

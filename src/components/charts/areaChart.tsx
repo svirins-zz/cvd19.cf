@@ -15,7 +15,7 @@ export const AreaChart = ({
   periods: Trends[];
   multiplyer: number;
   yValue: string;
-}) => {
+}): JSX.Element => {
   const iterable =
     yValue === "underControl" ? ["under control"] : ["pandemic free"];
   const chartData: Serie[] = [];

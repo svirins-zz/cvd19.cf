@@ -8,9 +8,9 @@ import {
   Typography,
 } from "antd";
 import { DataChart } from "components/charts";
-import { CountryFilter } from "components/data/countryFilter";
 import { Page, SEO } from "components/layout";
 import { Table } from "components/tables/table";
+import { CountryFilter } from "components/ui/countryFilter";
 import { PERIOD_LENGTH } from "const";
 import { myContext } from "context";
 import { useGetDetailedData } from "hooks";
@@ -26,7 +26,7 @@ const Data = ({
   pageContext,
 }: {
   pageContext: GatsbyTypes.SitePageContext;
-}) => {
+}): JSX.Element => {
   const { width } = useContext(myContext);
   const data = pageContext.data;
   const [periodInfo, setPeriodInfo] = useImmer({

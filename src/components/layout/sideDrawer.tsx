@@ -1,12 +1,12 @@
-import { Table, Tag, Typography } from "antd";
-import { getColorByStatus } from "lib";
+import { Table, Typography } from "antd";
+import { ColorTag } from "components/ui";
 import React from "react";
 
 import { SideDrawerColumn } from "@types";
 
 const { Paragraph } = Typography;
 
-export const SideDrawer = () => {
+export const SideDrawer = (): JSX.Element => {
   const data = [
     {
       key: "1",
@@ -50,11 +50,7 @@ export const SideDrawer = () => {
       title: "Trends explained",
       dataIndex: "status",
       key: "status",
-      render: (text, row, index) => (
-        <Tag color={getColorByStatus(text)} key={index}>
-          {text}
-        </Tag>
-      ),
+      render: (text, _row, index) => ColorTag(text, index),
     },
     {
       title: "Description",

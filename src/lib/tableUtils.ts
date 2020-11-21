@@ -1,4 +1,4 @@
-import { ColorCell } from "components/data";
+import { ColorCell } from "components/ui";
 import { TableInstance } from "react-table";
 
 import {
@@ -6,6 +6,7 @@ import {
   ConstructedColumn,
   Country,
   Period,
+  Prepared,
   Sorter,
   TableType,
 } from "@types";
@@ -26,7 +27,7 @@ export const constructColumns = (
   multiplyer: number,
   field: TableType,
   periodNames: string[]
-) => {
+): ConstructedColumn[] => {
   const head: ConstructedColumn[] = [
     {
       Header: "Country",
@@ -77,7 +78,7 @@ export const constructData = (
   variation: "tight" | "wide",
   order: boolean,
   multiplyer: number
-) => {
+): { columnData: Column[]; preparedData: Prepared[] } => {
   const preparedData = table.data.map((e, i) => {
     if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
       return {
@@ -148,15 +149,15 @@ export const constructData = (
         title: table.columns[1].Header,
         dataIndex: "periods[4]",
         align: "center",
-        render: (text, record) => ColorCell(text, record.rate4!, field),
-        sorter: (a, b) => a["periods[4]"]! - b["periods[4]"]!,
+        render: (text, record) => ColorCell(text, record.rate4, field),
+        sorter: (a, b) => a["periods[4]"] - b["periods[4]"],
       },
       {
         title: table.columns[2].Header,
         dataIndex: "periods[3]",
         align: "center",
-        render: (text, record) => ColorCell(text, record.rate3!, field),
-        sorter: (a, b) => a["periods[3]"]! - b["periods[3]"]!,
+        render: (text, record) => ColorCell(text, record.rate3, field),
+        sorter: (a, b) => a["periods[3]"] - b["periods[3]"],
       },
       {
         title: table.columns[3].Header,

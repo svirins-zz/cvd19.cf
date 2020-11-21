@@ -8,7 +8,14 @@ import {
 import { getCode } from "country-list";
 import { LatLngExpression } from "leaflet";
 
-import { CodeFlagGeo, Countries, Feature, Geometry, Properties } from "@types";
+import {
+  CodeFlagGeo,
+  Countries,
+  Feature,
+  FeatureCollection,
+  Geometry,
+  Properties,
+} from "@types";
 
 /**
  * add missing countries names
@@ -18,7 +25,8 @@ import { CodeFlagGeo, Countries, Feature, Geometry, Properties } from "@types";
  */
 const getMissingCode = (countryName: string): string => {
   const element = MISSING_COUNTRIES.find((el) => el.longName === countryName);
-  return element!.shortName;
+  if (element) return element.shortName;
+  return "UNKN"; // stands for unknown
 };
 
 /**
@@ -33,7 +41,8 @@ const getCoords = (code: string, name: string): LatLngExpression => {
     return VESSELS_CURRENT_COORDS[name] as LatLngExpression;
   }
   const element = ALL_COUNTRIES_DATA.find((e) => e.country_code === code);
-  return [Number(element!.latlng[0]), Number(element!.latlng[1])];
+  if (element) return [Number(element.latlng[0]), Number(element.latlng[1])];
+  return [0, 0]; // fallback
 };
 /**
  * get country properties
@@ -84,15 +93,15 @@ export const getMarkerDetails = (totalCases: number): string => {
 /**
  * construct FeatureCollection object
  *
- * @param {(Countries | undefined)} data
+ * @param {(Countries)} data
  * @return {*}
  */
-export const getFeatures = (data: Countries | undefined) => {
+export const getFeatures = (data: Countries): FeatureCollection => {
   const features: Feature[] = [];
-  data!.countries.forEach((country) => {
+  data.countries.forEach((country) => {
     const { code, flag, geometry } = getCountryExtData(country.name);
     const { confirmed, deaths, recovered } = country.results[
-      data!.countries.length - 1
+      data.countries.length - 1
     ];
     const bounds = undefined;
     const properties: Properties = {
@@ -122,7 +131,7 @@ export const getFeatures = (data: Countries | undefined) => {
  * @export
  * @return {*}
  */
-export function isDomAvailable(): any {
+export function isDomAvailable(): boolean {
   return (
     typeof window !== "undefined" &&
     !!window.document &&

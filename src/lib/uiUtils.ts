@@ -7,6 +7,7 @@ import {
   CountriesList,
   Country,
   OutbreakStatus,
+  Period,
   Trends,
 } from "../@types";
 
@@ -155,15 +156,15 @@ export const getCountriesList = (countries: Country[]): CountriesList[] =>
  */
 
 export const makeDatum = (
-  periods: Trends[],
+  periods: Trends[] | Period[],
   yValue: string,
   multiplyer: number
-) => {
+): Datum[] => {
   const thereshold = Math.floor(
     periods.length / (X_ASIS_TICKS_AMOUNT * multiplyer)
   );
   const datum: Datum[] = [];
-  periods.forEach((period, index) => {
+  periods.forEach((period, index: number) => {
     if (
       index === 0 ||
       index === periods.length - 1 ||

@@ -16,7 +16,7 @@ export const getDaysAgo = (date: Date): number => {
   return Math.floor(millisecondsAgo / (1000 * 60 * 60 * 24));
 };
 
-export const getPeriodCount = (periodLength: number) =>
+export const getPeriodCount = (periodLength: number): number =>
   Math.floor(getDaysAgo(new Date(EPIDEMIC_START)) / periodLength);
 
 export const periodStatus = (
@@ -55,14 +55,14 @@ export const periodStatus = (
   return OutbreakStatus.None;
 };
 
-export const getPeriodName = (endingDaysAgo: number) => {
+export const getPeriodName = (endingDaysAgo: number): string => {
   const endDate = new Date(
     new Date().setDate(new Date().getDate() - endingDaysAgo)
   );
   return `${endDate.getDate()}/${endDate.getMonth() + 1}`;
 };
 
-export const getPeriodNames = (periodLength: number) => {
+export const getPeriodNames = (periodLength: number): string[] => {
   const columnCount = 6;
   const periodNames = Array(columnCount).fill("");
   return periodNames.map((_, index) => {

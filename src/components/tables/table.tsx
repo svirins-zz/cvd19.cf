@@ -12,10 +12,7 @@ export const Table = ({
   order = true,
   variation,
   multiplyer = 1,
-}: SummaryTable) => {
-  if (!data) {
-    return null;
-  }
+}: SummaryTable): JSX.Element => {
   const periodNames = useMemo(() => getPeriodNames(periodLength), [
     periodLength,
   ]);

@@ -13,10 +13,10 @@ export const DataChart = ({
   yValue,
   isStartAtDeaths,
   multiplyer,
-}: DataChartProps) => {
+}: DataChartProps): JSX.Element => {
   const chartData: Serie[] = [];
-  const colors = selectedCountries!.map((country) => country.color);
-  countries!.map((e, i) => {
+  const colors = selectedCountries.map((country) => country.color);
+  countries.map((e) => {
     const isSelectedcountry: Selected | undefined = selectedCountries?.find(
       (country) => country.name === e.name
     );

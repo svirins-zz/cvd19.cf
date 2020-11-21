@@ -14,7 +14,7 @@ export const SummaryChart = ({
 }: {
   periods: Trends[];
   multiplyer: number;
-}) => {
+}): JSX.Element => {
   const chartData: Serie[] = [];
   const colors: string[] = [];
   TRENDS_AND_COLORS_MAP.forEach((element, index) => {

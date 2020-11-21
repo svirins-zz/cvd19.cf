@@ -1,10 +1,11 @@
 import { LatLngTuple } from "leaflet";
 
 import { MissingCountries } from "../@types";
-export const X_ASIS_TICKS_AMOUNT: number = 25;
-export const EPIDEMIC_START: string = "2020/01/07";
-export const PERIOD_LENGTH: number = 5;
-export const DEFAULT_ZOOM: number = 2.8;
+
+export const X_ASIS_TICKS_AMOUNT = 25;
+export const EPIDEMIC_START = "2020/01/07";
+export const PERIOD_LENGTH = 5;
+export const DEFAULT_ZOOM = 2.8;
 export const MAP_CENTER: LatLngTuple = [20, 34];
 
 export const VESSELS_CURRENT_COORDS = {

@@ -8,7 +8,7 @@ export const SEO = ({
   description = "",
   title,
   pathname = "https://cvd19.cf",
-}: SeoProps) => {
+}: SeoProps): JSX.Element => {
   const { site } = useStaticQuery<GatsbyTypes.SiteQuery>(
     graphql`
       query Site {

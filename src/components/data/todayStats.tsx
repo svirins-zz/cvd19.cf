@@ -4,9 +4,9 @@ import React from "react";
 
 import { GlobalStats } from "@types";
 
-export const TodayStats = ({ stats }: { stats: GlobalStats }) => {
+export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
   const { confirmed, deaths, recovered, days, countries, trend } = stats;
-  const trendColor = getColorByStatus(trend!);
+  const trendColor = getColorByStatus(trend);
   return (
     <>
       <Row gutter={0}>

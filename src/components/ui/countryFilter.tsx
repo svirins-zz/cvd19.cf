@@ -12,12 +12,12 @@ export const CountryFilter = ({
   selected?: Selected[];
   setSelected: (currentCountries: string[]) => void;
   countries: CountriesList[];
-}) => {
+}): JSX.Element => {
   function tagRender(props: RenderProps) {
     const { label, closable, onClose } = props;
     return (
       <Tag
-        key={label!.toString()}
+        key={label.toString()}
         color={selected.find((country) => country.name === label)?.color}
         closable={closable}
         onClose={(e) => onClose(e)}

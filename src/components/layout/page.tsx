@@ -19,7 +19,9 @@ import { useLocation } from "@reach/router";
 import { SideDrawer } from "./sideDrawer";
 
 const { Content, Sider, Footer } = Layout;
-export const Page = ({ children }: React.PropsWithChildren<{}>) => {
+export const Page = ({
+  children,
+}: React.PropsWithChildren<Record<string, unknown>>): JSX.Element => {
   const {
     handleSelect,
     showDrawer,

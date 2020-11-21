@@ -39,7 +39,11 @@ import { Countries } from "@types";
 //   return null
 // }
 
-const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
+const Map = ({
+  pageContext,
+}: {
+  pageContext: GatsbyTypes.SitePageContext;
+}): JSX.Element => {
   const data = pageContext.data;
   const { width } = useContext(myContext);
   const zoomValue = getCurrentZoom(width?.multiplyer);
@@ -98,13 +102,13 @@ const Map = ({ pageContext }: { pageContext: GatsbyTypes.SitePageContext }) => {
           <LayersControl.BaseLayer checked={true} name="ArcGis.Dark">
             <TileLayer
               attribution={ATTRIBUTION_STRING}
-              url={process.env.GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT!}
+              url={process.env.GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT ?? ""}
             />
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name="OpenStreetMap">
             <TileLayer
               attribution={ATTRIBUTION_STRING}
-              url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT!}
+              url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT ?? ""}
             />
           </LayersControl.BaseLayer>
         </LayersControl>

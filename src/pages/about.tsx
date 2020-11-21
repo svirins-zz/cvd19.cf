@@ -1,10 +1,11 @@
 import { Alert, Col, Divider, Row, Typography } from "antd";
-import { DonatePayPalButton, Page, SEO } from "components/layout";
+import { Page, SEO } from "components/layout";
+import { DonatePayPalButton } from "components/ui";
 import React from "react";
 
 const { Title, Paragraph } = Typography;
 
-const About = () => {
+const About = (): JSX.Element => {
   return (
     <Page>
       <SEO
@@ -81,8 +82,8 @@ const About = () => {
           </Paragraph>
           <Divider className="divider" />
           <Paragraph>
-            If you enjoyed using this site, and you'd like to help support its
-            further development, you're welcome to donate!
+            If you enjoyed using this site, and you&apos;d like to help support
+            further development, you&apos;re welcome to donate!
           </Paragraph>
           <DonatePayPalButton />
         </Col>

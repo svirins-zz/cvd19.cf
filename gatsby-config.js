@@ -68,7 +68,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-typescript",
-    "gatsby-plugin-tslint",
     "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-antd",
@@ -98,7 +97,7 @@ module.exports = {
             "icon-color": "#120338",
             "menu-icon-size": "28`px",
           },
-          javascriptEnabled: true
+          javascriptEnabled: true,
         },
       },
     },
@@ -107,8 +106,8 @@ module.exports = {
       options: {
         host: "https://cvd19.cf",
         sitemap: "https://cvd19.cf/sitemap.xml",
-        policy: [{ userAgent: "*", allow: "/" }]
-      }
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
     },
     {
       resolve: `gatsby-plugin-webfonts`,

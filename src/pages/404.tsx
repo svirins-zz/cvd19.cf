@@ -2,7 +2,7 @@ import { Button, Result } from "antd";
 import { Page, SEO } from "components/layout";
 import React from "react";
 
-const error404 = () => {
+const error404 = (): JSX.Element => {
   return (
     <Page>
       <SEO

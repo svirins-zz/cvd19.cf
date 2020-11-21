@@ -79,8 +79,8 @@ export interface SummaryTable {
   multiplyer?: number;
 }
 export interface DataChartProps {
-  countries?: Country[];
-  selectedCountries?: Selected[];
+  countries: Country[];
+  selectedCountries: Selected[];
   isStartAtDeaths: boolean;
   yValue: string;
   multiplyer: number;
@@ -188,7 +188,7 @@ export type ConstructedColumn = {
 };
 
 export interface Column {
-  title?: string | number | {};
+  title: string | number;
   dataIndex: string;
   align?: string;
   render?: Render;
@@ -225,14 +225,20 @@ export type SideDrawerColumn = {
 
 export type Sorter = (a: Prepared, b: Prepared) => number;
 
-export type Render = (
-  text: number,
-  record: Prepared
-) => { props: { style: { background: string } }; children: string };
+export type Render = (text: number, record: Prepared) => RenderReturn;
 
+export interface RenderReturn {
+  props: { style: { background: string } };
+  children: string;
+}
 export interface IndexPageState {
   stats: GlobalStats;
   trends: Trends[];
   loseTableData: Country[];
   winTableData: Country[];
+}
+
+export interface DataPageState {
+  countriesList: CountriesList[];
+  preparedCountries: Country[];
 }
