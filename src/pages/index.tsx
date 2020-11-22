@@ -3,35 +3,46 @@ import { AreaChart, SummaryChart } from "components/charts";
 import { TodayStats } from "components/data";
 import { Page, SEO } from "components/layout";
 import { Table } from "components/tables/table";
-import { Spinner } from "components/ui";
 import { PERIOD_LENGTH } from "const";
 import { myContext } from "context";
 import { useGetGlobalData } from "hooks";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
+import { useImmer } from 'use-immer';
 
-import { IndexPageState } from "@types";
+import { IndexPageState, OutbreakStatus, TableType } from "@types";
 
-const { Title, Text } = Typography;
+const { Title, Text, Paragraph } = Typography;
 
 const Index = ({
   pageContext,
 }: {
   pageContext: GatsbyTypes.SitePageContext;
 }): JSX.Element => {
-  const [state, setState] = useState<IndexPageState>();
+  const [state, setState] = useImmer<IndexPageState>({
+    stats: {
+      confirmed: 0,
+      deaths: 0,
+      recovered: 0,
+      countries: 0,
+      days: 0,
+      trend: OutbreakStatus.None,
+    },
+    trends: [],
+    loseTableData: [],
+    winTableData: [],
+  });
   useEffect(() => {
     const { stats, trends, loseTableData, winTableData } = useGetGlobalData(
       pageContext.data
     );
-    setState({
-      stats,
-      trends,
-      loseTableData,
-      winTableData,
+    setState((draft) => {
+      draft.stats = stats,
+      draft.trends = trends,
+      draft.loseTableData = loseTableData,
+      draft.winTableData = winTableData
     });
   }, []);
   const { width } = useContext(myContext);
-  if (!state) return <Spinner />;
   return (
     <Page>
       <SEO
@@ -45,9 +56,9 @@ const Index = ({
             Covid-19 Global pandemic situation
           </Title>
           <Divider className="divider" />
-          <Title level={5} style={{ marginBottom: "10px" }}>
+          <Paragraph className="bold-blue" style={{ marginBottom: "10px" }}>
             Today&apos;s stats (updated 3-times per day)
-          </Title>
+          </Paragraph>
         </Col>
         <Col span={24} style={{ marginBottom: "10px" }}>
           <TodayStats stats={state.stats} />
@@ -55,9 +66,9 @@ const Index = ({
       </Row>
       <>
         <Col span={24} style={{ marginBottom: "20px" }}>
-          <Title level={5} style={{ marginBottom: "20px" }}>
+          <Paragraph className="bold-blue" style={{ marginBottom: "20px" }}>
             Global data trends by countries
-          </Title>
+          </Paragraph>
           <div style={{ height: "450px" }}>
             <SummaryChart
               periods={state.trends}
@@ -66,9 +77,9 @@ const Index = ({
           </div>
         </Col>
         <Col span={24} style={{ marginBottom: "20px" }}>
-          <Title level={5} style={{ marginBottom: "20px" }}>
-            Trend &aposUnder control %&apos by countries
-          </Title>
+          <Paragraph className="bold-blue" style={{ marginBottom: "20px" }}>
+            Trend &apos;Under control %&apos; by countries
+          </Paragraph>
           <div style={{ height: "450px" }}>
             <AreaChart
               periods={state.trends}
@@ -78,9 +89,9 @@ const Index = ({
           </div>
         </Col>
         <Col span={24} style={{ marginBottom: "20px" }}>
-          <Title level={5} style={{ marginBottom: "20px" }}>
-            Trend &aposPandemic free %&apos by countries
-          </Title>
+          <Paragraph className="bold-blue" style={{ marginBottom: "20px" }}>
+            Trend &apos;Pandemic free %&apos; by countries
+          </Paragraph>
           <div style={{ height: "450px" }}>
             <AreaChart
               periods={state.trends}
@@ -91,9 +102,9 @@ const Index = ({
         </Col>
       </>
       <Col span={24} style={{ marginBottom: "20px" }}>
-        <Title level={5} style={{ marginBottom: "10px" }}>
+        <Paragraph className="bold-blue" style={{ marginBottom: "10px" }}>
           New death cases by countries (last two periods)
-        </Title>
+        </Paragraph>
       </Col>
       <Row gutter={0}>
         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
@@ -102,7 +113,7 @@ const Index = ({
             data={state.winTableData}
             periodLength={PERIOD_LENGTH}
             order={false}
-            kind={"newDeaths"}
+            kind={TableType.NewDeaths}
             variation={"tight"}
           />
         </Col>
@@ -112,7 +123,7 @@ const Index = ({
             data={state.loseTableData}
             periodLength={PERIOD_LENGTH}
             order={true}
-            kind={"newDeaths"}
+            kind={TableType.NewDeaths}
             variation={"tight"}
           />
         </Col>

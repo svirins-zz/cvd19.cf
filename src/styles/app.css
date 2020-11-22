@@ -15,9 +15,14 @@
 }
 
 .choiceText {
-  color: #120338;
+  color: #05264c;
   font-style: italic;
   font-weight: 300;
+}
+
+.bold-blue {
+  font-weight: 600;
+  color: #05264c !important;
 }
 
 .site-layout-content {
@@ -137,7 +142,7 @@
 }
 
 .divider {
-  margin: 14px 0;
+  margin: 5px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 

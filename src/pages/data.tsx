@@ -15,12 +15,12 @@ import { PERIOD_LENGTH } from "const";
 import { myContext } from "context";
 import { useGetDetailedData } from "hooks";
 import { getChartInfo, getColor } from "lib";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useImmer } from "use-immer";
 
-import { SelectedCountries, TableState } from "../@types";
+import { DataPageState, FiltersState, TableType } from "../@types";
 
-const { Title, Text } = Typography;
+const { Title, Text, Paragraph } = Typography;
 
 const Data = ({
   pageContext,
@@ -29,22 +29,28 @@ const Data = ({
 }): JSX.Element => {
   const { width } = useContext(myContext);
   const data = pageContext.data;
-  // useTable re-renders 4 times!!
-  const [periodInfo, setPeriodInfo] = useImmer({
-    length: PERIOD_LENGTH,
+  const [ filtersState, setFiltersState ] = useImmer<FiltersState>({
+    periodLength: PERIOD_LENGTH,
+    selectedTable: TableType.NewDeaths,
+    selectedCountries: [{ name: "United States", color: "rgb(31,119,180)" }],
+    startAtDeaths: false,
+  })
+  const [ dataState, setDataState ] = useImmer<DataPageState>({
+    countriesList: [],
+    preparedCountries: []
   });
-  const [selectedTable, setSelectedTable] = useImmer<TableState>({
-    table: "newDeaths",
-  });
-  const [selectedCountries, setSelectedCountries] = useImmer<SelectedCountries>(
-    {
-      countries: [{ name: "United States", color: "rgb(31,119,180)" }],
-    }
-  );
-  const [startAtDeaths, setStartAtDeaths] = useImmer({
-    isStart: false,
-  });
-  const chartInfo = getChartInfo(selectedTable.table, periodInfo.length);
+  useEffect(() => {
+    const { countriesList, preparedCountries } = useGetDetailedData(
+      data,
+      filtersState.periodLength
+    );
+    setDataState((draft) => {
+      draft.countriesList = countriesList;
+      draft.preparedCountries = preparedCountries;
+    })  
+  },[filtersState.periodLength]) 
+  const chartInfo = getChartInfo(filtersState.selectedTable, filtersState.periodLength);
+
   const onCountriesChange = (currentCountries: string[]) => {
     const countriesWithColors = currentCountries.map((country, index) => {
       return {
@@ -52,14 +58,24 @@ const Data = ({
         color: getColor(index),
       };
     });
-    setSelectedCountries((draft) => {
-      draft.countries = [...countriesWithColors];
+    setFiltersState((draft) => {
+      draft.selectedCountries = countriesWithColors;
     });
   };
-  const { countriesList, preparedCountries } = useGetDetailedData(
-    data,
-    periodInfo.length
-  );
+  const onTableChange = (value: TableType) => {
+    setFiltersState((draft) => {
+      draft.selectedTable = value;
+    });
+  }
+  const onInputChange = (value: number) => setFiltersState((draft) => {
+    console.log(value)
+    draft.periodLength = value;
+  })
+  const onDeathsChange = (value: boolean) => {
+    setFiltersState((draft) => {
+      draft.startAtDeaths = value;
+    })
+  }
   return (
     <Page>
       <SEO
@@ -69,27 +85,24 @@ const Data = ({
       />
       <>
         <Row gutter={[8, 8]}>
-          <Col span={24} style={{ marginBottom: "10px" }}>
+          <Col span={24}>
             <Title level={3} style={{ marginBottom: "0px" }}>
               Data reports constructor
             </Title>
             <Divider className="divider" />
-            <Title level={5}>
+            <Paragraph className="bold-blue">
               Choose data type, period, countries (up to 10). Current
               choice:&nbsp;
               <span className="choiceText">{chartInfo.title}</span>
-            </Title>
+            </Paragraph>
           </Col>
         </Row>
         <Row gutter={[8, 8]}>
           <Col span={24}>
+
             <Radio.Group
-              value={selectedTable.table}
-              onChange={(e) => {
-                setSelectedTable((draft) => {
-                  draft.table = e.target.value;
-                });
-              }}
+              value={filtersState.selectedTable}
+              onChange={(event) => onTableChange(event.target.value)}
             >
               <Radio.Button value="newDeaths">New Deaths</Radio.Button>
               <Radio.Button value="totalDeaths">Total Deaths</Radio.Button>
@@ -106,21 +119,13 @@ const Data = ({
               min={1}
               max={20}
               placeholder="Period length, days"
-              defaultValue={periodInfo.length}
-              onChange={(val) =>
-                setPeriodInfo((draft) => {
-                  draft.length = Number(val);
-                })
-              }
+              defaultValue={filtersState.periodLength}
+              onChange={(value) => onInputChange(value as number)}
             />
             {"    "}
             <Checkbox
-              onChange={(e) =>
-                setStartAtDeaths((draft) => {
-                  draft.isStart = e.target.checked;
-                })
-              }
-              checked={startAtDeaths.isStart}
+              onChange={(e) => onDeathsChange(e.target.checked)}
+              checked={filtersState.startAtDeaths}
             >
               Start at 1-st death
             </Checkbox>
@@ -129,31 +134,31 @@ const Data = ({
         <Row gutter={[8, 8]}>
           <Col span={24} style={{ marginBottom: "20px" }}>
             <CountryFilter
-              selected={selectedCountries.countries}
+              selected={filtersState.selectedCountries}
               setSelected={onCountriesChange}
-              countries={countriesList}
+              countries={dataState.countriesList}
             />
           </Col>
         </Row>
         <Col span={24} style={{ marginBottom: "20px" }}>
           <div style={{ height: "450px" }}>
             <DataChart
-              countries={preparedCountries}
-              selectedCountries={selectedCountries.countries}
+              countries={dataState.preparedCountries}
+              selectedCountries={filtersState.selectedCountries}
               yValue={chartInfo.y}
-              isStartAtDeaths={startAtDeaths.isStart}
+              isStartAtDeaths={filtersState.startAtDeaths}
               multiplyer={width?.multiplyer ?? 1}
             />
           </div>
         </Col>
         <Col span={24}>
-          <Title level={5} style={{ marginBottom: "20px" }}>
+          <Paragraph className="bold-blue" style={{ marginBottom: "20px" }}>
             {chartInfo.title}&nbsp;(all countries included)
-          </Title>
+          </Paragraph>
           <Table
-            data={preparedCountries}
-            periodLength={periodInfo.length}
-            kind={selectedTable.table}
+            data={dataState.preparedCountries}
+            periodLength={filtersState.periodLength}
+            kind={filtersState.selectedTable}
             variation={"wide"}
             multiplyer={width?.multiplyer ?? 1}
           />
@@ -162,5 +167,4 @@ const Data = ({
     </Page>
   );
 };
-
 export default Data;

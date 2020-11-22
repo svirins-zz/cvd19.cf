@@ -18,8 +18,8 @@ const About = (): JSX.Element => {
           <Title level={3} style={{ marginBottom: "0px" }}>
             Covid-19 Global pandemic situation
           </Title>
-          <Paragraph>Stay home and be safe!</Paragraph>
           <Divider className="divider" />
+          <Paragraph className="bold-blue">Stay home and be safe!</Paragraph>
         </Col>
       </Row>
       <Col xs={24} sm={24} md={24} lg={24} xl={24}>
@@ -44,7 +44,7 @@ const About = (): JSX.Element => {
       </Col>
       <Row gutter={[8, 16]}>
         <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-          <Title level={5}>Extra info and useful resources</Title>
+        <Paragraph className="bold-blue">Extra info and useful resources</Paragraph>
           <Paragraph>
             If you want expert information visit:
             <ul style={{ marginTop: "10px" }}>
