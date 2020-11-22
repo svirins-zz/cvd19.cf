@@ -97,7 +97,7 @@ export interface ColorMap {
 }
 
 export interface SelectedCountries {
-  countries?: Selected[];
+  countries: Selected[];
 }
 
 export type GlobalStats = {
@@ -181,14 +181,15 @@ export interface RenderProps {
   closable?: boolean;
 }
 
+
 export type ConstructedColumn = {
   Header: string;
   accessor: string | "periodsWithDeaths" | "periods" | "results" | "name";
-  Cell: ({ value }: { value: Period & "" }) => number | undefined;
+  Cell?: ({ value }: { value: Period & "" }) => number | undefined;
 };
 
 export interface Column {
-  title: string | number;
+  title: string ;
   dataIndex: string;
   align?: string;
   render?: Render;
@@ -241,4 +242,9 @@ export interface IndexPageState {
 export interface DataPageState {
   countriesList: CountriesList[];
   preparedCountries: Country[];
+}
+
+export interface Col {
+  Header: string;
+  id: string;
 }

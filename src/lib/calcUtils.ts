@@ -272,10 +272,10 @@ export const calcTrends = (
   return periodSummaries;
 };
 
-export const calcStats = (data: Countries | undefined): GlobalStats => {
-  const days = data!.countries[0].results.length;
-  const countries = data!.countries.length ? data!.countries.length : 0;
-  const reducedResult = data!.countries
+export const calcStats = (data: Countries): GlobalStats => {
+  const days = data.countries[0].results.length;
+  const countries = data.countries.length ? data.countries.length : 0;
+  const reducedResult = data.countries
     .map((e) => e.results.slice(-1)[0])
     .reduce(
       (a, e) => ({

@@ -29,6 +29,7 @@ const Data = ({
 }): JSX.Element => {
   const { width } = useContext(myContext);
   const data = pageContext.data;
+  // useTable re-renders 4 times!!
   const [periodInfo, setPeriodInfo] = useImmer({
     length: PERIOD_LENGTH,
   });

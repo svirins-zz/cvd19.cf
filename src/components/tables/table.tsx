@@ -20,9 +20,16 @@ export const Table = ({
     () => constructColumns(variation, multiplyer, kind, periodNames),
     [kind, periodNames, variation, multiplyer]
   );
-  const table = useTable({ columns, data });
+  const { data: tableData, columns: excessiveColumns } = useTable({ columns, data });
+  const tableColumns  = excessiveColumns.map((e) => {
+    return {
+      Header: e.Header as string,
+      id: e.id
+    };
+  });
   const { columnData, preparedData } = constructData(
-    table,
+    tableData,
+    tableColumns,
     kind,
     variation,
     order,

@@ -9,7 +9,7 @@ export const CountryFilter = ({
   setSelected,
   countries,
 }: {
-  selected?: Selected[];
+  selected: Selected[];
   setSelected: (currentCountries: string[]) => void;
   countries: CountriesList[];
 }): JSX.Element => {

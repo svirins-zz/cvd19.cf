@@ -1,7 +1,7 @@
 import { ColorCell } from "components/ui";
-import { TableInstance } from "react-table";
 
 import {
+  Col,
   Column,
   ConstructedColumn,
   Country,
@@ -32,7 +32,6 @@ export const constructColumns = (
     {
       Header: "Country",
       accessor: "name",
-      Cell: ({ value }: { value: Period & "" }) => undefined,
     },
   ];
   let middle: ConstructedColumn[] = [];
@@ -73,13 +72,14 @@ export const constructColumns = (
 };
 // TODO: refactor to a shorter version. Must follow DRY!
 export const constructData = (
-  table: TableInstance<Country>,
+  tableData: Country[],
+  tableСolumns: Col[],
   field: TableType,
   variation: "tight" | "wide",
   order: boolean,
   multiplyer: number
 ): { columnData: Column[]; preparedData: Prepared[] } => {
-  const preparedData = table.data.map((e, i) => {
+  const preparedData = tableData.map((e, i) => {
     if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
       return {
         key: i,
@@ -110,8 +110,8 @@ export const constructData = (
 
   const head: Column[] = [
     {
-      title: table.columns[0].Header,
-      dataIndex: table.columns[0].id,
+      title: tableСolumns[0].Header,
+      dataIndex: tableСolumns[0].id,
       sorter: alphabeticalSorter,
     },
   ];
@@ -120,7 +120,7 @@ export const constructData = (
   if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
     tail = [
       {
-        title: table.columns[1].Header,
+        title: tableСolumns[1].Header,
         dataIndex: "periods[2]",
         align: "center",
         // render: (text, record) => ColorCell(text, record.rate2, "newDeaths"),
@@ -128,14 +128,14 @@ export const constructData = (
         sorter: (a, b) => a["periods[2]"] - b["periods[2]"],
       },
       {
-        title: table.columns[2].Header,
+        title: tableСolumns[2].Header,
         dataIndex: "periods[1]",
         align: "center",
         render: (text, record) => ColorCell(text, record.rate1, "newDeaths"),
         sorter: (a, b) => a["periods[1]"] - b["periods[1]"],
       },
       {
-        title: table.columns[3].Header,
+        title: tableСolumns[3].Header,
         dataIndex: "periods[0]",
         align: "center",
         render: (text, record) => ColorCell(text, record.rate0, "newDeaths"),
@@ -146,35 +146,35 @@ export const constructData = (
   } else {
     tail = [
       {
-        title: table.columns[1].Header,
+        title: tableСolumns[1].Header,
         dataIndex: "periods[4]",
         align: "center",
         render: (text, record) => ColorCell(text, record.rate4, field),
         sorter: (a, b) => a["periods[4]"] - b["periods[4]"],
       },
       {
-        title: table.columns[2].Header,
+        title: tableСolumns[2].Header,
         dataIndex: "periods[3]",
         align: "center",
         render: (text, record) => ColorCell(text, record.rate3, field),
         sorter: (a, b) => a["periods[3]"] - b["periods[3]"],
       },
       {
-        title: table.columns[3].Header,
+        title: tableСolumns[3].Header,
         dataIndex: "periods[2]",
         align: "center",
         render: (text, record) => ColorCell(text, record.rate2, field),
         sorter: (a, b) => a["periods[2]"] - b["periods[2]"],
       },
       {
-        title: table.columns[4].Header,
+        title: tableСolumns[4].Header,
         dataIndex: "periods[1]",
         align: "center",
         render: (text, record) => ColorCell(text, record.rate1, field),
         sorter: (a, b) => a["periods[1]"] - b["periods[1]"],
       },
       {
-        title: table.columns[5].Header,
+        title: tableСolumns[5].Header,
         dataIndex: "periods[0]",
         align: "center",
         render: (text, record) => ColorCell(text, record.rate0, field),

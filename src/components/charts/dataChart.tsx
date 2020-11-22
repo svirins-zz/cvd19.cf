@@ -12,7 +12,7 @@ export const DataChart = ({
   selectedCountries,
   yValue,
   isStartAtDeaths,
-  multiplyer,
+  multiplyer
 }: DataChartProps): JSX.Element => {
   const chartData: Serie[] = [];
   const colors = selectedCountries.map((country) => country.color);

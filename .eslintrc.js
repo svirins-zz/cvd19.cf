@@ -17,7 +17,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  plugins: ["@typescript-eslint", "react"],
+  plugins: ["@typescript-eslint", "react", "react-hooks", "prettier"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -28,6 +28,14 @@ module.exports = {
   rules: {
     "react/prop-types": "off", // Disable prop-types as we use TypeScript for type checking
     "@typescript-eslint/explicit-function-return-type": "off",
+    "prettier/prettier": [0, 
+      { 
+        "semi": true,
+        "trailingComma": "es5",
+        "printWidth": 100,
+        "tabWidth": 2,
+      }
+    ],
   },
   overrides: [
     // Override some TypeScript rules just for .js files
