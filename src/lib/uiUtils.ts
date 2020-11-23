@@ -146,17 +146,9 @@ export const getCountriesList = (countries: Country[]): CountriesList[] =>
     label: country.name ?? "",
   }));
 
-/**
- * prepare data for nivo-line charts
- *
- * @param {Period[]} periods
- * @param {string} yValue
- * @param {number} multiplyer
- * @return {*}
- */
 
 export const makeDatum = (
-  periods: Trends[] | Period[],
+  periods: Period[] | Trends[],
   yValue: string,
   multiplyer: number
 ): Datum[] => {
@@ -164,7 +156,8 @@ export const makeDatum = (
     periods.length / (X_ASIS_TICKS_AMOUNT * multiplyer)
   );
   const datum: Datum[] = [];
-  periods.forEach((period, index: number) => {
+  periods.forEach((period:  Period | Trends, index: number) => {
+    console.log(period)
     if (
       index === 0 ||
       index === periods.length - 1 ||

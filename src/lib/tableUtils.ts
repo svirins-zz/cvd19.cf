@@ -6,8 +6,8 @@ import {
   ConstructedColumn,
   Country,
   Period,
-  Prepared,
   Sorter,
+  TableIntersection,
   TableType,
 } from "@types";
 
@@ -78,7 +78,7 @@ export const constructData = (
   variation: "tight" | "wide",
   order: boolean,
   multiplyer: number
-): { columnData: Column[]; preparedData: Prepared[] } => {
+): { columnData: Column[]; preparedData: TableIntersection[] } => {
   const preparedData = tableData.map((e, i) => {
     if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
       return {
@@ -123,27 +123,28 @@ export const constructData = (
         title: tableСolumns[1].Header,
         dataIndex: "periods[2]",
         align: "center",
-        // render: (text, record) => ColorCell(text, record.rate2, "newDeaths"),
-        render: (text, record) => ColorCell(text, record.rate2, "newDeaths"),
+        render: (text, record) => ColorCell(text, record.rate2, TableType.NewDeaths),
         sorter: (a, b) => a["periods[2]"] - b["periods[2]"],
       },
       {
         title: tableСolumns[2].Header,
         dataIndex: "periods[1]",
         align: "center",
-        render: (text, record) => ColorCell(text, record.rate1, "newDeaths"),
+        render: (text, record) => ColorCell(text, record.rate1, TableType.NewDeaths),
         sorter: (a, b) => a["periods[1]"] - b["periods[1]"],
       },
       {
         title: tableСolumns[3].Header,
         dataIndex: "periods[0]",
         align: "center",
-        render: (text, record) => ColorCell(text, record.rate0, "newDeaths"),
+        render: (text, record) => ColorCell(text, record.rate0, TableType.NewDeaths),
         sorter: (a, b) => b["periods[0]"] - a["periods[0]"],
         defaultSortOrder: order ? "ascend" : "descend",
       },
     ];
   } else {
+    // fallback undefined protection
+    
     tail = [
       {
         title: tableСolumns[1].Header,

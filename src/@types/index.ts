@@ -26,27 +26,30 @@ export interface CalculatedSummary {
   stats: GlobalStats;
   trend: OutbreakStatus;
 }
+type AccessorType = "name" | "periods[4]" | "periods[3]" | "periods[2]" | "periods[1]" |"periods[0]" | "periodsWithDeaths" | "periods" | "results";
 export type ConstructedColumn = {
   Header: string;
-  accessor: string | "periodsWithDeaths" | "periods" | "results" | "name";
+  accessor: AccessorType;
   Cell?: ({ value }: { value: Period & "" }) => number | undefined;
 };
+type SortOrder = "descend" | "ascend" | null;
+type AlignType = "left" | "center" | "right"
 export interface Column {
   title: string ;
   dataIndex: string;
-  align?: string;
+  align?: AlignType;
   render?: Render;
-  sorter?: Sorter;
-  defaultSortOrder?: "descend" | "ascend" | null;
-  sortDirections?: [string, string];
+  sorter: Sorter;
+  defaultSortOrder?: SortOrder;
+  sortDirections?: [SortOrder, SortOrder];
 }
-export interface Prepared {
+export interface LongTable {
   key: number;
   name: string;
-  "periods[4]"?: number;
-  rate4?: OutbreakStatus;
-  "periods[3]"?: number;
-  rate3?: OutbreakStatus;
+  "periods[4]": number;
+  rate4: OutbreakStatus;
+  "periods[3]": number;
+  rate3: OutbreakStatus;
   "periods[2]": number;
   rate2: OutbreakStatus;
   "periods[1]": number;
@@ -54,8 +57,20 @@ export interface Prepared {
   "periods[0]": number;
   rate0: OutbreakStatus;
 }
-export type Sorter = (a: Prepared, b: Prepared) => number;
-export type Render = (text: number, record: Prepared) => RenderReturn;
+export interface ShortTable {
+  key: number;
+  name: string;
+  "periods[2]": number;
+  rate2: OutbreakStatus;
+  "periods[1]": number;
+  rate1: OutbreakStatus;
+  "periods[0]": number;
+  rate0: OutbreakStatus;
+}
+export type TableIntersection = LongTable & ShortTable;
+
+export type Sorter = (a: TableIntersection, b: TableIntersection) => number;
+export type Render = (text: number, record: TableIntersection) => RenderReturn;
 export interface RenderReturn {
   props: { style: { background: string } };
   children: string;
@@ -86,12 +101,6 @@ export interface SelectedCountries {
   name: string;
   color: string;
 }
-export interface FiltersState {
-  periodLength: number;
-  selectedTable: TableType;
-  selectedCountries: SelectedCountries[];
-  startAtDeaths: boolean;
-}
 export interface IndexPageState {
   stats: GlobalStats;
   trends: Trends[];
@@ -107,20 +116,28 @@ export interface DataPageState {
   preparedCountries: Country[];
 }
 // ui-related states
+export interface TagRenderProps {
+  label: string | number;
+  value: string | number | React.ReactNode;
+  disabled: boolean;
+  onClose: (
+    event?: React.MouseEvent<HTMLElement, MouseEvent> | undefined
+  ) => void;
+  closable?: boolean;
+}
+export interface FiltersState {
+  periodLength: number;
+  selectedTable: TableType;
+  selectedCountries: SelectedCountries[];
+  startAtDeaths: boolean;
+}
 export type SideDrawerColumn = {
   title: string;
   dataIndex: string;
   render?: (text: OutbreakStatus, row: unknown, index: number) => JSX.Element;
   key: string;
 };
-export type ContextProps = {
-  choice: { key: string };
-  visible: { isVisible: boolean };
-  width: { multiplyer: number };
-  handleSelect: (info: { selectedKeys?: React.Key[] | React.Key }) => void;
-  onClose: () => void;
-  showDrawer: () => void;
-};
+
 // meta props 
 export interface SeoProps {
   description: string;
@@ -129,6 +146,19 @@ export interface SeoProps {
 }
 export interface AuxProps {
   children: ReactChild | ReactChildren;
+}
+// TODO: refactor context state to a single state!!
+export type ContextProps = {
+  choice: ContextState;
+  visible: { isVisible: boolean };
+  width: { multiplyer: number };
+  handleSelect: (info: { selectedKeys?: MenuKey }) => void;
+  onClose: () => void;
+  showDrawer: () => void;
+};
+export type MenuKey = string | number | (string | number)[] | undefined
+export interface ContextState {
+  key: MenuKey
 }
 // map-related types
 export interface MissingCountries {
@@ -183,9 +213,7 @@ export interface Periods {
   periods: Period[];
   periodsWithDeaths: Period[];
 }
-export interface Period {
-  [key: string]: number | string | OutbreakStatus;
-}
+
 export type GlobalStats = {
   confirmed: number;
   deaths: number;
@@ -206,15 +234,6 @@ export interface Trends {
   pandemicFree: number;
   underControl: number;
 }
-
-// possibly unused
-
-// export interface RenderProps {
-//   label: string | number | React.ReactNode;
-//   value: string | number | React.ReactNode;
-//   disabled: boolean;
-//   onClose: (
-//     event?: React.MouseEvent<HTMLElement, MouseEvent> | undefined
-//   ) => void;
-//   closable?: boolean;
-// }
+export interface Period {
+  [key: string]: number | string | OutbreakStatus;
+}

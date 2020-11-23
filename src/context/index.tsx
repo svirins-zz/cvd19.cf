@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useImmer } from "use-immer";
 
-import { AuxProps, ContextProps } from "../@types";
+import { AuxProps, ContextProps, ContextState, MenuKey } from "../@types";
 
 export const myContext = React.createContext<Partial<ContextProps>>({});
 
 const Provider = ({ children }: AuxProps) => {
-  const [choice, setChoice] = useImmer({
+  const [choice, setChoice] = useImmer<ContextState>({
     key: "main",
   });
   const [visible, setVisible] = useImmer({
@@ -49,10 +49,10 @@ const Provider = ({ children }: AuxProps) => {
     handleResize();
   }, []);
   const handleSelect = (info: {
-    selectedKeys: React.Key[] | React.Key;
+    selectedKeys?: MenuKey;
   }): void => {
     setChoice((draft) => {
-      draft.key = info.selectedKeys as string;
+      draft.key = info.selectedKeys;
     });
   };
   return (

@@ -1,7 +1,7 @@
 import { Select, Tag } from "antd";
 import React from "react";
 
-import { CountriesList, RenderProps, Selected } from "@types";
+import { CountriesList, SelectedCountries, TagRenderProps } from "@types";
 
 const { Option } = Select;
 export const CountryFilter = ({
@@ -9,11 +9,11 @@ export const CountryFilter = ({
   setSelected,
   countries,
 }: {
-  selected: Selected[];
+  selected: SelectedCountries[];
   setSelected: (currentCountries: string[]) => void;
   countries: CountriesList[];
 }): JSX.Element => {
-  function tagRender(props: RenderProps) {
+  function tagRender(props: TagRenderProps) {
     const { label, closable, onClose } = props;
     return (
       <Tag

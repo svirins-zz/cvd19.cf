@@ -1,12 +1,12 @@
 import { calcCountries, getCountriesList, sumPeriodData } from "lib";
 
-import { Countries, DataPageState } from "../@types";
+import { Country, DataPageState } from "../@types";
 
 export const useGetDetailedData = (
-  data: GatsbyTypes.Maybe<GatsbyTypes.SitePageContextData>,
+  data: Country[],
   periodLength: number
 ): DataPageState => {
-  const countries = calcCountries(data as Countries, periodLength);
+  const countries = calcCountries(data, periodLength);
   const countriesList = getCountriesList(countries);
   const preparedCountries = [
     ...countries,

@@ -10,7 +10,7 @@ import { LatLngExpression } from "leaflet";
 
 import {
   CodeFlagGeo,
-  Countries,
+  Country,
   Feature,
   FeatureCollection,
   Geometry,
@@ -96,12 +96,12 @@ export const getMarkerDetails = (totalCases: number): string => {
  * @param {(Countries)} data
  * @return {*}
  */
-export const getFeatures = (data: Countries): FeatureCollection => {
+export const getFeatures = (data: Country[]): FeatureCollection => {
   const features: Feature[] = [];
-  data.countries.forEach((country) => {
+  data.forEach((country) => {
     const { code, flag, geometry } = getCountryExtData(country.name);
     const { confirmed, deaths, recovered } = country.results[
-      data.countries.length - 1
+      data.length - 1
     ];
     const bounds = undefined;
     const properties: Properties = {

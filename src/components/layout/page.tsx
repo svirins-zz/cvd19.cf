@@ -50,7 +50,7 @@ export const Page = ({
           onSelect={handleSelect}
           selectable={true}
           focusable={true}
-          selectedKeys={[choice.key]}
+          selectedKeys={[choice.key as string]}
           mode="inline"
           style={{ position: "fixed", border: "0" }}
         >

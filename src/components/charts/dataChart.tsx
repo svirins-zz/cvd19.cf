@@ -1,10 +1,10 @@
 import { makeDatum } from "lib";
 import React from "react";
+import { theme } from "styles/chartsTheme";
 
 import { ResponsiveLine, Serie } from "@nivo/line";
-import { DataChartProps, Selected } from "@types";
+import { DataChartProps, SelectedCountries } from "@types";
 
-import { theme } from "../../styles/chartsTheme";
 import { PlaceholderChart } from "./placeholderChart";
 
 export const DataChart = ({
@@ -17,7 +17,7 @@ export const DataChart = ({
   const chartData: Serie[] = [];
   const colors = selectedCountries.map((country) => country.color);
   countries.map((e) => {
-    const isSelectedcountry: Selected | undefined = selectedCountries?.find(
+    const isSelectedcountry: SelectedCountries | undefined = selectedCountries?.find(
       (country) => country.name === e.name
     );
     if (
@@ -27,6 +27,7 @@ export const DataChart = ({
     ) {
       return undefined;
     }
+    // TODO: start at 1st death is buggy
     const periods = isStartAtDeaths
       ? e.periodsWithDeaths.slice(0)
       : e.periods.slice(0);

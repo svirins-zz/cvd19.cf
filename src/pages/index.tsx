@@ -9,9 +9,9 @@ import { useGetGlobalData } from "hooks";
 import React, { useContext, useEffect } from "react";
 import { useImmer } from 'use-immer';
 
-import { IndexPageState, OutbreakStatus, TableType } from "@types";
+import { IndexPageState, OutbreakStatus, TableType, Country } from "@types";
 
-const { Title, Text, Paragraph } = Typography;
+const { Title, Paragraph } = Typography;
 
 const Index = ({
   pageContext,
@@ -31,10 +31,9 @@ const Index = ({
     loseTableData: [],
     winTableData: [],
   });
+  const countries  = pageContext.data?.countries as Country[];
   useEffect(() => {
-    const { stats, trends, loseTableData, winTableData } = useGetGlobalData(
-      pageContext.data
-    );
+    const { stats, trends, loseTableData, winTableData } = useGetGlobalData(countries);
     setState((draft) => {
       draft.stats = stats,
       draft.trends = trends,
@@ -78,7 +77,7 @@ const Index = ({
         </Col>
         <Col span={24} style={{ marginBottom: "20px" }}>
           <Paragraph className="bold-blue" style={{ marginBottom: "20px" }}>
-            Trend &apos;Under control %&apos; by countries
+            Trend &apos;Under control percent&apos; by countries
           </Paragraph>
           <div style={{ height: "450px" }}>
             <AreaChart
@@ -90,7 +89,7 @@ const Index = ({
         </Col>
         <Col span={24} style={{ marginBottom: "20px" }}>
           <Paragraph className="bold-blue" style={{ marginBottom: "20px" }}>
-            Trend &apos;Pandemic free %&apos; by countries
+            Trend &apos;Pandemic free percent&apos; by countries
           </Paragraph>
           <div style={{ height: "450px" }}>
             <AreaChart
@@ -103,12 +102,11 @@ const Index = ({
       </>
       <Col span={24} style={{ marginBottom: "20px" }}>
         <Paragraph className="bold-blue" style={{ marginBottom: "10px" }}>
-          New death cases by countries (last two periods)
+          New death cases by countries (last two periods). Winning / won and losing / flattening trends.
         </Paragraph>
       </Col>
       <Row gutter={0}>
         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-          <Text>Winning / Won trends</Text>
           <Table
             data={state.winTableData}
             periodLength={PERIOD_LENGTH}
@@ -118,7 +116,6 @@ const Index = ({
           />
         </Col>
         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-          <Text>Losing / Flattening trends</Text>
           <Table
             data={state.loseTableData}
             periodLength={PERIOD_LENGTH}

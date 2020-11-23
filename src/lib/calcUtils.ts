@@ -1,7 +1,6 @@
 import { EPIDEMIC_START } from "const";
 
 import {
-  Countries,
   Country,
   Counts,
   GlobalStats,
@@ -76,7 +75,7 @@ export const calulatePeriodData = (
   periodLength: number
 ): Periods => {
   const periodsWithDeaths: Period[] = [];
-  const periods = counts.map((currentCounts, index, array) => {
+  const periods: Period[] = counts.map((currentCounts, index, array) => {
     if (index < array.length - 2) {
       const previousNewDeaths =
         counts[index + 1].deaths - counts[index + 2].deaths;
@@ -124,15 +123,15 @@ export const calulatePeriodData = (
 };
 // Countries | undefined,
 export const calcCountries = (
-  data: Countries | undefined,
+  data: Country[],
   periodLength: number
 ): Country[] => {
   const periodCount = getPeriodCount(periodLength);
-  if (!data?.countries) {
+  if (!data) {
     return [];
   }
   const countries: Country[] = [];
-  data?.countries?.forEach((country) => {
+  data.forEach((country) => {
     const counts: Counts[] = Array.from({ length: periodCount }, () => ({
       deaths: 0,
       cases: 0,
@@ -272,10 +271,10 @@ export const calcTrends = (
   return periodSummaries;
 };
 
-export const calcStats = (data: Countries): GlobalStats => {
-  const days = data.countries[0].results.length;
-  const countries = data.countries.length ? data.countries.length : 0;
-  const reducedResult = data.countries
+export const calcStats = (data: Country[]): GlobalStats => {
+  const days = data[0].results.length;
+  const countries = data.length ? data.length : 0;
+  const reducedResult = data
     .map((e) => e.results.slice(-1)[0])
     .reduce(
       (a, e) => ({
@@ -289,10 +288,12 @@ export const calcStats = (data: Countries): GlobalStats => {
         recovered: 0,
       }
     );
+    const trend = OutbreakStatus.None
   const stats = {
     ...reducedResult,
     countries,
     days,
+    trend
   };
   return stats;
 };
