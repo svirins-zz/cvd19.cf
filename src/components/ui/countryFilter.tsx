@@ -15,10 +15,11 @@ export const CountryFilter = ({
 }): JSX.Element => {
   function tagRender(props: TagRenderProps) {
     const { label, closable, onClose } = props;
+    const name = label ?? ""
     return (
       <Tag
-        key={label.toString()}
-        color={selected.find((country) => country.name === label)?.color}
+        key={name.toString()}
+        color={selected.find((country) => country.name === name)?.color}
         closable={closable}
         onClose={(e) => onClose(e)}
         style={{ marginRight: 3 }}

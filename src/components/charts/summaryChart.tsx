@@ -3,7 +3,7 @@ import { makeDatum } from "lib";
 import React from "react";
 
 import { ResponsiveLine, Serie } from "@nivo/line";
-import { Trends } from "@types";
+import { Period } from "@types";
 
 import { theme } from "../../styles/chartsTheme";
 import { PlaceholderChart } from "./placeholderChart";
@@ -12,7 +12,7 @@ export const SummaryChart = ({
   periods,
   multiplyer,
 }: {
-  periods: Trends[];
+  periods: Period[];
   multiplyer: number;
 }): JSX.Element => {
   const chartData: Serie[] = [];

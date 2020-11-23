@@ -7,7 +7,6 @@ import {
   OutbreakStatus,
   Period,
   Periods,
-  Trends,
 } from "../@types";
 
 export const getDaysAgo = (date: Date): number => {
@@ -197,7 +196,7 @@ export const sumPeriodData = (
 export const calcTrends = (
   countries: Country[],
   periodLength: number
-): Trends[] => {
+): Period[] => {
   const periodCount = getPeriodCount(periodLength);
   const initialPeriodSummaries = Array.from(
     { length: periodCount - 2 },

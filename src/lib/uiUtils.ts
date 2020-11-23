@@ -8,7 +8,6 @@ import {
   Country,
   OutbreakStatus,
   Period,
-  Trends,
 } from "../@types";
 
 export const getChartInfo = (
@@ -148,7 +147,7 @@ export const getCountriesList = (countries: Country[]): CountriesList[] =>
 
 
 export const makeDatum = (
-  periods: Period[] | Trends[],
+  periods: Period[],
   yValue: string,
   multiplyer: number
 ): Datum[] => {
@@ -156,8 +155,7 @@ export const makeDatum = (
     periods.length / (X_ASIS_TICKS_AMOUNT * multiplyer)
   );
   const datum: Datum[] = [];
-  periods.forEach((period:  Period | Trends, index: number) => {
-    console.log(period)
+  periods.forEach((period:  Period, index: number) => {
     if (
       index === 0 ||
       index === periods.length - 1 ||

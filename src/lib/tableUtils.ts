@@ -5,10 +5,12 @@ import {
   Column,
   ConstructedColumn,
   Country,
+  LongTable,
+  OutbreakStatus,
   Period,
+  ShortTable,
   Sorter,
-  TableIntersection,
-  TableType,
+  TableType
 } from "@types";
 
 const alphabeticalSorter: Sorter = (a, b) => {
@@ -78,36 +80,7 @@ export const constructData = (
   variation: "tight" | "wide",
   order: boolean,
   multiplyer: number
-): { columnData: Column[]; preparedData: TableIntersection[] } => {
-  const preparedData = tableData.map((e, i) => {
-    if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
-      return {
-        key: i,
-        name: e.name,
-        "periods[2]": e.periods[2][field],
-        rate2: e.periods[2].status,
-        "periods[1]": e.periods[1][field],
-        rate1: e.periods[1].status,
-        "periods[0]": e.periods[0][field],
-        rate0: e.periods[0].status,
-      };
-    }
-    return {
-      key: i,
-      name: e.name,
-      "periods[4]": e.periods[4][field],
-      rate4: e.periods[4].status,
-      "periods[3]": e.periods[3][field],
-      rate3: e.periods[3].status,
-      "periods[2]": e.periods[2][field],
-      rate2: e.periods[2].status,
-      "periods[1]": e.periods[1][field],
-      rate1: e.periods[1].status,
-      "periods[0]": e.periods[0][field],
-      rate0: e.periods[0].status,
-    };
-  });
-
+): { columnData: Column[]; preparedData: (LongTable | ShortTable)[] } => {
   const head: Column[] = [
     {
       title: tableСolumns[0].Header,
@@ -142,9 +115,7 @@ export const constructData = (
         defaultSortOrder: order ? "ascend" : "descend",
       },
     ];
-  } else {
-    // fallback undefined protection
-    
+  } else {    
     tail = [
       {
         title: tableСolumns[1].Header,
@@ -185,5 +156,40 @@ export const constructData = (
     ];
   }
   const columnData: Column[] = [...head, ...tail];
+  if (variation === "tight" || (variation === "wide" && multiplyer <= 0.75)) {
+    const preparedData: ShortTable[]  = tableData.map((e, i) => {
+      {
+        return {
+          key: i,
+          name: e.name,
+          "periods[2]": e.periods[2][field] as number,
+          rate2: e.periods[2].status as OutbreakStatus,
+          "periods[1]": e.periods[1][field] as number,
+          rate1: e.periods[1].status as OutbreakStatus,
+          "periods[0]": e.periods[0][field] as number,
+          rate0: e.periods[0].status as OutbreakStatus,
+        };
+      };
+    });
+    return { columnData, preparedData }
+  }
+  const preparedData: LongTable[]  = tableData.map((e, i) => {
+    {
+      return {
+        key: i,
+        name: e.name,
+        "periods[4]": e.periods[4][field] as number,
+        rate4: e.periods[4].status as OutbreakStatus,
+        "periods[3]": e.periods[3][field] as number,
+        rate3: e.periods[3].status as OutbreakStatus,
+        "periods[2]": e.periods[2][field] as number,
+        rate2: e.periods[2].status as OutbreakStatus,
+        "periods[1]": e.periods[1][field] as number,
+        rate1: e.periods[1].status as OutbreakStatus,
+        "periods[0]": e.periods[0][field] as number,
+        rate0: e.periods[0].status as OutbreakStatus,
+      };
+    };
+  });
   return { columnData, preparedData };
 };

@@ -17,7 +17,7 @@ export const DataChart = ({
   const chartData: Serie[] = [];
   const colors = selectedCountries.map((country) => country.color);
   countries.map((e) => {
-    const isSelectedcountry: SelectedCountries | undefined = selectedCountries?.find(
+    const isSelectedcountry: SelectedCountries | undefined = selectedCountries.find(
       (country) => country.name === e.name
     );
     if (
@@ -27,10 +27,15 @@ export const DataChart = ({
     ) {
       return undefined;
     }
-    // TODO: start at 1st death is buggy
+    // TODO: start at 1st death is buggy.
     const periods = isStartAtDeaths
       ? e.periodsWithDeaths.slice(0)
       : e.periods.slice(0);
+    console.log("e.name", e.name)
+    console.log("e.periodsWithDeaths", e.periodsWithDeaths);
+    console.log("e.periods", e.periods);
+    console.log("periods", periods)
+    
     const preparedPeriods = makeDatum(periods, yValue, multiplyer);
     chartData.push({
       id: e.name,

@@ -67,10 +67,8 @@ export interface ShortTable {
   "periods[0]": number;
   rate0: OutbreakStatus;
 }
-export type TableIntersection = LongTable & ShortTable;
-
-export type Sorter = (a: TableIntersection, b: TableIntersection) => number;
-export type Render = (text: number, record: TableIntersection) => RenderReturn;
+export type Sorter = (a: LongTable & ShortTable, b: LongTable & ShortTable) => number;
+export type Render = (text: number, record: LongTable & ShortTable) => RenderReturn;
 export interface RenderReturn {
   props: { style: { background: string } };
   children: string;
@@ -103,7 +101,7 @@ export interface SelectedCountries {
 }
 export interface IndexPageState {
   stats: GlobalStats;
-  trends: Trends[];
+  trends: Period[];
   loseTableData: Country[];
   winTableData: Country[];
 }
@@ -117,7 +115,7 @@ export interface DataPageState {
 }
 // ui-related states
 export interface TagRenderProps {
-  label: string | number;
+  label: string | number | React.ReactNode;
   value: string | number | React.ReactNode;
   disabled: boolean;
   onClose: (
@@ -222,18 +220,6 @@ export type GlobalStats = {
   days: number;
   trend: OutbreakStatus;
 };
-export interface Trends {
-  endDate: string;
-  none: number;
-  small: number;
-  losing: number;
-  flattening: number;
-  crushing: number;
-  winning: number;
-  won: number;
-  pandemicFree: number;
-  underControl: number;
-}
 export interface Period {
   [key: string]: number | string | OutbreakStatus;
 }
