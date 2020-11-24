@@ -28,11 +28,9 @@ const Map = ({
 }: {
 	pageContext: GatsbyTypes.SitePageContext;
 }): JSX.Element => {
-	// incorrect data displayed. check data tab!
 	const countries  = pageContext.data?.countries as Country[];
 	const { width } = useContext(myContext);
 	const zoomValue = getCurrentZoom(width?.multiplyer);
-
 	const { features } = getFeatures(countries);
 	if (!isDomAvailable()) {
 		return <span>waiting for DOM</span>;
@@ -44,17 +42,12 @@ const Map = ({
           <p class="marker-text">${commafy(confirmed)}</p>
         </div>`,
 		});
+		// TODO: add flyto to eventHandlers 
 		return (
 			<Marker
 				key={index}
 				position={feature.geometry.coordinates}
 				icon={icon}
-				eventHandlers={{
-					click: () => {
-						// DisplayPosition(map);
-						// flyto
-					},
-				}}
 			>
 				<Popup key={index}>
 					<span>
@@ -99,13 +92,10 @@ const Map = ({
 					</LayersControl.BaseLayer>
 				</LayersControl>
 				<LayerGroup>{markers}</LayerGroup>
-				{/* <DisplayPosition /> */}
 			</MapContainer>
 		),
 		[],
 	);
-
-	// TODO: refactor to bounds
 	return (
 		<Page>
 			<SEO

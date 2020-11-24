@@ -2,7 +2,7 @@ import { Col, Divider, Row, Typography } from "antd";
 import { AreaChart, SummaryChart } from "components/charts";
 import { TodayStats } from "components/data";
 import { Page, SEO } from "components/layout";
-import { Table } from "components/tables/table";
+import { Table } from "components/table/table";
 import { PERIOD_LENGTH } from "const";
 import { myContext } from "context";
 import { useGetGlobalData } from "hooks";

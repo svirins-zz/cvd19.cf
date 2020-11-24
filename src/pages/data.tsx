@@ -5,12 +5,13 @@ import {
 	InputNumber,
 	Radio,
 	Row,
-	Typography,
+	Slider,
+	Typography
 } from 'antd';
 import { DataChart } from 'components/charts';
 import { Page, SEO } from 'components/layout';
-import { Table } from 'components/tables/table';
-import { CountryFilter } from 'components/ui/countryFilter';
+import { Table } from 'components/table';
+import { CountryFilter } from 'components/ui';
 import { PERIOD_LENGTH } from 'const';
 import { myContext } from 'context';
 import { useGetDetailedData } from 'hooks';
@@ -21,7 +22,17 @@ import { useImmer } from 'use-immer';
 import { Country, DataPageState, FiltersState, TableType } from '../@types';
 
 const { Title, Text, Paragraph } = Typography;
-
+const marks = {
+	2: '2',
+	3: '3',
+	4: '4',
+	5: '5',
+	6: '6',
+	7: '7',
+	8: '8',
+	9: '9',
+  10: "10"
+};
 const Data = ({
 	pageContext,
 }: {
@@ -91,7 +102,7 @@ const Data = ({
 			draft.startAtLast90Days = value;
 		});
 	};
-	// TODO ADD 2-nd control block global table, move period-days input to table
+	// TODO MAKE filters block dixed position
 	// TODO: add increase/decrease buttons to chart instead of input
   // always put global at first table position
 	// TODO: refactor input to handle >11 input values
@@ -110,7 +121,7 @@ const Data = ({
 						</Title>
 						<Divider className='divider' />
 						<Paragraph className='bold-blue'>
-							Choose data type, period, countries (up to 10). Current
+							Choose data type, period, countries (up to 10). Check-buttons affects chart only. <br />Current
 							choice:&nbsp;
 							<span className='choiceText'>{chartInfo.title}</span>
 						</Paragraph>
@@ -121,6 +132,8 @@ const Data = ({
 						<Radio.Group
 							value={filtersState.selectedTable}
 							onChange={(event) => onTableChange(event.target.value)}
+							optionType="button"
+							buttonStyle="solid"
 						>
 							<Radio.Button value='newDeaths'>New Deaths</Radio.Button>
 							<Radio.Button value='totalDeaths'>Total Deaths</Radio.Button>
@@ -132,13 +145,23 @@ const Data = ({
 				</Row>
 				<Row gutter={[8, 8]}>
 					<Col span={24}>
-						<Text>Period, days (2..10): </Text>
+						{/* <Text>Period, days (2..10): </Text>
 						<InputNumber
 							min={2}
 							max={10}
 							placeholder='Period length, days'
 							defaultValue={filtersState.periodLength}
 							onChange={(value) => onInputChange(value as number)}
+						/> */}
+						<Slider
+							min={2}
+							max={10}
+							step={1}
+							dots={true}
+							marks={marks} 
+							onChange={(value) => onInputChange(value as number)}
+							tooltipVisible
+							value={filtersState.periodLength} 
 						/>
 						{'    '}
 						{'    '}
