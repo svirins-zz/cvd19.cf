@@ -8,10 +8,12 @@ export interface ChartInfo {
   title: string;
 }
 export interface DataChartProps {
-  countries: Country[];
+  data: Country[];
   selectedCountries: SelectedCountries[];
   isStartAtDeaths: boolean;
+  isstartAtLast90Days: boolean
   yValue: string;
+  periodLength: number;
   multiplyer: number;
 }
 export interface SummaryTable {
@@ -26,7 +28,7 @@ export interface CalculatedSummary {
   stats: GlobalStats;
   trend: OutbreakStatus;
 }
-type AccessorType = "name" | "periods[4]" | "periods[3]" | "periods[2]" | "periods[1]" |"periods[0]" | "periodsWithDeaths" | "periods" | "results";
+type AccessorType = "name" | "periods[4]" | "periods[3]" | "periods[2]" | "periods[1]" |"periods[0]" | "periods" | "results";
 export type ConstructedColumn = {
   Header: string;
   accessor: AccessorType;
@@ -128,6 +130,7 @@ export interface FiltersState {
   selectedTable: TableType;
   selectedCountries: SelectedCountries[];
   startAtDeaths: boolean;
+  startAtLast90Days: boolean;
 }
 export type SideDrawerColumn = {
   title: string;
@@ -195,7 +198,6 @@ export interface Country {
   name: string;
   results: Result[];
   periods: Period[];
-  periodsWithDeaths: Period[];
 }
 export interface Result {
   date: string;
@@ -206,10 +208,6 @@ export interface Result {
 export interface Counts {
   deaths: number;
   cases: number;
-}
-export interface Periods {
-  periods: Period[];
-  periodsWithDeaths: Period[];
 }
 
 export type GlobalStats = {

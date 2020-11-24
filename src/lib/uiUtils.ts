@@ -1,4 +1,4 @@
-import { COLORS, X_ASIS_TICKS_AMOUNT } from "const";
+import { COLORS, X_ASIS_TICKS_AMOUNT_NORMAL, X_ASIS_TICKS_AMOUNT_SLICED } from "const";
 
 import { Datum } from "@nivo/line";
 
@@ -149,11 +149,12 @@ export const getCountriesList = (countries: Country[]): CountriesList[] =>
 export const makeDatum = (
   periods: Period[],
   yValue: string,
-  multiplyer: number
+  multiplyer: number,
+  isstartAtLast90Days: boolean,
 ): Datum[] => {
-  const thereshold = Math.floor(
-    periods.length / (X_ASIS_TICKS_AMOUNT * multiplyer)
-  );
+  const thereshold = isstartAtLast90Days
+    ? Math.floor(periods.length / (X_ASIS_TICKS_AMOUNT_SLICED * multiplyer)) 
+    : Math.floor(periods.length / (X_ASIS_TICKS_AMOUNT_NORMAL * multiplyer));
   const datum: Datum[] = [];
   periods.forEach((period:  Period, index: number) => {
     if (

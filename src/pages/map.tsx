@@ -28,6 +28,7 @@ const Map = ({
 }: {
 	pageContext: GatsbyTypes.SitePageContext;
 }): JSX.Element => {
+	// incorrect data displayed. check data tab!
 	const countries  = pageContext.data?.countries as Country[];
 	const { width } = useContext(myContext);
 	const zoomValue = getCurrentZoom(width?.multiplyer);

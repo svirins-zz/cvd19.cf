@@ -9,7 +9,7 @@ import { useGetGlobalData } from "hooks";
 import React, { useContext, useEffect } from "react";
 import { useImmer } from 'use-immer';
 
-import { IndexPageState, OutbreakStatus, TableType, Country } from "@types";
+import { Country, IndexPageState, OutbreakStatus, TableType } from "@types";
 
 const { Title, Paragraph } = Typography;
 
@@ -42,6 +42,8 @@ const Index = ({
     });
   }, []);
   const { width } = useContext(myContext);
+  // consider remove results array from calculations and movi ti to build-time query
+  // TODO: data updated - timestamp
   return (
     <Page>
       <SEO

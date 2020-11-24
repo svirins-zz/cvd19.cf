@@ -6,6 +6,7 @@ export {
   getCurrentZoom,
 } from "./mapUtils";
 export {
+  slicePeriods,
   getDaysAgo,
   getPeriodCount,
   getPeriodName,

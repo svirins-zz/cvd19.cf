@@ -1,4 +1,4 @@
-import { EPIDEMIC_START } from "const";
+import { DAYS_FROM_END, EPIDEMIC_START } from "const";
 
 import {
   Country,
@@ -6,7 +6,6 @@ import {
   GlobalStats,
   OutbreakStatus,
   Period,
-  Periods,
 } from "../@types";
 
 export const getDaysAgo = (date: Date): number => {
@@ -68,11 +67,11 @@ export const getPeriodNames = (periodLength: number): string[] => {
     return getPeriodName(endingDaysAgo);
   });
 };
-
+// TODO Refactor - remove peroodwithdeaths calculation
 export const calulatePeriodData = (
   counts: Counts[],
   periodLength: number
-): Periods => {
+): {periodsWithDeaths: Period[], periods:Period[]} => {
   const periodsWithDeaths: Period[] = [];
   const periods: Period[] = counts.map((currentCounts, index, array) => {
     if (index < array.length - 2) {
@@ -148,14 +147,13 @@ export const calcCountries = (
       }
     });
     // process exclusion for diamond Princess
-    const allPeriods = calulatePeriodData(counts, periodLength);
+    const {periodsWithDeaths, periods} = calulatePeriodData(counts, periodLength);
 
     if (country.name !== "Diamnd Princess") {
       countries.push({
         ...country,
         name: country.name === "US" ? "United States" : country.name,
-        periods: allPeriods.periods,
-        periodsWithDeaths: allPeriods.periodsWithDeaths,
+        periods,
       });
     }
   });
@@ -182,13 +180,12 @@ export const sumPeriodData = (
       cases: 0,
     }))
   );
-  const allPeriods = calulatePeriodData(counts, periodLength);
+  const {periodsWithDeaths, periods} = calulatePeriodData(counts, periodLength);
   return [
     {
       name: "Global",
       results: [],
-      periods: allPeriods.periods,
-      periodsWithDeaths: allPeriods.periodsWithDeaths,
+      periods,
     },
   ];
 };
@@ -296,3 +293,32 @@ export const calcStats = (data: Country[]): GlobalStats => {
   };
   return stats;
 };
+
+export const slicePeriods = (
+  countries: Country[],
+  isStartAtDeaths: boolean,
+  isstartAtLast90Days: boolean,
+  periodLength: number,
+): Country[] => {
+  if (!isStartAtDeaths && !isstartAtLast90Days ) return countries;
+  let firstDeathIndex =  0
+  countries.forEach((country) => {
+    const zeroDeathsPositon = country.periods
+        .map((element) => element.totalDeaths)
+        .indexOf(0)
+    firstDeathIndex = zeroDeathsPositon > firstDeathIndex
+      ? zeroDeathsPositon 
+      : firstDeathIndex
+  });
+  // determine slice from end vALUE BASED ON 90 DAYS AND CURRENT PERIOD LENGTH VALUE
+
+
+  const truncatedCountries = countries.map((country) => {
+    return {
+      name: country.name,
+      periods: isStartAtDeaths ? country.periods.slice(0, firstDeathIndex) : country.periods.slice(0, Math.round(DAYS_FROM_END / periodLength) + 1),
+      results: []
+    } 
+  })
+  return truncatedCountries
+}

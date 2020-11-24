@@ -34,6 +34,7 @@ const Data = ({
 		selectedTable: TableType.NewDeaths,
 		selectedCountries: [{ name: 'United States', color: 'rgb(31,119,180)' }],
 		startAtDeaths: false,
+		startAtLast90Days: false,
 	});
 	const [dataState, setDataState] = useImmer<DataPageState>({
 		countriesList: [],
@@ -72,14 +73,28 @@ const Data = ({
 	};
 	const onInputChange = (value: number) =>
 		setFiltersState((draft) => {
-			console.log(value);
 			draft.periodLength = value;
 		});
 	const onDeathsChange = (value: boolean) => {
 		setFiltersState((draft) => {
+			if (filtersState.startAtLast90Days && value) {
+				draft.startAtLast90Days = false;
+			}
 			draft.startAtDeaths = value;
 		});
 	};
+	const onLast90DaysChange = (value: boolean) => {
+		setFiltersState((draft) => {
+		  if (filtersState.startAtDeaths && value) {
+				draft.startAtDeaths = false;
+			}
+			draft.startAtLast90Days = value;
+		});
+	};
+	// TODO ADD 2-nd control block global table, move period-days input to table
+	// TODO: add increase/decrease buttons to chart instead of input
+  // always put global at first table position
+	// TODO: refactor input to handle >11 input values
 	return (
 		<Page>
 			<SEO
@@ -117,23 +132,33 @@ const Data = ({
 				</Row>
 				<Row gutter={[8, 8]}>
 					<Col span={24}>
-						<Text>Period, days: </Text>
+						<Text>Period, days (2..10): </Text>
 						<InputNumber
-							min={1}
-							max={20}
+							min={2}
+							max={10}
 							placeholder='Period length, days'
 							defaultValue={filtersState.periodLength}
 							onChange={(value) => onInputChange(value as number)}
 						/>
 						{'    '}
+						{'    '}
 						<Checkbox
+						  style={{ paddingLeft: '1em' }}
 							onChange={(e) => onDeathsChange(e.target.checked)}
 							checked={filtersState.startAtDeaths}
 						>
-							Start at 1-st death
+							Start at 1-st death (selected)
+						</Checkbox>
+						{'    '}
+						{'    '}
+						<Checkbox
+							onChange={(e) => onLast90DaysChange(e.target.checked)}
+							checked={filtersState.startAtLast90Days}
+						>
+							Show last 90 days
 						</Checkbox>
 					</Col>
-				</Row>{' '}
+				</Row>
 				<Row gutter={[8, 8]}>
 					<Col span={24} style={{ marginBottom: '20px' }}>
 						<CountryFilter
@@ -146,10 +171,12 @@ const Data = ({
 				<Col span={24} style={{ marginBottom: '20px' }}>
 					<div style={{ height: '450px' }}>
 						<DataChart
-							countries={dataState.preparedCountries}
+							data={dataState.preparedCountries}
 							selectedCountries={filtersState.selectedCountries}
 							yValue={chartInfo.y}
 							isStartAtDeaths={filtersState.startAtDeaths}
+							isstartAtLast90Days={filtersState.startAtLast90Days}
+							periodLength={filtersState.periodLength}
 							multiplyer={width?.multiplyer ?? 1}
 						/>
 					</div>

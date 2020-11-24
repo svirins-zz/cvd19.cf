@@ -1,48 +1,44 @@
-import { makeDatum } from "lib";
+import { makeDatum, slicePeriods } from "lib";
 import React from "react";
 import { theme } from "styles/chartsTheme";
 
 import { ResponsiveLine, Serie } from "@nivo/line";
-import { DataChartProps, SelectedCountries } from "@types";
+import { DataChartProps } from "@types";
 
 import { PlaceholderChart } from "./placeholderChart";
 
 export const DataChart = ({
-  countries,
+  data,
   selectedCountries,
   yValue,
   isStartAtDeaths,
+  isstartAtLast90Days,
+  periodLength,
   multiplyer
 }: DataChartProps): JSX.Element => {
+  console.log(multiplyer)
   const chartData: Serie[] = [];
-  const colors = selectedCountries.map((country) => country.color);
-  countries.map((e) => {
-    const isSelectedcountry: SelectedCountries | undefined = selectedCountries.find(
-      (country) => country.name === e.name
-    );
-    if (
-      e.name === undefined ||
-      !isSelectedcountry ||
-      (e.name === "Global" && !isSelectedcountry)
-    ) {
-      return undefined;
-    }
-    // TODO: start at 1st death is buggy.
-    const periods = isStartAtDeaths
-      ? e.periodsWithDeaths.slice(0)
-      : e.periods.slice(0);
-    console.log("e.name", e.name)
-    console.log("e.periodsWithDeaths", e.periodsWithDeaths);
-    console.log("e.periods", e.periods);
-    console.log("periods", periods)
-    
-    const preparedPeriods = makeDatum(periods, yValue, multiplyer);
+  // filter and equalize data
+  const filtered = data
+  .filter((country) => selectedCountries
+    .find((selected) => selected.name === country.name))
+  const slicedPeriods = slicePeriods(filtered, isStartAtDeaths, isstartAtLast90Days, periodLength)  
+  // prepare serie
+  slicedPeriods.map((e) => {
+    const preparedPeriods = makeDatum(e.periods, yValue, multiplyer, isstartAtLast90Days);
     chartData.push({
       id: e.name,
       key: e.name,
       data: preparedPeriods.reverse(),
     });
   });
+  // prepare colors, sord chart data by selectedcountries
+  const colors = selectedCountries.map((country) => country.color)
+  const sorting = selectedCountries.map((country) => country.name)
+  chartData.sort(function(a, b){  
+    return sorting.indexOf(a.id.toString()) - sorting.indexOf(b.id.toString());
+  });
+
   if (chartData.length === 0) return <PlaceholderChart />;
   return (
     <ResponsiveLine

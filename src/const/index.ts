@@ -2,12 +2,13 @@ import { LatLngTuple } from "leaflet";
 
 import { MissingCountries } from "../@types";
 
-export const X_ASIS_TICKS_AMOUNT = 25;
+export const X_ASIS_TICKS_AMOUNT_NORMAL = 25;
+export const X_ASIS_TICKS_AMOUNT_SLICED = 12
 export const EPIDEMIC_START = "2020/01/07";
 export const PERIOD_LENGTH = 5;
 export const DEFAULT_ZOOM = 2.8;
 export const MAP_CENTER: LatLngTuple = [20, 34];
-
+export const DAYS_FROM_END = 90;
 export const VESSELS_CURRENT_COORDS = {
   "MS Zaandam": [-3.51, 50.44],
   "Diamond Princess": [104.53, 1.7],
