@@ -19,21 +19,18 @@ const About = (): JSX.Element => {
             Covid-19 Global pandemic situation
           </Title>
           <Divider className="divider" />
-          <Paragraph className="bold-blue">Stay home and be safe!</Paragraph>
+          <Alert
+            message="Stay home and be safe!"
+            description="The pandemic is serious! Herd immunity and waiting on a
+            vaccine are not real strategies. Masks, lockdowns, travel bans, and mass
+            testing are."
+            type="warning"
+            showIcon={true}
+            closable={true}
+            style={{ marginBottom: "20px" }}
+          />
         </Col>
       </Row>
-      <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-        <Alert
-          message="Reminder"
-          description="The pandemic is serious! Herd immunity and waiting on a
-        vaccine are not real strategies. Masks, lockdowns, travel bans, and mass
-        testing are."
-          type="warning"
-          showIcon={true}
-          closable={true}
-          style={{ marginBottom: "20px" }}
-        />
-      </Col>
       <Col xs={24} sm={24} md={24} lg={24} xl={24}>
         <Paragraph>
           This site aims to provide a simple tool to track global trends in
@@ -74,6 +71,13 @@ const About = (): JSX.Element => {
               GraphQL service{" "}
             </a>{" "}
           </Paragraph>
+          <Paragraph>
+            Original app concept inspired by{" "}
+            <a href="https://github.com/rickkln/corona">
+            Rickkln/corona
+            </a>{" "}
+            App uses a part of original app code, thought massively refactored.
+          </Paragraph>         
           <Paragraph>
             All code for this site is{" "}
             <a href="https://github.com/svirins/cvd19.cf">open source</a>. It is

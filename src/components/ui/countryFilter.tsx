@@ -35,7 +35,7 @@ export const CountryFilter = ({
       style={{ width: "100%" }}
       showArrow={true}
       defaultValue={selected.map((country) => country.name)}
-      placeholder="Add Country"
+      placeholder="Add Countries (up to 10)"
       maxTagCount={10}
       onChange={(selectedCountriesArray) => setSelected(selectedCountriesArray)}
       tagRender={(p) => tagRender(p)}

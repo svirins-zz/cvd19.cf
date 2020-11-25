@@ -1,11 +1,11 @@
 import {
-	Checkbox,
+	Alert,
 	Col,
 	Divider,
-	InputNumber,
 	Radio,
 	Row,
 	Slider,
+	Switch,
 	Typography
 } from 'antd';
 import { DataChart } from 'components/charts';
@@ -102,8 +102,6 @@ const Data = ({
 			draft.startAtLast90Days = value;
 		});
 	};
-	// TODO MAKE filters block dixed position
-	// TODO: add increase/decrease buttons to chart instead of input
   // always put global at first table position
 	// TODO: refactor input to handle >11 input values
 	return (
@@ -120,74 +118,68 @@ const Data = ({
 							Data reports constructor
 						</Title>
 						<Divider className='divider' />
-						<Paragraph className='bold-blue'>
-							Choose data type, period, countries (up to 10). Check-buttons affects chart only. <br />Current
-							choice:&nbsp;
-							<span className='choiceText'>{chartInfo.title}</span>
-						</Paragraph>
+						<Alert
+							
+							message="Data selection and filtering tips"
+							description="Choose data type, period length (2..10 days), countries (up to 10 'Start at 1-st' death and 'Last 90 days' switches affects only chart display.
+							Periods smaller then 4 days may dispay ... due to x-axis ticks limitations'
+						"
+							type="warning"
+							showIcon={true}
+							closable={true}
+							style={{ marginBottom: "10px" }}
+					  />
 					</Col>
 				</Row>
-				<Row gutter={[8, 8]}>
-					<Col span={24}>
-						<Radio.Group
-							value={filtersState.selectedTable}
-							onChange={(event) => onTableChange(event.target.value)}
-							optionType="button"
-							buttonStyle="solid"
-						>
-							<Radio.Button value='newDeaths'>New Deaths</Radio.Button>
-							<Radio.Button value='totalDeaths'>Total Deaths</Radio.Button>
-							<Radio.Button value='growthRate'>Change in Deaths</Radio.Button>
-							<Radio.Button value='newCases'>New Cases</Radio.Button>
-							<Radio.Button value='totalCases'>Total Cases</Radio.Button>
-						</Radio.Group>
-					</Col>
-				</Row>
-				<Row gutter={[8, 8]}>
-					<Col span={24}>
-						{/* <Text>Period, days (2..10): </Text>
-						<InputNumber
-							min={2}
-							max={10}
-							placeholder='Period length, days'
-							defaultValue={filtersState.periodLength}
-							onChange={(value) => onInputChange(value as number)}
-						/> */}
+				<Col span={24} style={{ marginBottom: '20px' }}>
+					<Radio.Group
+						value={filtersState.selectedTable}
+						onChange={(event) => onTableChange(event.target.value)}
+						// optionType="button"
+						// buttonStyle="solid"
+						size="middle"
+					>
+						<Radio value='newDeaths'>New Deaths</Radio>
+						<Radio value='totalDeaths'>Total Deaths</Radio>
+						<Radio value='growthRate'>Change in Deaths</Radio>
+						<Radio value='newCases'>New Cases</Radio>
+						<Radio value='totalCases'>Total Cases</Radio>
+					</Radio.Group>
+				</Col>
+
+				<Col span={24} style={{ marginBottom: '20px' }}>
+					<CountryFilter
+						selected={filtersState.selectedCountries}
+						setSelected={onCountriesChange}
+						countries={dataState.countriesList}
+					/>
+				</Col>
+				<Row>
+					<Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ marginBottom: '10px' }}>
 						<Slider
 							min={2}
 							max={10}
 							step={1}
 							dots={true}
 							marks={marks} 
-							onChange={(value) => onInputChange(value as number)}
-							tooltipVisible
+							onChange={(value: number) => onInputChange(value)}
+							tooltipVisible={false}
 							value={filtersState.periodLength} 
 						/>
-						{'    '}
-						{'    '}
-						<Checkbox
-						  style={{ paddingLeft: '1em' }}
-							onChange={(e) => onDeathsChange(e.target.checked)}
+					</Col>	
+					<Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ marginTop: "7px" , marginBottom: "20px" }}>
+						<Switch
+							checkedChildren="Start at 1-st death"
+							unCheckedChildren="Start at 1-st death"
 							checked={filtersState.startAtDeaths}
-						>
-							Start at 1-st death (selected)
-						</Checkbox>
-						{'    '}
-						{'    '}
-						<Checkbox
-							onChange={(e) => onLast90DaysChange(e.target.checked)}
+							onChange={(checked) => onDeathsChange(checked)}
+						/>
+						<Switch
+							checkedChildren="Show last 90 days"
+							unCheckedChildren="Show last 90 days"
 							checked={filtersState.startAtLast90Days}
-						>
-							Show last 90 days
-						</Checkbox>
-					</Col>
-				</Row>
-				<Row gutter={[8, 8]}>
-					<Col span={24} style={{ marginBottom: '20px' }}>
-						<CountryFilter
-							selected={filtersState.selectedCountries}
-							setSelected={onCountriesChange}
-							countries={dataState.countriesList}
+							onChange={(checked) => onLast90DaysChange(checked)}
+							style={{ marginRight: "10px" }}
 						/>
 					</Col>
 				</Row>
