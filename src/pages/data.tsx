@@ -146,8 +146,6 @@ const Data = ({
 					<Radio.Group
 						value={filtersState.selectedTable}
 						onChange={(event) => onTableChange(event.target.value)}
-						// optionType="button"
-						// buttonStyle="solid"
 						size="middle"
 					>
 						<Radio value='newDeaths'>New Deaths</Radio>

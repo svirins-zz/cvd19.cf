@@ -1,4 +1,6 @@
-require("dotenv")
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
     name: "babel-plugin-import",
@@ -27,6 +29,7 @@ const COUNTRY_QUERY = gql`
   }
 `;
 const endpoint = process.env.GATSBY_GRAPHQL_ENDPOINT 
+console.log("endpoint is", endpoint)
 exports.onCreatePage = async ({ page, actions }) => {
   const graphQLClient = new GraphQLClient(endpoint, {
     credentials: "include",

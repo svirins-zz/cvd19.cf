@@ -310,9 +310,6 @@ export const slicePeriods = (
       ? zeroDeathsPositon 
       : firstDeathIndex
   });
-  // determine slice from end vALUE BASED ON 90 DAYS AND CURRENT PERIOD LENGTH VALUE
-
-
   const truncatedCountries = countries.map((country) => {
     return {
       name: country.name,
