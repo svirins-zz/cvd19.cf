@@ -1,3 +1,4 @@
+require("dotenv")
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
     name: "babel-plugin-import",
@@ -25,8 +26,9 @@ const COUNTRY_QUERY = gql`
     }
   }
 `;
+const endpoint = process.env.GATSBY_GRAPHQL_ENDPOINT 
 exports.onCreatePage = async ({ page, actions }) => {
-  const graphQLClient = new GraphQLClient("https://covid-qrapqhl-server.svirins.vercel.app/", {
+  const graphQLClient = new GraphQLClient(endpoint, {
     credentials: "include",
     mode: "cors",
   });
