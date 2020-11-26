@@ -26,7 +26,7 @@ const COUNTRY_QUERY = gql`
   }
 `;
 exports.onCreatePage = async ({ page, actions }) => {
-  const graphQLClient = new GraphQLClient(process.env.GATSBY_GRAPHQL_ENDPOINT, {
+  const graphQLClient = new GraphQLClient("https://covid-qrapqhl-server.svirins.vercel.app/", {
     credentials: "include",
     mode: "cors",
   });

@@ -30,13 +30,11 @@ export const Page = ({
     choice = { key: "main" },
   } = useContext(myContext);
   const { pathname } = useLocation();
-  // TODO: display hosted on Zeit ?
-      // set data update / build time values 
 
   const { fetchTime, buildTime } = useMemo(() => {
     return {
       fetchTime: "today",
-      buildTime: "tomorrow",
+      buildTime: "3"
     }
   },[])
   const marginClassName: string = pathname.includes("map")
