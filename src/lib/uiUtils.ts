@@ -150,11 +150,13 @@ export const makeDatum = (
   periods: Period[],
   yValue: string,
   multiplyer: number,
-  isstartAtLast90Days: boolean,
+  isstartAtLast90Days = false,
 ): Datum[] => {
-  const thereshold = isstartAtLast90Days
-    ? Math.floor(periods.length / (X_ASIS_TICKS_AMOUNT_SLICED * multiplyer)) 
-    : Math.floor(periods.length / (X_ASIS_TICKS_AMOUNT_NORMAL * multiplyer));
+  const thereshold = calculateThereshold(
+    isstartAtLast90Days,
+    periods.length,
+    multiplyer
+  )
   const datum: Datum[] = [];
   periods.forEach((period:  Period, index: number) => {
     if (
@@ -171,3 +173,11 @@ export const makeDatum = (
   });
   return datum;
 };
+
+const calculateThereshold = (isstartAtLast90Days: boolean, periodLength: number, multiplyer: number): number => {
+  if (isstartAtLast90Days) {
+    return Math.floor(periodLength / (X_ASIS_TICKS_AMOUNT_SLICED * multiplyer)) 
+  }
+  const wholePart = Math.floor(periodLength / (X_ASIS_TICKS_AMOUNT_NORMAL * multiplyer))
+  return wholePart === 0 ? 1 : wholePart
+}

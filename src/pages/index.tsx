@@ -54,12 +54,9 @@ const Index = ({
       <Row gutter={[8, 8]}>
         <Col span={24}>
           <Title level={3} style={{ marginBottom: "0px" }}>
-            Covid-19 Global pandemic situation
+            Covid-19 Global pandemic situation. Today&apos;s stats
           </Title>
           <Divider className="divider" />
-          <Paragraph className="bold-blue" style={{ marginBottom: "10px" }}>
-            Today&apos;s stats (updated 3-times per day)
-          </Paragraph>
         </Col>
         <Col span={24} style={{ marginBottom: "10px" }}>
           <TodayStats stats={state.stats} />

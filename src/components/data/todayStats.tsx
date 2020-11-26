@@ -13,7 +13,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
         <Col xs={24} sm={24} md={24} lg={8} xl={8} key="1">
           <Card>
             <Statistic
-              title="Total Cases"
+              title="Total cases"
               value={confirmed}
               precision={0}
               valueStyle={{ color: "red", backgroundColor: "#f9f9fd" }}
@@ -23,7 +23,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
         <Col xs={24} sm={24} md={24} lg={8} xl={8} key="2">
           <Card>
             <Statistic
-              title="Total Deaths"
+              title="Total deaths cases"
               value={deaths}
               precision={0}
               valueStyle={{ color: "red", backgroundColor: "#f9f9fd" }}
@@ -33,7 +33,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
         <Col xs={24} sm={24} md={24} lg={8} xl={8} key="3">
           <Card>
             <Statistic
-              title="Total Recovered"
+              title="Total recovered cases"
               value={recovered}
               precision={0}
               valueStyle={{ color: "#3f8600", backgroundColor: "#f9f9fd" }}
@@ -45,7 +45,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
         <Col xs={24} sm={24} md={24} lg={8} xl={8} key="4">
           <Card>
             <Statistic
-              title="Days passed"
+              title="Days since first case"
               value={days}
               precision={0}
               valueStyle={{ color: "#120338", backgroundColor: "#f9f9fd" }}
@@ -55,7 +55,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
         <Col xs={24} sm={24} md={24} lg={8} xl={8} key="5">
           <Card>
             <Statistic
-              title="Countries (incl. vessels)"
+              title="Countries affected"
               value={countries}
               precision={0}
               valueStyle={{ color: "#120338", backgroundColor: "#f9f9fd" }}
@@ -65,7 +65,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
         <Col xs={24} sm={24} md={24} lg={8} xl={8} key="6">
           <Card>
             <Statistic
-              title="Data Trend (last 5 days)"
+              title="Data trend (last 5 days)"
               value={trend}
               precision={0}
               valueStyle={{ color: trendColor, backgroundColor: "#f9f9fd" }}

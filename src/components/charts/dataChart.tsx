@@ -16,7 +16,6 @@ export const DataChart = ({
   periodLength,
   multiplyer
 }: DataChartProps): JSX.Element => {
-  console.log(multiplyer)
   const chartData: Serie[] = [];
   // filter and equalize data
   const filtered = data

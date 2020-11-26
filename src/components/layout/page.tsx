@@ -5,7 +5,7 @@ import logo from "assets/cvd4.svg";
 import { myContext } from "context";
 import { Link } from "gatsby";
 import { menuInit } from "lib";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 
 import {
   BarChartOutlined,
@@ -30,6 +30,15 @@ export const Page = ({
     choice = { key: "main" },
   } = useContext(myContext);
   const { pathname } = useLocation();
+  // TODO: display hosted on Zeit ?
+      // set data update / build time values 
+
+  const { fetchTime, buildTime } = useMemo(() => {
+    return {
+      fetchTime: "today",
+      buildTime: "tomorrow",
+    }
+  },[])
   const marginClassName: string = pathname.includes("map")
     ? "conentWithoutMargin"
     : "conentWithMargin";
@@ -37,7 +46,7 @@ export const Page = ({
     const initiaValue = menuInit(pathname);
     if (handleSelect) {
       handleSelect({ selectedKeys: initiaValue });
-    }
+    };
   }, []);
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -110,7 +119,11 @@ export const Page = ({
         </Content>
         {pathname.includes("map") ? undefined : (
           <Footer>
-            <Divider className="divider" />
+            {/* Display update time here */}
+            <div className="credentials">
+              Last data update: {fetchTime} UTC. Last successful build run: {buildTime} UTC
+            </div>
+            <Divider className="divider"/>
             <div className="credentials">
               Made with{" "}
               <span role="img" aria-labelledby="love">

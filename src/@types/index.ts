@@ -131,6 +131,8 @@ export interface FiltersState {
   selectedCountries: SelectedCountries[];
   startAtDeaths: boolean;
   startAtLast90Days: boolean;
+  isSliderDisabled: boolean;
+  oldPeriodsValue: number;
 }
 export type SideDrawerColumn = {
   title: string;
@@ -148,7 +150,6 @@ export interface SeoProps {
 export interface AuxProps {
   children: ReactChild | ReactChildren;
 }
-// TODO: refactor context state to a single state!!
 export type ContextProps = {
   choice: ContextState;
   visible: { isVisible: boolean };

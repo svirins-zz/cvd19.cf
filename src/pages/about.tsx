@@ -81,7 +81,7 @@ const About = (): JSX.Element => {
           <Paragraph>
             All code for this site is{" "}
             <a href="https://github.com/svirins/cvd19.cf">open source</a>. It is
-            built with <a href="https://www.gatsbyjs.com/">Gatsby.</a> Tech
+            built with <a href="https://www.gatsbyjs.com/">Gatsby.</a> and hosted by <a href="https://vercel.com/">Vercel.</a> Tech
             stack details could be found{" "}
             <a href="https://stackshare.io/svirins/cvd19">here.</a>
           </Paragraph>

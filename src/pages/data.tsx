@@ -21,17 +21,19 @@ import { useImmer } from 'use-immer';
 
 import { Country, DataPageState, FiltersState, TableType } from '../@types';
 
-const { Title, Text, Paragraph } = Typography;
+const { Title, Paragraph } = Typography;
+
 const marks = {
-	2: '2',
-	3: '3',
-	4: '4',
 	5: '5',
 	6: '6',
 	7: '7',
-	8: '8',
+  8: '8',
 	9: '9',
-  10: "10"
+	10: '10',
+	11: '11',
+	12: '12',
+	13: '13',
+	14: '14',
 };
 const Data = ({
 	pageContext,
@@ -46,6 +48,8 @@ const Data = ({
 		selectedCountries: [{ name: 'United States', color: 'rgb(31,119,180)' }],
 		startAtDeaths: false,
 		startAtLast90Days: false,
+		isSliderDisabled: false,
+		oldPeriodsValue: PERIOD_LENGTH,
 	});
 	const [dataState, setDataState] = useImmer<DataPageState>({
 		countriesList: [],
@@ -99,11 +103,20 @@ const Data = ({
 		  if (filtersState.startAtDeaths && value) {
 				draft.startAtDeaths = false;
 			}
+			if (value) {
+				draft.oldPeriodsValue = filtersState.periodLength;
+				draft.periodLength = 5; 
+				draft.isSliderDisabled = true;
+			} else {
+				
+				draft.periodLength = filtersState.oldPeriodsValue; 
+				draft.isSliderDisabled = false;
+			}
 			draft.startAtLast90Days = value;
 		});
 	};
   // always put global at first table position
-	// TODO: refactor input to handle >11 input values
+	// TODO: refactor periods to handle VALID ranges
 	return (
 		<Page>
 			<SEO
@@ -121,9 +134,7 @@ const Data = ({
 						<Alert
 							
 							message="Data selection and filtering tips"
-							description="Choose data type, period length (2..10 days), countries (up to 10 'Start at 1-st' death and 'Last 90 days' switches affects only chart display.
-							Periods smaller then 4 days may dispay ... due to x-axis ticks limitations'
-						"
+							description="Choose data type, period length (2..10 days), countries (up to 10). Switches works only with chart."
 							type="warning"
 							showIcon={true}
 							closable={true}
@@ -157,11 +168,12 @@ const Data = ({
 				<Row>
 					<Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ marginBottom: '10px' }}>
 						<Slider
-							min={2}
-							max={10}
+							min={5}
 							step={1}
+							max={14}
 							dots={true}
 							marks={marks} 
+							disabled={filtersState.isSliderDisabled}
 							onChange={(value: number) => onInputChange(value)}
 							tooltipVisible={false}
 							value={filtersState.periodLength} 

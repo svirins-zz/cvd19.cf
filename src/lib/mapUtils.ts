@@ -97,8 +97,8 @@ export const getMarkerDetails = (totalCases: number): string => {
  * @return {*}
  */
 export const getFeatures = (data: Country[]): FeatureCollection => {
-  console.log(data)
   const features: Feature[] = [];
+  console.log(data)
   data.forEach((country) => {
     const { code, flag, geometry } = getCountryExtData(country.name);
     const { confirmed, deaths, recovered } = country.results[
