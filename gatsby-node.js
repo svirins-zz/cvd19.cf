@@ -28,8 +28,8 @@ const COUNTRY_QUERY = gql`
     }
   }
 `;
-const endpoint = process.env.GATSBY_GRAPHQL_ENDPOINT 
-console.log("endpoint is", endpoint)
+const endpoint = "https://covid-qrapqhl-server.svirins.vercel.app/"
+
 exports.onCreatePage = async ({ page, actions }) => {
   const graphQLClient = new GraphQLClient(endpoint, {
     credentials: "include",
