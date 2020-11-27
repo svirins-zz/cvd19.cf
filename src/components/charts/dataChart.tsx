@@ -16,14 +16,7 @@ export const DataChart = ({
   periodLength,
   multiplyer
 }: DataChartProps): JSX.Element => {
-  console.log("Datachart renders ___________________________________________________________________")
-  console.log(  "data: ", data,
-    "selectedCountries: ", selectedCountries,
-    "yValue: ", yValue,
-    "isStartAtDeaths: ", isStartAtDeaths,
-    "isstartAtLast90Days", isstartAtLast90Days,
-    "periodLength: ", periodLength,
-    "multiplyer:", multiplyer)
+
   const chartData: Serie[] = [];
   // filter and equalize data
   const filtered = data
@@ -45,7 +38,6 @@ export const DataChart = ({
   chartData.sort(function(a, b){  
     return sorting.indexOf(a.id.toString()) - sorting.indexOf(b.id.toString());
   });
-  console.log("Chart data: ", chartData);
   if (chartData.length === 0) return <PlaceholderChart />;
   return (
     <ResponsiveLine
