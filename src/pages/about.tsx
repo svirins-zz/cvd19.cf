@@ -15,7 +15,7 @@ const About = (): JSX.Element => {
       />
       <Row gutter={[8, 8]}>
         <Col span={24}>
-          <Title level={3} style={{ marginBottom: "0px" }}>
+          <Title level={4} style={{ marginBottom: "0px" }}>
             Covid-19 Global pandemic situation
           </Title>
           <Divider className="divider" />

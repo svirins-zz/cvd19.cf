@@ -258,7 +258,7 @@
 }
 
 .sider-box-shadow {
-  box-shadow: 2px 0px 3px 0px #636363;
+  box-shadow: 1px 0px 2px 0px #636363;
 }
 
 h1,
@@ -304,3 +304,4 @@ h6 {
 .ant-switch {
   float: right !important
 }
+
