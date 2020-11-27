@@ -42,7 +42,7 @@ const Index = ({
     });
   }, []);
   const { width } = useContext(myContext);
-
+  if (state.stats.confirmed === 0) {return <p>Loading data</p>}
   return (
     <Page>
       <SEO
