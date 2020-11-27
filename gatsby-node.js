@@ -43,7 +43,6 @@ exports.onCreatePage = async ({ page, actions }) => {
     const { createPage, deletePage } = actions;
     deletePage(page);
     const data = await graphQLClient.request(COUNTRY_QUERY);
-
     createPage({
       ...page,
       context: {

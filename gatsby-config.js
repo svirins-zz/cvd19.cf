@@ -6,7 +6,7 @@ module.exports = {
     title: "Covid-19 stats and charts",
     description: `This site aims to provide a simple tool to track global trends in
     Covid-19 pandemic.`,
-    version: "0.4.1",
+    version: "0.5.1",
     author: "@svirins",
     siteUrl: "https://cvd19.cf",
     keywords: ["Covid-19", "Pandemic", "Dashboard"],
@@ -40,9 +40,12 @@ module.exports = {
         path: `${__dirname}/src/assets`,
       },
     },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-react-leaflet",
-    "gatsby-plugin-sharp",
+    {
+      resolve: 'gatsby-plugin-react-leaflet',
+      options: {
+        linkStyles: false 
+      }
+    },
     "gatsby-plugin-resolve-src",
     "gatsby-plugin-sitemap",
     {

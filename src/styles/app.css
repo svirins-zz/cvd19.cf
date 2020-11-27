@@ -78,13 +78,12 @@
   font-style: italic;
 }
 
-
 .largeText {
   font-size: 1.1em;
   font-weight: 500;
 }
 
-.statNone {
+/* .statNone {
   color: #808080;
   font-weight: 600;
   text-decoration: underline;
@@ -124,11 +123,11 @@
   color: #52c41a;
   font-weight: 600;
   text-decoration: underline;
-}
+} */
 
-.redB {
+/* .redB {
   background-color: 'red';
-}
+} */
 
 .leaflet-container {
   width: 100%;
@@ -270,7 +269,6 @@ h5,
 h6 {
   font-weight: 400;
 }
-
 .no-border {
   border-width: 0;
 }
@@ -279,7 +277,6 @@ h6 {
   background: none !important;
   border: none !important;
 }
-
 
 .ant-table {
   line-height: 1.15rem !important;
@@ -295,7 +292,6 @@ h6 {
 .ant-slider-step {
   background-color: #00000026 !important;
 }
-
 .ant-switch-inner {
   margin: 0 12px 0 25px !important;
   color: #fff !important;
@@ -305,7 +301,6 @@ h6 {
 .ant-switch-checked .ant-switch-inner {
   margin: 0 25px 0 12px !important;
 }
-
 .ant-switch {
   float: right !important
 }
