@@ -45,7 +45,7 @@ export const DataChart = ({
   chartData.sort(function(a, b){  
     return sorting.indexOf(a.id.toString()) - sorting.indexOf(b.id.toString());
   });
-
+  console.log("Chart data: ", chartData);
   if (chartData.length === 0) return <PlaceholderChart />;
   return (
     <ResponsiveLine
