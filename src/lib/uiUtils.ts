@@ -176,7 +176,7 @@ export const makeDatum = (
 
 const calculateThereshold = (isstartAtLast90Days: boolean, periodLength: number, multiplyer: number): number => {
   if (isstartAtLast90Days) {
-    return Math.floor(periodLength / (X_ASIS_TICKS_AMOUNT_SLICED * multiplyer)) 
+    return Math.floor(periodLength / (X_ASIS_TICKS_AMOUNT_SLICED * multiplyer))
   }
   const wholePart = Math.floor(periodLength / (X_ASIS_TICKS_AMOUNT_NORMAL * multiplyer))
   return wholePart === 0 ? 1 : wholePart

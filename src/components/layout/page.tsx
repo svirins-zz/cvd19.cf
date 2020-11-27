@@ -34,7 +34,7 @@ export const Page = ({
         {pathname.includes("map") ? undefined : (
           <Footer>
             <div className="build-time">
-              Data updates during build time. Last bulid runs:{" "} 
+              Data updates during build time. Last bulid runs:{" "}
               {siteBuildMetadata.buildTime}
             </div>
             <Divider className="divider"/>

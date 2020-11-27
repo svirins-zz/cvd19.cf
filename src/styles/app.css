@@ -83,52 +83,6 @@
   font-weight: 500;
 }
 
-/* .statNone {
-  color: #808080;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.statSmall {
-  color: #eb2f96;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.statLosing {
-  color: #f5222d;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.statFlattening {
-  color: #fa541c;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.statCrushing {
-  color: #fa8c16;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.statWinning {
-  color: #13c2c2;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.statWon {
-  color: #52c41a;
-  font-weight: 600;
-  text-decoration: underline;
-} */
-
-/* .redB {
-  background-color: 'red';
-} */
-
 .leaflet-container {
   width: 100%;
   min-width: 388px !important;

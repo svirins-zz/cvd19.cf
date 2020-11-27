@@ -3,6 +3,7 @@ import { AreaChart, SummaryChart } from "components/charts";
 import { TodayStats } from "components/data";
 import { Page, SEO } from "components/layout";
 import { Table } from "components/table/table";
+import { Spinner } from 'components/ui';
 import { PERIOD_LENGTH } from "const";
 import { myContext } from "context";
 import { useGetGlobalData } from "hooks";
@@ -42,7 +43,7 @@ const Index = ({
     });
   }, []);
   const { width } = useContext(myContext);
-  if (state.stats.confirmed === 0) {return <p>Loading data</p>}
+  if (state.stats.confirmed === 0) {return <Spinner/>}
   return (
     <Page>
       <SEO

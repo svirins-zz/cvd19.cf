@@ -21,14 +21,14 @@ import {
 	TileLayer,
 } from 'react-leaflet';
 
-import { Country } from "@types";
+import { Country } from '@types';
 
 const Map = ({
 	pageContext,
 }: {
 	pageContext: GatsbyTypes.SitePageContext;
 }): JSX.Element => {
-	const countries  = pageContext.data?.countries as Country[];
+	const countries = pageContext.data?.countries as Country[];
 	const { width } = useContext(myContext);
 	const zoomValue = getCurrentZoom(width?.multiplyer);
 	const { features } = getFeatures(countries);
@@ -42,13 +42,9 @@ const Map = ({
           <p class="marker-text">${commafy(confirmed)}</p>
         </div>`,
 		});
-		// TODO: add flyto to eventHandlers 
+		// TODO: add flyto to eventHandlers
 		return (
-			<Marker
-				key={index}
-				position={feature.geometry.coordinates}
-				icon={icon}
-			>
+			<Marker key={index} position={feature.geometry.coordinates} icon={icon}>
 				<Popup key={index}>
 					<span>
 						<img src={flag} alt='name' />

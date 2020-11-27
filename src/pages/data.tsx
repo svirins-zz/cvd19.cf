@@ -6,7 +6,7 @@ import {
 	Row,
 	Slider,
 	Switch,
-	Typography
+	Typography,
 } from 'antd';
 import { DataChart } from 'components/charts';
 import { Page, SEO } from 'components/layout';
@@ -27,7 +27,7 @@ const marks = {
 	5: '5',
 	6: '6',
 	7: '7',
-  8: '8',
+	8: '8',
 	9: '9',
 	10: '10',
 	11: '11',
@@ -41,7 +41,7 @@ const Data = ({
 	pageContext: GatsbyTypes.SitePageContext;
 }): JSX.Element => {
 	const { width } = useContext(myContext);
-  const countries  = pageContext.data?.countries as Country[];
+	const countries = pageContext.data?.countries as Country[];
 	const [filtersState, setFiltersState] = useImmer<FiltersState>({
 		periodLength: PERIOD_LENGTH,
 		selectedTable: TableType.NewDeaths,
@@ -100,22 +100,21 @@ const Data = ({
 	};
 	const onLast90DaysChange = (value: boolean) => {
 		setFiltersState((draft) => {
-		  if (filtersState.startAtDeaths && value) {
+			if (filtersState.startAtDeaths && value) {
 				draft.startAtDeaths = false;
 			}
 			if (value) {
 				draft.oldPeriodsValue = filtersState.periodLength;
-				draft.periodLength = 5; 
+				draft.periodLength = 5;
 				draft.isSliderDisabled = true;
 			} else {
-				
-				draft.periodLength = filtersState.oldPeriodsValue; 
+				draft.periodLength = filtersState.oldPeriodsValue;
 				draft.isSliderDisabled = false;
 			}
 			draft.startAtLast90Days = value;
 		});
 	};
-  // always put global at first table position
+	// always put global at first table position
 	// TODO: refactor periods to handle VALID ranges
 	return (
 		<Page>
@@ -132,21 +131,20 @@ const Data = ({
 						</Title>
 						<Divider className='divider' />
 						<Alert
-							
-							message="Data selection and filtering tips"
-							description="Choose data type, period length (2..10 days), countries (up to 10). Switches works only with chart."
-							type="warning"
+							message='Data selection and filtering tips'
+							description='Choose data type, period length (2..10 days), countries (up to 10). Switches works only with chart.'
+							type='warning'
 							showIcon={true}
 							closable={true}
-							style={{ marginBottom: "10px" }}
-					  />
+							style={{ marginBottom: '10px' }}
+						/>
 					</Col>
 				</Row>
 				<Col span={24} style={{ marginBottom: '20px' }}>
 					<Radio.Group
 						value={filtersState.selectedTable}
 						onChange={(event) => onTableChange(event.target.value)}
-						size="middle"
+						size='middle'
 					>
 						<Radio value='newDeaths'>New Deaths</Radio>
 						<Radio value='totalDeaths'>Total Deaths</Radio>
@@ -164,32 +162,46 @@ const Data = ({
 					/>
 				</Col>
 				<Row>
-					<Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ marginBottom: '10px' }}>
+					<Col
+						xs={24}
+						sm={24}
+						md={24}
+						lg={12}
+						xl={12}
+						style={{ marginBottom: '10px' }}
+					>
 						<Slider
 							min={5}
 							step={1}
 							max={14}
 							dots={true}
-							marks={marks} 
+							marks={marks}
 							disabled={filtersState.isSliderDisabled}
 							onChange={(value: number) => onInputChange(value)}
 							tooltipVisible={false}
-							value={filtersState.periodLength} 
+							value={filtersState.periodLength}
 						/>
-					</Col>	
-					<Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ marginTop: "7px" , marginBottom: "20px" }}>
+					</Col>
+					<Col
+						xs={24}
+						sm={24}
+						md={24}
+						lg={12}
+						xl={12}
+						style={{ marginTop: '7px', marginBottom: '20px' }}
+					>
 						<Switch
-							checkedChildren="Start at 1-st death"
-							unCheckedChildren="Start at 1-st death"
+							checkedChildren='Start at 1-st death'
+							unCheckedChildren='Start at 1-st death'
 							checked={filtersState.startAtDeaths}
 							onChange={(checked) => onDeathsChange(checked)}
 						/>
 						<Switch
-							checkedChildren="Show last 90 days"
-							unCheckedChildren="Show last 90 days"
+							checkedChildren='Show last 90 days'
+							unCheckedChildren='Show last 90 days'
 							checked={filtersState.startAtLast90Days}
 							onChange={(checked) => onLast90DaysChange(checked)}
-							style={{ marginRight: "10px" }}
+							style={{ marginRight: '10px' }}
 						/>
 					</Col>
 				</Row>
