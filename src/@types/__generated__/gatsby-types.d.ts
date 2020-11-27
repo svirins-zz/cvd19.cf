@@ -2824,6 +2824,13 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
+type GetBuildTimeQueryQueryVariables = Exact<{
+  buildTime?: Maybe<DateQueryOperatorInput>;
+}>;
+
+
+type GetBuildTimeQueryQuery = { readonly siteBuildMetadata: Maybe<Pick<SiteBuildMetadata, 'buildTime'>> };
+
 type SiteQueryVariables = Exact<{ [key: string]: never; }>;
 
 

@@ -28,10 +28,8 @@ const COUNTRY_QUERY = gql`
     }
   }
 `;
-const endpoint = process.env.GATSBY_APPLLO_GRAPHQL_ENDPOINT
-
 exports.onCreatePage = async ({ page, actions }) => {
-  const graphQLClient = new GraphQLClient(endpoint, {
+  const graphQLClient = new GraphQLClient(process.env.GATSBY_APPLLO_GRAPHQL_ENDPOINT, {
     credentials: "include",
     mode: "cors",
   });

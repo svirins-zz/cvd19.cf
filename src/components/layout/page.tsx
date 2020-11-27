@@ -3,7 +3,7 @@ import "styles/app.css";
 import { Button, Divider, Drawer, Layout, Menu } from "antd";
 import logo from "assets/cvd4.svg";
 import { myContext } from "context";
-import { Link } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import { menuInit } from "lib";
 import React, { useContext, useEffect, useMemo } from "react";
 
@@ -31,12 +31,14 @@ export const Page = ({
   } = useContext(myContext);
   const { pathname } = useLocation();
 
-  const { fetchTime, buildTime } = useMemo(() => {
-    return {
-      fetchTime: "today",
-      buildTime: "3"
+  const { siteBuildMetadata } = useStaticQuery(graphql`
+    query GetBuildTimeQuery($buildTime: DateQueryOperatorInput = {}) {
+      siteBuildMetadata(buildTime: $buildTime) {
+        buildTime(formatString: "YYYY-MM-DD HH:mm UTC")
+      }
     }
-  },[])
+  `)
+
   const marginClassName: string = pathname.includes("map")
     ? "conentWithoutMargin"
     : "conentWithMargin";
@@ -117,9 +119,9 @@ export const Page = ({
         </Content>
         {pathname.includes("map") ? undefined : (
           <Footer>
-            {/* Display update time here */}
-            <div className="credentials">
-              Last data update: {fetchTime} UTC. Last successful build run: {buildTime} UTC
+            <div className="build-time">
+              Data updates during build time. Last bulid runs:{" "} 
+              {siteBuildMetadata.buildTime}
             </div>
             <Divider className="divider"/>
             <div className="credentials">

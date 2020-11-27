@@ -71,6 +71,14 @@
   text-align: center;
 }
 
+.build-time {
+  color: #120338;
+  font-size: 12px;
+  text-align: center;
+  font-style: italic;
+}
+
+
 .largeText {
   font-size: 1.1em;
   font-weight: 500;
