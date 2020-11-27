@@ -71,8 +71,7 @@ export const getPeriodNames = (periodLength: number): string[] => {
 export const calulatePeriodData = (
   counts: Counts[],
   periodLength: number
-): {periodsWithDeaths: Period[], periods:Period[]} => {
-  const periodsWithDeaths: Period[] = [];
+): {periods:Period[]} => {
   const periods: Period[] = counts.map((currentCounts, index, array) => {
     if (index < array.length - 2) {
       const previousNewDeaths =
@@ -99,9 +98,7 @@ export const calulatePeriodData = (
             ? Math.round(growthRate * 100) / 100
             : 0,
       };
-      if (currentCounts.deaths > 0) {
-        periodsWithDeaths.push(period);
-      }
+
       return period;
     }
     return {
@@ -115,7 +112,6 @@ export const calulatePeriodData = (
     };
   });
   return {
-    periodsWithDeaths,
     periods,
   };
 };
@@ -147,7 +143,7 @@ export const calcCountries = (
       }
     });
     // process exclusion for diamond Princess
-    const {periodsWithDeaths, periods} = calulatePeriodData(counts, periodLength);
+    const { periods } = calulatePeriodData(counts, periodLength);
 
     if (country.name !== "Diamnd Princess") {
       countries.push({
@@ -180,7 +176,7 @@ export const sumPeriodData = (
       cases: 0,
     }))
   );
-  const {periodsWithDeaths, periods} = calulatePeriodData(counts, periodLength);
+  const { periods } = calulatePeriodData(counts, periodLength);
   return [
     {
       name: "Global",

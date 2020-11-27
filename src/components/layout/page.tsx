@@ -5,7 +5,7 @@ import logo from "assets/cvd4.svg";
 import { myContext } from "context";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { menuInit } from "lib";
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect } from "react";
 
 import {
   BarChartOutlined,

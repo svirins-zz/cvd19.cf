@@ -76,7 +76,7 @@ const About = (): JSX.Element => {
             <a href="https://github.com/rickkln/corona">
             Rickkln/corona
             </a>{" "}
-            App uses a part of original app code, thought massively refactored.
+            and uses some legacy code, thought massively refactored.
           </Paragraph>         
           <Paragraph>
             All code for this site is{" "}

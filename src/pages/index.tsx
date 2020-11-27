@@ -42,8 +42,7 @@ const Index = ({
     });
   }, []);
   const { width } = useContext(myContext);
-  // consider remove results array from calculations and movi ti to build-time query
-  // TODO: data updated - timestamp
+  // TODO: consider remove results array from calculations and movi ti to build-time query
   return (
     <Page>
       <SEO
