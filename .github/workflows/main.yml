@@ -2,7 +2,7 @@
 on:
   schedule:
     - cron: "25 0,3,6,9,12 * * *"
-name: CI piplene ti cvd.19.cf
+name: CI build.fetch.deply => cvd.19.cf
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
 
   deploy:
       name: deploy to Vercel
-      runs-on: amondnet/vercel-action@v19
+      runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
         - uses: amondnet/vercel-action@v19          
