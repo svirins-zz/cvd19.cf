@@ -47,7 +47,7 @@ const Index = ({
 	const { width } = useContext(myContext);
 	if (state.stats.confirmed === 0) {
 		return <Spinner />;
-	}
+  }
 	return (
 		<Page>
 			<SEO
