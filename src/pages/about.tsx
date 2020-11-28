@@ -27,7 +27,7 @@ const About = (): JSX.Element => {
             type="warning"
             showIcon={true}
             closable={true}
-            style={{ marginBottom: "20px" }}
+            style={{ marginBottom: '10px', marginTop: '10px' }}
           />
         </Col>
       </Row>

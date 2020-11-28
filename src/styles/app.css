@@ -22,8 +22,9 @@
 
 .bold-blue {
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 1.2em;
   color: #05264c !important;
+  margin-bottom: 0.5em !important;
 }
 
 .site-layout-content {
@@ -68,14 +69,14 @@
 .credentials {
   color: #000000;
   font-size: 12px;
-  text-align: center;
+  text-align: right;
 }
 
 .build-time {
   color: #120338;
   font-size: 12px;
-  text-align: center;
-  font-style: italic;
+  text-align: right;
+  /* font-style: italic; */
 }
 
 .largeText {
@@ -259,3 +260,10 @@ h6 {
   float: right !important
 }
 
+h4 {
+  font-size: 1.2em !important;
+}
+
+.ant-layout-footer {
+  padding: 24px 24px !important;
+}

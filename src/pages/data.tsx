@@ -136,7 +136,7 @@ const Data = ({
 							type='warning'
 							showIcon={true}
 							closable={true}
-							style={{ marginBottom: '10px' }}
+							style={{ marginBottom: '10px', marginTop: '10px' }}
 						/>
 					</Col>
 				</Row>
@@ -220,8 +220,11 @@ const Data = ({
 				</Col>
 				<Col span={24}>
 					<Paragraph className='bold-blue' style={{ marginBottom: '20px' }}>
-						{chartInfo.title}&nbsp;(all countries included)
+						{chartInfo.title}&nbsp;(all countries)
+						<Divider className='divider' />
+
 					</Paragraph>
+
 					<Table
 						data={dataState.preparedCountries}
 						periodLength={filtersState.periodLength}

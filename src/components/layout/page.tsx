@@ -38,7 +38,7 @@ export const Page = ({
               {siteBuildMetadata.buildTime}
             </div>
             <Divider className="divider"/>
-            <div className="credentials">
+            <div className="credentials" style={{marginTop: "10px"}}>
               Made with{" "}
               <span role="img" aria-labelledby="love">
                 ❤️
