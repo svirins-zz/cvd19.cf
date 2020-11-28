@@ -1,8 +1,6 @@
-# “At minute 25 past hour 0, 3, 6, 9, and 12.”
 on:
-  # schedule:
-  #   - cron: "25 0,3,6,9,12 * * *"
-  push
+  schedule:
+    - cron: "25 0,3,6,9,12 * * *"
 name: CI build.fetch.deply => cvd.19.cf
 
 jobs:
@@ -24,7 +22,7 @@ jobs:
         NODE_ENV: production
         ENVIRONMENT: ${{ contains(github.ref, 'master') && 'production' || 'staging'}}
         GATSBY_GOOGLE_ANALYTICS_ID: ${{ secrets.GATSBY_GOOGLE_ANALYTICS_ID }}
-        GATSBY_GRAPHQL_ENDPOINT: ${{ secrets.GATSBY_GRAPHQL_ENDPOINT }}
+        GATSBY_APPLLO_GRAPHQL_ENDPOINT: ${{ secrets.GATSBY_APPLLO_GRAPHQL_ENDPOINT }}
         GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT: ${{ secrets.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT }}
         GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT: ${{ secrets.GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT }}
 
