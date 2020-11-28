@@ -6,7 +6,7 @@ module.exports = {
     title: "Covid-19 stats and charts",
     description: `This site aims to provide a simple tool to track global trends in
     Covid-19 pandemic.`,
-    version: "0.5.1",
+    version: "0.5.2",
     author: "@svirins",
     siteUrl: "https://cvd19.cf",
     keywords: ["Covid-19", "Pandemic", "Dashboard"],
