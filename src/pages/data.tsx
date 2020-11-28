@@ -126,7 +126,7 @@ const Data = ({
 			<>
 				<Row gutter={[8, 8]}>
 					<Col span={24}>
-						<Title level={4} style={{ marginBottom: '0px' }}>
+						<Title level={4}>
 							Data reports constructor
 						</Title>
 						<Divider className='divider' />
@@ -136,11 +136,11 @@ const Data = ({
 							type='warning'
 							showIcon={true}
 							closable={true}
-							style={{ marginBottom: '10px', marginTop: '10px' }}
+							className="mb-10 mt-10"
 						/>
 					</Col>
 				</Row>
-				<Col span={24} style={{ marginBottom: '20px' }}>
+				<Col span={24} className="mb-20">
 					<Radio.Group
 						value={filtersState.selectedTable}
 						onChange={(event) => onTableChange(event.target.value)}
@@ -154,7 +154,7 @@ const Data = ({
 					</Radio.Group>
 				</Col>
 
-				<Col span={24} style={{ marginBottom: '20px' }}>
+				<Col span={24} className="mb-20">
 					<CountryFilter
 						selected={filtersState.selectedCountries}
 						setSelected={onCountriesChange}
@@ -168,7 +168,7 @@ const Data = ({
 						md={24}
 						lg={12}
 						xl={12}
-						style={{ marginBottom: '10px' }}
+						className="mb-10"
 					>
 						<Slider
 							min={5}
@@ -188,7 +188,7 @@ const Data = ({
 						md={24}
 						lg={12}
 						xl={12}
-						style={{ marginTop: '7px', marginBottom: '20px' }}
+						className="mb-10 mt-10"
 					>
 						<Switch
 							checkedChildren='Start at 1-st death'
@@ -201,12 +201,12 @@ const Data = ({
 							unCheckedChildren='Show last 90 days'
 							checked={filtersState.startAtLast90Days}
 							onChange={(checked) => onLast90DaysChange(checked)}
-							style={{ marginRight: '10px' }}
+							className='mr-10'
 						/>
 					</Col>
 				</Row>
-				<Col span={24} style={{ marginBottom: '20px' }}>
-					<div style={{ height: '450px' }}>
+				<Col span={24} className="mb-20">
+					<div className="chart">
 						<DataChart
 							data={dataState.preparedCountries}
 							selectedCountries={filtersState.selectedCountries}
@@ -219,7 +219,7 @@ const Data = ({
 					</div>
 				</Col>
 				<Col span={24}>
-					<Paragraph className='bold-blue' style={{ marginBottom: '20px' }}>
+					<Paragraph className='bold-blue mb-20'>
 						{chartInfo.title}&nbsp;(all countries)
 						<Divider className='divider' />
 

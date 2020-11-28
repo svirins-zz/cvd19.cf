@@ -57,34 +57,34 @@ const Index = ({
 			/>
 			<Row gutter={[8, 8]}>
 				<Col span={24}>
-					<Title level={4} style={{ marginBottom: '0px' }}>
+					<Title level={4}>
 						Covid-19 Global pandemic situation. Today&apos;s stats
 					</Title>
 					<Divider className='divider' />
 				</Col>
-				<Col span={24} style={{ marginBottom: '10px' }}>
+				<Col span={24} className="mb-10">
 					<TodayStats stats={state.stats} />
 				</Col>
 			</Row>
 			<>
-				<Col span={24} style={{ marginBottom: '20px' }}>
+				<Col span={24} className="mb-20">
 					<Paragraph className='bold-blue'>
 						Global data trends by countries
             <Divider className='divider' />
 					</Paragraph>
-					<div style={{ height: '450px' }}>
+					<div className="chart">
 						<SummaryChart
 							periods={state.trends}
 							multiplyer={width?.multiplyer ?? 1}
 						/>
 					</div>
 				</Col>
-				<Col span={24} style={{ marginBottom: '20px' }}>
+				<Col span={24} className="mb-20">
 					<Paragraph className='bold-blue'>
 						Trend &apos;Under control percent&apos; by countries
             <Divider className='divider' />
 					</Paragraph>
-					<div style={{ height: '450px' }}>
+					<div className="chart">
 						<AreaChart
 							periods={state.trends}
 							multiplyer={width?.multiplyer ?? 1}
@@ -92,12 +92,12 @@ const Index = ({
 						/>
 					</div>
 				</Col>
-				<Col span={24} style={{ marginBottom: '20px' }}>
+				<Col span={24} className="mb-20">
 					<Paragraph className='bold-blue' >
 						Trend &apos;Pandemic free percent&apos; by countries
             <Divider className='divider' />
 					</Paragraph>
-					<div style={{ height: '450px' }}>
+					<div className="chart">
 						<AreaChart
 							periods={state.trends}
 							multiplyer={width?.multiplyer ?? 1}
@@ -106,8 +106,8 @@ const Index = ({
 					</div>
 				</Col>
 			</>
-			<Col span={24} style={{ marginBottom: '20px' }}>
-				<Paragraph className='bold-blue' >
+			<Col span={24} className="mb-10">
+				<Paragraph className='bold-blue'>
 					New death cases by countries (last two periods). Winning / won and
 					losing / flattening trends.
           <Divider className='divider' />

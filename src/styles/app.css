@@ -1,17 +1,33 @@
+/* set base font size for rem */
+body {
+  background: #f0f2f5;
+  font-size: 16px !important;
+}
+
+.conentWithMargin {
+  padding: 1.5rem 1.5rem 0px;
+}
+
+@media (max-width: 800px) {
+  body {
+    font-size: 14px !important;
+  }
+  .conentWithMargin {
+    padding: 0.5rem 0.5rem 0px;
+  }
+  .credentials-right, .credentials-left {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 12px !important;
+  }
+}
+
 .centered {
   text-align: center;
-}
-
-.bigIcon {
-  font-size: '18px';
-  color: 'WHITE';
-  vertical-align: 'middle'
-}
-
-.site-statistic-demo-card .ant-statistic-title {
-  font-size: 1.3em;
-  font-weight: 500;
-  color: #120338;
 }
 
 .choiceText {
@@ -22,18 +38,9 @@
 
 .bold-blue {
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   color: #05264c !important;
-  margin-bottom: 0.5em !important;
-}
-
-.site-layout-content {
-  background: inherit;
-  min-height: 480px;
-}
-
-.site-layout .site-layout-background {
-  background: inherit;
+  margin-bottom: 0.5rem !important;
 }
 
 .logoImg {
@@ -44,8 +51,8 @@
   font-weight: 600;
   text-transform: uppercase;
   color: #ffb655;
-  font-size: 0.65em;
-  line-height: 22px;
+  font-size: 0.65rem;
+  line-height: 1.2rem;
 }
 
 .alignBottom {
@@ -57,7 +64,7 @@
 }
 
 .tinyButton {
-  font-size: 12px;
+  font-size: 0.75rem;
   background: none;
   color: white
 }
@@ -66,46 +73,39 @@
   padding: 28px;
 }
 
-.credentials {
+.credentials-left {
   color: #000000;
-  font-size: 12px;
+  font-size: 0.75rem;
+  text-align: left;
+}
+
+.credentials-right {
+  color: #000000;
+  font-size: 0.75rem;
   text-align: right;
 }
 
 .build-time {
   color: #120338;
-  font-size: 12px;
+  font-size: 0.75rem;
   text-align: right;
-  /* font-style: italic; */
 }
 
 .largeText {
-  font-size: 1.1em;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 
 .leaflet-container {
   width: 100%;
-  min-width: 388px !important;
+  min-width: 400px !important;
   height: 100vh;
   padding: 0;
   margin: 0;
 }
 
-.conentWithMargin {
-  padding: 24px 24px 0px;
-  background: #f5f6f9;
-  min-height: 640px;
-  min-width: 388px;
-}
-
-.conentWithoutMargin {
-  background: #f5f6f9;
-  min-height: 388px;
-}
-
 .divider {
-  margin: 5px 0;
+  margin: 0.35rem 0;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 
@@ -119,7 +119,7 @@
   display: flex;
   position: relative;
   color: white;
-  font-size: 1.1em;
+  font-size: 0.9rem;
   font-weight: bold;
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
@@ -162,53 +162,53 @@
 }
 
 .leaflet-popup-content {
-  margin: 0.5em 1em !important;
-  line-height: 1.4;
+  margin: 0.5rem 1rem !important;
+  line-height: 1.4rem;
 }
 
 .title {
   color: #F3A207;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   line-height: 1.2;
-  margin-bottom: .1em;
+  margin-bottom: .1rem;
   margin-top: 0;
 }
 
 .marker-list {
   list-style: none;
   padding: 0;
-  font-size: 1.1em;
+  font-size: 1rem;
   font-weight: normal;
   color: #f1f1f0;
 }
 
 .icon-marker-small {
-  width: 2.3em !important;
-  height: 2.3em !important;
+  width: 1.8rem !important;
+  height: 1.8rem !important;
   background-color: #f8b7b2;
 }
 
 .icon-marker-normal {
-  width: 3.1em !important;
-  height: 3.1em !important;
+  width: 2.7rem !important;
+  height: 2.7rem !important;
   background-color: #ff7875;
 }
 
 .icon-marker-large {
-  width: 3.9em !important;
-  height: 3.9em !important;
+  width: 3.5rem !important;
+  height: 3.5rem !important;
   background-color: #f5222d;
 }
 
 .icon-marker-extra-large {
-  width: 4.7em !important;
-  height: 4.7em !important;
+  width: 4.3rem !important;
+  height: 4.3rem !important;
   background-color: #a8071a;
 }
 
 .icon-marker-super-large {
-  width: 5.7em !important;
-  height: 5.7em !important;
+  width: 5.1rem !important;
+  height: 5.1rem !important;
   background-color: #5c0011;
 }
 
@@ -224,6 +224,7 @@ h5,
 h6 {
   font-weight: 400;
 }
+
 .no-border {
   border-width: 0;
 }
@@ -234,36 +235,63 @@ h6 {
 }
 
 .ant-table {
-  line-height: 1.15rem !important;
+  line-height: 1.1rem !important;
 }
 
 .ant-table.ant-table-small {
-  font-size: 14px !important;
+  font-size: 0.875rem !important;
 }
 
 .ant-tag {
-  font-size: 16px !important;
+  font-size: 0.95rem !important;
 }
+
 .ant-slider-step {
   background-color: #00000026 !important;
 }
+
 .ant-switch-inner {
-  margin: 0 12px 0 25px !important;
+  margin: 0 0.75rem 0 1.5rem !important;
   color: #fff !important;
-  font-size: 16px !important;
+  font-size: 0.9rem !important;
 }
 
 .ant-switch-checked .ant-switch-inner {
-  margin: 0 25px 0 12px !important;
+  margin: 0 1.5rem 0 0.75rem !important;
 }
+
 .ant-switch {
   float: right !important
 }
 
 h4 {
-  font-size: 1.2em !important;
+  font-size: 1.2rem !important;
 }
 
 .ant-layout-footer {
   padding: 24px 24px !important;
+}
+
+.mb-20 {
+  margin-bottom: 1.25rem
+}
+
+.mb-10 {
+  margin-bottom: .625rem
+}
+
+.mt-10 {
+  margin-top: .625rem
+}
+
+.mr-10 {
+  margin-right: .625rem !important;
+}
+
+.chart {
+  height: 450px;
+}
+
+.ant-layout-footer {
+  padding-bottom: 0.5rem !important;
 }

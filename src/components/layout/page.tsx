@@ -1,6 +1,6 @@
 import "styles/app.css";
 
-import { Divider, Layout } from "antd";
+import { Col, Divider, Layout, Row } from "antd";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
@@ -9,7 +9,7 @@ import { useLocation } from "@reach/router";
 
 import { SideNav } from "./sideNav"
 
-const { Content,  Footer } = Layout;
+const { Content,  Footer  } = Layout;
 export const Page = ({
   children,
 }: React.PropsWithChildren<Record<string, unknown>>): JSX.Element => {
@@ -22,10 +22,10 @@ export const Page = ({
   `)
   const { pathname } = useLocation();
   const marginClassName: string = pathname.includes("map")
-    ? "conentWithoutMargin"
+    ? ""
     : "conentWithMargin";
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: "100vh", minWidth: "480px" }}>
       <SideNav />
       <Layout className={marginClassName}>
         <Content>
@@ -33,25 +33,24 @@ export const Page = ({
         </Content>
         {pathname.includes("map") ? undefined : (
           <Footer>
-            <div className="build-time">
-              Data updates during build time. Last bulid runs:{" "}
-              {siteBuildMetadata.buildTime}
-            </div>
             <Divider className="divider"/>
-            <div className="credentials" style={{marginTop: "10px"}}>
-              Made with{" "}
-              <span role="img" aria-labelledby="love">
-                ❤️
-              </span>{" "}
-              by <a href="https://twitter.com/svirins">@svirins</a>.
-            </div>
-            <div className="credentials">
-              {" "}
-              View source{" "}
-              <a href="https://github.com/svirins/cvd19.cf">
-                <GithubOutlined style={{ fontSize: "14px" }} />
-              </a>
-            </div>
+            <Row>
+              <Col xs={24} sm={24} md={12} lg={12} xl={12} >
+                <p className="credentials-left">
+                  Data updates during build time. Last bulid runs at:{" "}
+                  <em>{siteBuildMetadata.buildTime}</em>
+                </p>  
+              </Col>
+              <Col xs={24} sm={24} md={12} lg={12} xl={12} >
+                <p className="credentials-right">
+                  Made with{" "}
+                  <span role="img" aria-labelledby="love">
+                    ❤️
+                  </span>{" "}
+                  by <a href="https://twitter.com/svirins">@svirins</a>
+                </p>
+              </Col>
+            </Row>
           </Footer>
         )}
       </Layout>

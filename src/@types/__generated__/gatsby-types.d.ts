@@ -1730,7 +1730,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___allExtensions = 'pluginOptions.allExtensions',
   pluginOptions___style = 'pluginOptions.style',
   pluginOptions___lessOptions___modifyVars___font_family = 'pluginOptions.lessOptions.modifyVars.font_family',
-  pluginOptions___lessOptions___modifyVars___font_size_base = 'pluginOptions.lessOptions.modifyVars.font_size_base',
   pluginOptions___lessOptions___modifyVars___primary_color = 'pluginOptions.lessOptions.modifyVars.primary_color',
   pluginOptions___lessOptions___modifyVars___heading_color = 'pluginOptions.lessOptions.modifyVars.heading_color',
   pluginOptions___lessOptions___modifyVars___link_color = 'pluginOptions.lessOptions.modifyVars.link_color',
@@ -1967,7 +1966,6 @@ type SitePluginPluginOptionsLessOptionsFilterInput = {
 
 type SitePluginPluginOptionsLessOptionsModifyVars = {
   readonly font_family: Maybe<Scalars['String']>;
-  readonly font_size_base: Maybe<Scalars['String']>;
   readonly primary_color: Maybe<Scalars['String']>;
   readonly heading_color: Maybe<Scalars['String']>;
   readonly link_color: Maybe<Scalars['String']>;
@@ -1986,7 +1984,6 @@ type SitePluginPluginOptionsLessOptionsModifyVars = {
 
 type SitePluginPluginOptionsLessOptionsModifyVarsFilterInput = {
   readonly font_family: Maybe<StringQueryOperatorInput>;
-  readonly font_size_base: Maybe<StringQueryOperatorInput>;
   readonly primary_color: Maybe<StringQueryOperatorInput>;
   readonly heading_color: Maybe<StringQueryOperatorInput>;
   readonly link_color: Maybe<StringQueryOperatorInput>;
@@ -2083,5 +2080,17 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type GetBuildTimeQueryQueryVariables = Exact<{
+  buildTime?: Maybe<DateQueryOperatorInput>;
+}>;
+
+
+type GetBuildTimeQueryQuery = { readonly siteBuildMetadata: Maybe<Pick<SiteBuildMetadata, 'buildTime'>> };
+
+type SiteQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SiteQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author' | 'keywords' | 'language' | 'metaImage' | 'siteUrl'>> }> };
 
 }

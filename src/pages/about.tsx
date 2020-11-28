@@ -15,7 +15,7 @@ const About = (): JSX.Element => {
       />
       <Row gutter={[8, 8]}>
         <Col span={24}>
-          <Title level={4} style={{ marginBottom: "0px" }}>
+          <Title level={4}>
             Covid-19 Global pandemic situation
           </Title>
           <Divider className="divider" />
@@ -27,7 +27,7 @@ const About = (): JSX.Element => {
             type="warning"
             showIcon={true}
             closable={true}
-            style={{ marginBottom: '10px', marginTop: '10px' }}
+            className="mb-10 m1-20"
           />
         </Col>
       </Row>
@@ -44,7 +44,7 @@ const About = (): JSX.Element => {
         <Paragraph className="bold-blue">Extra info and useful resources</Paragraph>
           <Paragraph>
             If you want expert information visit:
-            <ul style={{ marginTop: "10px" }}>
+            <ul className="mt-10">
               {" "}
               <li>
                 <a href="https://necsi.edu/corona-virus-pandemic">
@@ -60,7 +60,7 @@ const About = (): JSX.Element => {
           </Paragraph>
           <Paragraph />
           <Paragraph>
-            All data is pulled from the{" "}
+            All data are pulled from the{" "}
             <a href="https://github.com/CSSEGISandData/COVID-19">
               COVID-19 data repository
             </a>{" "}
@@ -68,11 +68,11 @@ const About = (): JSX.Element => {
             <a href="https://github.com/pomber/covid19">JSON parser</a> and,
             finally, turned into{" "}
             <a href="https://github.com/svirins/covid-qrapqhl-server">
-              GraphQL service{" "}
+              GraphQL API{" "}
             </a>{" "}
           </Paragraph>
           <Paragraph>
-            Original app concept inspired by{" "}
+            App concept inspired by{" "}
             <a href="https://github.com/rickkln/corona">
             Rickkln/corona
             </a>{" "}
@@ -82,7 +82,7 @@ const About = (): JSX.Element => {
             All code for this site is{" "}
             <a href="https://github.com/svirins/cvd19.cf">open source</a>. It is
             built with <a href="https://www.gatsbyjs.com/">Gatsby.</a> and hosted by <a href="https://vercel.com/">Vercel.</a> Tech
-            stack details could be found{" "}
+            stack details{" "}
             <a href="https://stackshare.io/svirins/cvd19">here.</a>
           </Paragraph>
           <Divider className="divider" />
