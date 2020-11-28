@@ -1,7 +1,8 @@
 # “At minute 25 past hour 0, 3, 6, 9, and 12.”
 on:
-  schedule:
-    - cron: "25 0,3,6,9,12 * * *"
+  # schedule:
+  #   - cron: "25 0,3,6,9,12 * * *"
+  push
 name: CI build.fetch.deply => cvd.19.cf
 
 jobs:
