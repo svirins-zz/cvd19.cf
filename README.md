@@ -1,6 +1,7 @@
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
 [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/svirins/cvd19)
 [![CodeFactor](https://www.codefactor.io/repository/github/svirins/cvd19.cf/badge)](https://www.codefactor.io/repository/github/svirins/cvd19.cf)
+![.github/workflows/main.yml](https://github.com/svirins/cvd19.cf/workflows/.github/workflows/main.yml/badge.svg)
 
 ## COVID-19 Global Reports
 
