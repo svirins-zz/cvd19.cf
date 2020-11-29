@@ -57,7 +57,7 @@ const Index = ({
 			/>
 			<Row gutter={[8, 8]}>
 				<Col span={24}>
-					<Title level={4}>
+					<Title level={2}>
 						Covid-19 Global pandemic situation. Today&apos;s stats
 					</Title>
 					<Divider className='divider' />
@@ -68,10 +68,10 @@ const Index = ({
 			</Row>
 			<>
 				<Col span={24} className="mb-20">
-					<Paragraph className='bold-blue'>
+					<Title level={4}>
 						Global data trends by countries
             <Divider className='divider' />
-					</Paragraph>
+					</Title>
 					<div className="chart">
 						<SummaryChart
 							periods={state.trends}
@@ -80,10 +80,10 @@ const Index = ({
 					</div>
 				</Col>
 				<Col span={24} className="mb-20">
-					<Paragraph className='bold-blue'>
+				  <Title level={4}>
 						Trend &apos;Under control percent&apos; by countries
             <Divider className='divider' />
-					</Paragraph>
+					</Title>
 					<div className="chart">
 						<AreaChart
 							periods={state.trends}
@@ -93,10 +93,10 @@ const Index = ({
 					</div>
 				</Col>
 				<Col span={24} className="mb-20">
-					<Paragraph className='bold-blue' >
+					<Title level={4}>
 						Trend &apos;Pandemic free percent&apos; by countries
             <Divider className='divider' />
-					</Paragraph>
+					</Title>
 					<div className="chart">
 						<AreaChart
 							periods={state.trends}
@@ -107,12 +107,12 @@ const Index = ({
 				</Col>
 			</>
 			<Col span={24} className="mb-10">
-				<Paragraph className='bold-blue'>
+				<Title level={4}>
 					New death cases by countries (last two periods). Winning / won and
 					losing / flattening trends.
           <Divider className='divider' />
 
-				</Paragraph>
+				</Title>
 			</Col>
 			<Row gutter={0}>
 				<Col xs={24} sm={24} md={24} lg={12} xl={12}>

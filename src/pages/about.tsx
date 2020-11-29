@@ -1,4 +1,5 @@
 import { Alert, Col, Divider, Row, Typography } from 'antd';
+import logo from "assets/cvd4.svg";
 import { Page, SEO } from 'components/layout';
 import { DonatePayPalButton } from 'components/ui';
 import React from 'react';
@@ -15,7 +16,7 @@ const About = (): JSX.Element => {
 			/>
 			<Row gutter={[8, 8]}>
 				<Col span={24}>
-					<Title level={4}>Covid-19 Global pandemic situation</Title>
+					<Title level={2}>Covid-19 Global pandemic situation</Title>
 					<Divider className='divider' />
 					<Alert
 						message='Stay home and be safe!'
@@ -39,9 +40,9 @@ const About = (): JSX.Element => {
 			</Col>
 			<Row gutter={[8, 16]}>
 				<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-					<Paragraph className='bold-blue'>
+					<Title level={4}>
 						Extra info and useful resources
-					</Paragraph>
+					</Title>
 					<Paragraph>
 						If you want expert information visit:
 						<ul className='mt-10'>

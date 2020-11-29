@@ -10,7 +10,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
   return (
     <>
       <Row gutter={0}>
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="1">
+        <Col xs={12} sm={12} md={12} lg={8} xl={8} key="1">
           <Card>
             <Statistic
               title="Total cases"
@@ -20,7 +20,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="2">
+        <Col xs={12} sm={12} md={12} lg={8} xl={8} key="2">
           <Card>
             <Statistic
               title="Total deaths cases"
@@ -30,7 +30,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="3">
+        <Col xs={12} sm={12} md={12} lg={8} xl={8} key="3">
           <Card>
             <Statistic
               title="Total recovered cases"
@@ -40,9 +40,8 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
             />
           </Card>
         </Col>
-      </Row>
-      <Row gutter={0}>
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="4">
+
+        <Col xs={12} sm={12} md={12} lg={8} xl={8} key="4">
           <Card>
             <Statistic
               title="Days since first case"
@@ -52,7 +51,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="5">
+        <Col xs={12} sm={12} md={12} lg={8} xl={8} key="5">
           <Card>
             <Statistic
               title="Countries affected"
@@ -62,7 +61,7 @@ export const TodayStats = ({ stats }: { stats: GlobalStats }): JSX.Element => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={24} md={24} lg={8} xl={8} key="6">
+        <Col xs={12} sm={12} md={12} lg={8} xl={8} key="6">
           <Card>
             <Statistic
               title="Data trend (last 5 days)"

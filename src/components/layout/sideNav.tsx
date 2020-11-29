@@ -1,4 +1,4 @@
-import { Button, Drawer, Layout, Menu } from "antd";
+import { Button, Drawer, Layout, Menu, Tooltip } from "antd";
 import logo from "assets/cvd4.svg";
 import { myContext } from "context";
 import { Link } from "gatsby";
@@ -9,7 +9,9 @@ import {
   BarChartOutlined,
   EnvironmentOutlined,
   GlobalOutlined,
+  QuestionCircleFilled,
   QuestionCircleOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 import { useLocation } from "@reach/router";
 
@@ -48,13 +50,17 @@ export const SideNav = (): JSX.Element => {
           mode="inline"
           style={{ position: "fixed", border: "0" }}
         >
-          <div className="logoImg">
-            <img
-              src={logo}
-              alt="Covid-19 stats & facts"
-              height={48}
-              width={48}
-            />
+          <div className="cvd">
+            <div className="logoImg">
+              <a href="https://cvd19.cf" title="Covid-19 pandemic dashboard">
+                  <img
+                    src={logo}
+                    alt="Covid-19 stats & facts"
+                    height={36}
+                    width={36}
+                  />
+              </a>
+              </div>  
             <span className="logoText">cvd19.cf</span>
           </div>
           <Menu.Item
@@ -77,14 +83,15 @@ export const SideNav = (): JSX.Element => {
           </Menu.Item>
           <Menu.Item
             key="about"
-            icon={<QuestionCircleOutlined style={{ color: "WHITE" }} />}
+            icon={<UserOutlined style={{ color: "WHITE" }} />}
           >
             <Link to="/about">About</Link>
           </Menu.Item>
           <div className="alignBottom">
-            <Button className="tinyButton" size="small" onClick={showDrawer}>
-              Help →
-            </Button>
+            <Tooltip title="Get help">
+              <QuestionCircleOutlined className="helpIcon" onClick={showDrawer}/> 
+            </Tooltip>
+
           </div>
         </Menu>
         <Drawer

@@ -1,8 +1,8 @@
 on:
   schedule:
-    - cron: '25 0,3,6,9,12 * * *'
+    - cron: '25 0,4,8,12,16,20 * * *'
 
-name: CI build.fetch.deply => cvd.19.cf
+name: CI fetch.build => vercel
 
 jobs:
   build:

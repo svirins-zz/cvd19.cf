@@ -126,7 +126,7 @@ const Data = ({
 			<>
 				<Row gutter={[8, 8]}>
 					<Col span={24}>
-						<Title level={4}>
+						<Title level={2}>
 							Data reports constructor
 						</Title>
 						<Divider className='divider' />
@@ -219,11 +219,10 @@ const Data = ({
 					</div>
 				</Col>
 				<Col span={24}>
-					<Paragraph className='bold-blue mb-20'>
+					<Title level={4} className="mb-20">
 						{chartInfo.title}&nbsp;(all countries)
 						<Divider className='divider' />
-
-					</Paragraph>
+					</Title>
 
 					<Table
 						data={dataState.preparedCountries}
