@@ -1,4 +1,4 @@
-import { Button, Drawer, Layout, Menu, Tooltip } from "antd";
+import { Drawer, Layout, Menu, Tooltip } from "antd";
 import logo from "assets/cvd4.svg";
 import { myContext } from "context";
 import { Link } from "gatsby";
@@ -9,7 +9,6 @@ import {
   BarChartOutlined,
   EnvironmentOutlined,
   GlobalOutlined,
-  QuestionCircleFilled,
   QuestionCircleOutlined,
   UserOutlined
 } from "@ant-design/icons";

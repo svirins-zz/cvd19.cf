@@ -30,23 +30,23 @@ const About = (): JSX.Element => {
 					/>
 				</Col>
 			</Row>
-			<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-				<Paragraph>
-					This site aims to provide a simple tool to track global trends in
-					Covid-19 pandemic. You can choose from various data representations
-					and apply sort and filters. Data updated 3-times per day. Refer help
-					section to get detailed trend explanaton
-				</Paragraph>
-			</Col>
+				<Col xs={24} sm={24} md={24} lg={24} xl={24}>
+					<ul className='mt-20'>
+						<li>This app aims to provide a tool to track global trends in the Covid-19 pandemic. You can choose from various data representations and apply sort and filters.
+						</li>
+						<li>					
+						  Data updated during build time. Refer help section to get detailed trend explanaton.
+						</li>	
+					</ul>
+				</Col>
 			<Row gutter={[8, 16]}>
 				<Col xs={24} sm={24} md={24} lg={24} xl={24}>
 					<Title level={4}>
 						Extra info and useful resources
 					</Title>
-					<Paragraph>
+					<Divider className='divider' />
 						If you want expert information visit:
-						<ul className='mt-10'>
-							{' '}
+						<ul className='mt-20'>
 							<li>
 								<a href='https://necsi.edu/corona-virus-pandemic'>
 									NECSI Coronavirus resources
@@ -58,39 +58,54 @@ const About = (): JSX.Element => {
 						</ul>{' '}
 						which provides extensive information, policy advice and guidelines
 						for the fight against Covid-19.
-					</Paragraph>
-					<Paragraph />
-					<Paragraph>
-						All data are pulled from the{' '}
-						<a href='https://github.com/CSSEGISandData/COVID-19'>
-							COVID-19 data repository
-						</a>{' '}
-						provided by Johns Hopkins University, then parsed with a{' '}
-						<a href='https://github.com/pomber/covid19'>JSON parser</a> and,
-						finally, turned into{' '}
-						<a href='https://github.com/svirins/covid-qrapqhl-server'>
-							GraphQL API{' '}
-						</a>{' '}
-					</Paragraph>
-					<Paragraph>
-						App concept inspired by{' '}
-						<a href='https://github.com/rickkln/corona'>Rickkln/corona</a> and
-						uses some legacy code, thought massively refactored.
-					</Paragraph>
-					<Paragraph>
-						All code for this site is{' '}
-						<a href='https://github.com/svirins/cvd19.cf'>open source</a>. It is
-						built with <a href='https://www.gatsbyjs.com/'>Gatsby.</a> and
-						hosted by <a href='https://vercel.com/'>Vercel.</a> Tech stack
-						details <a href='https://stackshare.io/svirins/cvd19'>here.</a>
-						⇄ Pull/Merge requests and ★ Stars are always welcome.
-					</Paragraph>
+					<Title level={4}>
+					  Tech details: 
+					</Title>
 					<Divider className='divider' />
+					  <ul className='mt-20'>
+							<li>
+								All data are pulled from the{' '}
+								<a href='https://github.com/CSSEGISandData/COVID-19'>
+									COVID-19 data repository
+								</a>{' '}
+								provided by Johns Hopkins University, then parsed with a{' '}
+								<a href='https://github.com/pomber/covid19'>JSON parser</a> and,
+								finally, turned into{' '}
+								<a href='https://github.com/svirins/covid-qrapqhl-server'>
+									GraphQL API{' '}
+								</a>	
+							</li>
+							<li> 
+								App concept inspired by{' '}
+								<a href='https://github.com/rickkln/corona'>Rickkln/corona</a> and
+								uses some legacy code, thought massively refactored.
+							</li>
+							<li> 
+							All code for this site is{' '}
+							<a href='https://github.com/svirins/cvd19.cf'>open source</a>. It is
+							built with <a href='https://www.gatsbyjs.com/'>Gatsby.</a> and
+							hosted by <a href='https://vercel.com/'>Vercel.</a> Tech stack
+							details <a href='https://stackshare.io/svirins/cvd19'>here.</a>
+							⇄ Pull/Merge requests and ★ Stars are always welcome.
+							</li>
+						</ul>
+						<Title level={4}>
+					    Support: 
+					  </Title>
+					  <Divider className='divider' />
 					<Paragraph>
-						If you enjoyed using this site, and you&apos;d like to help support
+						If you enjoyed using this app, and you&apos;d like to help support
 						further development, you&apos;re welcome to donate!
 					</Paragraph>
 					<DonatePayPalButton />
+				</Col>
+				<Col xs={24} sm={24} md={24} lg={24} xl={24}>
+				<img
+                    src={logo}
+                    alt="Covid-19 stats & facts"
+                    height={192}
+                    width={192}
+                  />
 				</Col>
 			</Row>
 		</Page>

@@ -12,7 +12,7 @@ import { useImmer } from 'use-immer';
 
 import { Country, IndexPageState, OutbreakStatus, TableType } from '@types';
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 const Index = ({
 	pageContext,
