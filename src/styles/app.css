@@ -5,24 +5,27 @@ body {
 }
 
 .conentWithMargin {
-  padding: 1.5rem 1.5rem 0px;
+  padding: 1.5rem 1.5rem;
 }
 
 @media (max-width: 800px) {
   body {
-    font-size: 14px !important;
+    font-size: 0.875rem !important;
   }
+
   .conentWithMargin {
-    padding: 0.5rem 0.5rem 0px;
+    padding: 0.5rem 0.5rem;
   }
-  .credentials-right, .credentials-left {
+
+  .credentials-right,
+  .credentials-left {
     text-align: center !important;
   }
 }
 
 @media (max-width: 480px) {
   body {
-    font-size: 12px !important;
+    font-size: 0.75rem !important;
   }
 }
 
@@ -213,7 +216,7 @@ body {
 }
 
 .sider-box-shadow {
-  box-shadow: 1px 0px 2px 0px #636363;
+  box-shadow: 1px 0 2px 0 #636363;
 }
 
 h1,
@@ -270,6 +273,7 @@ h4 {
 
 .ant-layout-footer {
   padding: 24px 24px !important;
+  padding-bottom: 0.5rem !important;
 }
 
 .mb-20 {
@@ -290,8 +294,4 @@ h4 {
 
 .chart {
   height: 450px;
-}
-
-.ant-layout-footer {
-  padding-bottom: 0.5rem !important;
 }

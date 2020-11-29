@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: "25 0,3,6,9,12 * * *"
+    - cron: '25 0,3,6,9,12 * * *'
 
 name: CI build.fetch.deply => cvd.19.cf
 
@@ -9,35 +9,34 @@ jobs:
     name: build Gatsby app
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-      
-    - run: yarn install --pure-lockfile
-      name: install deps
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
 
-    - run: yarn gatsby clean && node postinstall.js &&yarn gatsby build --log-pages
-      name: build app 
-      env:
-        NODE_ENV: production
-        ENVIRONMENT: ${{ contains(github.ref, 'master') && 'production' || 'staging'}}
-        GATSBY_GOOGLE_ANALYTICS_ID: ${{ secrets.GATSBY_GOOGLE_ANALYTICS_ID }}
-        GATSBY_APPLLO_GRAPHQL_ENDPOINT: ${{ secrets.GATSBY_APPLLO_GRAPHQL_ENDPOINT }}
-        GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT: ${{ secrets.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT }}
-        GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT: ${{ secrets.GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT }}
+      - run: yarn install --pure-lockfile
+        name: install deps
+
+      - run: yarn gatsby clean && node postinstall.js &&yarn gatsby build --log-pages
+        name: build app
+        env:
+          NODE_ENV: production
+          ENVIRONMENT: ${{ contains(github.ref, 'master') && 'production' || 'staging'}}
+          GATSBY_GOOGLE_ANALYTICS_ID: ${{ secrets.GATSBY_GOOGLE_ANALYTICS_ID }}
+          GATSBY_APPLLO_GRAPHQL_ENDPOINT: ${{ secrets.GATSBY_APPLLO_GRAPHQL_ENDPOINT }}
+          GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT: ${{ secrets.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT }}
+          GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT: ${{ secrets.GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT }}
 
   deploy:
-      name: deploy to Vercel
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: amondnet/vercel-action@v19          
-          with:
-            vercel-token: ${{ secrets.VERCEL_TOKEN }} 
-            github-token: ${{ secrets.ACCESS_TOKEN }} 
-            vercel-args: '--prod'
-            vercel-org-id: ${{ secrets.ORG_ID}}  
-            vercel-project-id: ${{ secrets.PROJECT_ID}}
-            working-directory: ./
-         
+    name: deploy to Vercel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: amondnet/vercel-action@v19
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.ACCESS_TOKEN }}
+          vercel-args: '--prod'
+          vercel-org-id: ${{ secrets.ORG_ID}}
+          vercel-project-id: ${{ secrets.PROJECT_ID}}
+          working-directory: ./

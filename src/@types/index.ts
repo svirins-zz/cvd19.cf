@@ -141,7 +141,7 @@ export type SideDrawerColumn = {
   key: string;
 };
 
-// meta props 
+// meta props
 export interface SeoProps {
   description: string;
   title: string;
