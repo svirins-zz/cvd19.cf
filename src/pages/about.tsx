@@ -45,7 +45,6 @@ const About = (): JSX.Element => {
 						Extra info and useful resources
 					</Title>
 					<Divider className='divider' />
-						If you want expert information visit:
 						<ul className='mt-20'>
 							<li>
 								<a href='https://necsi.edu/corona-virus-pandemic'>
@@ -55,9 +54,10 @@ const About = (): JSX.Element => {
 							<li>
 								<a href='https://www.endcoronavirus.org/'>EndCoronavirus.org</a>
 							</li>
-						</ul>{' '}
-						which provides extensive information, policy advice and guidelines
-						for the fight against Covid-19.
+							<li>
+								<a href='https://coronavirus.jhu.edu/map.html'>Johns Hopkins Coronavirus Resource Center</a>
+							</li>
+						</ul>
 					<Title level={4}>
 					  Tech details: 
 					</Title>
@@ -84,9 +84,11 @@ const About = (): JSX.Element => {
 							All code for this site is{' '}
 							<a href='https://github.com/svirins/cvd19.cf'>open source</a>. It is
 							built with <a href='https://www.gatsbyjs.com/'>Gatsby.</a> and
-							hosted by <a href='https://vercel.com/'>Vercel.</a> Tech stack
-							details <a href='https://stackshare.io/svirins/cvd19'>here.</a>
-							⇄ Pull/Merge requests and ★ Stars are always welcome.
+							hosted by <a href='https://vercel.com/'>Vercel.</a>
+							</li>
+							<li>
+							Tech stack details <a href='https://stackshare.io/svirins/cvd19'>here.</a>
+	            {" "}⇄ Pull/Merge requests and ★ Stars are always welcome.
 							</li>
 						</ul>
 						<Title level={4}>
@@ -101,11 +103,11 @@ const About = (): JSX.Element => {
 				</Col>
 				<Col xs={24} sm={24} md={24} lg={24} xl={24}>
 				<img
-                    src={logo}
-                    alt="Covid-19 stats & facts"
-                    height={192}
-                    width={192}
-                  />
+					src={logo}
+					alt="Covid-19 stats & facts"
+					height={192}
+					width={192}
+				/>
 				</Col>
 			</Row>
 		</Page>

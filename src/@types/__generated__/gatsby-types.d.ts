@@ -843,6 +843,7 @@ type Query_siteArgs = {
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
   port: Maybe<IntQueryOperatorInput>;
   host: Maybe<StringQueryOperatorInput>;
+  flags: Maybe<SiteFlagsFilterInput>;
   polyfill: Maybe<BooleanQueryOperatorInput>;
   pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -932,6 +933,7 @@ type Site = Node & {
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
   readonly port: Maybe<Scalars['Int']>;
   readonly host: Maybe<Scalars['String']>;
+  readonly flags: Maybe<SiteFlags>;
   readonly polyfill: Maybe<Scalars['Boolean']>;
   readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -1145,6 +1147,7 @@ enum SiteFieldsEnum {
   siteMetadata___menuLinks___link = 'siteMetadata.menuLinks.link',
   port = 'port',
   host = 'host',
+  flags___FAST_DEV = 'flags.FAST_DEV',
   polyfill = 'polyfill',
   pathPrefix = 'pathPrefix',
   id = 'id',
@@ -1240,12 +1243,21 @@ type SiteFilterInput = {
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
   readonly port: Maybe<IntQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
+  readonly flags: Maybe<SiteFlagsFilterInput>;
   readonly polyfill: Maybe<BooleanQueryOperatorInput>;
   readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
+};
+
+type SiteFlags = {
+  readonly FAST_DEV: Maybe<Scalars['Boolean']>;
+};
+
+type SiteFlagsFilterInput = {
+  readonly FAST_DEV: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SiteGroupConnection = {
@@ -2080,5 +2092,17 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type GetBuildTimeQueryQueryVariables = Exact<{
+  buildTime?: Maybe<DateQueryOperatorInput>;
+}>;
+
+
+type GetBuildTimeQueryQuery = { readonly siteBuildMetadata: Maybe<Pick<SiteBuildMetadata, 'buildTime'>> };
+
+type SiteQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SiteQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author' | 'keywords' | 'language' | 'metaImage' | 'siteUrl'>> }> };
 
 }

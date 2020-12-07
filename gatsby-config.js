@@ -2,6 +2,9 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || "development"}`,
 });
 module.exports = {
+  flags: {
+    FAST_DEV: true,
+  },
   siteMetadata: {
     title: "Covid-19 stats and charts",
     description: `This site aims to provide a simple tool to track global trends in

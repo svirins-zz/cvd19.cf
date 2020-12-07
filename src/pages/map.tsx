@@ -48,7 +48,7 @@ const Map = ({
 				<Popup key={index}>
 					<span>
 						<img src={flag} alt='name' />
-						<h2 className='title'>{name}</h2>
+						<span className='title'>{name}</span>
 						<ul className='marker-list'>
 							<li>Confirmed:&nbsp;{commafy(confirmed)}</li>
 							<li>Deaths:&nbsp;{commafy(deaths)}</li>
