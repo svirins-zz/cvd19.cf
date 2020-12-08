@@ -42,7 +42,7 @@ const About = (): JSX.Element => {
 			<Row gutter={[8, 16]}>
 				<Col xs={24} sm={24} md={24} lg={24} xl={24}>
 					<Title level={4}>
-						Extra info and useful resources
+						Extra info and useful resources:
 					</Title>
 					<Divider className='divider' />
 						<ul className='mt-20'>
@@ -81,14 +81,12 @@ const About = (): JSX.Element => {
 								uses some legacy code, thought massively refactored.
 							</li>
 							<li> 
-							All code for this site is{' '}
-							<a href='https://github.com/svirins/cvd19.cf'>open source</a>. It is
-							built with <a href='https://www.gatsbyjs.com/'>Gatsby.</a> and
-							hosted by <a href='https://vercel.com/'>Vercel.</a>
+                Site is built with <a href='https://www.gatsbyjs.com/'>Gatsby.</a> and hosted by <a href='https://vercel.com/'>Vercel.</a>.{" "}
+								Tech stack details <a href='https://stackshare.io/svirins/cvd19'>here.</a>
 							</li>
 							<li>
-							Tech stack details <a href='https://stackshare.io/svirins/cvd19'>here.</a>
-	            {" "}⇄ Pull/Merge requests and ★ Stars are always welcome.
+								All code for this site is{' '}
+								<a href='https://github.com/svirins/cvd19.cf'>open source</a>.{" "} ⇄ Pull/Merge requests and ★ Stars are always welcome.			
 							</li>
 						</ul>
 						<Title level={4}>

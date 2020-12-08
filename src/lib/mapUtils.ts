@@ -57,7 +57,7 @@ export const getCountryExtData = (countryName: string): CodeFlagGeo => {
   const flag: string =
     code === "VESSEL"
       ? vessel
-      : `https://www.countryflags.io/${code?.toLowerCase()}/flat/64.png`;
+      : `http://purecatamphetamine.github.io/country-flag-icons/3x2/${code}.svg`;    
   const geometry: Geometry = {
     type: "Point",
     coordinates: getCoords(code ?? "", countryName),

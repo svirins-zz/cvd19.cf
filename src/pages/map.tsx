@@ -47,8 +47,9 @@ const Map = ({
 			<Marker key={index} position={feature.geometry.coordinates} icon={icon}>
 				<Popup key={index}>
 					<span>
-						<img src={flag} alt='name' />
+						<img src={flag} alt='name' className="country-flag"/>
 						<span className='title'>{name}</span>
+						<hr />
 						<ul className='marker-list'>
 							<li>Confirmed:&nbsp;{commafy(confirmed)}</li>
 							<li>Deaths:&nbsp;{commafy(deaths)}</li>
