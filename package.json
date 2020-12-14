@@ -15,6 +15,7 @@
     "country-list": "^2.2.0",
     "gatsby": "^2.28.0",
     "gatsby-plugin-antd": "^2.2.0",
+    "gatsby-plugin-google-tagmanager": "^2.7.0",
     "gatsby-plugin-less": "^4.3.0",
     "gatsby-plugin-manifest": "^2.8.0",
     "gatsby-plugin-offline": "^3.6.0",
