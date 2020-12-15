@@ -18,7 +18,7 @@ module.exports = {
     menuLinks: [
       {
         name: "main",
-        link: "/",
+        link: "/",GTM-TW433FN
       },
       {
         name: "data",
@@ -39,7 +39,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        id: "YOUR_GOOGLE_TAGMANAGER_ID",
+        id: "GTM-TW433FN",
         includeInDevelopment: false,
         defaultDataLayer: { platform: "gatsby" },
       },
