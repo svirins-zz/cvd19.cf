@@ -3,6 +3,8 @@
 declare namespace GatsbyTypes {
 type Maybe<T> = T | undefined;
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 type Scalars = {
   ID: string;
@@ -1498,6 +1500,10 @@ enum SitePageFieldsEnum {
   pluginCreator___resolve = 'pluginCreator.resolve',
   pluginCreator___name = 'pluginCreator.name',
   pluginCreator___version = 'pluginCreator.version',
+  pluginCreator___pluginOptions___id = 'pluginCreator.pluginOptions.id',
+  pluginCreator___pluginOptions___includeInDevelopment = 'pluginCreator.pluginOptions.includeInDevelopment',
+  pluginCreator___pluginOptions___defaultDataLayer___type = 'pluginCreator.pluginOptions.defaultDataLayer.type',
+  pluginCreator___pluginOptions___routeChangeEventName = 'pluginCreator.pluginOptions.routeChangeEventName',
   pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
   pluginCreator___pluginOptions___linkStyles = 'pluginCreator.pluginOptions.linkStyles',
@@ -1717,6 +1723,11 @@ enum SitePluginFieldsEnum {
   resolve = 'resolve',
   name = 'name',
   version = 'version',
+  pluginOptions___id = 'pluginOptions.id',
+  pluginOptions___includeInDevelopment = 'pluginOptions.includeInDevelopment',
+  pluginOptions___defaultDataLayer___type = 'pluginOptions.defaultDataLayer.type',
+  pluginOptions___defaultDataLayer___value___platform = 'pluginOptions.defaultDataLayer.value.platform',
+  pluginOptions___routeChangeEventName = 'pluginOptions.routeChangeEventName',
   pluginOptions___name = 'pluginOptions.name',
   pluginOptions___path = 'pluginOptions.path',
   pluginOptions___linkStyles = 'pluginOptions.linkStyles',
@@ -1879,6 +1890,10 @@ type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 type SitePluginPluginOptions = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly includeInDevelopment: Maybe<Scalars['Boolean']>;
+  readonly defaultDataLayer: Maybe<SitePluginPluginOptionsDefaultDataLayer>;
+  readonly routeChangeEventName: Maybe<Scalars['String']>;
   readonly name: Maybe<Scalars['String']>;
   readonly path: Maybe<Scalars['String']>;
   readonly linkStyles: Maybe<Scalars['Boolean']>;
@@ -1911,7 +1926,29 @@ type SitePluginPluginOptions = {
   readonly pathCheck: Maybe<Scalars['Boolean']>;
 };
 
+type SitePluginPluginOptionsDefaultDataLayer = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly value: Maybe<SitePluginPluginOptionsDefaultDataLayerValue>;
+};
+
+type SitePluginPluginOptionsDefaultDataLayerFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly value: Maybe<SitePluginPluginOptionsDefaultDataLayerValueFilterInput>;
+};
+
+type SitePluginPluginOptionsDefaultDataLayerValue = {
+  readonly platform: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsDefaultDataLayerValueFilterInput = {
+  readonly platform: Maybe<StringQueryOperatorInput>;
+};
+
 type SitePluginPluginOptionsFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly includeInDevelopment: Maybe<BooleanQueryOperatorInput>;
+  readonly defaultDataLayer: Maybe<SitePluginPluginOptionsDefaultDataLayerFilterInput>;
+  readonly routeChangeEventName: Maybe<StringQueryOperatorInput>;
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly linkStyles: Maybe<BooleanQueryOperatorInput>;
@@ -2092,5 +2129,17 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type GetBuildTimeQueryQueryVariables = Exact<{
+  buildTime?: Maybe<DateQueryOperatorInput>;
+}>;
+
+
+type GetBuildTimeQueryQuery = { readonly siteBuildMetadata: Maybe<Pick<SiteBuildMetadata, 'buildTime'>> };
+
+type SiteQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SiteQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author' | 'keywords' | 'language' | 'metaImage' | 'siteUrl'>> }> };
 
 }
