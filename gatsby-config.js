@@ -18,7 +18,7 @@ module.exports = {
     menuLinks: [
       {
         name: "main",
-        link: "/",GTM-TW433FN
+        link: "/",
       },
       {
         name: "data",
