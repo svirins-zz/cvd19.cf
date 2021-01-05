@@ -30,6 +30,7 @@ jobs:
           GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT: ${{ secrets.GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT }}
 
   deploy:
+    needs: build
     name: deploy to Vercel
     runs-on: ubuntu-latest
     steps:
