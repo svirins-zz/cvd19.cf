@@ -29,17 +29,17 @@ jobs:
           GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT: ${{ secrets.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT }}
           GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT: ${{ secrets.GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT }}
 
-  deploy:
-    needs: build
-    name: deploy to Vercel
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: amondnet/vercel-action@v19
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.ACCESS_TOKEN }}
-          vercel-args: '--prod'
-          vercel-org-id: ${{ secrets.ORG_ID}}
-          vercel-project-id: ${{ secrets.PROJECT_ID}}
-          working-directory: ./
+#   deploy:
+#     needs: build
+#     name: deploy to Vercel
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: amondnet/vercel-action@v19
+#         with:
+#           vercel-token: ${{ secrets.VERCEL_TOKEN }}
+#           github-token: ${{ secrets.ACCESS_TOKEN }}
+#           vercel-args: '--prod'
+#           vercel-org-id: ${{ secrets.ORG_ID}}
+#           vercel-project-id: ${{ secrets.PROJECT_ID}}
+#           working-directory: ./
