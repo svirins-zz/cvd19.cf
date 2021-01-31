@@ -14,40 +14,40 @@ exports.onCreateBabelConfig = ({ actions }) => {
   });
 };
 
-const COUNTRY_QUERY = gql`
-  query {
-    countries {
-      name
-      results {
-        date(format: "yyyy/MM/dd")
-        deaths
-        confirmed
-        recovered
-      }
-    }
-  }
-`;
-exports.onCreatePage = async ({ page, actions }) => {
-  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT, {
-    credentials: "include",
-    mode: "cors",
-  });
-  if (
-    page.path === "/" ||
-    page.path === "/map" ||
-    page.path === "/map/" ||
-    page.path === "/data" ||
-    page.path === "/data/"
-  ) {
-    const { createPage, deletePage } = actions;
-    deletePage(page);
-    const data = await graphQLClient.request(COUNTRY_QUERY);
-    createPage({
-      ...page,
-      context: {
-        ...page.context,
-        data,
-      },
-    });
-  }
-};
+// const COUNTRY_QUERY = gql`
+//   query {
+//     countries {
+//       name
+//       results {
+//         date(format: "yyyy/MM/dd")
+//         deaths
+//         confirmed
+//         recovered
+//       }
+//     }
+//   }
+// `;
+// exports.onCreatePage = async ({ page, actions }) => {
+//   const graphQLClient = new GraphQLClient("https://cvd19.cf/api", {
+//     credentials: "include",
+//     mode: "cors",
+//   });
+//   if (
+//     page.path === "/" ||
+//     page.path === "/map" ||
+//     page.path === "/map/" ||
+//     page.path === "/data" ||
+//     page.path === "/data/"
+//   ) {
+//     const { createPage, deletePage } = actions;
+//     deletePage(page);
+//     const data = await graphQLClient.request(COUNTRY_QUERY);
+//     createPage({
+//       ...page,
+//       context: {
+//         ...page.context,
+//         data,
+//       },
+//     });
+//   }
+// };

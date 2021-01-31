@@ -4,6 +4,7 @@
   "sourceType": "module",
   "compilerOptions": {
     "module": "commonjs",
+    "baseUrl": "./src",
     "target": "esnext",
     "jsx": "react",
     "lib": [
@@ -19,8 +20,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
   },
-  "include": ["./src/**/*", "./api/**/*"],
-  "exclude": ["./node_modules/**/*"]
 }
+
