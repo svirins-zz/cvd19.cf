@@ -30,7 +30,6 @@
     "gatsby-plugin-typescript": "^2.11.0",
     "gatsby-plugin-webfonts": "^1.1.4",
     "gatsby-source-filesystem": "^2.10.0",
-    "graphql": "15.3.0",
     "graphql-request": "3.3.0",
     "immer": "^8.0.1",
     "leaflet": "^1.7.1",
@@ -46,9 +45,6 @@
     "use-immer": "^0.4.2"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.20.0",
-    "@graphql-codegen/typescript": "1.20.0",
-    "@graphql-codegen/typescript-resolvers": "1.18.1",
     "@types/country-list": "^2.1.0",
     "@types/d3-color": "^2.0.1",
     "@types/d3-scale-chromatic": "^2.0.0",
