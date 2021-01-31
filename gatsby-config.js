@@ -82,7 +82,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-typescript",
-    "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-antd",
       options: {
