@@ -1,8 +1,6 @@
 const { GraphQLClient, gql } = require("graphql-request");
 
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
     name: "babel-plugin-import",
@@ -27,7 +25,7 @@ const COUNTRY_QUERY = gql`
   }
 `;
 exports.onCreatePage = async ({ page, actions }) => {
-  const graphQLClient = new GraphQLClient(process.env.GATSBY_APPLLO_GRAPHQL_ENDPOINT, {
+  const graphQLClient = new GraphQLClient("/api", {
     credentials: "include",
     mode: "cors",
   });
