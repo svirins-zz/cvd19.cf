@@ -1,3 +1,5 @@
+const { GraphQLClient, gql } = require("graphql-request");
+
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -11,10 +13,6 @@ exports.onCreateBabelConfig = ({ actions }) => {
   });
 };
 
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
-const { GraphQLClient, gql } = require("graphql-request");
 const COUNTRY_QUERY = gql`
   query {
     countries {

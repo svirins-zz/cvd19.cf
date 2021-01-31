@@ -28,7 +28,7 @@
     "gatsby-plugin-typescript": "^2.11.0",
     "gatsby-plugin-webfonts": "^1.1.4",
     "gatsby-source-filesystem": "^2.10.0",
-    "graphql-request": "^3.4.0",
+    "graphql-request": "3.3.0",
     "immer": "^8.0.1",
     "leaflet": "^1.7.1",
     "less": "^4.1.1",
@@ -88,5 +88,9 @@
   },
   "scarfSettings": {
     "enabled": false
+  },
+  "volta": {
+    "node": "12.20.1",
+    "yarn": "1.22.10"
   }
 }
