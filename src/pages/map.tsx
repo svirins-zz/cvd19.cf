@@ -61,38 +61,43 @@ const Map = ({
 		);
 	});
 	const displayMap = useMemo(
-		() => (
-			<MapContainer
-				center={MAP_CENTER}
-				zoom={zoomValue}
-				minZoom={2.5}
-				maxZoom={14}
-				attributionControl={true}
-				zoomControl={true}
-				doubleClickZoom={true}
-				scrollWheelZoom={true}
-				dragging={true}
-				easeLinearity={0.35}
-			>
-				<LayersControl position='topright'>
-					<LayersControl.BaseLayer checked={true} name='ArcGis.Dark'>
-						<TileLayer
-							attribution={ATTRIBUTION_STRING}
-							url={process.env.GATSBY_ARCGISONLINE_STATIC_TILES_ENDPOINT ?? ''}
-						/>
-					</LayersControl.BaseLayer>
-					<LayersControl.BaseLayer name='OpenStreetMap'>
-						<TileLayer
-							attribution={ATTRIBUTION_STRING}
-							url={process.env.GATSBY_OPENSTREETMAP_STATIC_TILES_ENDPOINT ?? ''}
-						/>
-					</LayersControl.BaseLayer>
-				</LayersControl>
-				<LayerGroup>{markers}</LayerGroup>
-			</MapContainer>
-		),
-		[],
-	);
+    () => (
+      <MapContainer
+        center={MAP_CENTER}
+        zoom={zoomValue}
+        minZoom={2.5}
+        maxZoom={14}
+        attributionControl={true}
+        zoomControl={true}
+        doubleClickZoom={true}
+        scrollWheelZoom={true}
+        dragging={true}
+        easeLinearity={0.35}
+      >
+        <LayersControl position='topright'>
+          <LayersControl.BaseLayer checked={true} name='ArcGis.Dark'>
+            <TileLayer
+              attribution={ATTRIBUTION_STRING}
+              url={
+                process.env.NEXT_PUBLIC_ARCGISONLINE_STATIC_TILES_ENDPOINT ?? ""
+              }
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name='OpenStreetMap'>
+            <TileLayer
+              attribution={ATTRIBUTION_STRING}
+              url={
+                process.env.NEXT_PUBLIC_OPENSTREETMAP_STATIC_TILES_ENDPOINT ??
+                ""
+              }
+            />
+          </LayersControl.BaseLayer>
+        </LayersControl>
+        <LayerGroup>{markers}</LayerGroup>
+      </MapContainer>
+    ),
+    [],
+  );
 	return (
 		<Page>
 			<SEO
