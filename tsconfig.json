@@ -12,7 +12,7 @@
       "esnext",
     ],
     "sourceMap": true,
-    "strict": true,
+    "strict": false,
     "noEmit": true,
     "isolatedModules": true,
     "esModuleInterop": true,

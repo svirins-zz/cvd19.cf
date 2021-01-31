@@ -1,4 +1,4 @@
-import { ApolloServer, makeExecutableSchema } from 'apollo-server-micro'
+import { ApolloServer, IResolvers, makeExecutableSchema } from 'apollo-server-micro'
 import fetch from 'node-fetch'
 
 import resolvers from './resolvers'
@@ -10,7 +10,7 @@ import microCors = require('micro-cors');
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers
-})
+});
 
 let results = null
 

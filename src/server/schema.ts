@@ -1,4 +1,4 @@
-import { gql } from './resolvers/node_modules/apollo-server-micro'
+import { gql } from 'apollo-server-micro'
 
 const schema = gql`
 

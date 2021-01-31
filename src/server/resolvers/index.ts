@@ -1,10 +1,10 @@
-import { Resolvers } from './types'
 import Query from './Query'
 import Result from './Result'
+type Resolvers = IResolvers<any, any> | IResolvers<any, any>[] | undefined;
 
-const resolvers: Resolvers = {
+const resolvers: unknown = {
   Query,
-  Result
-}
+  Result,
+};
 
 export default resolvers
