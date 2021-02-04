@@ -1,5 +1,5 @@
 const { GraphQLClient, gql } = require("graphql-request");
-
+const fetch = require("isomorphic-unfetch")
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -28,7 +28,7 @@ const COUNTRY_QUERY = gql`
   }
 `;
 exports.onCreatePage = async ({ page, actions }) => {
-  const graphQLClient = new GraphQLClient("http://localhost:8000/api");
+  // const graphQLClient = new GraphQLClient("/api");
   if (
     page.path === "/" ||
     page.path === "/map" ||
@@ -38,7 +38,25 @@ exports.onCreatePage = async ({ page, actions }) => {
   ) {
     const { createPage, deletePage } = actions;
     deletePage(page);
-    const data = await graphQLClient.request(COUNTRY_QUERY);
+    // const data = await graphQLClient.request(COUNTRY_QUERY);
+    const data = await fetch('http://localhost:8000/api',{
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `query {
+          countries {
+            name
+            results {
+              date(format: "yyyy/MM/dd")
+              deaths
+              confirmed
+              recovered
+            }
+          }
+        }`
+      }),
+    })
+ .then(res => res.json())
     createPage({
       ...page,
       context: {
