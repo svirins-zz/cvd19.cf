@@ -41,7 +41,7 @@ const Data = ({
 	pageContext: GatsbyTypes.SitePageContext;
 }): JSX.Element => {
 	const { width } = useContext(myContext);
-	const countries = pageContext.data?.countries as Country[];
+	const countries = pageContext.data as Country[];
 	const [filtersState, setFiltersState] = useImmer<FiltersState>({
 		periodLength: PERIOD_LENGTH,
 		selectedTable: TableType.NewDeaths,

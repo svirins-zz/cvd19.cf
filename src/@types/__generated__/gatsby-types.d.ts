@@ -872,6 +872,7 @@ type Query_sitePageArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
   componentPath: Maybe<StringQueryOperatorInput>;
@@ -1277,6 +1278,7 @@ type SitePage = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly componentPath: Maybe<Scalars['String']>;
@@ -1301,6 +1303,46 @@ type SitePageConnection_groupArgs = {
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
   field: SitePageFieldsEnum;
+};
+
+type SitePageContext = {
+  readonly data: Maybe<ReadonlyArray<Maybe<SitePageContextData>>>;
+};
+
+type SitePageContextData = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly results: Maybe<ReadonlyArray<Maybe<SitePageContextDataResults>>>;
+};
+
+type SitePageContextDataFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly results: Maybe<SitePageContextDataResultsFilterListInput>;
+};
+
+type SitePageContextDataFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextDataFilterInput>;
+};
+
+type SitePageContextDataResults = {
+  readonly date: Maybe<Scalars['String']>;
+  readonly deaths: Maybe<Scalars['Int']>;
+  readonly confirmed: Maybe<Scalars['Int']>;
+  readonly recovered: Maybe<Scalars['Int']>;
+};
+
+type SitePageContextDataResultsFilterInput = {
+  readonly date: Maybe<StringQueryOperatorInput>;
+  readonly deaths: Maybe<IntQueryOperatorInput>;
+  readonly confirmed: Maybe<IntQueryOperatorInput>;
+  readonly recovered: Maybe<IntQueryOperatorInput>;
+};
+
+type SitePageContextDataResultsFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextDataResultsFilterInput>;
+};
+
+type SitePageContextFilterInput = {
+  readonly data: Maybe<SitePageContextDataFilterListInput>;
 };
 
 type SitePageEdge = {
@@ -1402,6 +1444,13 @@ type SitePageFieldsEnum =
   | 'internal.owner'
   | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
+  | 'context.data'
+  | 'context.data.name'
+  | 'context.data.results'
+  | 'context.data.results.date'
+  | 'context.data.results.deaths'
+  | 'context.data.results.confirmed'
+  | 'context.data.results.recovered'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -1512,6 +1561,7 @@ type SitePageFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly componentPath: Maybe<StringQueryOperatorInput>;

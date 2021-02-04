@@ -1,9 +1,8 @@
 const { GraphQLClient, gql } = require("graphql-request");
-const fetch = require("isomorphic-unfetch")
+// const fetch = require("isomorphic-unfetch")
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
     name: "babel-plugin-import",
@@ -14,21 +13,45 @@ exports.onCreateBabelConfig = ({ actions }) => {
   });
 };
 
+function replacerFN (result) {
+  const data = result.map(country => {
+    let {n ,r} = country;
+    let replacedResults = r.map(date => {
+      let {dt,d,c,r} = date
+      return {
+        date: dt,
+        deaths: d,
+        confirmed: c,
+        recovered: r
+      }
+    })
+    return {
+      name:n,
+      results: replacedResults
+    }
+  })
+  return data
+}
+
 const COUNTRY_QUERY = gql`
-  query {
+query {
     countries {
-      name
-      results {
-        date(format: "yyyy/MM/dd")
-        deaths
-        confirmed
-        recovered
+      n: name
+      r: results {
+        dt: date(format: "yyyy/MM/dd")
+        d: deaths
+        c :confirmed
+        r: recovered
       }
     }
   }
 `;
 exports.onCreatePage = async ({ page, actions }) => {
-  // const graphQLClient = new GraphQLClient("/api");
+  const graphQLClient = new GraphQLClient('https://corona-server.svirins.vercel.app/api')
+    // url: 'https://corona-server.svirins.vercel.app/api',
+    // credentials: "include",
+    // mode: "cors"
+    // });
   if (
     page.path === "/" ||
     page.path === "/map" ||
@@ -38,25 +61,8 @@ exports.onCreatePage = async ({ page, actions }) => {
   ) {
     const { createPage, deletePage } = actions;
     deletePage(page);
-    // const data = await graphQLClient.request(COUNTRY_QUERY);
-    const data = await fetch('http://localhost:8000/api',{
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `query {
-          countries {
-            name
-            results {
-              date(format: "yyyy/MM/dd")
-              deaths
-              confirmed
-              recovered
-            }
-          }
-        }`
-      }),
-    })
- .then(res => res.json())
+    const result = await graphQLClient.request(COUNTRY_QUERY);
+    const data = replacerFN(result.countries);
     createPage({
       ...page,
       context: {
@@ -66,6 +72,3 @@ exports.onCreatePage = async ({ page, actions }) => {
     });
   }
 };
-
-// credentials: "include",
-//   mode: "cors",

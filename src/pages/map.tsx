@@ -28,7 +28,7 @@ const Map = ({
 }: {
 	pageContext: GatsbyTypes.SitePageContext;
 }): JSX.Element => {
-	const countries = pageContext.data?.countries as Country[];
+	const countries = pageContext.data as Country[];
 	const { width } = useContext(myContext);
 	const zoomValue = getCurrentZoom(width?.multiplyer);
 	const { features } = getFeatures(countries);

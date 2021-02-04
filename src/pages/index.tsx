@@ -30,9 +30,9 @@ const Index = ({
 		},
 		trends: [],
 		loseTableData: [],
-		winTableData: [],
+		winTableDat: [],
 	});
-	const countries = pageContext.data?.countries as Country[];
+	const countries = pageContext.data as Country[];
 	useEffect(() => {
 		const { stats, trends, loseTableData, winTableData } = useGetGlobalData(
 			countries,
