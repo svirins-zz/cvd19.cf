@@ -131,7 +131,6 @@ export const calcCountries = (
 			cases: 0,
 		}));
 		country?.results?.forEach((result) => {
-			console.log(result)
 			if (!result?.date) {
 				return;
 			}
